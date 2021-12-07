@@ -24,9 +24,7 @@
 (set vim.o.clipboard "unnamedplus")
 
 (vim.cmd "filetype plugin on")
-; (vim.cmd "set iskeyword+=-")
 
-; (nvim.ex.syntax :off)
 (nvim.ex.set :list)
 (nvim.ex.set :nowrap)
 (nvim.ex.set :noswapfile)
