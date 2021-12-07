@@ -59,10 +59,8 @@
    :sources cmp-srcs})
 
 (cmp.setup.cmdline "/"
-                   {:sources {:name "buffer"}})
+                   {:sources [{:name "buffer"}]})
 
 (cmp.setup.cmdline ":"
-                   {:sources {{:name "path"
-                               :group_index 1}
-                              {:name "cmdline"
-                               :group_index 2}}})
+                   {:sources [{:name "path"}
+                              {:name "cmdline"}]})

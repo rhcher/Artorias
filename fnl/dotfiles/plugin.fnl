@@ -27,18 +27,14 @@
 (use
   :Olical/aniseed {:branch :develop}
   :Olical/conjure {:branch :develop :mod :conjure}
-  :Olical/nvim-local-fennel {}
   :famiu/feline.nvim {:mod :feline}
-  :clojure-vim/clojure.vim {:ft :clojure}
-  :clojure-vim/vim-jack-in {}
   :guns/vim-sexp {:mod :sexp}
   :hrsh7th/nvim-cmp {:requires [:hrsh7th/cmp-nvim-lsp
                                 :hrsh7th/cmp-buffer
                                 :hrsh7th/cmp-path
                                 :PaterJason/cmp-conjure
                                 :dcampos/cmp-snippy
-                                :hrsh7th/cmp-cmdline
-                                :hrsh7th/cmp-nvim-lsp-document-symbol]
+                                :hrsh7th/cmp-cmdline]
                      :mod :cmp}
   :jiangmiao/auto-pairs {:mod :auto-pairs}
   :lewis6991/impatient.nvim {}
@@ -47,10 +43,8 @@
   :neovim/nvim-lspconfig {:mod :lspconfig}
   :norcalli/nvim-colorizer.lua {:mod :colorizer}
   :nvim-telescope/telescope.nvim {:mod :telescope :requires [[:nvim-lua/popup.nvim] [:nvim-lua/plenary.nvim]]}
-  :radenling/vim-dispatch-neovim {}
   :tpope/vim-abolish {}
   :tpope/vim-commentary {}
-  :tpope/vim-dispatch {}
   :tpope/vim-fugitive {:mod :fugitive}
   :tpope/vim-repeat {}
   :tpope/vim-sexp-mappings-for-regular-people {}
