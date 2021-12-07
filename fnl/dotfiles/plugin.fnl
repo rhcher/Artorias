@@ -9,10 +9,6 @@
     (when (not ok?)
       (print (.. "dotfiles error: " val-or-err)))))
 
-(defn- packer-lazy-load [plugin]
-  (when plugin
-    (vim.defer_fn (fn [] (packer.loader plugin)) 0)))
-
 (defn- use [...]
   "Iterates through the arguments as pairs and calls packer's use function for
   each of them. Works around Fennel not liking mixed associative and sequential
@@ -29,17 +25,12 @@
 
 ;; Plugins to be managed by packer.
 (use
-  ; "~/repos/Olical/conjure" {:mod :conjure}
-  ; "~/repos/Olical/aniseed" {}
-  ; "~/repos/Olical/nvim-local-fennel" {}
-
   :Olical/aniseed {:branch :develop}
   :Olical/conjure {:branch :develop :mod :conjure}
   :Olical/nvim-local-fennel {}
   :famiu/feline.nvim {:mod :feline}
   :clojure-vim/clojure.vim {:ft :clojure}
   :clojure-vim/vim-jack-in {}
-  ; :folke/which-key.nvim {:mod :which-key}
   :guns/vim-sexp {:mod :sexp}
   :hrsh7th/nvim-cmp {:requires [:hrsh7th/cmp-nvim-lsp
                                 :hrsh7th/cmp-buffer
