@@ -40,13 +40,6 @@
     (vim.api.nvim_command "autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()")
     (vim.api.nvim_command "autocmd CursorMoved,InsertEnter,WinLeave <buffer> lua vim.lsp.buf.clear_references()")))
 
-(def- capabilities (cmplsp.update_capabilities (vim.lsp.protocol.make_client_capabilities)))
-
-(defn- map [from to]
-  (util.nnoremap from to))
-
-(tset vim.lsp.handlers "textDocument/hover" (vim.lsp.with vim.lsp.handlers.hover {:border :single}))
-(tset vim.lsp.handlers "textDocument/signatureHelp" (vim.lsp.with vim.lsp.handlers.signature_help {:border :single}))
 (let [location_handler
       (fn [_ result ctx _]
         (when (or (= result nil) (vim.tbl_isempty result))
@@ -59,10 +52,12 @@
               (lsp_util.set_qflist (lsp_util.locations_to_items result))
               (vim.api.nvim_command "botright copen")))
           (lsp_util.jump_to_location result)))]
-  (tset vim.lsp.handlers "textDocument/definition" location_handler))
-
+  (tset vim.lsp.handlers "textDocument/definition" location_handler)
+  (tset vim.lsp.handlers "textDocument/hover" (vim.lsp.with vim.lsp.handlers.hover {:border :single}))
+  (tset vim.lsp.handlers "textDocument/signatureHelp" (vim.lsp.with vim.lsp.handlers.signature_help {:border :single})))
 
 (let [lsp (require :lspconfig)
+      capabilities (cmplsp.update_capabilities (vim.lsp.protocol.make_client_capabilities))
       servers [:hls]]
   (when lsp
     (each [_ name (ipairs servers)]

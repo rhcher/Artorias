@@ -10,7 +10,10 @@
                         "--with-filename" "--line-number" "--column"
                         "--smart-case" "--hidden" "--follow"
                         "-g" "!.git/"]
-    :mappings {:i {:<esc> actions.close}}}})
+    :mappings {:i {:<esc> actions.close}}
+    :sorting_strategy "ascending"
+    :layout_config
+      {:horizontal {:prompt_position "top"}}}})
 
 (util.lnnoremap :ff "Telescope find_files hidden=true")
 (util.lnnoremap :f- "Telescope file_browser")
