@@ -63,7 +63,7 @@
 
 
 (let [lsp (require :lspconfig)
-      servers [:hls :racket_langserver]]
+      servers [:hls]]
   (when lsp
     (each [_ name (ipairs servers)]
       (let [{name config} lsp]
@@ -98,4 +98,8 @@
                       :index {:onChange false
                               :initialNoLinkage true}
                       :cache {:directory "/tmp/ccls-cache/"}}
-       :flags {:debounce_text_changes 100}})))
+       :flags {:debounce_text_changes 100}})
+    (lsp.racket_langserver.setup
+      {:on_attach on_attach
+       :capabilities capabilities
+       :filetypes [:racket]})))

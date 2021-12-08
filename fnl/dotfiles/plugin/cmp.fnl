@@ -54,7 +54,7 @@
                 :format (lspkind.cmp_format {:with_text false
                                              :maxwidth 50
                                              :before (fn [entry vim_item]
-                                                       (tset vim_item :dup (or (. {:conjure 0 :nvim_lsp 0} entry.source.name) 0))
+                                                       (tset vim_item :dup (or (. {:conjure 0} entry.source.name) 0))
                                                        vim_item)})} 
    :sources cmp-srcs})
 

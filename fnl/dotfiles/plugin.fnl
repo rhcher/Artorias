@@ -36,7 +36,6 @@
                                 :dcampos/cmp-snippy
                                 :hrsh7th/cmp-cmdline]
                      :mod :cmp}
-  :jiangmiao/auto-pairs {:mod :auto-pairs}
   :lewis6991/impatient.nvim {}
   :rhcher/srcery-vim {}
   :mbbill/undotree {:mod :undotree}
@@ -57,7 +56,7 @@
   :dcampos/nvim-snippy {}
   :honza/vim-snippets {}
   :nvim-treesitter/nvim-treesitter {:run ":TSUpdate" :mod :treesitter}
-  :kevinhwang91/nvim-bqf {:branch :dev :mod :bqf}
+  :kevinhwang91/nvim-bqf {:mod :bqf}
   :wellle/targets.vim {:mod :targets}
   :machakann/vim-sandwich {:mod :sandwich}
   :TimUntersberger/neogit {:mod :neogit}
@@ -69,4 +68,5 @@
   :lewis6991/gitsigns.nvim {:mod :gitsigns}
   :onsails/lspkind-nvim {}
   :akinsho/nvim-toggleterm.lua {:mod :terminal}
-  :ggandor/lightspeed.nvim {})
+  :ggandor/lightspeed.nvim {}
+  :Raimondi/delimitMate {:mod :auto-pairs})
