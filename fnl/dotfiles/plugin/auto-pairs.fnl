@@ -3,7 +3,6 @@
              nvim aniseed.nvim}})
 
 (vim.cmd "let delimitMate_autoclose = 1")
-(vim.cmd "let delimitMate_balance_matchpairs = 1")
 (vim.cmd "let delimitMate_expand_cr = 1")
 (vim.cmd "let delimitMate_excluded_regions = \"String\"")
 (nvim.ex.autocmd :FileType
