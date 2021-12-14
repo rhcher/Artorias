@@ -24,11 +24,11 @@
   {:snippet {:expand (fn [args] (snippy.expand_snippet args.body))}
    :completion {:completeopt "menu,menuone,noselect"
                 :keyword_pattern "\\k\\+"}
-   :sorting {:comparators [cmp.config.compare.offset
+   :sorting {:comparators [(fn [...] (cmp_buffer:compare_locality ...))
+                           cmp.config.compare.offset
                            cmp.config.compare.exact
                            cmp.config.compare.score
                            cmp.config.compare.recently_used
-                           (fn [...] (cmp_buffer:compare_locality ...))
                            cmp.config.compare.kind
                            cmp.config.compare.length
                            cmp.config.compare.sort_text

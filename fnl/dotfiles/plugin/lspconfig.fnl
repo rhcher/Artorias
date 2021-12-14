@@ -58,7 +58,7 @@
 
 (let [lsp (require :lspconfig)
       capabilities (cmplsp.update_capabilities (vim.lsp.protocol.make_client_capabilities))
-      servers [:hls]]
+      servers [:hls :ocamllsp]]
   (when lsp
     (each [_ name (ipairs servers)]
       (let [{name config} lsp]
