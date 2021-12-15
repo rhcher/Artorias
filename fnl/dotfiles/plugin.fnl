@@ -27,7 +27,7 @@
 (use
   :Olical/aniseed {:branch :develop}
   :Olical/conjure {:branch :develop :mod :conjure}
-  :famiu/feline.nvim {:mod :feline}
+  :ram02z/feline.nvim {:branch :diagnostic :mod :feline}
   :guns/vim-sexp {:mod :sexp}
   :hrsh7th/nvim-cmp {:requires [:hrsh7th/cmp-nvim-lsp
                                 :hrsh7th/cmp-buffer
