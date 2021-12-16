@@ -3,7 +3,7 @@
              bqf bqf}})
 
 (bqf.setup {:preview {:auto_preview false}})
-(vim.cmd "au FileType qf nnoremap <buffer><silent> q :ccl<CR>")
+(vim.cmd "au FileType qf,man,help,lspinfo nnoremap <buffer><silent> q :close<CR>")
 
 ; pretty quicklist copy from nvim-bqf
 (defn _G.qftf [info]
