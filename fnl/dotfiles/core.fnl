@@ -21,7 +21,6 @@
 
 (set vim.o.hidden true)
 (set vim.o.updatetime 500)
-(set vim.o.timeoutlen 350)
 (set vim.o.clipboard "unnamedplus")
 
 (vim.cmd "filetype plugin on")
