@@ -19,10 +19,10 @@
              "x ih" ":<C-U>lua require'gitsigns.actions'.select_hunk()<CR>"}
    :sign_priority 5
    :signs {:add {:hl :DiffAdd
-                 :text "|"
+                 :text "│"
                  :numhl "GitSignsAddNr"}
            :change {:hl :DiffChange
-                    :text "|"
+                    :text "│"
                     :numhl "GitSignsChangeNr"}
            :changedelete {:hl :DiffChange
                           :text "~"

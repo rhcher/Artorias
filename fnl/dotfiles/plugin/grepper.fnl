@@ -9,14 +9,9 @@
 
 (set vim.g.grepper {:tools [:rg :git]
                     :dir "repo,file"
-                    :open 0
-                    :switch 1
-                    :jump 0
                     :simple_prompt 1
-                    :quickfix 1
                     :searchreg 1
-                    :highlight 0
-                    :stop 10000
+                    :stop 50000
                     :rg {:grepprg "rg -H --no-heading --vimgrep --smart-case"
                          :grepformat "%f:%l:%c:%m,%f:%l:%m"}})
 

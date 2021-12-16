@@ -69,8 +69,7 @@
     (lsp.sumneko_lua.setup
       {:on_attach on_attach
        :capabilities capabilities
-       :cmd ["/home/rhcher/workspace/lua-language-server/bin/Linux/lua-language-server"
-             "/home/rhcher/workspace/lua-language-server/main.lua"]
+       :cmd ["/home/rhcher/workspace/lua-language-server/bin/Linux/lua-language-server"]
        :settings {:Lua {:diagnostics {:enable true :globals [:vim :packer_plugins]}
                         :completion {:callSnippet :Replace}
                         :runtime {:version :LuaJIT}

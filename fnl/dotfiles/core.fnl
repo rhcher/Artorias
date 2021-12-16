@@ -15,6 +15,7 @@
 (set nvim.o.expandtab true)
 (set nvim.o.ignorecase true)
 (set nvim.o.smartcase true)
+(set nvim.o.smartindent true)
 (set nvim.o.numberwidth 2)
 (set nvim.o.signcolumn "yes")
 

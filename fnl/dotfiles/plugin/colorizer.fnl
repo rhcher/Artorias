@@ -2,4 +2,4 @@
 
 (let [colorizer (require :colorizer)]
   (when colorizer
-    (colorizer.setup)))
+    (colorizer.setup [:vim])))
