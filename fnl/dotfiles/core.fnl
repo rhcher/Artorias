@@ -6,7 +6,6 @@
 (set nvim.o.mouse "a")
 (set nvim.o.sessionoptions "blank,curdir,folds,help,tabpages,winsize")
 (set nvim.o.jumpoptions "stack")
-(set nvim.o.scrolloff 4)
 (set nvim.o.pumheight 10)
 (set nvim.o.autoindent true)
 (set nvim.o.tabstop 2)

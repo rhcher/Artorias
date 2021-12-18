@@ -22,7 +22,6 @@
   (buf_key_map :n :gr "lua vim.lsp.buf.references({includeDeclaration = false})")
   (buf_key_map :n :gi "lua vim.lsp.buf.implementation()")
   (buf_key_map :n :K "lua vim.lsp.buf.hover()")
-  (buf_key_map :n :<c-k> "lua vim.lsp.buf.signature_help()")
   (buf_key_map :n :<leader>lr "lua vim.lsp.buf.rename()")
   (buf_key_map :n :<leader>lf "lua vim.lsp.buf.formatting()")
   (buf_key_map :n :<leader>la "lua vim.lsp.buf.code_action()")
