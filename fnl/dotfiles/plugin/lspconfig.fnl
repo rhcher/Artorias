@@ -49,7 +49,8 @@
           (do
             (lsp_util.jump_to_location (. result 1))
             (when (> (length result) 1)
-              (lsp_util.set_qflist (lsp_util.locations_to_items result))
+              (vim.fn.setqflist {} " " {:title "LSP Location"
+                                        :items (lsp_util.locations_to_items result)})
               (vim.api.nvim_command "botright copen")))
           (lsp_util.jump_to_location result)))]
   (tset vim.lsp.handlers "textDocument/definition" location_handler)
