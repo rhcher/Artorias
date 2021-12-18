@@ -72,4 +72,5 @@
   :Raimondi/delimitMate {:mod :auto-pairs}
   :ocaml/vim-ocaml {}
   :chaoren/vim-wordmotion {}
-  :fedepujol/move.nvim {})
+  :fedepujol/move.nvim {}
+  :ojroques/vim-oscyank {})
