@@ -63,6 +63,11 @@
 (noremap :v :<A-k> ":MoveBlock(-1)<CR>")
 (noremap :v :<A-h> ":MoveHBlock(1)<CR>")
 (noremap :v :<A-l> ":MoveHBlock(-1)<CR>")
+;; ccls
+(noremap :n :<C-k> ":lua require(\"dotfiles.ccls\").navigate(\"L\")<CR>zz")
+(noremap :n :<C-j> ":lua require(\"dotfiles.ccls\").navigate(\"R\")<CR>zz")
+(noremap :n :<C-l> ":lua require(\"dotfiles.ccls\").navigate(\"D\")<CR>zz")
+(noremap :n :<C-h> ":lua require(\"dotfiles.ccls\").navigate(\"U\")<CR>zz")
 
 (noremap :n "[b" :<cmd>bprev<CR>)
 (noremap :n "]b" :<cmd>bnext<CR>)
