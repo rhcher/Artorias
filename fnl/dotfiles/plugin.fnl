@@ -70,4 +70,6 @@
   :akinsho/nvim-toggleterm.lua {:mod :terminal}
   :ggandor/lightspeed.nvim {}
   :Raimondi/delimitMate {:mod :auto-pairs}
-  :ocaml/vim-ocaml {})
+  :ocaml/vim-ocaml {}
+  :chaoren/vim-wordmotion {}
+  :fedepujol/move.nvim {})

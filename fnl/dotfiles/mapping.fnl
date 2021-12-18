@@ -56,6 +56,11 @@
 (noremap :n :<leader>bt ":%s/\\s\\+$//e<cr>")
 ;; nvim-tree
 (noremap :n :<leader>e ":NvimTreeToggle<CR>")
+;; move.nvim
+(noremap :v :<A-j> ":MoveBlock(1)<CR>")
+(noremap :v :<A-k> ":MoveBlock(-1)<CR>")
+(noremap :v :<A-h> ":MoveHBlock(1)<CR>")
+(noremap :v :<A-l> ":MoveHBlock(-1)<CR>")
 
 (noremap :n "[b" :<cmd>bprev<CR>)
 (noremap :n "]b" :<cmd>bnext<CR>)
