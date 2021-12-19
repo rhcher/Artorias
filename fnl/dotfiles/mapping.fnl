@@ -63,11 +63,18 @@
 (noremap :v :<A-k> ":MoveBlock(-1)<CR>")
 (noremap :v :<A-h> ":MoveHBlock(1)<CR>")
 (noremap :v :<A-l> ":MoveHBlock(-1)<CR>")
-;; ccls
-(noremap :n :<C-k> ":lua require(\"dotfiles.ccls\").navigate(\"L\")<CR>zz")
-(noremap :n :<C-j> ":lua require(\"dotfiles.ccls\").navigate(\"R\")<CR>zz")
-(noremap :n :<C-l> ":lua require(\"dotfiles.ccls\").navigate(\"D\")<CR>zz")
-(noremap :n :<C-h> ":lua require(\"dotfiles.ccls\").navigate(\"U\")<CR>zz")
+;; ccls navigate
+(noremap :n :<C-k> ":lua require(\"dotfiles.ccls\").navigate(\"L\")<CR>")
+(noremap :n :<C-j> ":lua require(\"dotfiles.ccls\").navigate(\"R\")<CR>")
+(noremap :n :<C-l> ":lua require(\"dotfiles.ccls\").navigate(\"D\")<CR>")
+(noremap :n :<C-h> ":lua require(\"dotfiles.ccls\").navigate(\"U\")<CR>")
+;; ccla call
+(noremap :n :<space>ii ":lua require(\"dotfiles.ccls\").call(true)<CR>")
+(noremap :n :<space>io ":lua require(\"dotfiles.ccls\").call(false)<CR>")
+;; ccls var
+(noremap :n :<space>vf ":lua require(\"dotfiles.ccls\").ccls_var(\"field\")<CR>")
+(noremap :n :<space>vl ":lua require(\"dotfiles.ccls\").ccls_var(\"local\")<CR>")
+(noremap :n :<space>vp ":lua require(\"dotfiles.ccls\").ccls_var(\"parameter\")<CR>")
 
 (noremap :n "[b" :<cmd>bprev<CR>)
 (noremap :n "]b" :<cmd>bnext<CR>)
