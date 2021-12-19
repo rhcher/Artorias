@@ -34,7 +34,8 @@
                                 :hrsh7th/cmp-path
                                 :PaterJason/cmp-conjure
                                 :dcampos/cmp-snippy
-                                :hrsh7th/cmp-cmdline]
+                                :hrsh7th/cmp-cmdline
+                                :petertriho/cmp-git]
                      :mod :cmp}
   :lewis6991/impatient.nvim {}
   :rhcher/srcery-vim {}
@@ -52,7 +53,6 @@
   :wlangstroth/vim-racket {}
   :kyazdani42/nvim-tree.lua {:mod :nvimtree :requires :kyazdani42/nvim-web-devicons}
   :eraserhd/parinfer-rust {:run "cargo build --release" :cmd :ParinferOn}
-  :bakpakin/fennel.vim {:ft :fennel}
   :dcampos/nvim-snippy {}
   :honza/vim-snippets {}
   :nvim-treesitter/nvim-treesitter {:run ":TSUpdate" :mod :treesitter}
@@ -70,7 +70,7 @@
   :akinsho/nvim-toggleterm.lua {:mod :terminal}
   :ggandor/lightspeed.nvim {}
   :Raimondi/delimitMate {:mod :auto-pairs}
-  :ocaml/vim-ocaml {}
+  :ocaml/vim-ocaml {:ft :ocaml}
   :chaoren/vim-wordmotion {}
   :fedepujol/move.nvim {}
   :ojroques/vim-oscyank {})

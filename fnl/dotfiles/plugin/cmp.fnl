@@ -3,12 +3,14 @@
              cmp cmp
              snippy snippy
              cmp_buffer cmp_buffer
-             lspkind lspkind}})
+             lspkind lspkind
+             cmp_git cmp_git}})
 
 (def- cmp-srcs
   [{:name :nvim_lsp}
    {:name :snippy
     :keyword_length 2}
+   {:name :cmp_git}
    {:name :buffer
     :keyword_length 3
     :option {:keyword_pattern "\\k\\+"
@@ -64,3 +66,5 @@
 (cmp.setup.cmdline ":"
                    {:sources [{:name "path"}
                               {:name "cmdline"}]})
+
+(cmp_git.setup)
