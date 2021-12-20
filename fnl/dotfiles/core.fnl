@@ -17,6 +17,7 @@
 (set nvim.o.smartindent true)
 (set nvim.o.numberwidth 2)
 (set nvim.o.signcolumn "yes")
+(set nvim.o.undofile true)
 
 (set vim.o.hidden true)
 (set vim.o.updatetime 500)

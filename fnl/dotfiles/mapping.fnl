@@ -13,7 +13,7 @@
 (set nvim.g.maplocalleader ",")
 
 ;; insert-mode
-(noremap :i :jj :<esc>)
+(noremap :i :jk :<esc>)
 (noremap :i :<C-j> :<esc>o)
 (noremap :i :<C-k> :<esc>O)
 (vim.cmd "imap <expr> <C-l>   snippy#can_jump(1)  ? '<Plug>(snippy-next)' : '<Esc>A'")
