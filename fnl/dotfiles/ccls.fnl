@@ -16,7 +16,9 @@
                     (lua "return"))
                   (if
                     (vim.tbl_islist result)
-                    (util.jump_to_location (. result 1))
+                    (do
+                      (util.jump_to_location (. result 1))
+                      (vim.cmd "norm! zz"))
                     (util.jump_to_location result)))
         params ((fn []
                   (let [param (util.make_position_params)]
@@ -48,14 +50,13 @@
     (vim.lsp.buf_request 0 "$ccls/vars" params handler)))
 
 (defn member [title]
-  (let [n (match title
-            "variables" 4
-            "functions" 3
-            "types" 2)
-        handler (handler (.. "class " title))
+  (let [handler (handler (.. "class " title))
         params ((fn []
                   (let [param (util.make_position_params)]
-                    (tset param :kind n)
+                    (tset param :kind (match title
+                                        "variables" 4
+                                        "functions" 3
+                                        "types" 2))
                     param)))]
     (print (.. "Class " title))
     (vim.lsp.buf_request 0 "$ccls/member" params handler)))
