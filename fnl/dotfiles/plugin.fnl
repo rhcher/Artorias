@@ -61,7 +61,6 @@
   :TimUntersberger/neogit {:mod :neogit}
   :mhinz/vim-grepper {:mod :grepper}
   :neovimhaskell/haskell-vim {:ft :haskell}
-  :andymass/vim-matchup {:mod :matchup}
   :karb94/neoscroll.nvim {:mod :neoscroll}
   :AndrewRadev/splitjoin.vim {:mod :splitjoin}
   :lewis6991/gitsigns.nvim {:mod :gitsigns}
@@ -73,4 +72,5 @@
   :chaoren/vim-wordmotion {}
   :fedepujol/move.nvim {}
   :ojroques/vim-oscyank {}
-  :numToStr/Comment.nvim {:mod :nvim_comment})
+  :numToStr/Comment.nvim {:mod :nvim_comment}
+  :monkoose/matchparen.nvim {:mod :matchparen})
