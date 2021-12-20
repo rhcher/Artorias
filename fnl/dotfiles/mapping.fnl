@@ -75,6 +75,10 @@
 (noremap :n :<space>vf ":lua require(\"dotfiles.ccls\").ccls_var(\"field\")<CR>")
 (noremap :n :<space>vl ":lua require(\"dotfiles.ccls\").ccls_var(\"local\")<CR>")
 (noremap :n :<space>vp ":lua require(\"dotfiles.ccls\").ccls_var(\"parameter\")<CR>")
+;; ccls member
+(noremap :n :<space>mv ":lua require(\"dotfiles.ccls\").member(\"variables\")<CR>")
+(noremap :n :<space>mf ":lua require(\"dotfiles.ccls\").member(\"functions\")<CR>")
+(noremap :n :<space>mt ":lua require(\"dotfiles.ccls\").member(\"types\")<CR>")
 
 (noremap :n "[b" :<cmd>bprev<CR>)
 (noremap :n "]b" :<cmd>bnext<CR>)
