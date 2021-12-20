@@ -69,8 +69,8 @@
 (noremap :n :<C-l> ":lua require(\"dotfiles.ccls\").navigate(\"D\")<CR>")
 (noremap :n :<C-h> ":lua require(\"dotfiles.ccls\").navigate(\"U\")<CR>")
 ;; ccla call
-(noremap :n :<space>ii ":lua require(\"dotfiles.ccls\").call(true)<CR>")
-(noremap :n :<space>io ":lua require(\"dotfiles.ccls\").call(false)<CR>")
+(noremap :n :<space>ii ":lua require(\"dotfiles.ccls\").call(\"caller\")<CR>")
+(noremap :n :<space>io ":lua require(\"dotfiles.ccls\").call(\"callee\")<CR>")
 ;; ccls var
 (noremap :n :<space>vf ":lua require(\"dotfiles.ccls\").ccls_var(\"field\")<CR>")
 (noremap :n :<space>vl ":lua require(\"dotfiles.ccls\").ccls_var(\"local\")<CR>")
@@ -79,6 +79,9 @@
 (noremap :n :<space>mv ":lua require(\"dotfiles.ccls\").member(\"variables\")<CR>")
 (noremap :n :<space>mf ":lua require(\"dotfiles.ccls\").member(\"functions\")<CR>")
 (noremap :n :<space>mt ":lua require(\"dotfiles.ccls\").member(\"types\")<CR>")
+;; ccls inheritance
+(noremap :n :<space>ib ":lua require(\"dotfiles.ccls\").inheritance(\"base\")<CR>")
+(noremap :n :<space>id ":lua require(\"dotfiles.ccls\").inheritance(\"derived\")<CR>")
 
 (noremap :n "[b" :<cmd>bprev<CR>)
 (noremap :n "]b" :<cmd>bnext<CR>)
