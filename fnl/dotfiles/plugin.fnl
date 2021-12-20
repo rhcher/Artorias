@@ -44,7 +44,6 @@
   :norcalli/nvim-colorizer.lua {:mod :colorizer}
   :nvim-telescope/telescope.nvim {:mod :telescope :requires [[:nvim-lua/popup.nvim] [:nvim-lua/plenary.nvim]]}
   :tpope/vim-abolish {}
-  :tpope/vim-commentary {}
   :tpope/vim-fugitive {:mod :fugitive}
   :tpope/vim-repeat {}
   :tpope/vim-sexp-mappings-for-regular-people {}
@@ -73,4 +72,5 @@
   :ocaml/vim-ocaml {:ft :ocaml}
   :chaoren/vim-wordmotion {}
   :fedepujol/move.nvim {}
-  :ojroques/vim-oscyank {})
+  :ojroques/vim-oscyank {}
+  :numToStr/Comment.nvim {:mod :nvim_comment})
