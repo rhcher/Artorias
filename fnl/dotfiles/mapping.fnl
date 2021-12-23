@@ -18,7 +18,7 @@
 (noremap :i :<C-k> :<esc>O)
 (vim.cmd "imap <expr> <C-l>   snippy#can_jump(1)  ? '<Plug>(snippy-next)' : '<Esc>A'")
 (vim.cmd "smap <expr> <C-l>   snippy#can_jump(1)  ? '<Plug>snippy-next()' : '<Esc>A'")
-(vim.cmd "smap <expr> <C-h>   snippy#can_jump(-1)  ? '<Plug>(snippy-previous)' : '<Esc>I'")
+(vim.cmd "imap <expr> <C-h>   snippy#can_jump(-1)  ? '<Plug>(snippy-previous)' : '<Esc>I'")
 (vim.cmd "smap <expr> <C-h>   snippy#can_jump(-1)  ? '<Plug>(snippy-previous)' : '<Esc>I'")
 
 ;; terminal-mode
@@ -35,8 +35,9 @@
 ;; normal-mode
 (noremap :n ":" ";")
 (noremap :n ";" ":")
-(noremap :n :n :nzz)
-(noremap :n :N :Nzz)
+(noremap :n :<esc> ":nohl<CR>")
+(vim.api.nvim_set_keymap :n :n :nzz {:silent true})
+(vim.api.nvim_set_keymap :n :N :Nzz {:silent true})
 (noremap :n :<A-h> :<C-w>h)
 (noremap :n :<A-j> :<C-w>j)
 (noremap :n :<A-k> :<C-w>k)

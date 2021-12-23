@@ -73,4 +73,5 @@
   :ojroques/vim-oscyank {}
   :numToStr/Comment.nvim {:mod :nvim_comment}
   :monkoose/matchparen.nvim {:mod :matchparen}
-  :rebelot/kanagawa.nvim {})
+  :YorickPeterse/vim-paper {}
+  :mfussenegger/nvim-lint {:mod :lint})
