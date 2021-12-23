@@ -27,7 +27,7 @@
 (use
   :Olical/aniseed {:branch :develop}
   :Olical/conjure {:branch :develop :mod :conjure}
-  :feline-nvim/feline.nvim {:branch :develop :mod :feline}
+  :feline-nvim/feline.nvim {:mod :feline}
   :guns/vim-sexp {:mod :sexp}
   :hrsh7th/nvim-cmp {:requires [:hrsh7th/cmp-nvim-lsp
                                 :hrsh7th/cmp-buffer
@@ -69,8 +69,8 @@
   :ggandor/lightspeed.nvim {}
   :Raimondi/delimitMate {:mod :auto-pairs}
   :ocaml/vim-ocaml {:ft :ocaml}
-  :chaoren/vim-wordmotion {}
   :fedepujol/move.nvim {}
   :ojroques/vim-oscyank {}
   :numToStr/Comment.nvim {:mod :nvim_comment}
-  :monkoose/matchparen.nvim {:mod :matchparen})
+  :monkoose/matchparen.nvim {:mod :matchparen}
+  :rebelot/kanagawa.nvim {})
