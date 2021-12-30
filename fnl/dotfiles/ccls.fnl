@@ -3,12 +3,12 @@
 
 (defn- handler [title]
   (fn [_ result _ _]
-    (when (or (= result nil) (vim.tbl_isempty result))
-      (lua "return"))
-    (when (vim.tbl_islist result)
-      (vim.fn.setqflist {} " " {:title title
-                                :items (util.locations_to_items result)})
-      (vim.api.nvim_command "botright copen"))))
+    (if (or (= result nil) (vim.tbl_isempty result))
+      (vim.notify (.. "No " title " found"))
+      (do
+        (vim.fn.setqflist {} " " {:title title
+                                  :items (util.locations_to_items result)})
+        (vim.api.nvim_command "botright copen")))))
 
 (defn navigate [n]
   (let [handler (fn [_ result _ _]
@@ -44,6 +44,7 @@
                     (tset param :kind (match title
                                         "field" 1
                                         "local" 2
+                                        "fieldOrLocal" 3
                                         "parameter" 4))
                     param)))]
     (print title)
@@ -71,3 +72,16 @@
                     param)))]
     (print title)
     (vim.lsp.buf_request 0 "$ccls/inheritance" params handler)))
+
+(defn extend_ref [role]
+  (let [handler (handler (.. "Ref " role))
+        params ((fn []
+                  (let [param (util.make_position_params)]
+                      (tset param :role (match role
+                                          "read" 8
+                                          "write" 16
+                                          "macro" 64))
+                      (tset param :excludeRole 32)
+                      param)))]
+    (print (.. "Ref " role))
+    (vim.lsp.buf_request 0 "textDocument/references" params handler)))

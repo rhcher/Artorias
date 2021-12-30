@@ -81,6 +81,11 @@
 ;; ccls inheritance
 (noremap :n :<space>ib ":lua require(\"dotfiles.ccls\").inheritance(\"base\")<CR>")
 (noremap :n :<space>id ":lua require(\"dotfiles.ccls\").inheritance(\"derived\")<CR>")
+;; ccls references extend
+(noremap :n :<space>gw ":lua require(\"dotfiles.ccls\").extend_ref(\"write\")<CR>")
+(noremap :n :<space>gr ":lua require(\"dotfiles.ccls\").extend_ref(\"read\")<CR>")
+(noremap :n :<space>gm ":lua require(\"dotfiles.ccls\").extend_ref(\"macro\")<CR>")
+(noremap :n :<space>gn ":lua require(\"dotfiles.ccls\").extend_ref(\"notcall\")<CR>")
 
 (noremap :n "[b" :<cmd>bprev<CR>)
 (noremap :n "]b" :<cmd>bnext<CR>)
