@@ -1,11 +1,15 @@
 (module dotfiles.mapping
   {autoload {nvim aniseed.nvim
              nu aniseed.nvim.util
-             core aniseed.core}})
+             core aniseed.core
+             ccls dotfiles.ccls}})
 
 (defn- noremap [mode from to]
   "Sets a mapping with {:noremap true}."
   (nvim.set_keymap mode from to {:noremap true :silent true}))
+
+(defn- luamap [mode from callback]
+  (nvim.set_keymap mode from "" {:noremap true :callback callback}))
 
 ;; Generic mapping configuration.
 (nvim.set_keymap :n :<space> :<nop> {:noremap true})
@@ -17,7 +21,7 @@
 (noremap :i :<C-j> :<esc>o)
 (noremap :i :<C-k> :<esc>O)
 (vim.cmd "imap <expr> <C-l>   snippy#can_jump(1)  ? '<Plug>(snippy-next)' : '<Esc>A'")
-(vim.cmd "smap <expr> <C-l>   snippy#can_jump(1)  ? '<Plug>snippy-next()' : '<Esc>A'")
+(vim.cmd "smap <expr> <C-l>   snippy#can_jump(1)  ? '<Plug>(snippy-next)' : '<Esc>A'")
 (vim.cmd "imap <expr> <C-h>   snippy#can_jump(-1)  ? '<Plug>(snippy-previous)' : '<Esc>I'")
 (vim.cmd "smap <expr> <C-h>   snippy#can_jump(-1)  ? '<Plug>(snippy-previous)' : '<Esc>I'")
 
@@ -57,35 +61,30 @@
 (noremap :n :<leader>bt ":%s/\\s\\+$//e<cr>")
 ;; nvim-tree
 (noremap :n :<leader>e ":NvimTreeToggle<CR>")
-;; move.nvim
-(noremap :v :<A-j> ":MoveBlock(1)<CR>")
-(noremap :v :<A-k> ":MoveBlock(-1)<CR>")
-(noremap :v :<A-h> ":MoveHBlock(1)<CR>")
-(noremap :v :<A-l> ":MoveHBlock(-1)<CR>")
 ;; ccls navigate
-(noremap :n :<C-k> ":lua require(\"dotfiles.ccls\").navigate(\"L\")<CR>")
-(noremap :n :<C-j> ":lua require(\"dotfiles.ccls\").navigate(\"R\")<CR>")
-(noremap :n :<C-l> ":lua require(\"dotfiles.ccls\").navigate(\"D\")<CR>")
-(noremap :n :<C-h> ":lua require(\"dotfiles.ccls\").navigate(\"U\")<CR>")
+(luamap :n :<C-k> (fn [] (ccls.navigate :L)))
+(luamap :n :<C-j> (fn [] (ccls.navigate :R)))
+(luamap :n :<C-l> (fn [] (ccls.navigate :D)))
+(luamap :n :<C-h> (fn [] (ccls.navigate :U)))
 ;; ccla call
-(noremap :n :<space>ii ":lua require(\"dotfiles.ccls\").call(\"caller\")<CR>")
-(noremap :n :<space>io ":lua require(\"dotfiles.ccls\").call(\"callee\")<CR>")
+(luamap :n :<space>ii (fn [] (ccls.call :caller)))
+(luamap :n :<space>io (fn [] (ccls.call :callee)))
 ;; ccls var
-(noremap :n :<space>vf ":lua require(\"dotfiles.ccls\").ccls_var(\"field\")<CR>")
-(noremap :n :<space>vl ":lua require(\"dotfiles.ccls\").ccls_var(\"local\")<CR>")
-(noremap :n :<space>vp ":lua require(\"dotfiles.ccls\").ccls_var(\"parameter\")<CR>")
+(luamap :n :<space>vf (fn [] (ccls.ccls_var :field)))
+(luamap :n :<space>vl (fn [] (ccls.ccls_var :local)))
+(luamap :n :<space>vp (fn [] (ccls.ccls_var :parameter)))
 ;; ccls member
-(noremap :n :<space>mv ":lua require(\"dotfiles.ccls\").member(\"variables\")<CR>")
-(noremap :n :<space>mf ":lua require(\"dotfiles.ccls\").member(\"functions\")<CR>")
-(noremap :n :<space>mt ":lua require(\"dotfiles.ccls\").member(\"types\")<CR>")
+(luamap :n :<space>mv (fn [] (ccls.member :variables)))
+(luamap :n :<space>mf (fn [] (ccls.member :functions)))
+(luamap :n :<space>mt (fn [] (ccls.member :types)))
 ;; ccls inheritance
-(noremap :n :<space>ib ":lua require(\"dotfiles.ccls\").inheritance(\"base\")<CR>")
-(noremap :n :<space>id ":lua require(\"dotfiles.ccls\").inheritance(\"derived\")<CR>")
+(luamap :n :<space>ib (fn [] (ccls.inheritance :base)))
+(luamap :n :<space>id (fn [] (ccls.inheritance :derived)))
 ;; ccls references extend
-(noremap :n :<space>gw ":lua require(\"dotfiles.ccls\").extend_ref(\"write\")<CR>")
-(noremap :n :<space>gr ":lua require(\"dotfiles.ccls\").extend_ref(\"read\")<CR>")
-(noremap :n :<space>gm ":lua require(\"dotfiles.ccls\").extend_ref(\"macro\")<CR>")
-(noremap :n :<space>gn ":lua require(\"dotfiles.ccls\").extend_ref(\"notcall\")<CR>")
+(luamap :n :<space>gw (fn [] (ccls.extend_ref :write)))
+(luamap :n :<space>gr (fn [] (ccls.extend_ref :read)))
+(luamap :n :<space>gm (fn [] (ccls.extend_ref :macro)))
+(luamap :n :<space>gn (fn [] (ccls.extend_ref :notcall)))
 
 (noremap :n "[b" :<cmd>bprev<CR>)
 (noremap :n "]b" :<cmd>bnext<CR>)
