@@ -61,30 +61,6 @@
 (noremap :n :<leader>bt ":%s/\\s\\+$//e<cr>")
 ;; nvim-tree
 (noremap :n :<leader>e ":NvimTreeToggle<CR>")
-;; ccls navigate
-(luamap :n :<C-k> (fn [] (ccls.navigate :L)))
-(luamap :n :<C-j> (fn [] (ccls.navigate :R)))
-(luamap :n :<C-l> (fn [] (ccls.navigate :D)))
-(luamap :n :<C-h> (fn [] (ccls.navigate :U)))
-;; ccla call
-(luamap :n :<space>ii (fn [] (ccls.call :caller)))
-(luamap :n :<space>io (fn [] (ccls.call :callee)))
-;; ccls var
-(luamap :n :<space>vf (fn [] (ccls.ccls_var :field)))
-(luamap :n :<space>vl (fn [] (ccls.ccls_var :local)))
-(luamap :n :<space>vp (fn [] (ccls.ccls_var :parameter)))
-;; ccls member
-(luamap :n :<space>mv (fn [] (ccls.member :variables)))
-(luamap :n :<space>mf (fn [] (ccls.member :functions)))
-(luamap :n :<space>mt (fn [] (ccls.member :types)))
-;; ccls inheritance
-(luamap :n :<space>ib (fn [] (ccls.inheritance :base)))
-(luamap :n :<space>id (fn [] (ccls.inheritance :derived)))
-;; ccls references extend
-(luamap :n :<space>gw (fn [] (ccls.extend_ref :write)))
-(luamap :n :<space>gr (fn [] (ccls.extend_ref :read)))
-(luamap :n :<space>gm (fn [] (ccls.extend_ref :macro)))
-(luamap :n :<space>gn (fn [] (ccls.extend_ref :notcall)))
 
 (noremap :n "[b" :<cmd>bprev<CR>)
 (noremap :n "]b" :<cmd>bnext<CR>)

@@ -27,17 +27,44 @@
   (buf_key_map :n :<leader>la "lua vim.lsp.buf.code_action()")
   (buf_key_map :v :<leader>la "lua vim.lsp.buf.range_code_action()")
 
-  (when client.resolved_capabilities.code_lens
-    (vim.cmd "
+  (when (= client.name :ccls)
+    (let [ccls (require "dotfiles.ccls")
+          luamap util.luamap]
+      (luamap :n :<C-k> (fn [] (ccls.navigate :L)))
+      (luamap :n :<C-j> (fn [] (ccls.navigate :R)))
+      (luamap :n :<C-l> (fn [] (ccls.navigate :D)))
+      (luamap :n :<C-h> (fn [] (ccls.navigate :U)))
+      ;; ccla call
+      (luamap :n :<space>ii (fn [] (ccls.call :caller)))
+      (luamap :n :<space>io (fn [] (ccls.call :callee)))
+      ;; ccls var
+      (luamap :n :<space>vf (fn [] (ccls.ccls_var :field)))
+      (luamap :n :<space>vl (fn [] (ccls.ccls_var :local)))
+      (luamap :n :<space>vp (fn [] (ccls.ccls_var :parameter)))
+      ;; ccls member
+      (luamap :n :<space>mv (fn [] (ccls.member :variables)))
+      (luamap :n :<space>mf (fn [] (ccls.member :functions)))
+      (luamap :n :<space>mt (fn [] (ccls.member :types)))
+      ;; ccls inheritance
+      (luamap :n :<space>ib (fn [] (ccls.inheritance :base)))
+      (luamap :n :<space>id (fn [] (ccls.inheritance :derived)))
+      ;; ccls references extend
+      (luamap :n :<space>gw (fn [] (ccls.extend_ref :write)))
+      (luamap :n :<space>gr (fn [] (ccls.extend_ref :read)))
+      (luamap :n :<space>gm (fn [] (ccls.extend_ref :macro)))
+      (luamap :n :<space>gn (fn [] (ccls.extend_ref :notcall)))))
+
+ (when client.resolved_capabilities.code_lens
+   (vim.cmd "
       augroup lsp_document_highlight
         autocmd! * <buffer>
         autocmd BufEnter,CursorHold,InsertLeave <buffer> lua vim.lsp.codelens.refresh()
       augroup END")
-    (buf_key_map :n :<space>ll "lua vim.lsp.codelens.run()"))
+   (buf_key_map :n :<space>ll "lua vim.lsp.codelens.run()"))
 
-  (when client.resolved_capabilities.document_highlight
-    (vim.api.nvim_command "autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()")
-    (vim.api.nvim_command "autocmd CursorMoved,InsertEnter,WinLeave <buffer> lua vim.lsp.buf.clear_references()")))
+ (when client.resolved_capabilities.document_highlight
+   (vim.api.nvim_command "autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()")
+   (vim.api.nvim_command "autocmd CursorMoved,InsertEnter,WinLeave <buffer> lua vim.lsp.buf.clear_references()")))
 
 (let [location_handler
       (fn [_ result ctx _]
