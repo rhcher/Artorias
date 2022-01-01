@@ -5,10 +5,18 @@
 local execute = vim.api.nvim_command
 local fn = vim.fn
 
+if vim.g.nvui then
+  -- Configure through vim commands
+  vim.cmd [[set guifont=Jetbrains\ Mono:h14]]
+  vim.cmd [[NvuiCmdFontFamily JetBrains Mono]]
+  vim.cmd [[NvuiCmdFontSize 13.0]]
+end
+
+
 local pack_path = fn.stdpath("data") .. "/site/pack"
 local fmt = string.format
 
-function ensure (user, repo)
+local function ensure (user, repo)
   -- Ensures a given github.com/USER/REPO is cloned in the pack/packer/start directory.
   local install_path = fmt("%s/packer/start/%s", pack_path, repo)
   if fn.empty(fn.glob(install_path)) > 0 then

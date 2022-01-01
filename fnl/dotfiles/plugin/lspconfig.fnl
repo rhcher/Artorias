@@ -58,14 +58,14 @@
 
 (let [lsp (require :lspconfig)
       capabilities (cmplsp.update_capabilities (vim.lsp.protocol.make_client_capabilities))
-      servers [:hls :ocamllsp]]
+      servers [:hls :ocamllsp :pylsp]]
   (when lsp
     (each [_ name (ipairs servers)]
       (let [{name config} lsp]
         (config.setup
           {:on_attach on_attach
            :capabilities capabilities
-           :flags {:debounce_text_changes 100}})))
+           :flags {:debounce_text_changes 200}})))
     (lsp.sumneko_lua.setup
       {:on_attach on_attach
        :capabilities capabilities
@@ -78,7 +78,7 @@
                                        :traceBeSetted true
                                        :traceFieldInject true}
                         :telemetry {:enable false}}}}
-      :flags {:debounce_text_changes 100})
+      :flags {:debounce_text_changes 200})
     (lsp.ccls.setup
       {:on_attach on_attach
        :capabilities capabilities
@@ -92,7 +92,7 @@
                       :index {:onChange false
                               :initialNoLinkage true}
                       :cache {:directory "/tmp/ccls-cache/"}}
-       :flags {:debounce_text_changes 100}})
+       :flags {:debounce_text_changes 200}})
     (lsp.racket_langserver.setup
       {:on_attach on_attach
        :capabilities capabilities
