@@ -54,17 +54,17 @@
       (luamap :n :<space>gm (fn [] (ccls.extend_ref :macro)))
       (luamap :n :<space>gn (fn [] (ccls.extend_ref :notcall)))))
 
- (when client.resolved_capabilities.code_lens
-   (vim.cmd "
-      augroup lsp_document_highlight
-        autocmd! * <buffer>
-        autocmd BufEnter,CursorHold,InsertLeave <buffer> lua vim.lsp.codelens.refresh()
-      augroup END")
-   (buf_key_map :n :<space>ll "lua vim.lsp.codelens.run()"))
+  (when client.resolved_capabilities.code_lens
+    (vim.cmd "
+             augroup lsp_document_highlight
+             autocmd! * <buffer>
+             autocmd BufEnter,CursorHold,InsertLeave <buffer> lua vim.lsp.codelens.refresh()
+             augroup END")
+    (buf_key_map :n :<space>ll "lua vim.lsp.codelens.run()"))
 
- (when client.resolved_capabilities.document_highlight
-   (vim.api.nvim_command "autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()")
-   (vim.api.nvim_command "autocmd CursorMoved,InsertEnter,WinLeave <buffer> lua vim.lsp.buf.clear_references()")))
+  (when client.resolved_capabilities.document_highlight
+    (vim.api.nvim_command "autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()")
+    (vim.api.nvim_command "autocmd CursorMoved,InsertEnter,WinLeave <buffer> lua vim.lsp.buf.clear_references()")))
 
 (let [location_handler
       (fn [_ result ctx _]
