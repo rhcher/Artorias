@@ -6,10 +6,7 @@
 
 (defn- noremap [mode from to]
   "Sets a mapping with {:noremap true}."
-  (nvim.set_keymap mode from to {:noremap true :silent true}))
-
-(defn- luamap [mode from callback]
-  (nvim.set_keymap mode from "" {:noremap true :callback callback}))
+  (vim.keymap.set mode from to {:noremap true :silent true}))
 
 ;; Generic mapping configuration.
 (nvim.set_keymap :n :<space> :<nop> {:noremap true})

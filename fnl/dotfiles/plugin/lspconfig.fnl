@@ -8,7 +8,7 @@
 (defn- on_attach [client bufnr]
 
   (defn- buf_key_map [mode from to]
-    (vim.api.nvim_buf_set_keymap bufnr mode from (.. "<cmd>" to "<CR>") {:noremap true :silent true}))
+    (vim.keymap.set mode from to {:buffer true :noremap true :silent true}))
 
   (defn- buf_set_option [...]
     (vim.api.nvim_buf_set_option bufnr ...))
@@ -17,15 +17,15 @@
   (when client.resolved_capabilities.completion
     (buf_set_option :omnifunc "v:lua.vim.lsp.omnifunc"))
 
-  (buf_key_map :n :gd "lua vim.lsp.buf.definition()")
-  (buf_key_map :n :gD "lua vim.lsp.buf.declaration()")
-  (buf_key_map :n :gr "lua vim.lsp.buf.references({includeDeclaration = false})")
-  (buf_key_map :n :gi "lua vim.lsp.buf.implementation()")
-  (buf_key_map :n :K "lua vim.lsp.buf.hover()")
-  (buf_key_map :n :<leader>lr "lua vim.lsp.buf.rename()")
-  (buf_key_map :n :<leader>lf "lua vim.lsp.buf.formatting()")
-  (buf_key_map :n :<leader>la "lua vim.lsp.buf.code_action()")
-  (buf_key_map :v :<leader>la "lua vim.lsp.buf.range_code_action()")
+  (buf_key_map :n :gd vim.lsp.buf.definition)
+  (buf_key_map :n :gD vim.lsp.buf.declaration)
+  (buf_key_map :n :gi vim.lsp.buf.implementation)
+  (buf_key_map :n :gr (fn [] (vim.lsp.buf.references {:includeDeclaration false})))
+  (buf_key_map :n :K vim.lsp.buf.hover)
+  (buf_key_map :n :<leader>lr vim.lsp.buf.rename)
+  (buf_key_map :n :<leader>lf vim.lsp.buf.formatting)
+  (buf_key_map :n :<leader>la vim.lsp.buf.code_action)
+  (buf_key_map :v :<leader>la vim.lsp.buf.range_code_action)
 
   (when (= client.name :ccls)
     (let [ccls (require "dotfiles.ccls")

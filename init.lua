@@ -12,7 +12,6 @@ if vim.g.nvui then
   vim.cmd [[NvuiCmdFontSize 13.0]]
 end
 
-
 local pack_path = fn.stdpath("data") .. "/site/pack"
 local fmt = string.format
 
@@ -57,3 +56,5 @@ vim.cmd [[let g:loaded_python_provider = 0]]
 vim.cmd [[let g:loaded_python3_provider = 0]]
 vim.cmd [[let g:loaded_node_provider = 0]]
 vim.cmd [[let g:loaded_perl_provider = 0]]
+vim.cmd [[let g:do_filetype_lua = 1]]
+vim.cmd [[let g:did_load_filetypes = 0]]

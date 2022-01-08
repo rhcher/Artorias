@@ -26,5 +26,5 @@
 (defn lnnoremap [from to]
   (nnoremap (.. "<leader>" from) to))
 
-(defn luamap [mode from callback]
-  (vim.api.nvim_buf_set_keymap 0 mode from "" {:noremap true :callback callback}))
+(defn luamap [mode from to]
+  (vim.keymap.set mode from to {:noremap true :silent true :buffer true}))
