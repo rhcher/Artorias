@@ -78,5 +78,5 @@
   :svban/YankAssassin.vim {}
   :kazhala/close-buffers.nvim {:mod :close_buffers}
   :hrsh7th/vim-searchx {:mod :searchx}
-  :metakirby5/codi.vim {:mod :codi})
-  ; :booperlv/nvim-gomove {:mod :move})
+  :metakirby5/codi.vim {:mod :codi}
+  :booperlv/nvim-gomove {:mod :move})

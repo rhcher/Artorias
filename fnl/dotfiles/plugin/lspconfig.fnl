@@ -134,7 +134,7 @@
                                     :pycodestyle {:enabled false}
                                     :jedi_completion {:enabled true
                                                       :fuzzy false
-                                                      :include_params true
+                                                      :include_params false
                                                       :include_class_objects true
                                                       :eager true}
                                     :pyls_isort {:enabled true}
