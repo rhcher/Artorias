@@ -46,12 +46,12 @@
 (noremap :n :<leader>bs ":w <CR>")
 (noremap :n :<leader>wm ":tab sp<cr>")
 (noremap :n :<leader>wc ":only<cr>")
-(noremap :n :<leader>bk ":bdelete!<cr>")
+; (noremap :n :<leader>bk ":bdelete!<cr>")
 (noremap :n :<leader>to ":tabonly<cr>")
 (noremap :n :<leader>sw ":mksession! .quicksave.vim<cr>")
 (noremap :n :<leader>sr ":source .quicksave.vim<cr>")
 ;; Delete hidden buffers.
-(noremap :n :<leader>bo ":call DeleteHiddenBuffers()<cr>")
+; (noremap :n :<leader>bo ":call DeleteHiddenBuffers()<cr>")
 ;; Correct to first spelling suggestion.
 (noremap :n :<leader>zz ":normal! 1z=<cr>")
 ;; Trim trialing whitespace.

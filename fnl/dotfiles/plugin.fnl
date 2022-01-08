@@ -70,9 +70,13 @@
   :ggandor/lightspeed.nvim {}
   :Raimondi/delimitMate {:mod :auto-pairs}
   :ocaml/vim-ocaml {:ft :ocaml}
-  :fedepujol/move.nvim {}
   :ojroques/vim-oscyank {}
   :numToStr/Comment.nvim {:mod :nvim_comment}
   :monkoose/matchparen.nvim {:mod :matchparen}
   :YorickPeterse/vim-paper {}
-  :mfussenegger/nvim-lint {:mod :lint})
+  :mfussenegger/nvim-lint {:mod :lint}
+  :svban/YankAssassin.vim {}
+  :kazhala/close-buffers.nvim {:mod :close_buffers}
+  :hrsh7th/vim-searchx {:mod :searchx}
+  :metakirby5/codi.vim {:mod :codi})
+  ; :booperlv/nvim-gomove {:mod :move})
