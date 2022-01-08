@@ -85,7 +85,7 @@
 
 (let [lsp (require :lspconfig)
       capabilities (cmplsp.update_capabilities (vim.lsp.protocol.make_client_capabilities))
-      servers [:hls :ocamllsp :pylsp]]
+      servers [:hls :ocamllsp]]
   (when lsp
     (each [_ name (ipairs servers)]
       (let [{name config} lsp]
@@ -123,4 +123,20 @@
     (lsp.racket_langserver.setup
       {:on_attach on_attach
        :capabilities capabilities
-       :filetypes [:racket]})))
+       :filetypes [:racket]})
+    (lsp.pylsp.setup
+      {:on_attach on_attach
+       :capabilities capabilities
+       :filetypes [:python]
+       :settings {:pylsp {:plugins {:pylint {:enabled false
+                                             :executable :pylint}
+                                    :pyflakes {:enabled false}
+                                    :pycodestyle {:enabled false}
+                                    :jedi_completion {:enabled true
+                                                      :fuzzy false
+                                                      :include_params true
+                                                      :include_class_objects true
+                                                      :eager true}
+                                    :pyls_isort {:enabled true}
+                                    :pylsp_mypy {:enabled true}}}}
+       :flags {:debounce_text_changes 200}})))
