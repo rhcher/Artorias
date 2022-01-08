@@ -8,6 +8,7 @@
 
 (def- cmp-srcs
   [{:name :nvim_lsp}
+   {:name :nvim_lsp_signature_help}
    {:name :snippy
     :keyword_length 2}
    {:name :cmp_git}
@@ -22,6 +23,17 @@
    {:name :conjure}
    {:name :path}])
 
+(def- underline
+  (fn [entry1 entry2]
+    (var (_ entry1_under) (: entry1.completion_item.label :find "^_+"))
+    (var (_ entry2_under) (: entry2.completion_item.label :find "^_+"))
+    (set entry1_under (or entry1_under 0))
+    (set entry2_under (or entry2_under 0))
+    (if (> entry1_under entry2_under)
+      false
+      (< entry1_under entry2_under)
+      true)))
+
 (cmp.setup
   {:snippet {:expand (fn [args] (snippy.expand_snippet args.body))}
    :completion {:completeopt "menu,menuone,noselect"
@@ -31,6 +43,7 @@
                            cmp.config.compare.exact
                            cmp.config.compare.score
                            cmp.config.compare.recently_used
+                           underline
                            cmp.config.compare.kind
                            cmp.config.compare.length
                            cmp.config.compare.sort_text

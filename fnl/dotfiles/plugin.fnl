@@ -35,7 +35,8 @@
                                 :PaterJason/cmp-conjure
                                 :dcampos/cmp-snippy
                                 :hrsh7th/cmp-cmdline
-                                :petertriho/cmp-git]
+                                :petertriho/cmp-git
+                                :hrsh7th/cmp-nvim-lsp-signature-help]
                      :mod :cmp}
   :lewis6991/impatient.nvim {}
   :rhcher/srcery-vim {}
