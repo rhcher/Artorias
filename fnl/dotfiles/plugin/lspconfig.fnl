@@ -60,7 +60,7 @@
              autocmd! * <buffer>
              autocmd BufEnter,CursorHold,InsertLeave <buffer> lua vim.lsp.codelens.refresh()
              augroup END")
-    (buf_key_map :n :<space>ll "lua vim.lsp.codelens.run()"))
+    (buf_key_map :n :<space>ll vim.lsp.codelens.run))
 
   (when client.resolved_capabilities.document_highlight
     (vim.api.nvim_command "autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()")
@@ -119,7 +119,7 @@
                       :index {:onChange false
                               :initialNoLinkage true}
                       :cache {:directory "/tmp/ccls-cache/"}}
-       :flags {:debounce_text_changes 200}})
+       :flags {:debounce_text_changes 80}})
     (lsp.racket_langserver.setup
       {:on_attach on_attach
        :capabilities capabilities

@@ -45,7 +45,6 @@
   :norcalli/nvim-colorizer.lua {:mod :colorizer}
   :nvim-telescope/telescope.nvim {:mod :telescope :requires [[:nvim-lua/popup.nvim] [:nvim-lua/plenary.nvim]]}
   :tpope/vim-abolish {}
-  :tpope/vim-fugitive {:mod :fugitive}
   :tpope/vim-repeat {}
   :tpope/vim-sexp-mappings-for-regular-people {}
   :tpope/vim-sleuth {:mod :sleuth}
@@ -55,7 +54,7 @@
   :eraserhd/parinfer-rust {:run "cargo build --release" :cmd :ParinferOn}
   :dcampos/nvim-snippy {}
   :honza/vim-snippets {}
-  :nvim-treesitter/nvim-treesitter {:run ":TSUpdate" :mod :treesitter}
+  :nvim-treesitter/nvim-treesitter {:run ":TSUpdate" :mod :treesitter :commit :76f34166bf67372dea6e5c17e9eaccc47d0c38f1}
   :kevinhwang91/nvim-bqf {:mod :bqf}
   :wellle/targets.vim {:mod :targets}
   :machakann/vim-sandwich {:mod :sandwich}
