@@ -32,26 +32,11 @@
 (nvim.ex.set :noswapfile)
 (nvim.ex.set :nobackup)
 (nvim.ex.set :number)
-(nvim.ex.colorscheme :srcery)
 (nvim.ex.set :splitbelow)
 (nvim.ex.set :splitright)
 
-;; unused
-(vim.cmd "let g:loaded_netrwPlugin = 1")
-(vim.cmd "let g:loaded_tarPlugin = 1")
-(vim.cmd "let g:loaded_tutor_mode_plugin = 1")
-(vim.cmd "let g:loaded_zipPlugin = 1")
-(vim.cmd "let g:loaded_gzip = 1")
-(vim.cmd "let g:loaded_2html_plugin = 1")
-(vim.cmd "let g:loaded_matchit=1")
-(vim.cmd "let g:loaded_matchparen=1")
-
-;; Disable unused remote plugin providers
-(vim.cmd "let g:loaded_python_provider = 0")
-(vim.cmd "let g:loaded_python3_provider = 0")
-(vim.cmd "let g:loaded_node_provider = 0")
-(vim.cmd "let g:loaded_perl_provider = 0")
-(vim.cmd "let g:loaded_ruby_provider = 0")
+(set vim.g.srcery_italic 1)
+(nvim.ex.colorscheme :srcery)
 
 ;; oscyank
 (set vim.g.oscyank_silent true)

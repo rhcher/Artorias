@@ -27,6 +27,8 @@
 (use
   :Olical/aniseed {:branch :develop}
   :Olical/conjure {:branch :develop :mod :conjure}
+  :wbthomason/packer.nvim {}
+  :lewis6991/impatient.nvim {}
   :feline-nvim/feline.nvim {:mod :feline}
   :guns/vim-sexp {:mod :sexp}
   :hrsh7th/nvim-cmp {:requires [:hrsh7th/cmp-nvim-lsp
@@ -35,10 +37,8 @@
                                 :PaterJason/cmp-conjure
                                 :dcampos/cmp-snippy
                                 :hrsh7th/cmp-cmdline
-                                :petertriho/cmp-git
                                 :hrsh7th/cmp-nvim-lsp-signature-help]
                      :mod :cmp}
-  :lewis6991/impatient.nvim {}
   :rhcher/srcery-vim {}
   :mbbill/undotree {:mod :undotree}
   :neovim/nvim-lspconfig {:mod :lspconfig}
@@ -48,13 +48,12 @@
   :tpope/vim-repeat {}
   :tpope/vim-sexp-mappings-for-regular-people {}
   :tpope/vim-sleuth {:mod :sleuth}
-  :wbthomason/packer.nvim {}
   :wlangstroth/vim-racket {}
   :kyazdani42/nvim-tree.lua {:mod :nvimtree :requires :kyazdani42/nvim-web-devicons}
   :eraserhd/parinfer-rust {:run "cargo build --release" :cmd :ParinferOn}
   :dcampos/nvim-snippy {}
   :honza/vim-snippets {}
-  :nvim-treesitter/nvim-treesitter {:run ":TSUpdate" :mod :treesitter :commit :76f34166bf67372dea6e5c17e9eaccc47d0c38f1}
+  :nvim-treesitter/nvim-treesitter {:run ":TSUpdate" :mod :treesitter}
   :kevinhwang91/nvim-bqf {:mod :bqf}
   :wellle/targets.vim {:mod :targets}
   :machakann/vim-sandwich {:mod :sandwich}
@@ -78,4 +77,8 @@
   :kazhala/close-buffers.nvim {:mod :close_buffers}
   :hrsh7th/vim-searchx {:mod :searchx}
   :metakirby5/codi.vim {:mod :codi}
-  :booperlv/nvim-gomove {:mod :move})
+  :booperlv/nvim-gomove {:mod :move}
+  :kana/vim-textobj-user {}
+  :Julian/vim-textobj-variable-segment {}
+  :glts/vim-textobj-comment {}
+  :bootleq/vim-cycle {})

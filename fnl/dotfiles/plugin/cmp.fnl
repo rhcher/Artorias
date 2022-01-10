@@ -79,5 +79,3 @@
 (cmp.setup.cmdline ":"
                    {:sources [{:name "path"}
                               {:name "cmdline"}]})
-
-(cmp_git.setup)
