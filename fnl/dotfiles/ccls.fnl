@@ -2,24 +2,29 @@
   {autoload {util vim.lsp.util}})
 
 (defn- handler [title]
-  (fn [_ result _ _]
-    (if (or (= result nil) (vim.tbl_isempty result))
-      (vim.notify (.. "No " title " found"))
-      (do
-        (vim.fn.setqflist {} " " {:title title
-                                  :items (util.locations_to_items result)})
-        (vim.api.nvim_command "botright copen")))))
+  (fn [_ result ctx _]
+    (let [client (vim.lsp.get_client_by_id ctx.client_id)]
+      (if (or (= result nil) (vim.tbl_isempty result))
+        (vim.notify (.. "No " title " found"))
+        (do
+          (vim.fn.setqflist {} " " {:title title
+                                    :items (util.locations_to_items result
+                                                                    client.offset_encoding)})
+          (vim.api.nvim_command "botright copen"))))))
 
 (defn navigate [n]
-  (let [handler (fn [_ result _ _]
+  (let [handler (fn [_ result ctx _]
                   (when (or (= result nil) (vim.tbl_isempty result))
                     (lua "return"))
-                  (if
-                    (vim.tbl_islist result)
-                    (do
-                      (util.jump_to_location (. result 1))
-                      (vim.cmd "norm! zz"))
-                    (util.jump_to_location result)))
+                  (let [client (vim.lsp.get_client_by_id ctx.client_id)]
+                    (if
+                      (vim.tbl_islist result)
+                      (do
+                        (util.jump_to_location (. result 1)
+                                               client.offset_encoding)
+                        (vim.cmd "norm! zz"))
+                      (util.jump_to_location result
+                                             client.offset_encoding))))
         params ((fn []
                   (let [param (util.make_position_params)]
                     (tset param :direction n)

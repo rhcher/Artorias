@@ -71,7 +71,7 @@
   :ojroques/vim-oscyank {}
   :numToStr/Comment.nvim {:mod :nvim_comment}
   :monkoose/matchparen.nvim {:mod :matchparen}
-  :YorickPeterse/vim-paper {}
+  :rhcher/vim-paper {}
   :mfussenegger/nvim-lint {:mod :lint}
   :svban/YankAssassin.vim {}
   :kazhala/close-buffers.nvim {:mod :close_buffers}
