@@ -49,7 +49,7 @@
                            cmp.config.compare.sort_text
                            cmp.config.compare.order]}
    :experimental {:ghost_text true}
-   :documentation {:board "single"}
+   :documentation {:winhighlight "NormalFloat:Pmenu,FloatBorder:Bold"}
    :mapping {:<C-d> (cmp.mapping.scroll_docs (- 4))
              :<C-f> (cmp.mapping.scroll_docs 4)
              :<C-space> (cmp.mapping.complete)

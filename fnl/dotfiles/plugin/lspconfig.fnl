@@ -121,7 +121,7 @@
                       :index {:onChange false
                               :initialNoLinkage true}
                       :cache {:directory "/tmp/ccls-cache/"}}
-       :flags {:debounce_text_changes 80}})
+       :flags {:debounce_text_changes 200}})
     (lsp.racket_langserver.setup
       {:on_attach on_attach
        :capabilities capabilities

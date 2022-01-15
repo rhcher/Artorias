@@ -21,5 +21,5 @@
             if a:input !~# '\\k'
               return '\\V' .. a:input
             endif
-            return join(split(a:input, ' '), '.\\{-}')
+            return a:input[0] .. substitute(a:input[1:], '\\\\\\@<! ', '.\\\\{-}', 'g')
           endfunction")
