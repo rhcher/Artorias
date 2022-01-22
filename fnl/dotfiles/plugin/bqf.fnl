@@ -2,7 +2,9 @@
   {autoload {nvim aniseed.nvim
              bqf bqf}})
 
-(bqf.setup {:preview {:auto_preview false}})
+(bqf.setup {:preview {:auto_preview false}
+            :auto_resize_height true})
+
 (vim.cmd "au FileType qf,man,help,lspinfo nnoremap <buffer><silent> q :close<CR>")
 
 ; pretty quicklist copy from nvim-bqf

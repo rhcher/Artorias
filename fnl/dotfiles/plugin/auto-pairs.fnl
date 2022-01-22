@@ -6,5 +6,5 @@
 (vim.cmd "let delimitMate_expand_cr = 1")
 (vim.cmd "let delimitMate_excluded_regions = \"String\"")
 (nvim.ex.autocmd :FileType
-                 "clojure,fennel,scheme,racket"
+                 "clojure,fennel,scheme,racket,ocaml"
                  "let b:delimitMate_quotes = '\" `'")

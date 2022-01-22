@@ -17,13 +17,28 @@
   (when client.resolved_capabilities.completion
     (buf_set_option :omnifunc "v:lua.vim.lsp.omnifunc"))
 
+  (when client.resolved_capabilities.document_formatting
+    (buf_key_map :n :<leader>lf vim.lsp.buf.formatting))
+
+  (when client.resolved_capabilities.document_range_formatting
+    (buf_key_map :v :<leader>lf vim.lsp.buf.range_formatting))
+
+  (when client.resolved_capabilities.call_hierarchy
+    (buf_key_map :n :<leader>ii vim.lsp.buf.incoming_calls)
+    (buf_key_map :n :<leader>io vim.lsp.buf.outgoing_calls))
+
+  (when client.resolved_capabilities.document_symbol
+    (buf_key_map :n :<leader>lw vim.lsp.buf.document_symbol))
+
+  (when client.resolved_capabilities.workspace_symbol
+    (buf_key_map :n :<leader>lW vim.lsp.buf.workspace_symbol))
+
   (buf_key_map :n :gd vim.lsp.buf.definition)
   (buf_key_map :n :gD vim.lsp.buf.declaration)
   (buf_key_map :n :gi vim.lsp.buf.implementation)
   (buf_key_map :n :gr (fn [] (vim.lsp.buf.references {:includeDeclaration false})))
   (buf_key_map :n :K vim.lsp.buf.hover)
   (buf_key_map :n :<leader>lr vim.lsp.buf.rename)
-  (buf_key_map :n :<leader>lf vim.lsp.buf.formatting)
   (buf_key_map :n :<leader>la vim.lsp.buf.code_action)
   (buf_key_map :v :<leader>la vim.lsp.buf.range_code_action)
 
