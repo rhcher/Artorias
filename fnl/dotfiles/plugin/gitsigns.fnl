@@ -1,23 +1,30 @@
 (module dotfiles.plugin.gitsigns
   {autoload {gitsigns gitsigns}})
 
+(def- on_attach (fn [bufnr]
+  (let [gs package.loaded.gitsigns
+        map (fn [mode l r opts]
+              (var opts (or opts {}))
+              (tset opts :buffer bufnr)
+              (vim.keymap.set mode l r opts))]
+    (map :n "]c" "&diff ? ']c' : '<cmd>Gitsigns next_hunk<CR>'" {:expr true})
+    (map :n "[c" "&diff ? '[c' : '<cmd>Gitsigns prev_hunk<CR>'" {:expr true})
+    (map [:n :v] :<leader>hs gs.stage_hunk)
+    (map [:n :v] :<leader>hr gs.reset_hunk)
+    (map :n :<leader>hS gs.stage_buffer)
+    (map :n :<leader>hu gs.undo_stage_hunk)
+    (map :n :<leader>hR gs.reset_buffer)
+    (map :n :<leader>hp gs.preview_hunk)
+    (map :n :<leader>hb (fn [] (gs.blame_line {:full true})))
+    (map :n :<leader>tb gs.toggle_current_line_blame)
+    (map :n :<leader>hd gs.diffthis)
+    (map :n :<leader>hD (fn [] (gs.diffthis "~")))
+    (map :n :<leader>td gs.toggle_deleted))))
+
+
 (gitsigns.setup
-  {:keymaps {:buffer true
-             :noremap true
-             "n <leader>hs" "<cmd>Gitsigns stage_hunk<CR>"
-             "v <leader>hs" ":Gitsigns stage_hunk<CR>"
-             "n <leader>hS" "<cmd>Gitsigns stage_buffer<CR>"
-             "n <leader>hu" "<cmd>Gitsigns undo_stage_hunk<CR>"
-             "n <leader>hU" "<cmd>Gitsigns reset_buffer_index<CR>"
-             "n <leader>hr" "<cmd>Gitsigns reset_hunk<CR>"
-             "v <leader>hr" ":Gitsigns reset_hunk<CR>"
-             "n <leader>hR" "<cmd>Gitsigns reset_buffer<CR>"
-             "n <leader>hp" "<cmd>Gitsigns preview_hunk<CR>"
-             "n <leader>hb" "<cmd>lua require'gitsigns'.blame_line{full=true}<CR>"
-             "n <leader>hq" "<cmd>Gitsigns seqloclist<CR>"
-             "o ih" ":<C-U>lua require'gitsigns.actions'.select_hunk()<CR>"
-             "x ih" ":<C-U>lua require'gitsigns.actions'.select_hunk()<CR>"}
-   :sign_priority 5
+  {:sign_priority 5
+   :on_attach on_attach
    :signs {:add {:hl :DiffAdd
                  :text "│"
                  :numhl "GitSignsAddNr"}
@@ -35,13 +42,3 @@
                        :numhl "GitSignsDeleteNr"}}
    :status_formatter nil
    :watch_gitdir {:interval 100}})
-
-(vim.api.nvim_set_keymap :n
-                         "]g"
-                         "&diff ? ']c' : '<cmd>Gitsigns next_hunk<CR>'"
-                         {:noremap true :silent true :expr true})
-
-(vim.api.nvim_set_keymap :n
-                         "[g"
-                         "&diff ? '[c' : '<cmd>Gitsigns prev_hunk<CR>'"
-                         {:noremap true :silent true :expr true})

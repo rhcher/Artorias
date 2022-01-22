@@ -22,7 +22,7 @@
                       (do
                         (util.jump_to_location (. result 1)
                                                client.offset_encoding)
-                        (vim.cmd "norm! zz"))
+                        (vim.cmd "norm zz"))
                       (util.jump_to_location result
                                              client.offset_encoding))))
         params ((fn []
@@ -82,11 +82,11 @@
   (let [handler (handler (.. "Ref " role))
         params ((fn []
                   (let [param (util.make_position_params)]
-                      (tset param :role (match role
-                                          "read" 8
-                                          "write" 16
-                                          "macro" 64))
-                      (tset param :excludeRole 32)
-                      param)))]
+                    (tset param :role (match role
+                                        "read" 8
+                                        "write" 16
+                                        "macro" 64))
+                    (tset param :excludeRole 32)
+                    param)))]
     (print (.. "Ref " role))
     (vim.lsp.buf_request 0 "textDocument/references" params handler)))
