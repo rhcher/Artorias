@@ -1,5 +1,4 @@
-(module dotfiles.diagnostic
-  {autoload {nvim aniseed.nvim}})
+(module dotfiles.diagnostic)
 
 (vim.diagnostic.config {:virtual_text false
                         :signs true
@@ -15,22 +14,12 @@
     (let [hl (.. "DiagnosticSign" type)]
       (vim.fn.sign_define hl {:text icon :texthl hl :numhl hl}))))
 
-(nvim.set_keymap :n 
-                 :<space>le 
-                 "<cmd>lua vim.diagnostic.open_float(0, { scope = 'line', close_events = { 'BufLeave', 'CursorMoved', 'InsertEnter', 'FocusLost' }})<CR>"
-                 {:noremap true :silent true})
+(vim.keymap.set :n 
+                :<space>le 
+                (fn [] (vim.diagnostic.open_float 0 {:scope "line"
+                                                     :close_events ["BufLeave" "CursorMoved" "InsertEnter" "FocusLost"]}))
+                {:noremap true :silent true})
 
-(nvim.set_keymap :n 
-                 :<space>lq 
-                 "<cmd>lua vim.diagnostic.setqflist()<CR>"
-                 {:noremap true :silent true})
-
-(nvim.set_keymap :n 
-                 "[e"
-                 "<cmd>lua vim.diagnostic.goto_prev()<CR>"
-                 {:noremap true :silent true})
-
-(nvim.set_keymap :n 
-                 "]e"
-                 "<cmd>lua vim.diagnostic.goto_next()<CR>"
-                 {:noremap true :silent true})
+(vim.keymap.set :n :<space>lq vim.diagnostic.setqflist {:noremap true :silent true})
+(vim.keymap.set :n "[e" vim.diagnostic.goto_prev {:noremap true :silent true})
+(vim.keymap.set :n "]e" vim.diagnostic.goto_next {:noremap true :silent true})
