@@ -44,7 +44,7 @@ augroup matchup_matchparen_highlight
   autocmd ColorScheme * hi! MatchWord ctermfg=none ctermbg=none guifg=none guibg=none
 augroup END]]
 
-vim.cmd [[let g:loaded_netrwPlugin = 1]]
+-- vim.cmd [[let g:loaded_netrwPlugin = 1]]
 vim.cmd [[let g:loaded_tarPlugin = 1]]
 vim.cmd [[let g:loaded_tutor_mode_plugin = 1]]
 vim.cmd [[let g:loaded_zipPlugin = 1]]

@@ -39,6 +39,8 @@
                                 :hrsh7th/cmp-cmdline
                                 :hrsh7th/cmp-nvim-lsp-signature-help]
                      :mod :cmp}
+  :dcampos/nvim-snippy {}
+  :honza/vim-snippets {}
   :rhcher/srcery-vim {}
   :mbbill/undotree {:mod :undotree}
   :neovim/nvim-lspconfig {:mod :lspconfig}
@@ -51,8 +53,6 @@
   :wlangstroth/vim-racket {}
   :kyazdani42/nvim-tree.lua {:mod :nvimtree :requires :kyazdani42/nvim-web-devicons}
   :eraserhd/parinfer-rust {:run "cargo build --release" :cmd :ParinferOn}
-  :dcampos/nvim-snippy {}
-  :honza/vim-snippets {}
   :nvim-treesitter/nvim-treesitter {:run ":TSUpdate" :mod :treesitter}
   :kevinhwang91/nvim-bqf {:mod :bqf}
   :wellle/targets.vim {:mod :targets}
@@ -66,7 +66,8 @@
   :onsails/lspkind-nvim {}
   :akinsho/nvim-toggleterm.lua {:mod :terminal}
   :ggandor/lightspeed.nvim {}
-  :Raimondi/delimitMate {:mod :auto-pairs}
+  ; :Raimondi/delimitMate {:mod :auto-pairs}
+  :steelsojka/pears.nvim {:mod :auto-pairs}
   :ocaml/vim-ocaml {:ft :ocaml}
   :ojroques/vim-oscyank {}
   :numToStr/Comment.nvim {:mod :nvim_comment}
@@ -81,4 +82,9 @@
   :kana/vim-textobj-user {}
   :Julian/vim-textobj-variable-segment {}
   :glts/vim-textobj-comment {}
-  :bootleq/vim-cycle {})
+  :bootleq/vim-cycle {}
+  :ldelossa/litee.nvim {:requires [:ldelossa/litee-symboltree.nvim
+                                   :ldelossa/litee-calltree.nvim]
+                        :mod :litee}
+  :j-hui/fidget.nvim {:mod :fidget}
+  :tommcdo/vim-exchange {})
