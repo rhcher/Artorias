@@ -1,6 +1,5 @@
 (module dotfiles.plugin.lspconfig
   {autoload {util dotfiles.util
-             nvim aniseed.nvim
              cmplsp cmp_nvim_lsp
              lsp_util vim.lsp.util
              utils lspconfig.util}})

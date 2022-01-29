@@ -1,11 +1,10 @@
-(module dotfiles.plugin.conjure
-  {autoload {nvim aniseed.nvim}})
+(module dotfiles.plugin.conjure)
 
-(set nvim.g.conjure#eval#result_register "*")
-(set nvim.g.conjure#log#botright true)
-(set nvim.g.conjure#mapping#doc_word "gk")
+(set vim.g.conjure#eval#result_register "*")
+(set vim.g.conjure#log#botright true)
+(set vim.g.conjure#mapping#doc_word "gk")
 
-(set nvim.g.conjure#client#scheme#stdio#command "petite")
-(set nvim.g.conjure#client#scheme#stdio#prompt_pattern "> $?")
-(set nvim.g.conjure#client#scheme#stdio#value_prefix_pattern false)
+(set vim.g.conjure#client#scheme#stdio#command "petite")
+(set vim.g.conjure#client#scheme#stdio#prompt_pattern "> $?")
+(set vim.g.conjure#client#scheme#stdio#value_prefix_pattern false)
 ; (set nvim.g.conjure#extract#tree_sitter#enabled true)

@@ -1,6 +1,5 @@
 (module dotfiles.plugin.bqf
-  {autoload {nvim aniseed.nvim
-             bqf bqf}})
+  {autoload {bqf bqf}})
 
 (bqf.setup {:preview {:auto_preview false}
             :auto_resize_height true})

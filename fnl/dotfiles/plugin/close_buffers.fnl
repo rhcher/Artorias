@@ -3,14 +3,5 @@
 
 (cbuffers.setup)
 
-(vim.api.nvim_set_keymap :n
-                         :<space>bo
-                         "<cmd>lua require('close_buffers').delete({type = 'hidden'})<CR>"
-                         {:noremap true
-                          :silent true})
-
-(vim.api.nvim_set_keymap :n
-                         :<space>bk
-                         "<cmd>lua require('close_buffers').delete({type = 'this'})<CR>"
-                         {:noremap true
-                          :silent true})
+(vim.keymap.set :n :<space>bo (fn [] (cbuffers.delete {:type "hidden"}) {:noremap true :silent true}))
+(vim.keymap.set :n :<space>bk (fn [] (cbuffers.delete {:type "this"})) {:noremap true :silent true})

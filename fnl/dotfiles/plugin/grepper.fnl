@@ -1,7 +1,6 @@
-(module dotfiles.plugin.grepper
-  {autoload {nvim aniseed.nvim}})
+(module dotfiles.plugin.grepper)
 
-(vim.api.nvim_set_keymap
+(vim.keymap.set
   :n
   :<leader>*
   ":Grepper -tool rg -cword -noprompt<CR>"
@@ -20,7 +19,7 @@
 (vim.cmd "aug Grepper 
             au! 
             au User Grepper ++nested call setqflist([], 'r', {'context': {'bqf': {'pattern_hl': '\\%#' . getreg('/')}}}) | bo cope 
-           aug END")
+          aug END")
 
 (vim.cmd "command! Todo :Grepper -noprompt -tool git -grepprg git grep -nIi '\\(TODO\\|FIXME\\)'")
 ;; Todo

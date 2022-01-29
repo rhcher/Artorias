@@ -1,6 +1,5 @@
 (module dotfiles.plugin.cmp
-  {autoload {nvim aniseed.nvim
-             cmp cmp
+  {autoload {cmp cmp
              snippy snippy
              cmp_buffer cmp_buffer
              lspkind lspkind

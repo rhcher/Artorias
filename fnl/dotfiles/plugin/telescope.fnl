@@ -1,6 +1,5 @@
 (module dotfiles.plugin.telescope
-  {autoload {nvim aniseed.nvim
-             util dotfiles.util
+  {autoload {util dotfiles.util
              telescope telescope
              actions telescope.actions}})
 

@@ -1,5 +1,4 @@
-(module dotfiles.plugin.nvimtree
-  {autoload {nvim aniseed.nvim}})
+(module dotfiles.plugin.nvimtree)
 
 (let [tree (require "nvim-tree")]
   (tree.setup {:disable_netrw false
@@ -8,3 +7,5 @@
                :update_cwd true
                :git {:enable false
                      :ignore false}}))
+
+(vim.keymap.set :n :<leader>e ":NvimTreeToggle<CR>" {:noremap true :silent true})

@@ -1,15 +1,14 @@
 (module dotfiles.mapping
   {autoload {nvim aniseed.nvim
              nu aniseed.nvim.util
-             core aniseed.core
-             ccls dotfiles.ccls}})
+             core aniseed.core}})
 
 (defn- noremap [mode from to]
   "Sets a mapping with {:noremap true}."
   (vim.keymap.set mode from to {:noremap true :silent true}))
 
 ;; Generic mapping configuration.
-(nvim.set_keymap :n :<space> :<nop> {:noremap true})
+(noremap :n :<space> :<nop> {:noremap true})
 (set nvim.g.mapleader " ")
 (set nvim.g.maplocalleader ",")
 
@@ -17,10 +16,11 @@
 (noremap :i :jk :<esc>)
 (noremap :i :<C-j> :<esc>o)
 (noremap :i :<C-k> :<esc>O)
-(vim.cmd "imap <expr> <C-l>   snippy#can_jump(1)  ? '<Plug>(snippy-next)' : '<Esc>A'")
-(vim.cmd "smap <expr> <C-l>   snippy#can_jump(1)  ? '<Plug>(snippy-next)' : '<Esc>A'")
-(vim.cmd "imap <expr> <C-h>   snippy#can_jump(-1)  ? '<Plug>(snippy-previous)' : '<Esc>I'")
-(vim.cmd "smap <expr> <C-h>   snippy#can_jump(-1)  ? '<Plug>(snippy-previous)' : '<Esc>I'")
+
+(vim.cmd "imap <expr> <C-l> snippy#can_jump(1) ? '<Plug>(snippy-next)' : '<Esc>A'")
+(vim.cmd "smap <expr> <C-l> snippy#can_jump(1) ? '<Plug>(snippy-next)' : '<Esc>A'")
+(vim.cmd "imap <expr> <C-h> snippy#can_jump(-1) ? '<Plug>(snippy-previous)' : '<Esc>I'")
+(vim.cmd "smap <expr> <C-h> snippy#can_jump(-1) ? '<Plug>(snippy-previous)' : '<Esc>I'")
 
 ;; terminal-mode
 (noremap :t :<a-h> :<C-\><C-n><C-w>h)
@@ -37,8 +37,8 @@
 (noremap :n ":" ";")
 (noremap :n ";" ":")
 (noremap :n :<esc> ":nohl<CR>")
-(vim.api.nvim_set_keymap :n :n :nzz {:silent true})
-(vim.api.nvim_set_keymap :n :N :Nzz {:silent true})
+(noremap :n :n :nzz {:silent true})
+(noremap :n :N :Nzz {:silent true})
 (noremap :n :<A-h> :<C-w>h)
 (noremap :n :<A-j> :<C-w>j)
 (noremap :n :<A-k> :<C-w>k)
@@ -56,8 +56,6 @@
 (noremap :n :<leader>zz ":normal! 1z=<cr>")
 ;; Trim trialing whitespace.
 (noremap :n :<leader>bt ":%s/\\s\\+$//e<cr>")
-;; nvim-tree
-(noremap :n :<leader>e ":NvimTreeToggle<CR>")
 
 (noremap :n "[b" :<cmd>bprev<CR>)
 (noremap :n "]b" :<cmd>bnext<CR>)

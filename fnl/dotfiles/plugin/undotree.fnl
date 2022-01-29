@@ -1,8 +1,6 @@
-(module dotfiles.plugin.undotree
-  {autoload {nvim aniseed.nvim}})
+(module dotfiles.plugin.undotree)
 
-(nvim.set_keymap :n
+(vim.keymap.set :n
                  :<leader>ut
                  ":UndotreeShow<cr>:UndotreeFocus<cr>"
-                 {:noremap true
-                  :silent true})
+                 {:noremap true :silent true})

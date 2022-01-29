@@ -1,6 +1,5 @@
 (module dotfiles.plugin.move
-  {autoload {move gomove
-             util dotfiles.util}})
+  {autoload {move gomove}})
 
 (move.setup {:map_defaults false})
 

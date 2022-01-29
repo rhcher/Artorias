@@ -17,4 +17,4 @@
              :close_on_exit true
              :shell vim.o.shell})
 
-(vim.api.nvim_set_keymap :n :<space>ot "<cmd>ToggleTerm direction=horizontal<CR>" {:silent true})
+(vim.keymap.set :n :<space>ot "<cmd>ToggleTerm direction=horizontal<CR>" {:silent true})
