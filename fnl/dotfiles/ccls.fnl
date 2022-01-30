@@ -15,6 +15,7 @@
 (defn navigate [n]
   (let [handler (fn [_ result ctx _]
                   (when (or (= result nil) (vim.tbl_isempty result))
+                    (vim.notify (.. "No " n " found"))
                     (lua "return"))
                   (let [client (vim.lsp.get_client_by_id ctx.client_id)]
                     (if
