@@ -23,7 +23,7 @@
             (use (a.assoc opts 1 name)))))))
   nil)
 
-;; Plugins to be managed by packer.
+; Plugins to be managed by packer.
 (use
   :Olical/aniseed {:branch :develop}
   :Olical/conjure {:branch :develop :mod :conjure}
@@ -49,7 +49,8 @@
   :tpope/vim-abolish {}
   :tpope/vim-repeat {}
   :tpope/vim-sexp-mappings-for-regular-people {}
-  :tpope/vim-sleuth {:mod :sleuth}
+  ; :tpope/vim-sleuth {:mod :indent}
+  :Darazaki/indent-o-matic {:mod :indent}
   :wlangstroth/vim-racket {}
   :kyazdani42/nvim-tree.lua {:mod :nvimtree :requires :kyazdani42/nvim-web-devicons}
   :eraserhd/parinfer-rust {:run "cargo build --release" :cmd :ParinferOn}
