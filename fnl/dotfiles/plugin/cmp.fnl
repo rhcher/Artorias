@@ -37,8 +37,8 @@
   {:snippet {:expand (fn [args] (snippy.expand_snippet args.body))}
    :completion {:completeopt "menu,menuone,noselect"
                 :keyword_pattern "\\k\\+"}
-   :sorting {:comparators [(fn [...] (cmp_buffer:compare_locality ...))
-                           cmp.config.compare.offset
+   :sorting {:comparators [cmp.config.compare.offset
+                           (fn [...] (cmp_buffer:compare_locality ...))
                            cmp.config.compare.exact
                            cmp.config.compare.score
                            cmp.config.compare.recently_used
@@ -65,7 +65,7 @@
                                      (fallback)))
                                  [:s :i :c])}
    :formatting {:fields [:kind :abbr :menu]
-                :format (lspkind.cmp_format {:with_text false
+                :format (lspkind.cmp_format {:mode "symbol"
                                              :maxwidth 50
                                              :before (fn [entry vim_item]
                                                        (tset vim_item :dup (or (. {:conjure 0} entry.source.name) 0))
