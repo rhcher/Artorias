@@ -45,11 +45,12 @@
   :mbbill/undotree {:mod :undotree}
   :neovim/nvim-lspconfig {:mod :lspconfig}
   :norcalli/nvim-colorizer.lua {:mod :colorizer}
-  :nvim-telescope/telescope.nvim {:mod :telescope :requires [[:nvim-lua/popup.nvim] [:nvim-lua/plenary.nvim]]}
+  :nvim-lua/popup.nvim {}
+  :nvim-lua/plenary.nvim {}
+  :ibhagwan/fzf-lua {:mod :fzf}
   :tpope/vim-abolish {}
   :tpope/vim-repeat {}
   :tpope/vim-sexp-mappings-for-regular-people {}
-  ; :tpope/vim-sleuth {:mod :indent}
   :Darazaki/indent-o-matic {:mod :indent}
   :wlangstroth/vim-racket {}
   :kyazdani42/nvim-tree.lua {:mod :nvimtree :requires :kyazdani42/nvim-web-devicons}
@@ -84,8 +85,6 @@
   :Julian/vim-textobj-variable-segment {}
   :glts/vim-textobj-comment {}
   :bootleq/vim-cycle {}
-  :ldelossa/litee.nvim {:requires [:ldelossa/litee-symboltree.nvim
-                                   :ldelossa/litee-calltree.nvim]
-                        :mod :litee}
   :j-hui/fidget.nvim {:mod :fidget}
-  :tommcdo/vim-exchange {})
+  :tommcdo/vim-exchange {}
+  :junegunn/fzf {:run "./install --bin"})
