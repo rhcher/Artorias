@@ -68,7 +68,6 @@
   :onsails/lspkind-nvim {}
   :akinsho/nvim-toggleterm.lua {:mod :terminal}
   :ggandor/lightspeed.nvim {}
-  ; :Raimondi/delimitMate {:mod :auto-pairs}
   :steelsojka/pears.nvim {:mod :auto-pairs}
   :ocaml/vim-ocaml {:ft :ocaml}
   :ojroques/vim-oscyank {}

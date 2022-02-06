@@ -5,7 +5,7 @@
                       :border "single"}})
 
 (let [map (fn [key func]
-            (vim.keymap.set :n key func {:noremap true :silent true}))]
+            (vim.keymap.set :n (.. :<leader> key) func {:noremap true :silent true}))]
   (map :ff fzf.files)
   (map :fp (fn [] (fzf.files {:cwd "~/.config/nvim/"})))
   (map :fs fzf.live_grep_native)
