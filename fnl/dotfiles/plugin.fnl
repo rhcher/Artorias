@@ -67,10 +67,10 @@
   :lewis6991/gitsigns.nvim {:mod :gitsigns}
   :onsails/lspkind-nvim {}
   :akinsho/nvim-toggleterm.lua {:mod :terminal}
-  :ggandor/lightspeed.nvim {}
-  :steelsojka/pears.nvim {:mod :auto-pairs}
+  :ggandor/lightspeed.nvim {:mod :lightspeed}
+  :ZhiyuanLck/smart-pairs {:mod :auto-pairs}
   :ocaml/vim-ocaml {:ft :ocaml}
-  :ojroques/vim-oscyank {}
+  ; :ojroques/vim-oscyank {}
   :numToStr/Comment.nvim {:mod :nvim_comment}
   :monkoose/matchparen.nvim {:mod :matchparen}
   :rhcher/vim-paper {}
@@ -86,4 +86,5 @@
   :bootleq/vim-cycle {}
   :j-hui/fidget.nvim {:mod :fidget}
   :tommcdo/vim-exchange {}
-  :junegunn/fzf {:run "./install --bin"})
+  :junegunn/fzf {:run "./install --bin"}
+  :hoschi/yode-nvim {:mod :yode})

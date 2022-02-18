@@ -20,6 +20,7 @@
 (set nvim.o.undofile true)
 (set nvim.o.scrolloff 4)
 (set nvim.o.cursorline true)
+(vim.cmd "set diffopt+=internal,algorithm:patience")
 
 (set vim.o.hidden true)
 (set vim.o.updatetime 200)
@@ -45,7 +46,6 @@
 augroup init
   autocmd!
   autocmd CmdWinEnter * nnoremap <buffer> q <C-W>q
-  autocmd TextYankPost * if v:event.operator is 'y' && v:event.regname is '' | execute 'OSCYankReg *' | endif
   autocmd TextYankPost * lua vim.highlight.on_yank {higroup='Visual', timeout=150, on_visual=true}
   autocmd BufNewFile * autocmd BufWritePre <buffer> ++once call mkdir(expand('%:h'), 'p')
 augroup END")
