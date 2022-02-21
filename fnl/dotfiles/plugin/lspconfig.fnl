@@ -80,24 +80,8 @@
     (vim.api.nvim_command "autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()")
     (vim.api.nvim_command "autocmd CursorMoved,InsertEnter,WinLeave <buffer> lua vim.lsp.buf.clear_references()")))
 
-(let [location_handler
-      (fn [_ result ctx _]
-        (when (or (= result nil) (vim.tbl_isempty result))
-          (lua "return nil"))
-        (let [client (vim.lsp.get_client_by_id ctx.client_id)]
-          (if
-            (vim.tbl_islist result)
-            (do
-              (lsp_util.jump_to_location (. result 1) client.offset_encoding)
-              (when (> (length result) 1)
-                (vim.fn.setqflist {} " " {:title "LSP Location"
-                                          :items (lsp_util.locations_to_items result
-                                                                              client.offset_encoding)})
-                (vim.api.nvim_command "botright copen")))
-            (lsp_util.jump_to_location result client.offset_encoding))))]
-  (tset vim.lsp.handlers "textDocument/definition" location_handler)
-  (tset vim.lsp.handlers "textDocument/hover" (vim.lsp.with vim.lsp.handlers.hover {:border :single}))
-  (tset vim.lsp.handlers "textDocument/signatureHelp" (vim.lsp.with vim.lsp.handlers.signature_help {:border :single})))
+(tset vim.lsp.handlers "textDocument/hover" (vim.lsp.with vim.lsp.handlers.hover {:border :single}))
+(tset vim.lsp.handlers "textDocument/signatureHelp" (vim.lsp.with vim.lsp.handlers.signature_help {:border :single}))
 
 (let [lsp (require :lspconfig)
       capabilities (cmplsp.update_capabilities (vim.lsp.protocol.make_client_capabilities))
