@@ -23,7 +23,7 @@
             (use (a.assoc opts 1 name)))))))
   nil)
 
-; Plugins to be managed by packer.
+;; Plugins to be managed by packer.
 (use
   :Olical/aniseed {:branch :develop}
   :Olical/conjure {:branch :develop :mod :conjure}
@@ -70,7 +70,7 @@
   :ggandor/lightspeed.nvim {:mod :lightspeed}
   :ZhiyuanLck/smart-pairs {:mod :auto-pairs}
   :ocaml/vim-ocaml {:ft :ocaml}
-  ; :ojroques/vim-oscyank {}
+  ;; :ojroques/vim-oscyank {}
   :numToStr/Comment.nvim {:mod :nvim_comment}
   :monkoose/matchparen.nvim {:mod :matchparen}
   :rhcher/vim-paper {}
