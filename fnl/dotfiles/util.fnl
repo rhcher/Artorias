@@ -2,6 +2,14 @@
   {autoload {nvim aniseed.nvim
              a aniseed.core}})
 
+(def lisp-language [:fennel :lisp :scheme :racket :clojure :janet :timl])
+
+(defn contain? [key dict]
+  (each [k (pairs dict)]
+    (if (= k key)
+      true
+      false)))
+
 (defn expand [path]
   (nvim.fn.expand path))
 
@@ -22,9 +30,6 @@
     (if (a.get opts :local?)
       (nvim.buf_set_keymap 0 :n from to map-opts)
       (nvim.set_keymap :n from to map-opts))))
-
-(defn lnnoremap [from to]
-  (nnoremap (.. "<leader>" from) to))
 
 (defn luamap [mode from to]
   (vim.keymap.set mode from to {:noremap true :silent true :buffer true}))
