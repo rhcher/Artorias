@@ -5,10 +5,11 @@
 (def lisp-language [:fennel :lisp :scheme :racket :clojure :janet :timl])
 
 (defn contain? [key dict]
-  (each [k (pairs dict)]
+  (var result false)
+  (each [_ k (ipairs dict)]
     (if (= k key)
-      true
-      false)))
+      (set result true)))
+  result)
 
 (defn expand [path]
   (nvim.fn.expand path))
