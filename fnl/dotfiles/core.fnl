@@ -42,10 +42,19 @@
 ;; oscyank
 (set vim.g.oscyank_silent true)
 
-(vim.cmd "
-augroup init
-  autocmd!
-  autocmd CmdWinEnter * nnoremap <buffer> q <C-W>q
-  autocmd TextYankPost * lua vim.highlight.on_yank {higroup='Visual', timeout=150, on_visual=true}
-  autocmd BufNewFile * autocmd BufWritePre <buffer> ++once call mkdir(expand('%:h'), 'p')
-augroup END")
+(vim.api.nvim_create_augroup "init" {})
+(vim.api.nvim_create_autocmd [:CmdWinEnter]
+                             {:group "init"
+                              :buffer 0
+                              :command "cmap q <C-W>q"})
+(vim.api.nvim_create_autocmd [:TextYankPost]
+                             {:group "init"
+                              :callback (fn [] (vim.highlight.on_yank {:higroup "Visual"
+                                                                       :timeout 150
+                                                                       :on_visual true}))})
+(vim.api.nvim_create_autocmd [:BufNewFile]
+                             {:group "init"
+                              :callback (fn [] (vim.api.nvim_create_autocmd [:BufWritePre]
+                                                                            {:once true
+                                                                             :buffer 0
+                                                                             :command "call mkdir(expand('%:h'), 'p')"}))})

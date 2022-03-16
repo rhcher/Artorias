@@ -83,7 +83,7 @@
   :kana/vim-textobj-user {}
   :Julian/vim-textobj-variable-segment {}
   :glts/vim-textobj-comment {}
-  :bootleq/vim-cycle {}
+  :zegervdv/nrpattern.nvim {:mod :nrpattern}
   :j-hui/fidget.nvim {:mod :fidget}
   :tommcdo/vim-exchange {}
   :junegunn/fzf {:run "./install --bin"}

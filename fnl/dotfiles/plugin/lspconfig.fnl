@@ -69,16 +69,18 @@
       (luamap :n :<space>gn (fn [] (ccls.extend_ref :notcall)))))
 
   (when client.resolved_capabilities.code_lens
-    (vim.cmd "
-             augroup lsp_document_highlight
-             autocmd! * <buffer>
-             autocmd BufEnter,CursorHold,InsertLeave <buffer> lua vim.lsp.codelens.refresh()
-             augroup END")
+    (vim.api.nvim_create_autocmd [:BufEnter :CursorHold :InsertLeave]
+                                 {:buffer bufnr
+                                  :callback vim.lsp.codelens.refresh})
     (buf_key_map :n :<space>ll vim.lsp.codelens.run))
 
   (when client.resolved_capabilities.document_highlight
-    (vim.api.nvim_command "autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()")
-    (vim.api.nvim_command "autocmd CursorMoved,InsertEnter,WinLeave <buffer> lua vim.lsp.buf.clear_references()")))
+    (vim.api.nvim_create_autocmd [:CursorHold]
+                                 {:buffer bufnr
+                                  :callback vim.lsp.buf.document_highlight})
+    (vim.api.nvim_create_autocmd [:CursorMoved :InsertEnter :WinLeave]
+                                 {:buffer bufnr
+                                  :callback vim.lsp.buf.clear_references})))
 
 (tset vim.lsp.handlers "textDocument/hover" (vim.lsp.with vim.lsp.handlers.hover {:border :single}))
 (tset vim.lsp.handlers "textDocument/signatureHelp" (vim.lsp.with vim.lsp.handlers.signature_help {:border :single}))
