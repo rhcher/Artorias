@@ -59,7 +59,7 @@
                                    (if 
                                      (cmp.visible)
                                      (cmp.confirm {:select true
-                                                   :behavior cmp.ConfirmBehavior.Replace})
+                                                   :behavior cmp.ConfirmBehavior.Insert})
                                      (snippy.can_expand_or_advance)
                                      (snippy.expand_or_advance)
                                      (fallback)))
