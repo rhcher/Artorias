@@ -70,7 +70,20 @@
                                              :before (fn [entry vim_item]
                                                        (tset vim_item :dup (or (. {:conjure 0} entry.source.name) 0))
                                                        vim_item)})} 
-   :sources cmp-srcs})
+   :sources (cmp.config.sources [{:name :nvim_lsp_signature_help}]
+                                [{:name :path}]
+                                [{:name :nvim_lsp}]
+                                [{:name :snippy
+                                  :keyword_length 2}
+                                 {:name :conjure}]
+                                [{:name :buffer
+                                  :keyword_length 3
+                                  :option {:keyword_pattern "\\k\\+"
+                                           :get_bufnrs (fn []
+                                                         (let [bufs {}]
+                                                           (each [_ win (ipairs (vim.api.nvim_list_wins))]
+                                                             (tset bufs (vim.api.nvim_win_get_buf win) true))
+                                                           (vim.tbl_keys bufs)))}}])})
 
 (cmp.setup.cmdline "/"
                    {:sources [{:name "buffer"}]})

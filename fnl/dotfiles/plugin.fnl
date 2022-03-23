@@ -87,4 +87,6 @@
   :j-hui/fidget.nvim {:mod :fidget}
   :tommcdo/vim-exchange {}
   :junegunn/fzf {:run "./install --bin"}
-  :hoschi/yode-nvim {:mod :yode})
+  ;; :hoschi/yode-nvim {:mod :yode}
+  :AndrewRadev/linediff.vim {}
+  :tyru/open-browser.vim {})

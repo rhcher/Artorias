@@ -60,6 +60,8 @@
 (noremap :n "[b" :<cmd>bprev<CR>)
 (noremap :n "]b" :<cmd>bnext<CR>)
 
+(noremap [:n :v] :gx "<Plug>(openbrowser-smart-search)")
+
 (nu.fn-bridge
   :DeleteHiddenBuffers
   :dotfiles.mapping :delete-hidden-buffers)
