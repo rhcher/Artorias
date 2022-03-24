@@ -70,7 +70,6 @@
   :ggandor/lightspeed.nvim {:mod :lightspeed}
   :ZhiyuanLck/smart-pairs {:mod :auto-pairs}
   :ocaml/vim-ocaml {:ft :ocaml}
-  ;; :ojroques/vim-oscyank {}
   :numToStr/Comment.nvim {:mod :nvim_comment}
   :monkoose/matchparen.nvim {:mod :matchparen}
   :rhcher/vim-paper {}
@@ -87,6 +86,5 @@
   :j-hui/fidget.nvim {:mod :fidget}
   :tommcdo/vim-exchange {}
   :junegunn/fzf {:run "./install --bin"}
-  ;; :hoschi/yode-nvim {:mod :yode}
   :AndrewRadev/linediff.vim {}
   :tyru/open-browser.vim {})

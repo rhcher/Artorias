@@ -5,23 +5,6 @@
              lspkind lspkind
              cmp_git cmp_git}})
 
-(def- cmp-srcs
-  [{:name :nvim_lsp}
-   {:name :nvim_lsp_signature_help}
-   {:name :snippy
-    :keyword_length 2}
-   {:name :cmp_git}
-   {:name :buffer
-    :keyword_length 3
-    :option {:keyword_pattern "\\k\\+"
-             :get_bufnrs (fn []
-                           (let [bufs {}]
-                             (each [_ win (ipairs (vim.api.nvim_list_wins))]
-                               (tset bufs (vim.api.nvim_win_get_buf win) true))
-                             (vim.tbl_keys bufs)))}}
-   {:name :conjure}
-   {:name :path}])
-
 (def- underline
   (fn [entry1 entry2]
     (var (_ entry1_under) (: entry1.completion_item.label :find "^_+"))
@@ -72,10 +55,10 @@
                                                        vim_item)})} 
    :sources (cmp.config.sources [{:name :nvim_lsp_signature_help}]
                                 [{:name :path}]
-                                [{:name :nvim_lsp}]
                                 [{:name :snippy
                                   :keyword_length 2}
-                                 {:name :conjure}]
+                                 {:name :nvim_lsp}]
+                                [{:name :conjure}]
                                 [{:name :buffer
                                   :keyword_length 3
                                   :option {:keyword_pattern "\\k\\+"
