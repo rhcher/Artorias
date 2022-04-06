@@ -8,8 +8,16 @@
                 (var opts (or opts {}))
                 (tset opts :buffer bufnr)
                 (vim.keymap.set mode l r opts))]
-      (map :n "]c" "&diff ? ']c' : '<cmd>Gitsigns next_hunk<CR>'" {:expr true})
-      (map :n "[c" "&diff ? '[c' : '<cmd>Gitsigns prev_hunk<CR>'" {:expr true})
+      (map :n "]c" (fn []
+                     (when vim.wo.diff
+                       (lua "return ']c'"))
+                     (vim.schedule (fn [] (gs.next_hunk)))
+                     "<Ignore>") {:expr true})
+      (map :n "[c" (fn []
+                     (when vim.wo.diff
+                       (lua "return '[c'"))
+                     (vim.schedule (fn [] (gs.prev_hunk)))
+                     "<Ignore>") {:expr true})
       (map [:n :v] :<leader>hs gs.stage_hunk)
       (map [:n :v] :<leader>hr gs.reset_hunk)
       (map :n :<leader>hS gs.stage_buffer)
@@ -20,7 +28,8 @@
       (map :n :<leader>tb gs.toggle_current_line_blame)
       (map :n :<leader>hd gs.diffthis)
       (map :n :<leader>hD (fn [] (gs.diffthis "~")))
-      (map :n :<leader>td gs.toggle_deleted))))
+      (map :n :<leader>td gs.toggle_deleted)
+      (map [:x :o] :ih ":<C-U>Gitsigns select_hunk<CR>"))))
 
 
 (gitsigns.setup
