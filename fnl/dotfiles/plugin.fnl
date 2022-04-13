@@ -87,4 +87,6 @@
   :tommcdo/vim-exchange {}
   :junegunn/fzf {:run "./install --bin"}
   :AndrewRadev/linediff.vim {}
-  :tyru/open-browser.vim {})
+  :tyru/open-browser.vim {}
+  :rcarriga/nvim-notify {}
+  :stevearc/dressing.nvim {})
