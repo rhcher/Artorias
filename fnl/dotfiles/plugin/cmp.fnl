@@ -17,6 +17,9 @@
       (< entry1_under entry2_under)
       true)))
 
+(def- cmp-window-opts {:border :single
+                       :winhighlight "Normal:Normal,FloatBorder:Normal,CursorLine:Visual,Search:None"})
+
 (cmp.setup
   {:snippet {:expand (fn [args] (snippy.expand_snippet args.body))}
    :completion {:completeopt "menu,menuone,noselect"
@@ -33,22 +36,23 @@
                            compare.sort_text
                            compare.order]}
    :experimental {:ghost_text true}
-   :documentation {:winhighlight "NormalFloat:Pmenu,FloatBorder:Bold"}
-   :mapping {:<C-d> (cmp.mapping.scroll_docs (- 4))
-             :<C-f> (cmp.mapping.scroll_docs 4)
-             :<C-space> (cmp.mapping.complete)
-             :<C-e> (cmp.mapping.close)
-             :<C-y> (cmp.mapping.confirm {:select true
-                                          :behavior cmp.ConfirmBehavior.Replace})
-             :<Tab> (cmp.mapping (fn [fallback]
-                                   (if 
-                                     (cmp.visible)
-                                     (cmp.confirm {:select true
-                                                   :behavior cmp.ConfirmBehavior.Insert})
-                                     (snippy.can_expand_or_advance)
-                                     (snippy.expand_or_advance)
-                                     (fallback)))
-                                 [:s :i :c])}
+   :window {:documentation cmp-window-opts
+            :completion cmp-window-opts}
+   :mapping (cmp.mapping.preset.insert {:<C-d> (cmp.mapping.scroll_docs (- 4))
+                                        :<C-f> (cmp.mapping.scroll_docs 4)
+                                        :<C-space> (cmp.mapping.complete)
+                                        :<C-e> (cmp.mapping.close)
+                                        :<C-y> (cmp.mapping.confirm {:select true
+                                                                     :behavior cmp.ConfirmBehavior.Replace})
+                                        :<Tab> (cmp.mapping (fn [fallback]
+                                                              (if 
+                                                                (cmp.visible)
+                                                                (cmp.confirm {:select true
+                                                                              :behavior cmp.ConfirmBehavior.Insert})
+                                                                (snippy.can_expand_or_advance)
+                                                                (snippy.expand_or_advance)
+                                                                (fallback)))
+                                                            [:s :i :c])})
    :formatting {:fields [:kind :abbr :menu]
                 :format (lspkind.cmp_format {:mode "symbol"
                                              :maxwidth 50
@@ -71,8 +75,10 @@
                                                            (vim.tbl_keys bufs)))}}])})
 
 (cmp.setup.cmdline "/"
-                   {:sources [{:name "buffer"}]})
+                   {:mapping (cmp.mapping.preset.cmdline)
+                    :sources [{:name "buffer"}]})
 
 (cmp.setup.cmdline ":"
-                   {:sources [{:name "path"}
+                   {:mapping (cmp.mapping.preset.cmdline)
+                    :sources [{:name "path"}
                               {:name "cmdline"}]})
