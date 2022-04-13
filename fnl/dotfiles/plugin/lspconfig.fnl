@@ -111,21 +111,14 @@
     (lsp.ccls.setup
       {:on_attach on_attach
        :capabilities capabilities
-       :filetypes [:c :cpp]
+       :filetypes [:c :cpp :objectc]
        :cmd [:ccls]
-       :root_dir (fn [fname]
-                   (or ((utils.root_pattern :compile_command.json :.git :.ccls-root :.ccls) fname)
-                       (utils.path.dirname fname)))
        :init_options {:capabilities {:foldingRangeProvider false
                                      :workspace {:wordspaceFolders {:support false}}}
                       :index {:onChange false
                               :initialNoLinkage true}
                       :cache {:directory "/tmp/ccls-cache/"}}
        :flags {:debounce_text_changes 200}})
-    (lsp.racket_langserver.setup
-      {:on_attach on_attach
-       :capabilities capabilities
-       :filetypes [:racket]})
     (lsp.pylsp.setup
       {:on_attach on_attach
        :capabilities capabilities

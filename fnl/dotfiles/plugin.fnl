@@ -89,4 +89,6 @@
   :AndrewRadev/linediff.vim {}
   :tyru/open-browser.vim {}
   :rcarriga/nvim-notify {}
-  :stevearc/dressing.nvim {})
+  :stevearc/dressing.nvim {}
+  :danymat/neogen {:mod :neogen}
+  :kevinhwang91/nvim-hlslens {:mod :hlslens})

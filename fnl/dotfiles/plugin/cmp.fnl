@@ -3,7 +3,8 @@
              snippy snippy
              cmp_buffer cmp_buffer
              lspkind lspkind
-             cmp_git cmp_git}})
+             cmp_git cmp_git
+             compare cmp.config.compare}})
 
 (def- underline
   (fn [entry1 entry2]
@@ -20,16 +21,17 @@
   {:snippet {:expand (fn [args] (snippy.expand_snippet args.body))}
    :completion {:completeopt "menu,menuone,noselect"
                 :keyword_pattern "\\k\\+"}
-   :sorting {:comparators [cmp.config.compare.offset
-                           (fn [...] (cmp_buffer:compare_locality ...))
-                           cmp.config.compare.exact
-                           cmp.config.compare.score
-                           cmp.config.compare.recently_used
+   :sorting {:comparators [compare.offset
+                           compare.exact
+                           compare.score
+                           compare.recently_used
+                           compare.locality
+                           ;; cmp.config.compare.scopes
                            underline
-                           cmp.config.compare.kind
-                           cmp.config.compare.length
-                           cmp.config.compare.sort_text
-                           cmp.config.compare.order]}
+                           compare.kind
+                           compare.length
+                           compare.sort_text
+                           compare.order]}
    :experimental {:ghost_text true}
    :documentation {:winhighlight "NormalFloat:Pmenu,FloatBorder:Bold"}
    :mapping {:<C-d> (cmp.mapping.scroll_docs (- 4))

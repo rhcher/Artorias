@@ -8,7 +8,6 @@
 (set nvim.o.jumpoptions "stack")
 (set nvim.o.pumheight 10)
 (set nvim.o.autoindent true)
-;; (set nvim.o.cindent true)
 (set nvim.o.smartindent true)
 (set nvim.o.tabstop 2)
 (set nvim.o.shiftwidth 2)
@@ -21,12 +20,20 @@
 (set nvim.o.undofile true)
 (set nvim.o.scrolloff 4)
 (set nvim.o.cursorline true)
+(set nvim.o.incsearch false)
 (vim.cmd "set diffopt+=internal,algorithm:patience")
 
 (set vim.o.hidden true)
 (set vim.o.updatetime 200)
 (set vim.o.clipboard "unnamedplus")
 (set vim.opt.laststatus 3)
+(set vim.opt.lazyredraw true)
+(set vim.opt.relativenumber true)
+(set vim.opt.listchars {:nbsp :⦸
+                        :extends "»"
+                        :precedes "«"
+                        :tab :▷⋯
+                        :trail :•})
 
 (vim.cmd "filetype plugin on")
 
