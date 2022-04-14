@@ -54,7 +54,7 @@
   :Darazaki/indent-o-matic {:mod :indent}
   :wlangstroth/vim-racket {}
   :kyazdani42/nvim-tree.lua {:mod :nvimtree :requires :kyazdani42/nvim-web-devicons}
-  :eraserhd/parinfer-rust {:run "cargo build --release" :cmd :ParinferOn}
+  :gpanders/nvim-parinfer {}
   :nvim-treesitter/nvim-treesitter {:run ":TSUpdate" :mod :treesitter}
   :kevinhwang91/nvim-bqf {:mod :bqf}
   :wellle/targets.vim {:mod :targets}

@@ -15,7 +15,8 @@
   ;;                             :filetype :fennel})
 
   (tsconfigs.setup
-    {:ensure_installed [:c :cpp :rust :lua :python :cmake :vim :fennel :query :ocaml :ocaml_interface :haskell :scheme]
+    {:ensure_installed [:c :cpp :rust :lua :python :cmake 
+                        :vim :fennel :query :ocaml :ocaml_interface :haskell :scheme]
      :highlight {:enable true
                  :disable [:vim]
                  :additional_vim_regex_highlighting false}
