@@ -85,10 +85,10 @@
 (tset vim.lsp.handlers "textDocument/hover" (vim.lsp.with vim.lsp.handlers.hover {:border :single}))
 (tset vim.lsp.handlers "textDocument/signatureHelp" (vim.lsp.with vim.lsp.handlers.signature_help {:border :single}))
 
-(let [lsp (require :lspconfig)
+(let [(ok? lsp) (pcall require :lspconfig)
       capabilities (cmplsp.update_capabilities (vim.lsp.protocol.make_client_capabilities))
       servers [:hls :ocamllsp]]
-  (when lsp
+  (when ok?
     (each [_ name (ipairs servers)]
       (let [{name config} lsp]
         (config.setup
