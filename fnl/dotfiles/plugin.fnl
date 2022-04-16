@@ -27,27 +27,30 @@
 (use
   :Olical/aniseed {:branch :develop}
   :Olical/conjure {:branch :develop :mod :conjure}
+  :rhcher/srcery-vim {}
+  :rhcher/vim-paper {}
+  :nvim-lua/plenary.nvim {}
   :wbthomason/packer.nvim {}
   :lewis6991/impatient.nvim {}
-  :feline-nvim/feline.nvim {:mod :feline}
-  :guns/vim-sexp {:mod :sexp}
+  :nvim-treesitter/nvim-treesitter {:run ":TSUpdate" :mod :treesitter}
   :hrsh7th/nvim-cmp {:requires [:hrsh7th/cmp-nvim-lsp
                                 :hrsh7th/cmp-buffer
                                 :hrsh7th/cmp-path
                                 :PaterJason/cmp-conjure
                                 :dcampos/cmp-snippy
                                 :hrsh7th/cmp-cmdline
-                                :hrsh7th/cmp-nvim-lsp-signature-help]
+                                :hrsh7th/cmp-nvim-lsp-signature-help
+                                :onsails/lspkind-nvim]
                      :mod :cmp}
   :dcampos/nvim-snippy {}
   :honza/vim-snippets {}
-  :rhcher/srcery-vim {}
+  :feline-nvim/feline.nvim {:mod :feline}
   :mbbill/undotree {:mod :undotree}
   :neovim/nvim-lspconfig {:mod :lspconfig}
   :norcalli/nvim-colorizer.lua {:mod :colorizer}
   :nvim-lua/popup.nvim {}
-  :nvim-lua/plenary.nvim {}
   :ibhagwan/fzf-lua {:mod :fzf}
+  :guns/vim-sexp {:mod :sexp}
   :tpope/vim-abolish {}
   :tpope/vim-repeat {}
   :tpope/vim-sexp-mappings-for-regular-people {}
@@ -55,7 +58,6 @@
   :wlangstroth/vim-racket {}
   :kyazdani42/nvim-tree.lua {:mod :nvimtree :requires :kyazdani42/nvim-web-devicons}
   :gpanders/nvim-parinfer {}
-  :nvim-treesitter/nvim-treesitter {:run ":TSUpdate" :mod :treesitter}
   :kevinhwang91/nvim-bqf {:mod :bqf}
   :wellle/targets.vim {:mod :targets}
   :machakann/vim-sandwich {:mod :sandwich}
@@ -65,14 +67,12 @@
   :karb94/neoscroll.nvim {:mod :neoscroll}
   :AndrewRadev/splitjoin.vim {:mod :splitjoin}
   :lewis6991/gitsigns.nvim {:mod :gitsigns}
-  :onsails/lspkind-nvim {}
   :akinsho/nvim-toggleterm.lua {:mod :terminal}
   :ggandor/lightspeed.nvim {:mod :lightspeed}
   :ZhiyuanLck/smart-pairs {:mod :auto-pairs}
   :ocaml/vim-ocaml {:ft :ocaml}
   :numToStr/Comment.nvim {:mod :nvim_comment}
   :monkoose/matchparen.nvim {:mod :matchparen}
-  :rhcher/vim-paper {}
   :mfussenegger/nvim-lint {:mod :lint}
   :svban/YankAssassin.vim {}
   :kazhala/close-buffers.nvim {:mod :close_buffers}
