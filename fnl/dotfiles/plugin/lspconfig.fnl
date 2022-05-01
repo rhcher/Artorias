@@ -13,23 +13,23 @@
     (vim.api.nvim_buf_set_option bufnr ...))
 
 
-  (when client.resolved_capabilities.completion
+  (when client.server_capabilities.completionProvider
     (buf_set_option :omnifunc "v:lua.vim.lsp.omnifunc"))
 
-  (when client.resolved_capabilities.document_formatting
-    (buf_key_map :n :<leader>lf vim.lsp.buf.formatting))
+  (when client.server_capabilities.documentFormattingProvider
+    (buf_key_map :n :<leader>lf vim.lsp.buf.format))
 
-  (when client.resolved_capabilities.document_range_formatting
+  (when client.server_capabilities.documentRangeFormattingProvider
     (buf_key_map :v :<leader>lf vim.lsp.buf.range_formatting))
 
-  (when client.resolved_capabilities.call_hierarchy
+  (when client.server_capabilities.callHierarchyProvider
     (buf_key_map :n :<leader>ii vim.lsp.buf.incoming_calls)
     (buf_key_map :n :<leader>io vim.lsp.buf.outgoing_calls))
 
-  (when client.resolved_capabilities.document_symbol
+  (when client.server_capabilities.documentSymbolProvider
     (buf_key_map :n :<leader>lw vim.lsp.buf.document_symbol))
 
-  (when client.resolved_capabilities.workspace_symbol
+  (when client.server_capabilities.workspaceSymbolProvider
     (buf_key_map :n :<leader>lW vim.lsp.buf.workspace_symbol))
 
   (buf_key_map :n :gd vim.lsp.buf.definition)
@@ -68,13 +68,13 @@
       (luamap :n :<space>gm (fn [] (ccls.extend_ref :macro)))
       (luamap :n :<space>gn (fn [] (ccls.extend_ref :notcall)))))
 
-  (when client.resolved_capabilities.code_lens
+  (when client.server_capabilities.codeLensProvider
     (vim.api.nvim_create_autocmd [:BufEnter :CursorHold :InsertLeave]
                                  {:buffer bufnr
                                   :callback vim.lsp.codelens.refresh})
     (buf_key_map :n :<space>ll vim.lsp.codelens.run))
 
-  (when client.resolved_capabilities.document_highlight
+  (when client.server_capabilities.documentHighlightProvider
     (vim.api.nvim_create_autocmd [:CursorHold]
                                  {:buffer bufnr
                                   :callback vim.lsp.buf.document_highlight})
