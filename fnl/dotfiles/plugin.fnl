@@ -65,7 +65,6 @@
   :mhinz/vim-grepper {:mod :grepper}
   :neovimhaskell/haskell-vim {:ft :haskell}
   :karb94/neoscroll.nvim {:mod :neoscroll}
-  :AndrewRadev/splitjoin.vim {:mod :splitjoin}
   :lewis6991/gitsigns.nvim {:mod :gitsigns}
   :akinsho/nvim-toggleterm.lua {:mod :terminal}
   :ggandor/lightspeed.nvim {:mod :lightspeed}
