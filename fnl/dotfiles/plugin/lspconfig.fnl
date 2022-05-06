@@ -12,7 +12,6 @@
   (defn- buf_set_option [...]
     (vim.api.nvim_buf_set_option bufnr ...))
 
-
   (when client.server_capabilities.completionProvider
     (buf_set_option :omnifunc "v:lua.vim.lsp.omnifunc"))
 
@@ -38,8 +37,10 @@
   (buf_key_map :n :gr (fn [] (vim.lsp.buf.references {:includeDeclaration false})))
   (buf_key_map :n :K vim.lsp.buf.hover)
   (buf_key_map :n :<leader>lr vim.lsp.buf.rename)
-  (buf_key_map :n :<leader>la vim.lsp.buf.code_action)
-  (buf_key_map :v :<leader>la vim.lsp.buf.range_code_action)
+
+  (when client.server_capabilities.codeActionProvider
+    (buf_key_map :n :<leader>la vim.lsp.buf.code_action)
+    (buf_key_map :v :<leader>la vim.lsp.buf.range_code_action))
 
   (when (= client.name :ccls)
     (let [ccls (require "dotfiles.ccls")
@@ -113,12 +114,24 @@
        :capabilities capabilities
        :filetypes [:c :cpp :objectc]
        :cmd [:ccls]
-       :init_options {:capabilities {:foldingRangeProvider false
-                                     :workspace {:wordspaceFolders {:support false}}}
+       :init_options {:capabilities {:foldingRangeProvider true
+                                     :workspace {:wordspaceFolders {:support true}}}
                       :index {:onChange false
                               :initialNoLinkage true}
-                      :cache {:directory "/tmp/ccls-cache/"}}
+                      :cache {:directory "/tmp/ccls-cache/"}
+                      :xref {:maxNum 20000}}
        :flags {:debounce_text_changes 200}})
+    ;; (lsp.clangd.setup
+    ;;   {:on_attach on_attach
+    ;;    :capabilities capabilities
+    ;;    :cmd [:clangd
+    ;;          :--clang-tidy
+    ;;          :--background-index
+    ;;          :--header-insertion=iwyu
+    ;;          :--completion-style=detailed
+    ;;          "--clang-tidy-checks=-*,llvm-*,clang-analyzer-*"
+    ;;          :--cross-file-rename]
+    ;;    :flags {:debounce_text_changes 200}})
     (lsp.pylsp.setup
       {:on_attach on_attach
        :capabilities capabilities

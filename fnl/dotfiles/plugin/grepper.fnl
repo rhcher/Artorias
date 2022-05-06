@@ -14,11 +14,11 @@
                     :rg {:grepprg "rg -H --no-heading --vimgrep --smart-case"
                          :grepformat "%f:%l:%c:%m,%f:%l:%m"}})
 
-(vim.cmd "let g:grepper.repo = ['.git', '.hg', '.svn', 'Makefile', 'stack.yaml', 'dune-project', '.ccls-root', 'Cargo.toml']")
+(vim.cmd "let g:grepper.repo = ['.git', '.hg', '.svn', 'stack.yaml', 'dune-project', '.ccls-root', 'Cargo.toml', 'compile_commands.json']")
 
-(vim.cmd "aug Grepper 
-            au! 
-            au User Grepper ++nested call setqflist([], 'r', {'context': {'bqf': {'pattern_hl': '\\%#' . getreg('/')}}}) | bo cope 
+(vim.cmd "aug Grepper
+            au!
+            au User Grepper ++nested call setqflist([], 'r', {'context': {'bqf': {'pattern_hl': '\\%#' . getreg('/')}}}) | bo cope
           aug END")
 
 (vim.cmd "command! Todo :Grepper -noprompt -tool git -grepprg git grep -nIi '\\(TODO\\|FIXME\\)'")
