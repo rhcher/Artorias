@@ -2,7 +2,7 @@
   {autoload {nvim aniseed.nvim
              a aniseed.core
              util dotfiles.util
-             packer packer}})
+             : packer}})
 
 (defn safe-require-plugin-config [name]
   (let [(ok? val-or-err) (pcall require (.. :dotfiles.plugin. name))]
@@ -89,5 +89,7 @@
   :tyru/open-browser.vim {}
   :rcarriga/nvim-notify {}
   :stevearc/dressing.nvim {}
+  :ThePrimeagen/harpoon {:mod :harpoon}
+  :goolord/alpha-nvim {:mod :alpha}
   :danymat/neogen {:mod :neogen}
   :kevinhwang91/nvim-hlslens {:mod :hlslens})

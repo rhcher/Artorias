@@ -1,7 +1,6 @@
-(module dotfiles.init)
-
-(require :dotfiles.core)
-(require :dotfiles.ccls)
-(require :dotfiles.mapping)
-(require :dotfiles.plugin)
-(require :dotfiles.diagnostic)
+(module dotfiles.init
+  {require [dotfiles.core
+            dotfiles.ccls
+            dotfiles.mapping
+            dotfiles.plugin
+            dotfiles.diagnostic]})
