@@ -56,6 +56,7 @@
   :tpope/vim-sexp-mappings-for-regular-people {}
   :Darazaki/indent-o-matic {:mod :indent}
   :wlangstroth/vim-racket {}
+  :kyazdani42/nvim-web-devicons {:mod :devicons}
   :kyazdani42/nvim-tree.lua {:mod :nvimtree :requires :kyazdani42/nvim-web-devicons}
   :gpanders/nvim-parinfer {}
   :kevinhwang91/nvim-bqf {:mod :bqf}
@@ -74,7 +75,6 @@
   :monkoose/matchparen.nvim {:mod :matchparen}
   :mfussenegger/nvim-lint {:mod :lint}
   :svban/YankAssassin.vim {}
-  :kazhala/close-buffers.nvim {:mod :close_buffers}
   :hrsh7th/vim-searchx {:mod :searchx}
   :metakirby5/codi.vim {:mod :codi}
   :booperlv/nvim-gomove {:mod :move}
@@ -90,6 +90,7 @@
   :rcarriga/nvim-notify {}
   :stevearc/dressing.nvim {}
   :ThePrimeagen/harpoon {:mod :harpoon}
-  :goolord/alpha-nvim {:mod :alpha}
   :danymat/neogen {:mod :neogen}
-  :kevinhwang91/nvim-hlslens {:mod :hlslens})
+  :kevinhwang91/nvim-hlslens {:mod :hlslens}
+  :harrygallagher4/aniseed-ts-queries.nvim {}
+  :mhinz/vim-sayonara {:mod :sayonara})
