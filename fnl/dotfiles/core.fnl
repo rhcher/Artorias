@@ -34,6 +34,9 @@
                         :precedes "«"
                         :tab :▷⋯
                         :trail :•})
+(set vim.opt.foldmethod "expr")
+(set vim.opt.foldexpr "nvim_treesitter#foldexpr()")
+(set vim.opt.foldenable false)
 
 (vim.cmd "filetype plugin on")
 
