@@ -95,7 +95,7 @@
         (config.setup
           {:on_attach on_attach
            :capabilities capabilities
-           :flags {:debounce_text_changes 200}})))
+           :flags {:debounce_text_changes 50}})))
     (lsp.sumneko_lua.setup
       {:on_attach on_attach
        :capabilities capabilities
@@ -108,7 +108,7 @@
                                        :traceBeSetted true
                                        :traceFieldInject true}
                         :telemetry {:enable false}}}}
-      :flags {:debounce_text_changes 200})
+      :flags {:debounce_text_changes 50})
     (lsp.ccls.setup
       {:on_attach on_attach
        :capabilities capabilities
@@ -120,7 +120,7 @@
                               :initialNoLinkage true}
                       :cache {:directory "/tmp/ccls-cache/"}
                       :xref {:maxNum 20000}}
-       :flags {:debounce_text_changes 200}})
+       :flags {:debounce_text_changes 50}})
     ;; (lsp.clangd.setup
     ;;   {:on_attach on_attach
     ;;    :capabilities capabilities
@@ -131,7 +131,7 @@
     ;;          :--completion-style=detailed
     ;;          "--clang-tidy-checks=-*,llvm-*,clang-analyzer-*"
     ;;          :--cross-file-rename]
-    ;;    :flags {:debounce_text_changes 200}})
+    ;;    :flags {:debounce_text_changes 50}})
     (lsp.pylsp.setup
       {:on_attach on_attach
        :capabilities capabilities
@@ -147,4 +147,4 @@
                                                       :eager true}
                                     :pyls_isort {:enabled true}
                                     :pylsp_mypy {:enabled true}}}}
-       :flags {:debounce_text_changes 200}})))
+       :flags {:debounce_text_changes 50}})))
