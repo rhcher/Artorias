@@ -22,6 +22,7 @@
 (set nvim.o.cursorline true)
 (set nvim.o.incsearch false)
 (vim.cmd "set diffopt+=internal,algorithm:patience")
+(vim.cmd "set fo+=/")
 
 (set vim.o.hidden true)
 (set vim.o.updatetime 200)

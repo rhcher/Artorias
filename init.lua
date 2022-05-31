@@ -5,6 +5,8 @@
 local execute = vim.api.nvim_command
 local fn = vim.fn
 
+-- vim.lsp.set_log_level("debug")
+
 if vim.g.nvui then
   -- Configure through vim commands
   vim.cmd [[set guifont=Jetbrains\ Mono:h14]]
