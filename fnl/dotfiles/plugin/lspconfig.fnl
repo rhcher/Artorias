@@ -116,6 +116,7 @@
        :cmd [:ccls]
        :init_options {:capabilities {:foldingRangeProvider true
                                      :workspace {:wordspaceFolders {:support true}}}
+                      :highlight {:lsRanges true}
                       :index {:onChange false
                               :threads 4
                               :initialNoLinkage true
