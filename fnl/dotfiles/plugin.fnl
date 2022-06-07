@@ -93,4 +93,7 @@
   :danymat/neogen {:mod :neogen}
   :kevinhwang91/nvim-hlslens {:mod :hlslens}
   :harrygallagher4/aniseed-ts-queries.nvim {}
-  :mhinz/vim-sayonara {:mod :sayonara})
+  :mhinz/vim-sayonara {:mod :sayonara}
+  :jedrzejboczar/possession.nvim {:mod :session}
+  :jakemason/ouroboros {}
+  :jackguo380/vim-lsp-cxx-highlight {})

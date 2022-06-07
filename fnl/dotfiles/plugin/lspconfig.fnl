@@ -122,6 +122,7 @@
                               :initialBlacklist ["/(clang|lld|llvm)/(test|unittests)/"
                                                  "/llvm/(bindings|examples|utils)/"
                                                  "/StaticAnalyzer/"]}
+                      :highlight {:lsRanges true}
                       :cache {:directory "/tmp/ccls-cache/"}
                       :xref {:maxNum 20000}}
        :flags {:debounce_text_changes 50}})
