@@ -28,7 +28,7 @@
   :Olical/aniseed {:branch :develop}
   :Olical/conjure {:branch :develop :mod :conjure}
   :rhcher/srcery-vim {}
-  :rhcher/vim-paper {}
+  :rhcher/vim-paper {:opt true}
   :nvim-lua/plenary.nvim {}
   :wbthomason/packer.nvim {}
   :lewis6991/impatient.nvim {}
@@ -55,7 +55,7 @@
   :tpope/vim-repeat {}
   :tpope/vim-sexp-mappings-for-regular-people {}
   :Darazaki/indent-o-matic {:mod :indent}
-  :wlangstroth/vim-racket {}
+  :wlangstroth/vim-racket {:ft :scheme}
   :kyazdani42/nvim-web-devicons {:mod :devicons}
   :kyazdani42/nvim-tree.lua {:mod :nvimtree :requires :kyazdani42/nvim-web-devicons}
   :gpanders/nvim-parinfer {}
@@ -96,4 +96,4 @@
   :mhinz/vim-sayonara {:mod :sayonara}
   :jedrzejboczar/possession.nvim {:mod :session}
   :jakemason/ouroboros {}
-  :jackguo380/vim-lsp-cxx-highlight {})
+  :jackguo380/vim-lsp-cxx-highlight {:ft [:c :cpp]})

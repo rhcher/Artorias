@@ -71,6 +71,3 @@
                                                                             {:once true
                                                                              :buffer 0
                                                                              :command "call mkdir(expand('%:h'), 'p')"}))})
-(vim.api.nvim_create_autocmd [:FileType]
-                             {:pattern :Makefile
-                              :command "setlocal noexpandtab"})
