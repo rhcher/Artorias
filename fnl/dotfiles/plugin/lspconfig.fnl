@@ -88,7 +88,7 @@
 
 (let [(ok? lsp) (pcall require :lspconfig)
       capabilities (cmplsp.update_capabilities (vim.lsp.protocol.make_client_capabilities))
-      servers [:hls :ocamllsp :bashls]]
+      servers [:hls :ocamllsp :bashls :vimls]]
   (when ok?
     (each [_ name (ipairs servers)]
       (let [{name config} lsp]

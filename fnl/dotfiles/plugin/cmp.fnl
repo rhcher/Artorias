@@ -27,7 +27,6 @@
                                cmp.config.compare.score
                                cmp.config.compare.recently_used
                                cmp.config.compare.locality
-                               cmp.config.compare.scopes
                                cmp.config.underline
                                cmp.config.compare.kind
                                cmp.config.compare.length
