@@ -22,6 +22,8 @@
 (vim.cmd "imap <expr> <C-h> snippy#can_jump(-1) ? '<Plug>(snippy-previous)' : '<Esc>I'")
 (vim.cmd "smap <expr> <C-h> snippy#can_jump(-1) ? '<Plug>(snippy-previous)' : '<Esc>I'")
 
+(noremap :n :<leader>bS ":SudaWrite<CR>")
+
 ;; terminal-mode
 (noremap :t :<a-h> :<C-\><C-n><C-w>h)
 (noremap :t :<a-j> :<C-\><C-n><C-w>j)

@@ -96,4 +96,5 @@
   :mhinz/vim-sayonara {:mod :sayonara}
   :jedrzejboczar/possession.nvim {:mod :session}
   :jakemason/ouroboros {}
-  :jackguo380/vim-lsp-cxx-highlight {:ft [:c :cpp]})
+  :jackguo380/vim-lsp-cxx-highlight {:ft [:c :cpp]}
+  :lambdalisue/suda.vim {})
