@@ -63,6 +63,12 @@
 (noremap :n "]b" :<cmd>bnext<CR>)
 
 (noremap [:n :v] :gx "<Plug>(openbrowser-smart-search)")
+(noremap :n :<leader>bk ":Sayonara<CR>")
+
+(noremap :n :cx "<Plug>(Exchange)")
+(noremap :x :X "<Plug>(Exchange)")
+(noremap :n :cxc "<Plug>(ExchangeClear)")
+(noremap :n :cxx "<Plug>(ExchangeLine)")
 
 (nu.fn-bridge
   :DeleteHiddenBuffers

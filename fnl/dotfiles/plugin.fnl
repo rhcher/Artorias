@@ -58,7 +58,7 @@
   :wlangstroth/vim-racket {:ft :scheme}
   :kyazdani42/nvim-web-devicons {:mod :devicons}
   :kyazdani42/nvim-tree.lua {:mod :nvimtree :requires :kyazdani42/nvim-web-devicons}
-  :gpanders/nvim-parinfer {}
+  :gpanders/nvim-parinfer {:ft util.lisp-language}
   :kevinhwang91/nvim-bqf {:mod :bqf}
   :wellle/targets.vim {:mod :targets}
   :machakann/vim-sandwich {:mod :sandwich}
@@ -83,18 +83,18 @@
   :glts/vim-textobj-comment {}
   :zegervdv/nrpattern.nvim {:mod :nrpattern}
   :j-hui/fidget.nvim {:mod :fidget}
-  :tommcdo/vim-exchange {}
+  :tommcdo/vim-exchange {:keys ["<Plug>(Exchange)" "<Plug>(Exchange)" "<Plug>(ExchangeClear)" "<Plug>(ExchangeLine)"]}
   :junegunn/fzf {:run "./install --bin"}
-  :AndrewRadev/linediff.vim {}
-  :tyru/open-browser.vim {}
+  :AndrewRadev/linediff.vim {:cmd :Linediff}
+  :tyru/open-browser.vim {:keys "<Plug>(openbrowser-smart-search)"}
   :rcarriga/nvim-notify {}
   :stevearc/dressing.nvim {}
   :ThePrimeagen/harpoon {:mod :harpoon}
   :danymat/neogen {:mod :neogen}
   :kevinhwang91/nvim-hlslens {:mod :hlslens}
-  :harrygallagher4/aniseed-ts-queries.nvim {}
-  :mhinz/vim-sayonara {:mod :sayonara}
+  :harrygallagher4/aniseed-ts-queries.nvim {:ft :fennel}
+  :mhinz/vim-sayonara {:cmd "Sayonara"}
   :jedrzejboczar/possession.nvim {:mod :session}
-  :jakemason/ouroboros {}
+  :jakemason/ouroboros {:cmd :Ouroboros}
   :jackguo380/vim-lsp-cxx-highlight {:ft [:c :cpp]}
-  :lambdalisue/suda.vim {})
+  :lambdalisue/suda.vim {:cmd :SudaWrite})
