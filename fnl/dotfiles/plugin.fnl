@@ -87,10 +87,11 @@
   :tyru/open-browser.vim {:keys "<Plug>(openbrowser-smart-search)"}
   :ThePrimeagen/harpoon {:mod :harpoon}
   :danymat/neogen {:mod :neogen}
-  :kevinhwang91/nvim-hlslens {:mod :hlslens}
+  :kevinhwang91/nvim-hlslens {:event :CmdlineEnter}
   :harrygallagher4/aniseed-ts-queries.nvim {:ft :fennel}
-  :mhinz/vim-sayonara {:cmd "Sayonara"}
+  :kazhala/close-buffers.nvim {:mod :close_buffers}
   :jedrzejboczar/possession.nvim {:mod :session}
   :jakemason/ouroboros {:cmd :Ouroboros}
   :jackguo380/vim-lsp-cxx-highlight {:ft [:c :cpp]}
-  :lambdalisue/suda.vim {:cmd :SudaWrite})
+  :lambdalisue/suda.vim {:cmd :SudaWrite}
+  :glepnir/lspsaga.nvim {:cmd :Lspsaga :branch :features})
