@@ -20,6 +20,7 @@
                                                      :close_events ["BufLeave" "CursorMoved" "InsertEnter" "FocusLost"]}))
                 {:noremap true :silent true})
 
-(vim.keymap.set :n :<space>lq vim.diagnostic.setqflist {:noremap true :silent true})
+(vim.keymap.set :n :<space>lQ vim.diagnostic.setqflist {:noremap true :silent true})
+(vim.keymap.set :n :<space>lq vim.diagnostic.setloclist {:noremap true :silent true})
 (vim.keymap.set :n "[e" vim.diagnostic.goto_prev {:noremap true :silent true})
 (vim.keymap.set :n "]e" vim.diagnostic.goto_next {:noremap true :silent true})
