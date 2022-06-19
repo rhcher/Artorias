@@ -8,9 +8,6 @@
 (map [:n :x] "/" "call searchx#start({ 'dir': 1 })")
 (map :c ";" "call searchx#select()")
 
-(map [:n :x] "N" "call searchx#prev_dir()")
-(map [:n :x] "n" "call searchx#next_dir()")
-
 (map [:n :x :c] "<C-k>" "call searchx#prev()")
 (map [:n :x :c] "<C-j>" "call searchx#next()")
 
