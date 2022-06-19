@@ -54,7 +54,6 @@
   :tpope/vim-abolish {}
   :tpope/vim-repeat {}
   :tpope/vim-sexp-mappings-for-regular-people {}
-  :Darazaki/indent-o-matic {:mod :indent}
   :wlangstroth/vim-racket {:ft :scheme}
   :kyazdani42/nvim-web-devicons {:mod :devicons}
   :kyazdani42/nvim-tree.lua {:mod :nvimtree :requires :kyazdani42/nvim-web-devicons}
@@ -73,7 +72,6 @@
   :ocaml/vim-ocaml {:ft :ocaml}
   :numToStr/Comment.nvim {:mod :nvim_comment}
   :monkoose/matchparen.nvim {:mod :matchparen}
-  :mfussenegger/nvim-lint {:mod :lint}
   :svban/YankAssassin.vim {}
   :hrsh7th/vim-searchx {:mod :searchx}
   :metakirby5/codi.vim {:mod :codi}
