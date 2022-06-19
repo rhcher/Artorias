@@ -1,12 +1,11 @@
 (module dotfiles.ccls
-  {autoload {util vim.lsp.util
-             notify notify}})
+  {autoload {util vim.lsp.util}})
 
 (defn- handler [title]
   (fn [_ result ctx _]
     (let [client (vim.lsp.get_client_by_id ctx.client_id)]
       (if (or (= result nil) (vim.tbl_isempty result))
-        (notify (.. "No " title " found"))
+        (vim.notify (.. "No " title " found"))
         (do
           (vim.fn.setqflist {} " " {:title title
                                     :items (util.locations_to_items result
@@ -16,7 +15,7 @@
 (defn navigate [n]
   (let [handler (fn [_ result ctx _]
                   (when (or (= result nil) (vim.tbl_isempty result))
-                    (notify (.. "No " n " found"))
+                    (vim.notify (.. "No " n " found"))
                     (lua "return"))
                   (let [client (vim.lsp.get_client_by_id ctx.client_id)]
                     (if

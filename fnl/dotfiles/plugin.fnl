@@ -87,8 +87,6 @@
   :junegunn/fzf {:run "./install --bin"}
   :AndrewRadev/linediff.vim {:cmd :Linediff}
   :tyru/open-browser.vim {:keys "<Plug>(openbrowser-smart-search)"}
-  :rcarriga/nvim-notify {}
-  :stevearc/dressing.nvim {}
   :ThePrimeagen/harpoon {:mod :harpoon}
   :danymat/neogen {:mod :neogen}
   :kevinhwang91/nvim-hlslens {:mod :hlslens}
