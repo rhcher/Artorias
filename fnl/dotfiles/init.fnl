@@ -3,4 +3,5 @@
             dotfiles.ccls
             dotfiles.mapping
             dotfiles.plugin
+            dotfiles.indentation
             dotfiles.diagnostic]})
