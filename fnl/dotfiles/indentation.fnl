@@ -85,6 +85,8 @@
       (:table i) (values :table i)
       (:call i fn-name) (if (. specials fn-name)
                             (values :special (- i 1))
+                            (= (- (length line) i) (length fn-name))
+                            (values :special (- i 1))
                             (values :call (- i 1) fn-name))
       (where _ (> line-num 1)) (indent-type lines (- line-num 1) stack))))
 
