@@ -55,6 +55,17 @@
 ;; oscyank
 (set vim.g.oscyank_silent true)
 
+;; sandwich plugin
+(vim.cmd "let g:sandwich#recipes = deepcopy(g:sandwich#default_recipes)")
+(vim.cmd "runtime macros/sandwich/keymap/surround.vim")
+
+;; sexp plugin
+(set vim.g.sexp_filetypes "clojure,scheme,lisp,timl,fennel,janet,racket")
+(set vim.g.sexp_enable_insert_mode_mappings 0)
+
+;; targets plugin
+(set vim.g.targets_seekRanges "cc cr cb cB lc ac Ac lr lb ar ab rr rb bb ll al aa")
+
 (vim.api.nvim_create_augroup "init" {})
 (vim.api.nvim_create_autocmd [:CmdWinEnter]
                              {:group "init"

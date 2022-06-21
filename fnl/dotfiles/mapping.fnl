@@ -79,6 +79,11 @@
 (map :n :<leader>e ":NvimTreeToggle<CR>")
 (map :n :<leader>r ":NvimTreeRefresh<CR>") 
 
+(map :n :<leader>gg ":Neogit<CR>")
+(map :n :<leader>ou ":UndotreeShow<cr>:UndotreeFocus<cr>")
+
+(map :n :s "<Plug>Lightspeed_omni_s")
+
 (let [fzf (require "fzf-lua")]
   (map :n :<leader>ff fzf.files)
   (map :n :<leader>fp (fn [] (fzf.files {:cwd "~/.config/nvim/"})))

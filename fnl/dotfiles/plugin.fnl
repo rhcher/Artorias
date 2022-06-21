@@ -45,12 +45,12 @@
   :dcampos/nvim-snippy {}
   :honza/vim-snippets {}
   :feline-nvim/feline.nvim {:mod :feline}
-  :mbbill/undotree {:mod :undotree}
+  :mbbill/undotree {:cmd :UndotreeShow}
   :neovim/nvim-lspconfig {:mod :lspconfig}
   :norcalli/nvim-colorizer.lua {:mod :colorizer}
   :nvim-lua/popup.nvim {}
   :ibhagwan/fzf-lua {:mod :fzf}
-  :guns/vim-sexp {:mod :sexp}
+  :guns/vim-sexp {}
   :tpope/vim-abolish {}
   :tpope/vim-repeat {}
   :tpope/vim-sexp-mappings-for-regular-people {}
@@ -59,22 +59,22 @@
   :kyazdani42/nvim-tree.lua {:mod :nvimtree :requires :kyazdani42/nvim-web-devicons}
   :gpanders/nvim-parinfer {:ft util.lisp-language}
   :kevinhwang91/nvim-bqf {:mod :bqf}
-  :wellle/targets.vim {:mod :targets}
-  :machakann/vim-sandwich {:mod :sandwich}
+  :wellle/targets.vim {}
+  :machakann/vim-sandwich {}
   :TimUntersberger/neogit {:mod :neogit}
   :mhinz/vim-grepper {:mod :grepper}
   :neovimhaskell/haskell-vim {:ft :haskell}
   :karb94/neoscroll.nvim {:mod :neoscroll}
   :lewis6991/gitsigns.nvim {:mod :gitsigns}
   :akinsho/nvim-toggleterm.lua {:mod :terminal}
-  :ggandor/lightspeed.nvim {:mod :lightspeed}
+  :ggandor/lightspeed.nvim {}
   :ZhiyuanLck/smart-pairs {:mod :auto-pairs}
   :ocaml/vim-ocaml {:ft :ocaml}
   :numToStr/Comment.nvim {:mod :nvim_comment}
   :monkoose/matchparen.nvim {:mod :matchparen}
   :svban/YankAssassin.vim {}
   :hrsh7th/vim-searchx {:mod :searchx}
-  :metakirby5/codi.vim {:mod :codi}
+  :metakirby5/codi.vim {:cmd :Codi}
   :booperlv/nvim-gomove {:mod :move}
   :kana/vim-textobj-user {}
   :Julian/vim-textobj-variable-segment {}
