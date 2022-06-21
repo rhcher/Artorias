@@ -7,9 +7,9 @@
     (set entry1_under (or entry1_under 0))
     (set entry2_under (or entry2_under 0))
     (if (> entry1_under entry2_under)
-      false
-      (< entry1_under entry2_under)
-      true)))
+        false
+        (< entry1_under entry2_under)
+        true)))
 
 (def- cmp-window-opts {:border :single
                        :winhighlight "Normal:Normal,FloatBorder:Normal,CursorLine:Visual,Search:None"})
@@ -42,13 +42,12 @@
                                             :<C-y> (cmp.mapping.confirm {:select true
                                                                          :behavior cmp.ConfirmBehavior.Replace})
                                             :<Tab> (cmp.mapping (fn [fallback]
-                                                                  (if 
-                                                                    (cmp.visible)
-                                                                    (cmp.confirm {:select true
-                                                                                  :behavior cmp.ConfirmBehavior.Insert})
-                                                                    (snippy.can_expand_or_advance)
-                                                                    (snippy.expand_or_advance)
-                                                                    (fallback)))
+                                                                  (if (cmp.visible)
+                                                                      (cmp.confirm {:select true
+                                                                                    :behavior cmp.ConfirmBehavior.Insert})
+                                                                      (snippy.can_expand_or_advance)
+                                                                      (snippy.expand_or_advance)
+                                                                      (fallback)))
                                                                 [:s :i :c])})
        :formatting {:fields [:kind :abbr :menu]
                     :format (lspkind.cmp_format {:mode "symbol"
@@ -72,7 +71,7 @@
                                                                (vim.tbl_keys bufs)))}}])})
     (cmp.setup.cmdline "/"
                        {:mapping (cmp.mapping.preset.cmdline)
-                          :sources [{:name "buffer"}]})
+                        :sources [{:name "buffer"}]})
     (cmp.setup.cmdline ":"
                        {:mapping (cmp.mapping.preset.cmdline)
                         :sources [{:name "path"}

@@ -5,10 +5,10 @@
       contain? util.contain?
       language util.lisp-language
       disable-if-lisp (fn []
-                       (let [filetype (vim.api.nvim_buf_get_option 0 "filetype")]
-                         (if (contain? filetype language)
-                           false
-                           true)))]
+                        (let [filetype (vim.api.nvim_buf_get_option 0 "filetype")]
+                          (if (contain? filetype language)
+                              false
+                              true)))]
   (pair:setup
     {:enter {:enable_cond disable-if-lisp}
      :space {:enable_cond disable-if-lisp}}))

@@ -2,11 +2,10 @@
   {autoload {term toggleterm}})
 
 (term.setup {:size (fn [t]
-                     (if 
-                       (= t.direction "horizontal")
-                       15
-                       (= t.direction "vertical")
-                       (* vim.o.columns 0.4)))
+                     (if (= t.direction "horizontal")
+                         15
+                         (= t.direction "vertical")
+                         (* vim.o.columns 0.4)))
              :open_mapping "<M-=>"
              :hide_numbers true
              :shade_terminals true

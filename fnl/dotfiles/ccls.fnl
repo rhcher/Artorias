@@ -5,12 +5,12 @@
   (fn [_ result ctx _]
     (let [client (vim.lsp.get_client_by_id ctx.client_id)]
       (if (or (= result nil) (vim.tbl_isempty result))
-        (vim.notify (.. "No " title " found"))
-        (do
-          (vim.fn.setqflist {} " " {:title title
-                                    :items (util.locations_to_items result
-                                                                    client.offset_encoding)})
-          (vim.api.nvim_command "botright copen"))))))
+          (vim.notify (.. "No " title " found"))
+          (do
+            (vim.fn.setqflist {} " " {:title title
+                                      :items (util.locations_to_items result
+                                                                      client.offset_encoding)})
+            (vim.api.nvim_command "botright copen"))))))
 
 (defn navigate [n]
   (let [handler (fn [_ result ctx _]
