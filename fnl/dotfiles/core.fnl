@@ -39,7 +39,7 @@
 (set vim.opt.foldexpr "nvim_treesitter#foldexpr()")
 (set vim.opt.foldenable false)
 
-(vim.cmd "filetype plugin on")
+(vim.cmd "filetype plugin indent on")
 
 (nvim.ex.set :list)
 (nvim.ex.set :nowrap)
@@ -65,6 +65,21 @@
 
 ;; targets plugin
 (set vim.g.targets_seekRanges "cc cr cb cB lc ac Ac lr lb ar ab rr rb bb ll al aa")
+
+;; conjure
+(set vim.g.conjure#eval#result_register "*")
+(set vim.g.conjure#log#botright true)
+(set vim.g.conjure#client#scheme#stdio#command "petite")
+(set vim.g.conjure#client#scheme#stdio#prompt_pattern "> $?")
+(set vim.g.conjure#client#scheme#stdio#value_prefix_pattern false)
+(set vim.g.conjure#extract#tree_sitter#enabled true)
+
+(let [plugins [:feline :fzf-lua :matchparen :neogen :neogit
+               :neoscroll :nrpattern :Comment :possession]]
+  (each [_ plugin (ipairs plugins)]
+    (let [(ok? plug) (pcall require plugin)]
+      (when ok?
+        (plug.setup {})))))
 
 (vim.api.nvim_create_augroup "init" {})
 (vim.api.nvim_create_autocmd [:CmdWinEnter]

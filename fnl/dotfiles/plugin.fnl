@@ -26,7 +26,7 @@
 ;; Plugins to be managed by packer.
 (use
   :Olical/aniseed {:branch :develop}
-  :Olical/conjure {:branch :develop :mod :conjure}
+  :Olical/conjure {:branch :develop}
   :rhcher/srcery-vim {}
   :rhcher/vim-paper {:opt true}
   :nvim-lua/plenary.nvim {}
@@ -44,12 +44,12 @@
                      :mod :cmp}
   :dcampos/nvim-snippy {}
   :honza/vim-snippets {}
-  :feline-nvim/feline.nvim {:mod :feline}
+  :feline-nvim/feline.nvim {}
   :mbbill/undotree {:cmd :UndotreeShow}
   :neovim/nvim-lspconfig {:mod :lspconfig}
-  :norcalli/nvim-colorizer.lua {:mod :colorizer}
+  :norcalli/nvim-colorizer.lua {:cmd :ColorizerToggle}
   :nvim-lua/popup.nvim {}
-  :ibhagwan/fzf-lua {:mod :fzf}
+  :ibhagwan/fzf-lua {}
   :guns/vim-sexp {}
   :tpope/vim-abolish {}
   :tpope/vim-repeat {}
@@ -61,17 +61,17 @@
   :kevinhwang91/nvim-bqf {:mod :bqf}
   :wellle/targets.vim {}
   :machakann/vim-sandwich {}
-  :TimUntersberger/neogit {:mod :neogit}
+  :TimUntersberger/neogit {}
   :mhinz/vim-grepper {:mod :grepper}
   :neovimhaskell/haskell-vim {:ft :haskell}
-  :karb94/neoscroll.nvim {:mod :neoscroll}
+  :karb94/neoscroll.nvim {}
   :lewis6991/gitsigns.nvim {:mod :gitsigns}
   :akinsho/nvim-toggleterm.lua {:mod :terminal}
   :ggandor/lightspeed.nvim {}
   :ZhiyuanLck/smart-pairs {:mod :auto-pairs}
   :ocaml/vim-ocaml {:ft :ocaml}
-  :numToStr/Comment.nvim {:mod :nvim_comment}
-  :monkoose/matchparen.nvim {:mod :matchparen}
+  :numToStr/Comment.nvim {}
+  :monkoose/matchparen.nvim {}
   :svban/YankAssassin.vim {}
   :hrsh7th/vim-searchx {:mod :searchx}
   :metakirby5/codi.vim {:cmd :Codi}
@@ -79,19 +79,19 @@
   :kana/vim-textobj-user {}
   :Julian/vim-textobj-variable-segment {}
   :glts/vim-textobj-comment {}
-  :zegervdv/nrpattern.nvim {:mod :nrpattern}
+  :zegervdv/nrpattern.nvim {}
   :j-hui/fidget.nvim {:mod :fidget}
   :tommcdo/vim-exchange {:keys ["<Plug>(Exchange)" "<Plug>(Exchange)" "<Plug>(ExchangeClear)" "<Plug>(ExchangeLine)"]}
   :junegunn/fzf {:run "./install --bin"}
   :AndrewRadev/linediff.vim {:cmd :Linediff}
   :tyru/open-browser.vim {:keys "<Plug>(openbrowser-smart-search)"}
   :ThePrimeagen/harpoon {:mod :harpoon}
-  :danymat/neogen {:mod :neogen}
+  :danymat/neogen {}
   :kevinhwang91/nvim-hlslens {:event :CmdlineEnter}
   :harrygallagher4/aniseed-ts-queries.nvim {:ft :fennel}
   :kazhala/close-buffers.nvim {:mod :close_buffers}
-  :jedrzejboczar/possession.nvim {:mod :session}
+  :jedrzejboczar/possession.nvim {}
   :jakemason/ouroboros {:cmd :Ouroboros}
   :jackguo380/vim-lsp-cxx-highlight {:ft [:c :cpp]}
   :lambdalisue/suda.vim {:cmd :SudaWrite}
-  :glepnir/lspsaga.nvim {:cmd :Lspsaga :branch :features})
+  :glepnir/lspsaga.nvim {})
