@@ -76,11 +76,15 @@
 (set vim.g.conjure#extract#tree_sitter#enabled true)
 
 (let [plugins [:feline :fzf-lua :matchparen :neogen :neogit
-               :neoscroll :nrpattern :Comment :possession]]
+               :neoscroll :Comment :possession :ufo]]
   (each [_ plugin (ipairs plugins)]
     (let [(ok? plug) (pcall require plugin)]
       (when ok?
         (plug.setup {})))))
+
+(let [(ok? nrpattern) (pcall require :nrpattern)]
+  (when ok?
+    (nrpattern.setup)))
 
 (vim.api.nvim_create_augroup "init" {})
 (vim.api.nvim_create_autocmd [:CmdWinEnter]
