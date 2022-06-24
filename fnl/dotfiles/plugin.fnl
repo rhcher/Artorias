@@ -94,4 +94,6 @@
   :jakemason/ouroboros {:cmd :Ouroboros}
   :jackguo380/vim-lsp-cxx-highlight {:ft [:c :cpp]}
   :lambdalisue/suda.vim {:cmd :SudaWrite}
-  :glepnir/lspsaga.nvim {})
+  :glepnir/lspsaga.nvim {}
+  :anuvyklack/hydra.nvim {:mod :hydra :requires [:anuvyklack/keymap-layer.nvim]}
+  :kevinhwang91/nvim-ufo {:requires [:kevinhwang91/promise-async]})

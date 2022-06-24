@@ -35,9 +35,10 @@
                         :precedes "«"
                         :tab :▷⋯
                         :trail :•})
-(set vim.opt.foldmethod "expr")
-(set vim.opt.foldexpr "nvim_treesitter#foldexpr()")
-(set vim.opt.foldenable false)
+(set vim.o.fillchars "eob: ,fold: ,foldopen:,foldsep: ,foldclose:")
+(set vim.wo.foldcolumn :1)
+(set vim.wo.foldlevel 99)
+(set vim.opt.foldenable true)
 
 (vim.cmd "filetype plugin indent on")
 
