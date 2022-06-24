@@ -38,7 +38,7 @@
 (set vim.o.fillchars "eob: ,fold: ,foldopen:,foldsep: ,foldclose:")
 (set vim.wo.foldcolumn :1)
 (set vim.wo.foldlevel 99)
-(set vim.opt.foldenable true)
+(set vim.opt.foldenable false)
 
 (vim.cmd "filetype plugin indent on")
 
@@ -75,12 +75,17 @@
 (set vim.g.conjure#client#scheme#stdio#value_prefix_pattern false)
 (set vim.g.conjure#extract#tree_sitter#enabled true)
 
-(let [plugins [:feline :fzf-lua :matchparen :neogen :neogit
-               :neoscroll :Comment :possession :ufo]]
+(let [plugins [:feline :matchparen :neogen :neogit
+               :neoscroll :Comment :possession]]
   (each [_ plugin (ipairs plugins)]
     (let [(ok? plug) (pcall require plugin)]
       (when ok?
         (plug.setup {})))))
+
+(let [(ok? fzf) (pcall require :fzf-lua)]
+  (when ok?
+    (fzf.setup {:winopts {:split "belowright new"
+                          :border "single"}})))
 
 (let [(ok? nrpattern) (pcall require :nrpattern)]
   (when ok?
