@@ -75,6 +75,13 @@
 (set vim.g.conjure#client#scheme#stdio#value_prefix_pattern false)
 (set vim.g.conjure#extract#tree_sitter#enabled true)
 
+(set vim.g.clipboard {:name :win32yank-wsl
+                      :copy {:+ "win32yank.exe -i --crlf"
+                             :* "win32yank.exe -i --crlf"}
+                      :paste {:+ "win32yank.exe -o --lf"
+                              :* "win32yank.exe -o --lf"}
+                      :cache_enable false})
+
 (let [plugins [:feline :matchparen :neogen :neogit
                :neoscroll :Comment :possession]]
   (each [_ plugin (ipairs plugins)]
