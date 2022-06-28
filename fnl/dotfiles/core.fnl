@@ -98,6 +98,11 @@
   (when ok?
     (nrpattern.setup)))
 
+(let [(ok? notify) (pcall require :notify)]
+  (when ok?
+    (notify.setup {:background_colour :#000000})
+    (tset vim :notify notify)))
+
 (vim.api.nvim_create_augroup "init" {})
 (vim.api.nvim_create_autocmd [:CmdWinEnter]
                              {:group "init"
