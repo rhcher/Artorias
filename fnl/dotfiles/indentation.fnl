@@ -104,5 +104,4 @@
   (vim.opt_local.formatoptions:remove :t)
   (set vim.opt_local.iskeyword
        ["33-255" "^(" "^)" "^{" "^}" "^[" "^]" "^\"" "^'" "^~" "^;" "^," "^@-@" "^`" "^." "^:"])
-  ;; (set vim.opt_local.indentexpr "v:lua.fennel_indentexpr(v:lnum)"))
   (set vim.opt_local.indentexpr (.. "v:lua.require('" *module-name* "').fennel_indentexpr(v:lnum)")))
