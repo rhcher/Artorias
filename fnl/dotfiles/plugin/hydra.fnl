@@ -1,5 +1,6 @@
 (module dotfiles.plugin.hydra
-  {autoload {: hydra}})
+  {autoload {: hydra
+             :splits :smart-splits}})
 
 (hydra {:name "Side scroll"
         :mode :n
@@ -14,7 +15,11 @@
 (hydra {:name "smooth scroll"
         :mode :n
         :body :<C-w>
-        :heads [[:+ :<C-w>+]
-                [:- :<C-w>-]
-                [:> :<C-w><]
-                [:< :<C-w>>]]})
+        :heads [[:h splits.move_cursor_left]
+                [:j splits.move_cursor_down]
+                [:k splits.move_cursor_up]
+                [:l splits.move_cursor_right]
+                [:< splits.resize_left]
+                [:> splits.resize_right]
+                [:+ splits.resize_up]
+                [:- splits.resize_down]]})

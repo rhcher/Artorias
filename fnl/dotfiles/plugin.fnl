@@ -99,4 +99,5 @@
   :anuvyklack/hydra.nvim {:mod :hydra :requires [:anuvyklack/keymap-layer.nvim]}
   :kevinhwang91/nvim-ufo {:requires [:kevinhwang91/promise-async]}
   :rcarriga/nvim-notify {}
-  :lukas-reineke/indent-blankline.nvim {:mod :indent})
+  :lukas-reineke/indent-blankline.nvim {:mod :indent}
+  :mrjones2014/smart-splits.nvim {})
