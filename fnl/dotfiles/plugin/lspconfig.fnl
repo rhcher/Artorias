@@ -3,6 +3,7 @@
              cmplsp cmp_nvim_lsp
              lsp_util vim.lsp.util
              utils lspconfig.util
+             a aniseed.core
              saga lspsaga}})
 
 (saga.init_lsp_saga {:code_action_lightbulb {:sign_priority 99
@@ -132,7 +133,7 @@
                                      :workspace {:wordspaceFolders {:support true}}}
                       :highlight {:lsRanges true}
                       :index {:onChange false
-                              :threads 4
+                              :threads (a.count (vim.loop.cpu_info))
                               :initialNoLinkage true
                               :initialBlacklist ["/(clang|lld|llvm)/(test|unittests)/"
                                                  "/llvm/(bindings|examples|utils)/"
