@@ -8,7 +8,7 @@
                          (* vim.o.columns 0.4)))
              :open_mapping "<M-=>"
              :hide_numbers true
-             :shade_terminals true
+             :shade_terminals false
              :start_in_insert true
              :insert_mappings true
              :persist_size true
