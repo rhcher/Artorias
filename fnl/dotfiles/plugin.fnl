@@ -37,13 +37,11 @@
                                 :hrsh7th/cmp-buffer
                                 :hrsh7th/cmp-path
                                 :PaterJason/cmp-conjure
-                                :dcampos/cmp-snippy
                                 :hrsh7th/cmp-cmdline
                                 :hrsh7th/cmp-nvim-lsp-signature-help
                                 :onsails/lspkind-nvim]
                      :mod :cmp}
   :dcampos/nvim-snippy {}
-  :honza/vim-snippets {}
   :feline-nvim/feline.nvim {}
   :mbbill/undotree {:cmd :UndotreeShow}
   :neovim/nvim-lspconfig {:mod :lspconfig}

@@ -57,9 +57,7 @@
                                                            vim_item)})} 
        :sources (cmp.config.sources [{:name :nvim_lsp_signature_help}]
                                     [{:name :path}]
-                                    [{:name :snippy
-                                      :keyword_length 2}
-                                     {:name :nvim_lsp}]
+                                    [{:name :nvim_lsp}]
                                     [{:name :conjure}]
                                     [{:name :buffer
                                       :keyword_length 3
