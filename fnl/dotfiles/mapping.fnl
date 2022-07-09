@@ -99,6 +99,10 @@
   (map :n :<leader>fq fzf.quickfix)
   (map :n :<leader>fg fzf.git_bcommits))
 
+(vim.api.nvim_create_autocmd [:FileType]
+                             {:pattern [:git :qf :man :help :lspinfo :fugitive :gitcommit]
+                              :command "nnoremap <buffer><silent> q :close<CR>"})
+
 (nu.fn-bridge
   :DeleteHiddenBuffers
   :dotfiles.mapping :delete-hidden-buffers)

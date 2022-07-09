@@ -4,10 +4,6 @@
 (bqf.setup {:preview {:auto_preview false}
             :auto_resize_height true})
 
-(vim.api.nvim_create_autocmd [:FileType]
-                             {:pattern [:qf :man :help :lspinfo]
-                              :command "nnoremap <buffer><silent> q :close<CR>"})
-
 ; pretty quicklist copy from nvim-bqf
 (fn _G.qftf [info]
   (let [ret {}
