@@ -60,7 +60,7 @@
   :gpanders/nvim-parinfer {:ft util.lisp-language}
   :kevinhwang91/nvim-bqf {:mod :bqf}
   :wellle/targets.vim {}
-  :machakann/vim-sandwich {}
+  :kylechui/nvim-surround {}
   :TimUntersberger/neogit {}
   :mhinz/vim-grepper {:mod :grepper}
   :neovimhaskell/haskell-vim {:ft :haskell}

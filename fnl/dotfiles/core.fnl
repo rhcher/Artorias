@@ -58,8 +58,8 @@
 (set vim.g.oscyank_silent true)
 
 ;; sandwich plugin
-(vim.cmd "let g:sandwich#recipes = deepcopy(g:sandwich#default_recipes)")
-(vim.cmd "runtime macros/sandwich/keymap/surround.vim")
+;; (vim.cmd "let g:sandwich#recipes = deepcopy(g:sandwich#default_recipes)")
+;; (vim.cmd "runtime macros/sandwich/keymap/surround.vim")
 
 ;; sexp plugin
 (set vim.g.sexp_filetypes "clojure,scheme,lisp,timl,fennel,janet,racket")
@@ -84,7 +84,7 @@
                       :cache_enable false})
 
 (let [plugins [:feline :matchparen :neogen :neogit
-               :neoscroll :Comment :possession]]
+               :neoscroll :Comment :possession :nvim-surround]]
   (each [_ plugin (ipairs plugins)]
     (let [(ok? plug) (pcall require plugin)]
       (when ok?
