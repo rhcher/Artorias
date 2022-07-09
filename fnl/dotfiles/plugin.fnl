@@ -59,7 +59,6 @@
   :kevinhwang91/nvim-bqf {:mod :bqf}
   :wellle/targets.vim {}
   :kylechui/nvim-surround {}
-  :TimUntersberger/neogit {}
   :mhinz/vim-grepper {:mod :grepper}
   :neovimhaskell/haskell-vim {:ft :haskell}
   :karb94/neoscroll.nvim {}
