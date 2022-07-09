@@ -76,6 +76,9 @@
 (set vim.g.conjure#client#scheme#stdio#value_prefix_pattern false)
 (set vim.g.conjure#extract#tree_sitter#enabled true)
 
+;; vim-haskell
+(set vim.g.haskell_indent_guard 2)
+
 (set vim.g.clipboard {:name :win32yank-wsl
                       :copy {:+ "win32yank.exe -i --crlf"
                              :* "win32yank.exe -i --crlf"}

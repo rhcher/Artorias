@@ -49,7 +49,6 @@
   :nvim-lua/popup.nvim {}
   :ibhagwan/fzf-lua {}
   :guns/vim-sexp {}
-  :tpope/vim-abolish {}
   :tpope/vim-repeat {}
   :tpope/vim-sexp-mappings-for-regular-people {}
   :tpope/vim-fugitive {}
@@ -90,7 +89,6 @@
   :harrygallagher4/aniseed-ts-queries.nvim {:ft :fennel}
   :kazhala/close-buffers.nvim {:mod :close_buffers}
   :jedrzejboczar/possession.nvim {}
-  :jakemason/ouroboros {:cmd :Ouroboros}
   :jackguo380/vim-lsp-cxx-highlight {:ft [:c :cpp]}
   :lambdalisue/suda.vim {:cmd :SudaWrite}
   ;; :glepnir/lspsaga.nvim {}
