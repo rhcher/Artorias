@@ -36,9 +36,10 @@
                         :tab :▷⋯
                         :trail :•})
 (set vim.o.fillchars "eob: ,fold: ,foldopen:,foldsep: ,foldclose:")
-(set vim.wo.foldcolumn :1)
-(set vim.wo.foldlevel 99)
-(set vim.opt.foldenable false)
+(set vim.o.foldcolumn :1)
+(set vim.o.foldlevel 99)
+(set vim.o.foldlevelstart -1)
+(set vim.o.foldenable true)
 
 (vim.cmd "filetype plugin indent on")
 
@@ -93,6 +94,14 @@
   (when ok?
     (fzf.setup {:winopts {:split "belowright new"
                           :border "single"}})))
+
+(let [(ok? ufo) (pcall require :ufo)
+      map vim.keymap.set]
+  (when ok?
+    (map :n :<tab> :za)
+    (map :n :zR ufo.openAllFolds)
+    (map :n :zM ufo.closeAllFolds)
+    (ufo.setup)))
 
 (let [(ok? nrpattern) (pcall require :nrpattern)]
   (when ok?
