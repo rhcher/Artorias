@@ -86,7 +86,7 @@
                               :* "win32yank.exe -o --lf"}
                       :cache_enable false})
 
-(let [plugins [:feline :matchparen :neogen
+(let [plugins [:feline :matchparen :neogen :fidget
                :neoscroll :Comment :possession :nvim-surround]]
   (each [_ plugin (ipairs plugins)]
     (let [(ok? plug) (pcall require plugin)]
