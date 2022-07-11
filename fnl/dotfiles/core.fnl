@@ -67,6 +67,9 @@
 
 ;; targets plugin
 (set vim.g.targets_seekRanges "cc cr cb cB lc ac Ac lr lb ar ab rr rb bb ll al aa")
+(set vim.g.targets_separators ", . ; : + - = ~ _ * # / | \\ &")
+(set vim.g.targets_argOpening "[({[]")
+(set vim.g.targets_argClosing "[]})]")
 
 ;; conjure
 (set vim.g.conjure#eval#result_register "*")

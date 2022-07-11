@@ -51,7 +51,7 @@
   :guns/vim-sexp {}
   :tpope/vim-repeat {}
   :tpope/vim-sexp-mappings-for-regular-people {}
-  :tpope/vim-fugitive {}
+  :tpope/vim-fugitive {:cmd :Git}
   :wlangstroth/vim-racket {:ft :scheme}
   :kyazdani42/nvim-web-devicons {:mod :devicons}
   :kyazdani42/nvim-tree.lua {:mod :nvimtree :requires :kyazdani42/nvim-web-devicons}
