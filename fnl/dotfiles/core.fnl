@@ -1,5 +1,6 @@
 (module dotfiles.core
-  {autoload {nvim aniseed.nvim}})
+  {autoload {nvim aniseed.nvim}
+   require-macros [dotfiles.macros]})
 
 ;; Generic Neovim configuration.
 (set nvim.o.termguicolors true)
@@ -101,8 +102,7 @@
     (fzf.setup {:winopts {:split "belowright new"
                           :border "single"}})))
 
-(let [(ok? ufo) (pcall require :ufo)
-      map vim.keymap.set]
+(let [(ok? ufo) (pcall require :ufo)]
   (when ok?
     (map :n :<tab> :za)
     (map :n :zR ufo.openAllFolds)

@@ -1,24 +1,25 @@
 (module dotfiles.plugin.move
-  {autoload {move gomove}})
+  {autoload {move gomove}
+   require-macros [dotfiles.macros]})
 
 (move.setup {:map_defaults false})
 
-(vim.keymap.set :n "<A-n>" :<Plug>GoNSMLeft {:noremap true})
-(vim.keymap.set :n "<A-m>" :<Plug>GoNSMDown {:noremap true})
-(vim.keymap.set :n "<A-,>" :<Plug>GoNSMUp {:noremap true})
-(vim.keymap.set :n "<A-.>" :<Plug>GoNSMRight {:noremap true})
+(map :n "<A-n>" :<Plug>GoNSMLeft)
+(map :n "<A-m>" :<Plug>GoNSMDown)
+(map :n "<A-,>" :<Plug>GoNSMUp)
+(map :n "<A-.>" :<Plug>GoNSMRight)
 
-(vim.keymap.set :x "<A-n>" :<Plug>GoVSMLeft {:noremap true})
-(vim.keymap.set :x "<A-m>" :<Plug>GoVSMDown {:noremap true})
-(vim.keymap.set :x "<A-,>" :<Plug>GoVSMUp {:noremap true})
-(vim.keymap.set :x "<A-.>" :<Plug>GoVSMRight {:noremap true})
+(map :x "<A-n>" :<Plug>GoVSMLeft)
+(map :x "<A-m>" :<Plug>GoVSMDown)
+(map :x "<A-,>" :<Plug>GoVSMUp)
+(map :x "<A-.>" :<Plug>GoVSMRight)
 
-(vim.keymap.set :n "<A-N>" :<Plug>GoNSDLeft {:noremap true})
-(vim.keymap.set :n "<A-M>" :<Plug>GoNSDDown {:noremap true})
-(vim.keymap.set :n "<A-<>" :<Plug>GoNSDUp {:noremap true})
-(vim.keymap.set :n "<A->>" :<Plug>GoNSDRight {:noremap true})
+(map :n "<A-N>" :<Plug>GoNSDLeft)
+(map :n "<A-M>" :<Plug>GoNSDDown)
+(map :n "<A-<>" :<Plug>GoNSDUp)
+(map :n "<A->>" :<Plug>GoNSDRight)
 
-(vim.keymap.set :x "<A-N>" :<Plug>GoVSDLeft {:noremap true})
-(vim.keymap.set :x "<A-M>" :<Plug>GoVSDDown {:noremap true})
-(vim.keymap.set :x "<A-<>" :<Plug>GoVSDUp {:noremap true})
-(vim.keymap.set :x "<A->>" :<Plug>GoVSDRight {:noremap true})
+(map :x "<A-N>" :<Plug>GoVSDLeft)
+(map :x "<A-M>" :<Plug>GoVSDDown)
+(map :x "<A-<>" :<Plug>GoVSDUp)
+(map :x "<A->>" :<Plug>GoVSDRight)

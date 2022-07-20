@@ -12,13 +12,7 @@
 (defn- on_attach [client bufnr]
 
   (defn- buf_key_map [mode from to]
-    (vim.keymap.set mode from to {:buffer true :noremap true :silent true}))
-
-  (defn- buf_set_option [...]
-    (vim.api.nvim_buf_set_option bufnr ...))
-
-  (when client.server_capabilities.completionProvider
-    (buf_set_option :omnifunc "v:lua.vim.lsp.omnifunc"))
+    (vim.keymap.set mode from to {:buffer bufnr :noremap true :silent true}))
 
   (when client.server_capabilities.documentFormattingProvider
     (buf_key_map :n :<leader>lf vim.lsp.buf.format {:async true}))

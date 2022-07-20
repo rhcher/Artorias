@@ -1,5 +1,6 @@
 (module dotfiles.plugin.terminal
-  {autoload {term toggleterm}})
+  {autoload {term toggleterm}
+   require-macros [dotfiles.macros]})
 
 (term.setup {:size (fn [t]
                      (if (= t.direction "horizontal")
@@ -16,5 +17,5 @@
              :close_on_exit true
              :shell vim.o.shell})
 
-(vim.keymap.set :n :<space>ot "<cmd>ToggleTerm direction=horizontal<CR>" {:silent true})
-(vim.keymap.set :n :<space>oT "<cmd>ToggleTerm direction=vertical<CR>" {:silent true})
+(map :n :<space>ot "<cmd>ToggleTerm direction=horizontal<CR>")
+(map :n :<space>oT "<cmd>ToggleTerm direction=vertical<CR>")

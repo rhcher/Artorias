@@ -1,11 +1,8 @@
 (module dotfiles.mapping
   {autoload {nvim aniseed.nvim
              nu aniseed.nvim.util
-             core aniseed.core}})
-
-(defn- map [mode from to]
-  "Sets a mapping with {:noremap true}."
-  (vim.keymap.set mode from to {:noremap true :silent true}))
+             core aniseed.core}
+   require-macros [dotfiles.macros]})
 
 ;; Generic mapping configuration.
 (map :n :<space> :<nop> {:noremap true})

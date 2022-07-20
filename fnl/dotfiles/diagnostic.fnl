@@ -1,4 +1,5 @@
-(module dotfiles.diagnostic)
+(module dotfiles.diagnostic
+  {require-macros [dotfiles.macros]})
 
 (vim.diagnostic.config {:virtual_text false
                         :signs true
@@ -14,13 +15,13 @@
     (let [hl (.. "DiagnosticSign" type)]
       (vim.fn.sign_define hl {:text icon :texthl hl :numhl hl}))))
 
-(vim.keymap.set :n 
-                :<space>le 
-                (fn [] (vim.diagnostic.open_float 0 {:scope "line"
-                                                     :close_events ["BufLeave" "CursorMoved" "InsertEnter" "FocusLost"]}))
-                {:noremap true :silent true})
+(map :n 
+     :<space>le 
+     (fn [] (vim.diagnostic.open_float 0 {:scope "line"
+                                          :close_events ["BufLeave" "CursorMoved" "InsertEnter" "FocusLost"]}))
+     {:noremap true :silent true})
 
-(vim.keymap.set :n :<space>lQ vim.diagnostic.setqflist {:noremap true :silent true})
-(vim.keymap.set :n :<space>lq vim.diagnostic.setloclist {:noremap true :silent true})
-(vim.keymap.set :n "[e" vim.diagnostic.goto_prev {:noremap true :silent true})
-(vim.keymap.set :n "]e" vim.diagnostic.goto_next {:noremap true :silent true})
+(map :n :<space>lQ vim.diagnostic.setqflist {:noremap true :silent true})
+(map :n :<space>lq vim.diagnostic.setloclist {:noremap true :silent true})
+(map :n "[e" vim.diagnostic.goto_prev {:noremap true :silent true})
+(map :n "]e" vim.diagnostic.goto_next {:noremap true :silent true})
