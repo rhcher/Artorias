@@ -94,8 +94,7 @@
 (tset vim.lsp.handlers "textDocument/signatureHelp" (vim.lsp.with vim.lsp.handlers.signature_help {:border :single}))
 
 (let [(ok? lsp) (pcall require :lspconfig)
-      capabilities (cmplsp.update_capabilities (vim.lsp.protocol.make_client_capabilities))
-      servers [:hls :ocamllsp :bashls :vimls :rust_analyzer]]
+      servers [:hls :ocamllsp :bashls :rust_analyzer]]
   (var capabilities (cmplsp.update_capabilities (vim.lsp.protocol.make_client_capabilities)))
   (set capabilities.textDocument.foldingRange {:dynamicRegistration false
                                                :lineFoldingOnly true})

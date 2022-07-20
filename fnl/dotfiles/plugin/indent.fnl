@@ -37,7 +37,7 @@
 (indent.setup {:use_treesitter true
                :context_patterns ["class" "function" "method" "^if" "^while" "^for" "^object" "^table"
                                   "block" "arguments" "^attrset$" "^list$" "^let$" "^indented_string$"]
-               :filetype_exclude ["" "help" "fennel" "packer" "lspinfo" "tsplayground" "query" "scheme" "racket"]
+               :filetype_exclude ["" "help" "fennel" "packer" "lspinfo" "tsplayground" "query" "scheme" "racket" "qf"]
                :buftype_exclude ["terminal" "prompt" "toggleterm"]
                :show_current_context true
                :show_current_context true})

@@ -7,8 +7,6 @@
         :body :z
         :heads [[:h :5zh]
                 [:l :5zl {:desc "←/→"}]
-                [:j :5j]
-                [:k :5k]
                 [:H :zH]
                 [:L :zL {:desc "half screen ←/→"}]]})
 

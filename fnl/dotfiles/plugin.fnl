@@ -48,10 +48,10 @@
   :norcalli/nvim-colorizer.lua {:cmd :ColorizerToggle}
   :nvim-lua/popup.nvim {}
   :ibhagwan/fzf-lua {}
-  :guns/vim-sexp {}
+  :guns/vim-sexp {:ft util.lisp-language}
   :tpope/vim-repeat {}
-  :tpope/vim-sexp-mappings-for-regular-people {}
-  :tpope/vim-fugitive {:cmd :Git}
+  :tpope/vim-sexp-mappings-for-regular-people {:after :vim-sexp}
+  :tpope/vim-fugitive {}
   :wlangstroth/vim-racket {:ft :scheme}
   :kyazdani42/nvim-web-devicons {:mod :devicons}
   :kyazdani42/nvim-tree.lua {:mod :nvimtree :requires :kyazdani42/nvim-web-devicons}
