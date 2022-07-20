@@ -76,10 +76,10 @@
 (map :n :<leader>e ":NvimTreeToggle<CR>")
 (map :n :<leader>r ":NvimTreeRefresh<CR>") 
 
-(map :n :<leader>gg ":Git<CR>")
+(map :n :<leader>gg ":Git<CR><C-w>o")
 (map :n :<leader>ou ":UndotreeShow<cr>:UndotreeFocus<cr>")
 
-(map :n :s "<Plug>Lightspeed_omni_s")
+;; (map :n :s "<Plug>Lightspeed_omni_s")
 
 (let [fzf (require "fzf-lua")]
   (map :n :<leader>ff fzf.files)
@@ -99,6 +99,9 @@
 (vim.api.nvim_create_autocmd [:FileType]
                              {:pattern [:git :qf :man :help :lspinfo :fugitive :gitcommit]
                               :command "nnoremap <buffer><silent> q :close<CR>"})
+
+;; fugitive remapping
+(set vim.g.nremap {"[m" "[f" "]m" "]f" "=" :o})
 
 (nu.fn-bridge
   :DeleteHiddenBuffers
