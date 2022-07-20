@@ -113,6 +113,10 @@
   (when ok?
     (nrpattern.setup)))
 
+(let [(ok? leap) (pcall require :leap)]
+  (when ok?
+    (leap.set_default_keymaps)))
+
 (vim.api.nvim_create_augroup "init" {})
 (vim.api.nvim_create_autocmd [:CmdWinEnter]
                              {:group "init"

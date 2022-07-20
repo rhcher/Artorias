@@ -64,7 +64,7 @@
   :karb94/neoscroll.nvim {}
   :lewis6991/gitsigns.nvim {:mod :gitsigns}
   :akinsho/nvim-toggleterm.lua {:mod :terminal}
-  :ggandor/lightspeed.nvim {}
+  :ggandor/leap.nvim {}
   :ZhiyuanLck/smart-pairs {:mod :auto-pairs}
   :ocaml/vim-ocaml {:ft :ocaml}
   :numToStr/Comment.nvim {}
