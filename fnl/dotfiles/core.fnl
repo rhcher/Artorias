@@ -53,7 +53,7 @@
 (nvim.ex.set :splitright)
 
 (set vim.g.srcery_italic 1)
-(nvim.ex.colorscheme :srcery)
+(vim.cmd.colorscheme :srcery)
 
 ;; oscyank
 (set vim.g.oscyank_silent true)

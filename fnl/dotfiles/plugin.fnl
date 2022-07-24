@@ -77,7 +77,7 @@
   :Julian/vim-textobj-variable-segment {}
   :glts/vim-textobj-comment {}
   :zegervdv/nrpattern.nvim {}
-  :j-hui/fidget.nvim {:mod :fidget}
+  :j-hui/fidget.nvim {}
   :tommcdo/vim-exchange {:keys ["<Plug>(Exchange)" "<Plug>(Exchange)" "<Plug>(ExchangeClear)" "<Plug>(ExchangeLine)"]}
   :junegunn/fzf {:run "./install --bin"}
   :AndrewRadev/linediff.vim {:cmd :Linediff}
