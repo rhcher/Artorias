@@ -93,29 +93,24 @@
 (let [plugins [:feline :matchparen :neogen :fidget
                :neoscroll :Comment :possession :nvim-surround]]
   (each [_ plugin (ipairs plugins)]
-    (let [(ok? plug) (pcall require plugin)]
-      (when ok?
-        (plug.setup {})))))
+    (when-let [(_ plug) (pcall require plugin)]
+      (plug.setup {}))))
 
-(let [(ok? fzf) (pcall require :fzf-lua)]
-  (when ok?
-    (fzf.setup {:winopts {:split "belowright new"
-                          :border "single"}})))
+(when-let [(ok? fzf) (pcall require :fzf-lua)]
+  (fzf.setup {:winopts {:split "belowright new"
+                        :border "single"}}))
 
-(let [(ok? ufo) (pcall require :ufo)]
-  (when ok?
-    (map :n :<tab> :za)
-    (map :n :zR ufo.openAllFolds)
-    (map :n :zM ufo.closeAllFolds)
-    (ufo.setup)))
+(when-let [(_ ufo) (pcall require :ufo)]
+  (map :n :<tab> :za)
+  (map :n :zR ufo.openAllFolds)
+  (map :n :zM ufo.closeAllFolds)
+  (ufo.setup))
 
-(let [(ok? nrpattern) (pcall require :nrpattern)]
-  (when ok?
-    (nrpattern.setup)))
+(when-let [(_ nrpattern) (pcall require :nrpattern)]
+  (nrpattern.setup))
 
-(let [(ok? leap) (pcall require :leap)]
-  (when ok?
-    (leap.set_default_keymaps)))
+(when-let [(_ leap) (pcall require :leap)]
+  (leap.set_default_keymaps))
 
 (vim.api.nvim_create_augroup "init" {})
 (vim.api.nvim_create_autocmd [:CmdWinEnter]

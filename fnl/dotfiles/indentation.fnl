@@ -26,6 +26,7 @@
                  "eval-compiler" true "for" true "each" true "while" true
                  "defn-" true "defn" true "def" true "def-" true
                  "defonce" true "defonce-" true "module" true
+                 "when-let" true "if-let" true
                  "macro" true "match" true "doto" true "with-open" true
                  "collect" true "icollect" true "accumulate" true})
 
