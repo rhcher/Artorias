@@ -83,6 +83,9 @@
 ;; vim-haskell
 (set vim.g.haskell_indent_guard 2)
 
+;; vim-table-mode
+(set vim.g.table_mode_corner "|")
+
 (set vim.g.clipboard {:name :win32yank-wsl
                       :copy {:+ "win32yank.exe -i --crlf"
                              :* "win32yank.exe -i --crlf"}
@@ -111,6 +114,9 @@
 
 (when-let [(_ leap) (pcall require :leap)]
   (leap.set_default_keymaps))
+
+(when-let [(_ tabout) (pcall require :tabout)]
+  (tabout.setup))
 
 (vim.api.nvim_create_augroup "init" {})
 (vim.api.nvim_create_autocmd [:CmdWinEnter]
