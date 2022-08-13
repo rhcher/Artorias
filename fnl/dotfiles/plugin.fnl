@@ -95,6 +95,7 @@
   :anuvyklack/hydra.nvim {:mod :hydra :requires [:anuvyklack/keymap-layer.nvim]}
   :kevinhwang91/nvim-ufo {:requires [:kevinhwang91/promise-async]}
   :lukas-reineke/indent-blankline.nvim {:mod :indent}
-  :mrjones2014/smart-splits.nvim {})
+  :mrjones2014/smart-splits.nvim {}
   :dhruvasagar/vim-table-mode {:cmd :TableModeToggle}
-  :abecodes/tabout.nvim {:wants ["nvim-treesitter"] :after [:nvim-cmp]})
+  :abecodes/tabout.nvim {}
+  :sakhnik/nvim-gdb {:run "./install.sh"})
