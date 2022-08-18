@@ -45,10 +45,14 @@
                                     :key_breakpoint ";b"})
 
 (let [plugins [:feline :matchparen :neogen :fidget :tabout
-               :neoscroll :Comment :possession :nvim-surround]]
+               :neoscroll :Comment :possession]]
   (each [_ plugin (ipairs plugins)]
     (when-let [(_ plug) (pcall require plugin)]
       (plug.setup {}))))
+
+(when-let [(ok? surround) (pcall require :nvim-surround)]
+  (surround.setup {:surrounds {"(" {:add ["(" ")"]}
+                               ")" {:add ["( " " )"]}}}))
 
 (when-let [(ok? fzf) (pcall require :fzf-lua)]
   (fzf.setup {:winopts {:split "belowright new"
