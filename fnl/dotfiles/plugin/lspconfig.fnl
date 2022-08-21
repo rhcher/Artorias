@@ -77,18 +77,18 @@
                                   :callback vim.lsp.codelens.refresh})
     (buf_key_map :n :<space>ll vim.lsp.codelens.run))
 
-  (when client.server_capabilities.documentHighlightProvider
-    (vim.api.nvim_create_augroup :lsp_document_highlight {:clear false})
-    (vim.api.nvim_clear_autocmds {:buffer bufnr
-                                  :group :lsp_document_highlight})
-    (vim.api.nvim_create_autocmd [:CursorHold]
-                                 {:group :lsp_document_highlight
-                                  :buffer bufnr
-                                  :callback vim.lsp.buf.document_highlight})
-    (vim.api.nvim_create_autocmd [:CursorMoved :InsertEnter :WinLeave]
-                                 {:group :lsp_document_highlight
-                                  :buffer bufnr
-                                  :callback vim.lsp.buf.clear_references})))
+  ;; (when client.server_capabilities.documentHighlightProvider
+  ;;   (vim.api.nvim_create_augroup :lsp_document_highlight {:clear false})
+  ;;   (vim.api.nvim_clear_autocmds {:buffer bufnr
+  ;;                                 :group :lsp_document_highlight})
+  ;;   (vim.api.nvim_create_autocmd [:CursorHold]
+  ;;                                {:group :lsp_document_highlight
+  ;;                                 :buffer bufnr
+  ;;                                 :callback vim.lsp.buf.document_highlight})
+  ;;   (vim.api.nvim_create_autocmd [:CursorMoved :InsertEnter :WinLeave]
+  ;;                                {:group :lsp_document_highlight
+  ;;                                 :buffer bufnr
+  ;;                                 :callback vim.lsp.buf.clear_references})))
 
 (tset vim.lsp.handlers "textDocument/hover" (vim.lsp.with vim.lsp.handlers.hover {:border :single}))
 (tset vim.lsp.handlers "textDocument/signatureHelp" (vim.lsp.with vim.lsp.handlers.signature_help {:border :single}))

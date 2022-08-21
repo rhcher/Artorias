@@ -98,4 +98,5 @@
   :mrjones2014/smart-splits.nvim {}
   :dhruvasagar/vim-table-mode {:cmd :TableModeToggle}
   :abecodes/tabout.nvim {}
-  :sakhnik/nvim-gdb {:run "./install.sh"})
+  :sakhnik/nvim-gdb {:run "./install.sh"}
+  :RRethy/vim-illuminate {})
