@@ -52,7 +52,8 @@
 
 (when-let [(ok? surround) (pcall require :nvim-surround)]
   (surround.setup {:surrounds {"(" {:add ["(" ")"]}
-                               ")" {:add ["( " " )"]}}}))
+                               ")" {:add ["( " " )"]}}
+                   :move_cursor false}))
 
 (when-let [(ok? fzf) (pcall require :fzf-lua)]
   (fzf.setup {:winopts {:split "belowright new"
