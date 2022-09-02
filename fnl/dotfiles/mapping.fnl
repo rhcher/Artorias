@@ -28,14 +28,8 @@
 (map :t :<a-l> :<C-\><C-n><C-w>l)
 (map :t :<esc> :<C-\><C-n>)
 
-;; x-mode
-(map :x ":" ";")
-(map :x ";" ":")
-
 ;; normal-mode
-(map :n ":" ";")
-(map :n ";" ":")
-(map :n :<esc> ":nohl<CR>")
+(map :n :<leader>l ::noh<CR>)
 (map :n :n :nzz {:silent true})
 (map :n :N :Nzz {:silent true})
 (map :n :<A-h> :<C-w>h)
