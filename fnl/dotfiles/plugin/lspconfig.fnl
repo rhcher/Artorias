@@ -133,9 +133,13 @@
                       :index {:onChange false
                               :threads (a.count (vim.loop.cpu_info))
                               :initialNoLinkage true
+                              :maxInitializerLines 50
                               :initialBlacklist ["/(clang|lld|llvm)/(test|unittests)/"
                                                  "/llvm/(bindings|examples|utils)/"
                                                  "/StaticAnalyzer/"]}
+                      :diagnostics {:onChange -1
+                                    :onOpen 1000
+                                    :onSave 50}
                       :highlight {:lsRanges true}
                       :cache {:directory "/tmp/ccls-cache/"}
                       :xref {:maxNum 20000}}
