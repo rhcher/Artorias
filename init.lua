@@ -5,7 +5,7 @@
 local execute = vim.api.nvim_command
 local fn = vim.fn
 
--- vim.lsp.set_log_level("debug")
+vim.lsp.set_log_level("ERROR")
 
 if vim.g.nvui then
   -- Configure through vim commands
