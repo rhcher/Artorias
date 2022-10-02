@@ -15,10 +15,7 @@
     (vim.keymap.set mode from to {:buffer bufnr :noremap true :silent true}))
 
   (when client.server_capabilities.documentFormattingProvider
-    (buf_key_map :n :<leader>lf vim.lsp.buf.format {:async true}))
-
-  (when client.server_capabilities.documentRangeFormattingProvider
-    (buf_key_map :v :<leader>lf vim.lsp.buf.range_formatting))
+    (buf_key_map [:n :v] :<leader>lf vim.lsp.buf.format {:async true}))
 
   (when client.server_capabilities.callHierarchyProvider
     (buf_key_map :n :<leader>ii vim.lsp.buf.incoming_calls)
@@ -39,10 +36,7 @@
   (buf_key_map :n :<leader>lr ":Lspsaga rename<CR>")
 
   (when client.server_capabilities.codeActionProvider
-    ;; (buf_key_map :n :<leader>la vim.lsp.buf.code_action)
-    ;; (buf_key_map :v :<leader>la vim.lsp.buf.range_code_action))
-    (buf_key_map :n :<leader>la ":Lspsaga code_action<CR>")
-    (buf_key_map :v :<leader>la ":<C-U>Lspsaga range_code_action<CR>"))
+    (buf_key_map [:n :v] :<leader>la "<cmd>Lspsaga code_action<CR>"))
 
   (when (= client.name :ccls)
     (let [ccls (require "dotfiles.ccls")
@@ -75,7 +69,7 @@
     (vim.api.nvim_create_autocmd [:BufEnter :CursorHold :InsertLeave]
                                  {:buffer bufnr
                                   :callback vim.lsp.codelens.refresh})
-    (buf_key_map :n :<space>ll vim.lsp.codelens.run))
+    (buf_key_map :n :<space>ll vim.lsp.codelens.run)))
 
   ;; (when client.server_capabilities.documentHighlightProvider
   ;;   (vim.api.nvim_create_augroup :lsp_document_highlight {:clear false})
