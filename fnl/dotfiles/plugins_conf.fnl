@@ -70,3 +70,8 @@
 
 (when-let [(_ leap) (pcall require :leap)]
   (leap.set_default_keymaps))
+
+(when-let [(_ illuminate) (pcall require :illuminate)]
+  (illuminate.configure {:providers [:lsp :regex]
+                         :modes_denylist [:i]
+                         :max_file_lines 5000}))
