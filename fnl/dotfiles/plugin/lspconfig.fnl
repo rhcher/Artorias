@@ -88,7 +88,8 @@
 (tset vim.lsp.handlers "textDocument/signatureHelp" (vim.lsp.with vim.lsp.handlers.signature_help {:border :single}))
 
 (let [(ok? lsp) (pcall require :lspconfig)
-      servers [:hls :ocamllsp :bashls :rust_analyzer]]
+      servers [:hls :ocamllsp :bashls :rust_analyzer]
+      lsp_flag {:debounce_text_changes 0}]
   (var capabilities (cmplsp.update_capabilities (vim.lsp.protocol.make_client_capabilities)))
   (set capabilities.textDocument.foldingRange {:dynamicRegistration false
                                                :lineFoldingOnly true})
@@ -98,7 +99,7 @@
         (config.setup
           {:on_attach on_attach
            :capabilities capabilities
-           :flags {:debounce_text_changes 50}})))
+           :flags lsp_flag})))
     (lsp.sumneko_lua.setup
       {:on_attach on_attach
        :capabilities capabilities
@@ -115,7 +116,7 @@
                         :format {:enable true
                                  :defaultConfig {:indent_style :space
                                                  :indent_size :2}}}}}
-      :flags {:debounce_text_changes 50})
+      :flags lsp_flag)
     (lsp.ccls.setup
       {:on_attach on_attach
        :capabilities capabilities
@@ -137,7 +138,7 @@
                       :highlight {:lsRanges true}
                       :cache {:directory "/tmp/ccls-cache/"}
                       :xref {:maxNum 20000}}
-       :flags {:debounce_text_changes 50}})
+       :flags lsp_flag})
     ;; (lsp.clangd.setup
     ;;   {:on_attach on_attach
     ;;    :capabilities capabilities
@@ -165,4 +166,4 @@
                                                       :eager true}
                                     :pyls_isort {:enabled true}
                                     :pylsp_mypy {:enabled true}}}}
-       :flags {:debounce_text_changes 50}})))
+       :flags lsp_flag})))
