@@ -44,7 +44,6 @@
   :dcampos/nvim-snippy {}
   :feline-nvim/feline.nvim {}
   :mbbill/undotree {:cmd :UndotreeShow}
-  :neovim/nvim-lspconfig {:mod :lspconfig}
   :norcalli/nvim-colorizer.lua {:cmd :ColorizerToggle}
   :nvim-lua/popup.nvim {}
   :ibhagwan/fzf-lua {}
