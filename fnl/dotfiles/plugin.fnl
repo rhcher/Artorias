@@ -70,27 +70,21 @@
   :monkoose/matchparen.nvim {}
   :svban/YankAssassin.vim {}
   :hrsh7th/vim-searchx {:mod :searchx}
-  :metakirby5/codi.vim {:cmd :Codi}
   :booperlv/nvim-gomove {:mod :move}
   :kana/vim-textobj-user {}
   :Julian/vim-textobj-variable-segment {}
   :glts/vim-textobj-comment {}
   :zegervdv/nrpattern.nvim {}
   :j-hui/fidget.nvim {}
-  :tommcdo/vim-exchange {:keys ["<Plug>(Exchange)" "<Plug>(Exchange)" "<Plug>(ExchangeClear)" "<Plug>(ExchangeLine)"]}
   :junegunn/fzf {:run "./install --bin"}
   :AndrewRadev/linediff.vim {:cmd :Linediff}
   :tyru/open-browser.vim {:keys "<Plug>(openbrowser-smart-search)"}
   :ThePrimeagen/harpoon {:mod :harpoon}
   :danymat/neogen {}
   :kevinhwang91/nvim-hlslens {:event :CmdlineEnter}
-  :harrygallagher4/aniseed-ts-queries.nvim {:ft :fennel}
   :kazhala/close-buffers.nvim {:mod :close_buffers}
-  :jedrzejboczar/possession.nvim {}
   :jackguo380/vim-lsp-cxx-highlight {:ft [:c :cpp]}
-  :lambdalisue/suda.vim {:cmd :SudaWrite}
-  ;; :glepnir/lspsaga.nvim {}
-  "~/workspace/lspsaga.nvim/" {}
+  :glepnir/lspsaga.nvim {}
   :anuvyklack/hydra.nvim {:mod :hydra :requires [:anuvyklack/keymap-layer.nvim]}
   :kevinhwang91/nvim-ufo {:requires [:kevinhwang91/promise-async]}
   :lukas-reineke/indent-blankline.nvim {:mod :indent}
