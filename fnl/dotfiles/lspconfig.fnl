@@ -44,30 +44,30 @@
 
                  (when (= client.name :ccls)
                    (let [ccls (require "dotfiles.ccls")
-                          map util.luamap]
-                      (map :n :<C-k> (fn [] (ccls.navigate :L)))
-                      (map :n :<C-j> (fn [] (ccls.navigate :R)))
-                      (map :n :<C-l> (fn [] (ccls.navigate :D)))
-                      (map :n :<C-h> (fn [] (ccls.navigate :U)))
-                      ;; ccla call
-                      (map :n :<space>ii (fn [] (ccls.call :caller)))
-                      (map :n :<space>io (fn [] (ccls.call :callee)))
-                      ;; ccls var
-                      (map :n :<space>vf (fn [] (ccls.ccls_var :field)))
-                      (map :n :<space>vl (fn [] (ccls.ccls_var :local)))
-                      (map :n :<space>vp (fn [] (ccls.ccls_var :parameter)))
-                      ;; ccls member
-                      (map :n :<space>mv (fn [] (ccls.member :variables)))
-                      (map :n :<space>mf (fn [] (ccls.member :functions)))
-                      (map :n :<space>mt (fn [] (ccls.member :types)))
-                      ;; ccls inheritance
-                      (map :n :<space>ib (fn [] (ccls.inheritance :base)))
-                      (map :n :<space>id (fn [] (ccls.inheritance :derived)))
-                      ;; ccls references extend
-                      (map :n :<space>gw (fn [] (ccls.extend_ref :write)))
-                      (map :n :<space>gr (fn [] (ccls.extend_ref :read)))
-                      (map :n :<space>gm (fn [] (ccls.extend_ref :macro)))
-                      (map :n :<space>gn (fn [] (ccls.extend_ref :notcall)))))))})
+                         map util.luamap]
+                     (map :n :<C-k> (fn [] (ccls.navigate :L)))
+                     (map :n :<C-j> (fn [] (ccls.navigate :R)))
+                     (map :n :<C-l> (fn [] (ccls.navigate :D)))
+                     (map :n :<C-h> (fn [] (ccls.navigate :U)))
+                     ;; ccla call
+                     (map :n :<space>ii (fn [] (ccls.call :caller)))
+                     (map :n :<space>io (fn [] (ccls.call :callee)))
+                     ;; ccls var
+                     (map :n :<space>vf (fn [] (ccls.ccls_var :field)))
+                     (map :n :<space>vl (fn [] (ccls.ccls_var :local)))
+                     (map :n :<space>vp (fn [] (ccls.ccls_var :parameter)))
+                     ;; ccls member
+                     (map :n :<space>mv (fn [] (ccls.member :variables)))
+                     (map :n :<space>mf (fn [] (ccls.member :functions)))
+                     (map :n :<space>mt (fn [] (ccls.member :types)))
+                     ;; ccls inheritance
+                     (map :n :<space>ib (fn [] (ccls.inheritance :base)))
+                     (map :n :<space>id (fn [] (ccls.inheritance :derived)))
+                     ;; ccls references extend
+                     (map :n :<space>gw (fn [] (ccls.extend_ref :write)))
+                     (map :n :<space>gr (fn [] (ccls.extend_ref :read)))
+                     (map :n :<space>gm (fn [] (ccls.extend_ref :macro)))
+                     (map :n :<space>gn (fn [] (ccls.extend_ref :notcall)))))))})
 
 (tset vim.lsp.handlers "textDocument/hover" (vim.lsp.with vim.lsp.handlers.hover {:border :single}))
 (tset vim.lsp.handlers "textDocument/signatureHelp" (vim.lsp.with vim.lsp.handlers.signature_help {:border :single}))
