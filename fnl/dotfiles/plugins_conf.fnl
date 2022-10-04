@@ -45,17 +45,21 @@
                                     :key_breakpoint ";b"})
 
 (let [plugins [:feline :matchparen :neogen :fidget :tabout
-               :neoscroll :Comment :possession]]
+               :neoscroll :Comment]]
   (each [_ plugin (ipairs plugins)]
     (when-let [(_ plug) (pcall require plugin)]
       (plug.setup {}))))
 
-(when-let [(ok? surround) (pcall require :nvim-surround)]
+(when-let [(_ surround) (pcall require :nvim-surround)]
   (surround.setup {:surrounds {"(" {:add ["(" ")"]}
-                               ")" {:add ["( " " )"]}}
+                               ")" {:add ["( " " )"]}
+                               "{" {:add ["{" "}"]}
+                               "}" {:add ["{ " " }"]}
+                               "[" {:add ["[" "]"]}
+                               "]" {:add ["[ " " ]"]}}
                    :move_cursor false}))
 
-(when-let [(ok? fzf) (pcall require :fzf-lua)]
+(when-let [(_ fzf) (pcall require :fzf-lua)]
   (fzf.setup {:winopts {:split "belowright new"
                         :border "single"}}))
 
@@ -74,4 +78,5 @@
 (when-let [(_ illuminate) (pcall require :illuminate)]
   (illuminate.configure {:providers [:lsp :regex]
                          :modes_denylist [:i]
-                         :max_file_lines 5000}))
+                         :large_file_cutoff 5000
+                         :large_file_overrides nil}))
