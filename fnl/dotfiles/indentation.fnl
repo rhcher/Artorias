@@ -1,3 +1,7 @@
+;; This format logic code is from fnlfmt
+;; and the way to integrate to nvim is from
+;; https://github.com/otommod/dotfiles/blob/main/nvim/.config/nvim/fnl/rc.fnl
+
 (module dotfiles.indentation)
 ;; This contains heuristic-based functionality which can indent Fennel code
 ;; without fully parsing it. This can be useful in text editors when you can't
