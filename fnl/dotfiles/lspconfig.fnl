@@ -72,7 +72,7 @@
 (tset vim.lsp.handlers "textDocument/hover" (vim.lsp.with vim.lsp.handlers.hover {:border :single}))
 (tset vim.lsp.handlers "textDocument/signatureHelp" (vim.lsp.with vim.lsp.handlers.signature_help {:border :single}))
 
-(def- ccls_config
+(def ccls_config
   {:capabilities {:foldingRangeProvider true
                   :workspace {:wordspaceFolders {:support true}}}
    :index {:onChange false
@@ -89,7 +89,7 @@
    :cache {:directory "/tmp/ccls-cache/"}
    :xref {:maxNum 20000}})
 
-(def- sumneko_lua_config
+(def sumneko_lua_config
   {:Lua {:diagnostics {:enable true :globals [:vim]}
          :completion {:callSnippet :Replace}
          :runtime {:version :LuaJIT}
@@ -118,48 +118,75 @@
 (def- hls_config
   {:haskell {:formattingProvider "ormolu"}})
 
+(def- vimls-config
+  {:diagnositc {:enable true}
+   :indexes {:count 3
+             :gap 100
+             :projectRootPatterns ["runtime" "nvim" ".git" "autoload" "plugin"]
+             :runtimepath true}
+   :isNeovim true
+   :isKeyword "@,48-57,_,192-255,-#"
+   :runtimepath ""
+   :suggest {:fromRuntimepath true
+             :fromVimruntime true}
+   :vimruntime ""})
+
+(def root-pattern (fn [patterns]
+                    (vim.fs.dirname
+                      (. (vim.fs.find patterns {:upward true}) 1))))
+
+(def flags {:debounce_text_changes 50})
+
+(defn capabilities []
+  (var capabilities (cmplsp.default_capabilities))
+  (set capabilities.textDocument.foldingRange {:dynamicRegistration false
+                                               :lineFoldingOnly true})
+  capabilities)
+
 (let [root-pattern (fn [patterns]
                      (vim.fs.dirname
                        (. (vim.fs.find patterns {:upward true}) 1)))
-      callback (fn [lsp-config] (vim.lsp.start lsp-config))]
-  (var capabilities (cmplsp.update_capabilities (vim.lsp.protocol.make_client_capabilities)))
+      flags {:debounce_text_changes 50}]
+  (var capabilities (cmplsp.default_capabilities))
   (set capabilities.textDocument.foldingRange {:dynamicRegistration false
                                                :lineFoldingOnly true})
-  (vim.api.nvim_create_autocmd
-    :FileType
-    {:pattern [:c :cpp]
-     :callback
-     (fn [] (vim.lsp.start
-               {:name "ccls"
-                :cmd ["ccls"]
-                :capabilities capabilities
-                :init_options ccls_config
-                :root_dir (root-pattern [".ccls" "compile-commands.json" ".ccls-root" ".git"])
-                :flags {:debounce_text_changes 20}}))})
+  ;; (vim.api.nvim_create_autocmd
+  ;;   :FileType
+  ;;   {:pattern [:c :cpp]
+  ;;    :callback
+  ;;    (fn [] (vim.lsp.start
+  ;;              {:name "ccls"
+  ;;               :cmd ["ccls"]
+  ;;               :capabilities capabilities
+  ;;               :init_options ccls_config
+  ;;               :root_dir (root-pattern [".ccls" "compile-commands.json" ".ccls-root" ".git"])
+  ;;               :flags flags}))})
 
-  (vim.api.nvim_create_autocmd
-    :FileType
-    {:pattern [:lua]
-     :callback
-     (fn [] (vim.lsp.start
-              {:name "sumneko_lua"
-               :cmd ["/home/rhcher/sources/lua-language-server/bin/lua-language-server"]
-               :capabilities capabilities
-               :settings sumneko_lua_config
-               :root_dir (root-pattern [".luarc.json" ".luacheckrc" ".stylua.toml" "stylua.toml" "selene.toml" ".git"])
-               :single_file_support true}))})
+  ;; (vim.api.nvim_create_autocmd
+  ;;   :FileType
+  ;;   {:pattern [:lua]
+  ;;    :callback
+  ;;    (fn [] (vim.lsp.start
+  ;;             {:name "sumneko_lua"
+  ;;              :cmd ["/home/rhcher/sources/lua-language-server/bin/lua-language-server"]
+  ;;              :capabilities capabilities
+  ;;              :settings sumneko_lua_config
+  ;;              :root_dir (root-pattern [".luarc.json" ".luacheckrc" ".stylua.toml" "stylua.toml" "selene.toml" ".git"])
+  ;;              :single_file_support true
+  ;;              :flags flags}))})
 
-  (vim.api.nvim_create_autocmd
-    :FileType
-    {:pattern [:python]
-     :callback
-     (fn [] (vim.lsp.start
-              {:name "pylsp"
-               :cmd ["pylsp"]
-               :capabilities capabilities
-               :settings pylsp_config
-               :root_dir (root-pattern [".git"])
-               :single_file_support true}))})
+  ;; (vim.api.nvim_create_autocmd
+  ;;   :FileType
+  ;;   {:pattern [:python]
+  ;;    :callback
+  ;;    (fn [] (vim.lsp.start
+  ;;             {:name "pylsp"
+  ;;              :cmd ["pylsp"]
+  ;;              :capabilities capabilities
+  ;;              :settings pylsp_config
+  ;;              :root_dir (root-pattern [".git"])
+  ;;              :single_file_support true
+  ;;              :flags flags}))})
   ;;
   (vim.api.nvim_create_autocmd
     :FileType
@@ -180,7 +207,8 @@
                                 chanid (vim.fn.jobstart [(. cfg.cmd 1) "--version"] opts)]
                             (vim.fn.jobwait [chanid]))
                           extra)
-               :single_file_support true}))})
+               :single_file_support true
+               :flags flags}))})
 
   (vim.api.nvim_create_autocmd
     :FileType
@@ -198,4 +226,17 @@
                                          :ocamllex :ocaml.ocamllex
                                          :reason :reason
                                          :dune :dune}]
-                                    (. language_id_of ftype)))}))}))
+                                    (. language_id_of ftype)))
+               :flags flags}))})
+
+  (vim.api.nvim_create_autocmd
+    :FileType
+    {:pattern [:vim]
+     :callback
+     (fn [] (vim.lsp.start
+              {:name "vimls"
+               :cmd ["vim-language-server" "--stdio"]
+               :root_dir (root-pattern [".git"])
+               :init_options vimls-config
+               :single_file_support true
+               :flags flags}))}))

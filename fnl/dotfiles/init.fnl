@@ -3,6 +3,10 @@
             dotfiles.mapping
             dotfiles.plugins_conf
             dotfiles.plugin
-            dotfiles.indentation
             dotfiles.lspconfig
-            dotfiles.diagnostic]})
+            dotfiles.diagnostic]
+   autoload {c aniseed.compile}})
+
+(c.glob :*.fnl
+        :/home/rhcher/.config/nvim/fnl/dotfiles/ftplugin/
+        :/home/rhcher/.config/nvim/after/ftplugin/)

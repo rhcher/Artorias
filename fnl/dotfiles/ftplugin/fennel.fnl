@@ -2,7 +2,8 @@
 ;; and the way to integrate to nvim is from
 ;; https://github.com/otommod/dotfiles/blob/main/nvim/.config/nvim/fnl/rc.fnl
 
-(module dotfiles.indentation)
+(module dotfiles.ftplugin.fennel)
+
 ;; This contains heuristic-based functionality which can indent Fennel code
 ;; without fully parsing it. This can be useful in text editors when you can't
 ;; always guarantee that the contents are well-formed; they could be in the
@@ -83,16 +84,16 @@
       ("\"" :none) (set state :in-string)))
   semicolon-pos)
 
-(defn- indent-type [lines line-num stack]
+(defn indent-type [lines line-num stack]
   (let [line (. lines line-num)
         line-length (or (find-comment-start line) (length line))]
     (match (line-indent-type line line-length stack)
       (:table i) (values :table i)
       (:call i fn-name) (if (. specials fn-name)
-                            (values :special (- i 1))
-                            (= (- (length line) i) (length fn-name))
-                            (values :special (- i 1))
-                            (values :call (- i 1) fn-name))
+                         (values :special (- i 1))
+                         (= (- (length line) i) (length fn-name))
+                         (values :special (- i 1))
+                         (values :call (- i 1) fn-name))
       (where _ (> line-num 1)) (indent-type lines (- line-num 1) stack))))
 
 (defn fennel_indentexpr [line-num]
@@ -103,10 +104,9 @@
       (:call prev-indent fn-name) (+ prev-indent (length fn-name) 2)
       _ 0)))
 
-(defn fennel_local []
-  (set vim.opt_local.softtabstop 2)
-  (set vim.opt_local.indentkeys ["!" :o :O])
-  (vim.opt_local.formatoptions:remove :t)
-  (set vim.opt_local.iskeyword
-       ["33-255" "^(" "^)" "^{" "^}" "^[" "^]" "^\"" "^'" "^~" "^;" "^," "^@-@" "^`" "^." "^:"])
-  (set vim.opt_local.indentexpr (.. "v:lua.require('" *module-name* "').fennel_indentexpr(v:lnum)")))
+(set vim.opt_local.softtabstop 2)
+(set vim.opt_local.indentkeys ["!" :o :O])
+(vim.opt_local.formatoptions:remove :t)
+(set vim.opt_local.iskeyword
+  ["33-255" "^(" "^)" "^{" "^}" "^[" "^]" "^\"" "^'" "^~" "^;" "^," "^@-@" "^`" "^." "^:"])
+(set vim.opt_local.indentexpr "fennel_indentexpr(v:lnum)")
