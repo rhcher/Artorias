@@ -44,7 +44,7 @@
                                     :key_until ";u"
                                     :key_breakpoint ";b"})
 
-(let [plugins [:feline :matchparen :neogen :fidget :tabout
+(let [plugins [:feline :matchparen :fidget :tabout
                :neoscroll :Comment]]
   (each [_ plugin (ipairs plugins)]
     (when-let [(_ plug) (pcall require plugin)]
@@ -80,3 +80,6 @@
                          :modes_denylist [:i]
                          :large_file_cutoff 10000
                          :large_file_overrides nil}))
+
+(when-let [(_ neogen) (pcall require :neogen)]
+  (neogen.setup {:snippet_engine :snippy}))
