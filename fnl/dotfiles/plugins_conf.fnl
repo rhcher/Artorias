@@ -27,7 +27,7 @@
 (set vim.g.conjure#client#scheme#stdio#command "petite")
 (set vim.g.conjure#client#scheme#stdio#prompt_pattern "> $?")
 (set vim.g.conjure#client#scheme#stdio#value_prefix_pattern false)
-(set vim.g.conjure#extract#tree_sitter#enabled true)
+(set vim.g.conjure#mapping#doc_word "gk")
 
 ;; vim-haskell
 (set vim.g.haskell_indent_guard 2)
