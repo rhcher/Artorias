@@ -78,5 +78,5 @@
 (when-let [(_ illuminate) (pcall require :illuminate)]
   (illuminate.configure {:providers [:lsp :regex]
                          :modes_denylist [:i]
-                         :large_file_cutoff 5000
+                         :large_file_cutoff 10000
                          :large_file_overrides nil}))
