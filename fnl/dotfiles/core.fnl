@@ -90,13 +90,3 @@
                               :callback (fn [] (vim.highlight.on_yank {:higroup "Visual"
                                                                        :timeout 150
                                                                        :on_visual true}))})
-(vim.api.nvim_create_autocmd [:BufNewFile]
-                             {:group "init"
-                              :callback (fn [] (vim.api.nvim_create_autocmd [:BufWritePre]
-                                                                            {:once true
-                                                                             :buffer 0
-                                                                             :command "call mkdir(expand('%:h'), 'p')"}))})
-
-(vim.api.nvim_create_autocmd [:FileType]
-                             {:pattern :fennel
-                              :callback (. (require :dotfiles.indentation) :fennel_local)})
