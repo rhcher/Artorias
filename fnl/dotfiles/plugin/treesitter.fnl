@@ -7,4 +7,8 @@
      :highlight {:enable true
                  :disable [:c :cpp]
                  :additional_vim_regex_highlighting false}
-     :indent {:enable false}}))
+     :indent {:enable false}
+     :textobjects {:select {:enable true
+                            :lookahead true
+                            :keymaps {:af "@function.outer"
+                                      :if "@function.inner"}}}}))

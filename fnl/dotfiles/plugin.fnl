@@ -33,6 +33,7 @@
   :wbthomason/packer.nvim {}
   :lewis6991/impatient.nvim {}
   :nvim-treesitter/nvim-treesitter {:run ":TSUpdate" :mod :treesitter}
+  :nvim-treesitter/nvim-treesitter-textobjects {}
   :hrsh7th/nvim-cmp {:requires [:hrsh7th/cmp-nvim-lsp
                                 :hrsh7th/cmp-buffer
                                 :hrsh7th/cmp-path
