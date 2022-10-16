@@ -45,7 +45,7 @@
   :dcampos/nvim-snippy {}
   :feline-nvim/feline.nvim {}
   :mbbill/undotree {:cmd :UndotreeShow}
-  :norcalli/nvim-colorizer.lua {:cmd :ColorizerToggle}
+  :NvChad/nvim-colorizer.lua {:cmd :ColorizerToggle}
   :nvim-lua/popup.nvim {}
   :ibhagwan/fzf-lua {}
   :guns/vim-sexp {:ft util.lisp-language}
@@ -54,7 +54,7 @@
   :tpope/vim-fugitive {}
   :wlangstroth/vim-racket {:ft :scheme}
   :kyazdani42/nvim-web-devicons {:mod :devicons}
-  :kyazdani42/nvim-tree.lua {:mod :nvimtree :requires :kyazdani42/nvim-web-devicons}
+  :nvim-tree/nvim-tree.lua {:mod :nvimtree :requires :kyazdani42/nvim-web-devicons}
   :gpanders/nvim-parinfer {:ft util.lisp-language}
   :kevinhwang91/nvim-bqf {:mod :bqf}
   :wellle/targets.vim {}
