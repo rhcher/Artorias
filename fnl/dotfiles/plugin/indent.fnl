@@ -39,5 +39,4 @@
                                   "block" "arguments" "^attrset$" "^list$" "^let$" "^indented_string$"]
                :filetype_exclude ["" "help" "fennel" "packer" "lspinfo" "tsplayground" "query" "scheme" "racket" "qf"]
                :buftype_exclude ["terminal" "prompt" "toggleterm"]
-               :show_current_context true
                :show_current_context true})
