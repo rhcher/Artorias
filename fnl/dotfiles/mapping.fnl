@@ -33,7 +33,7 @@
 (map :t :<esc> :<C-\><C-n>)
 
 ;; normal-mode
-(map :n :<leader>l ::noh<CR>)
+(map :n :<esc> ::noh<CR>)
 (map :n :n :nzz {:silent true})
 (map :n :N :Nzz {:silent true})
 (map :n :<A-h> :<C-w>h)
@@ -76,8 +76,6 @@
 
 (map :n :<leader>gg ":Git<CR><C-w>o")
 (map :n :<leader>ou ":UndotreeShow<cr>:UndotreeFocus<cr>")
-
-;; (map :n :s "<Plug>Lightspeed_omni_s")
 
 (let [fzf (require "fzf-lua")]
   (map :n :<leader>ff fzf.files)
