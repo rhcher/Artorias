@@ -79,7 +79,7 @@
 
 (let [fzf (require "fzf-lua")]
   (map :n :<leader>ff fzf.files)
-  (map :n :<leader>fp (fn [] (fzf.files {:cwd "~/.config/nvim/"})))
+  (map :n :<leader>fp #(fzf.files {:cwd "~/.config/nvim/"}))
   (map :n :<leader>fs fzf.live_grep_native)
   (map :n :<leader>fb fzf.buffers)
   (map :n :<leader>bb fzf.buffers)
