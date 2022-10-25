@@ -17,8 +17,8 @@
 
 (map :n 
      :<space>le 
-     (fn [] (vim.diagnostic.open_float 0 {:scope "line"
-                                          :close_events ["BufLeave" "CursorMoved" "InsertEnter" "FocusLost"]}))
+     #(vim.diagnostic.open_float 0 {:scope "line"
+                                    :close_events ["BufLeave" "CursorMoved" "InsertEnter" "FocusLost"]})
      {:noremap true :silent true})
 
 (map :n :<space>lQ vim.diagnostic.setqflist {:noremap true :silent true})

@@ -14,14 +14,14 @@
 (map :i :<C-j> :<esc>o)
 (map :i :<C-k> :<esc>O)
 
-(if-let [(_ snippy) (pcall require :snippy)]
+(when-let [(_ snippy) (pcall require :snippy)]
   (do
-    (vim.keymap.set [:i :s] :<C-l> (fn [] (if (snippy.can_jump 1)
-                                            "<Plug>(snippy-next)"
-                                            "<ESC>A")) {:expr true})
-    (vim.keymap.set [:i :s] :<C-h> (fn [] (if (snippy.can_jump -1)
-                                            "<Plug>(snippy-previous)"
-                                            "<ESC>I")) {:expr true})))
+    (vim.keymap.set [:i :s] :<C-l> #(if (snippy.can_jump 1)
+                                       "<Plug>(snippy-next)"
+                                       "<ESC>A") {:expr true})
+    (vim.keymap.set [:i :s] :<C-h> #(if (snippy.can_jump -1)
+                                       "<Plug>(snippy-previous)"
+                                       "<ESC>I") {:expr true})))
 
 (map :n :<leader>bS ":SudaWrite<CR>")
 

@@ -38,36 +38,37 @@
                  (keymap :n :gd vim.lsp.buf.definition)
                  (keymap :n :gD vim.lsp.buf.declaration)
                  (keymap :n :gi vim.lsp.buf.implementation)
-                 (keymap :n :gr (fn [] (vim.lsp.buf.references {:includeDeclaration false})))
+                 (keymap :n :gr #(vim.lsp.buf.references {:includeDeclaration false}))
                  (keymap :n :K vim.lsp.buf.hover)
                  (keymap :n :<leader>lr ":Lspsaga rename<CR>")
 
                  (when (= client.name :ccls)
                    (let [ccls (require "dotfiles.ccls")
                          map util.luamap]
-                     (map :n :<C-k> (fn [] (ccls.navigate :L)))
-                     (map :n :<C-j> (fn [] (ccls.navigate :R)))
-                     (map :n :<C-l> (fn [] (ccls.navigate :D)))
-                     (map :n :<C-h> (fn [] (ccls.navigate :U)))
-                     ;; ccla call
-                     (map :n :<space>ii (fn [] (ccls.call :caller)))
-                     (map :n :<space>io (fn [] (ccls.call :callee)))
+                     ;; ccls navigate
+                     (map :n :<C-k> #(ccls.navigate :L))
+                     (map :n :<C-j> #(ccls.navigate :R))
+                     (map :n :<C-l> #(ccls.navigate :D))
+                     (map :n :<C-h> #(ccls.navigate :U))
+                     ;; ccls call
+                     (map :n :<space>ii #(ccls.call :caller))
+                     (map :n :<space>io #(ccls.call :callee))
                      ;; ccls var
-                     (map :n :<space>vf (fn [] (ccls.ccls_var :field)))
-                     (map :n :<space>vl (fn [] (ccls.ccls_var :local)))
-                     (map :n :<space>vp (fn [] (ccls.ccls_var :parameter)))
+                     (map :n :<space>vf #(ccls.ccls_var :field))
+                     (map :n :<space>vl #(ccls.ccls_var :local))
+                     (map :n :<space>vp #(ccls.ccls_var :parameter))
                      ;; ccls member
-                     (map :n :<space>mv (fn [] (ccls.member :variables)))
-                     (map :n :<space>mf (fn [] (ccls.member :functions)))
-                     (map :n :<space>mt (fn [] (ccls.member :types)))
-                     ;; ccls inheritance
-                     (map :n :<space>ib (fn [] (ccls.inheritance :base)))
-                     (map :n :<space>id (fn [] (ccls.inheritance :derived)))
-                     ;; ccls references extend
-                     (map :n :<space>gw (fn [] (ccls.extend_ref :write)))
-                     (map :n :<space>gr (fn [] (ccls.extend_ref :read)))
-                     (map :n :<space>gm (fn [] (ccls.extend_ref :macro)))
-                     (map :n :<space>gn (fn [] (ccls.extend_ref :notcall)))))))})
+                     (map :n :<space>mv #(ccls.member :variables))
+                     (map :n :<space>mf #(ccls.member :functions))
+                     (map :n :<space>mt #(ccls.member :types))
+                     ;; ccls inheritance#
+                     (map :n :<space>ib #(ccls.inheritance :base))
+                     (map :n :<space>id #(ccls.inheritance :derived))
+                     ;; ccls references #
+                     (map :n :<space>gw #(ccls.extend_ref :write))
+                     (map :n :<space>gr #(ccls.extend_ref :read))
+                     (map :n :<space>gm #(ccls.extend_ref :macro))
+                     (map :n :<space>gn #(ccls.extend_ref :notcall))))))})
 
 (tset vim.lsp.handlers "textDocument/hover" (vim.lsp.with vim.lsp.handlers.hover {:border :single}))
 (tset vim.lsp.handlers "textDocument/signatureHelp" (vim.lsp.with vim.lsp.handlers.signature_help {:border :single}))
@@ -191,52 +192,49 @@
   (vim.api.nvim_create_autocmd
     :FileType
     {:pattern [:haskell :lhaskell]
-     :callback
-     (fn [] (vim.lsp.start
-              {:name "hls"
-               :cmd ["haskell-language-server-wrapper" "--lsp"]
-               :capabilities capabilities
-               :settings hls_config
-               :root_dir (root-pattern ["hie.yaml" "stack.yaml" "cabal.project" "*.cabal" "package.yaml"])
-               :lspinfo (fn [cfg]
-                          (var extra [])
-                          (let [on_stdout (fn [_ data _] (let [version (. data 1)] (table.insert extra (.. "version:   " version))))
-                                opts {:cwd cfg.cwd
-                                      :stdout_buffered true
-                                      :on_stdout on_stdout}
-                                chanid (vim.fn.jobstart [(. cfg.cmd 1) "--version"] opts)]
-                            (vim.fn.jobwait [chanid]))
-                          extra)
-               :single_file_support true
-               :flags flags}))})
+     :callback #(vim.lsp.start
+                  {:name "hls"
+                   :cmd ["haskell-language-server-wrapper" "--lsp"]
+                   :capabilities capabilities
+                   :settings hls_config
+                   :root_dir (root-pattern ["hie.yaml" "stack.yaml" "cabal.project" "*.cabal" "package.yaml"])
+                   :lspinfo (fn [cfg]
+                              (var extra [])
+                              (let [on_stdout (fn [_ data _] (let [version (. data 1)] (table.insert extra (.. "version:   " version))))
+                                    opts {:cwd cfg.cwd
+                                          :stdout_buffered true
+                                          :on_stdout on_stdout}
+                                    chanid (vim.fn.jobstart [(. cfg.cmd 1) "--version"] opts)]
+                                (vim.fn.jobwait [chanid]))
+                              extra)
+                   :single_file_support true
+                   :flags flags})})
 
   (vim.api.nvim_create_autocmd
     :FileType
     {:pattern [:ocaml :ocaml.menhir :ocaml.interface :ocaml.ocamllex :reason :dune]
-     :callback
-     (fn [] (vim.lsp.start
-              {:name "ocamllsp"
-               :cmd ["ocamllsp"]
-               :root_dir (root-pattern ["*.opam" "esy.json" "package.json" ".git" "dune-project" "dune-workspace"])
-               :get_language_id (fn [_ ftype]
-                                  (let [language_id_of
-                                        {:menhir :ocmal.menhir
-                                         :ocaml :ocaml
-                                         :ocamlinterface :ocaml.interface
-                                         :ocamllex :ocaml.ocamllex
-                                         :reason :reason
-                                         :dune :dune}]
-                                    (. language_id_of ftype)))
-               :flags flags}))})
+     :callback #(vim.lsp.start
+                  {:name "ocamllsp"
+                   :cmd ["ocamllsp"]
+                   :root_dir (root-pattern ["*.opam" "esy.json" "package.json" ".git" "dune-project" "dune-workspace"])
+                   :get_language_id (fn [_ ftype]
+                                      (let [language_id_of
+                                            {:menhir :ocmal.menhir
+                                             :ocaml :ocaml
+                                             :ocamlinterface :ocaml.interface
+                                             :ocamllex :ocaml.ocamllex
+                                             :reason :reason
+                                             :dune :dune}]
+                                        (. language_id_of ftype)))
+                   :flags flags})})
 
   (vim.api.nvim_create_autocmd
     :FileType
     {:pattern [:vim]
-     :callback
-     (fn [] (vim.lsp.start
-              {:name "vimls"
-               :cmd ["vim-language-server" "--stdio"]
-               :root_dir (root-pattern [".git"])
-               :init_options vimls-config
-               :single_file_support true
-               :flags flags}))}))
+     :callback #(vim.lsp.start
+                  {:name "vimls"
+                   :cmd ["vim-language-server" "--stdio"]
+                   :root_dir (root-pattern [".git"])
+                   :init_options vimls-config
+                   :single_file_support true
+                   :flags flags})}))

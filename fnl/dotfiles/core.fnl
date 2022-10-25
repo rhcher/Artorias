@@ -87,6 +87,6 @@
                               :command "cmap q <C-W>q"})
 (vim.api.nvim_create_autocmd [:TextYankPost]
                              {:group "init"
-                              :callback (fn [] (vim.highlight.on_yank {:higroup "Visual"
-                                                                       :timeout 150
-                                                                       :on_visual true}))})
+                              :callback #(vim.highlight.on_yank {:higroup "Visual"
+                                                                 :timeout 150
+                                                                 :on_visual true})})

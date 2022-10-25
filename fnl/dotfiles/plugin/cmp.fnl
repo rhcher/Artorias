@@ -62,11 +62,10 @@
                                     [{:name :buffer
                                       :keyword_length 3
                                       :option {:keyword_pattern "\\k\\+"
-                                               :get_bufnrs (fn []
-                                                             (let [bufs {}]
-                                                               (each [_ win (ipairs (vim.api.nvim_list_wins))]
-                                                                 (tset bufs (vim.api.nvim_win_get_buf win) true))
-                                                               (vim.tbl_keys bufs)))}}])})
+                                               :get_bufnrs #(let [bufs {}]
+                                                              (each [_ win (ipairs (vim.api.nvim_list_wins))]
+                                                                (tset bufs (vim.api.nvim_win_get_buf win) true))
+                                                              (vim.tbl_keys bufs))}}])})
     (cmp.setup.cmdline "/"
                        {:mapping (cmp.mapping.preset.cmdline)
                         :sources [{:name "buffer"}]})

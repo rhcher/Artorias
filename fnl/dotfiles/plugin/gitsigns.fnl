@@ -24,10 +24,10 @@
       (map :n :<leader>hu gs.undo_stage_hunk)
       (map :n :<leader>hR gs.reset_buffer)
       (map :n :<leader>hp gs.preview_hunk)
-      (map :n :<leader>hb (fn [] (gs.blame_line {:full true})))
+      (map :n :<leader>hb #(gs.blame_line {:full true}))
       (map :n :<leader>tb gs.toggle_current_line_blame)
       (map :n :<leader>hd gs.diffthis)
-      (map :n :<leader>hD (fn [] (gs.diffthis "~")))
+      (map :n :<leader>hD #(gs.diffthis "~"))
       (map :n :<leader>td gs.toggle_deleted)
       (map [:x :o] :ih ":<C-U>Gitsigns select_hunk<CR>"))))
 
