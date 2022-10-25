@@ -69,6 +69,8 @@
                      (map :n :<space>gr #(ccls.extend_ref :read))
                      (map :n :<space>gm #(ccls.extend_ref :macro))
                      (map :n :<space>gn #(ccls.extend_ref :notcall))))))})
+                     ;; (tset vim.lsp.handlers "$ccls/publishSemanticHighlight" ccls.semantic-hightlight-handler)
+                     ;; (tset vim.lsp.handlers "$ccls/publishSkippedRanges" ccls.skipped-ranges-handler)))))})
 
 (tset vim.lsp.handlers "textDocument/hover" (vim.lsp.with vim.lsp.handlers.hover {:border :single}))
 (tset vim.lsp.handlers "textDocument/signatureHelp" (vim.lsp.with vim.lsp.handlers.signature_help {:border :single}))
