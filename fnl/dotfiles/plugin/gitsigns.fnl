@@ -8,16 +8,18 @@
                 (var opts (or opts {}))
                 (tset opts :buffer bufnr)
                 (vim.keymap.set mode l r opts))]
-      (map :n "]c" (fn []
-                     (when vim.wo.diff
-                       (lua "return ']c'"))
-                     (vim.schedule (fn [] (gs.next_hunk)))
-                     "<Ignore>") {:expr true})
-      (map :n "[c" (fn []
-                     (when vim.wo.diff
-                       (lua "return '[c'"))
-                     (vim.schedule (fn [] (gs.prev_hunk)))
-                     "<Ignore>") {:expr true})
+      (map :n "]c" #(if vim.wo.diff
+                      "]c"
+                      (do
+                        (vim.schedule #(gs.next_hunk))
+                        "<Ignore>"))
+           {:expr true})
+      (map :n "[c" #(if vim.wo.diff
+                      "[c"
+                      (do
+                        (vim.schedule #(gs.prev_hunk))
+                        "<Ignore>"))
+           {:expr true})
       (map [:n :v] :<leader>hs gs.stage_hunk)
       (map [:n :v] :<leader>hr gs.reset_hunk)
       (map :n :<leader>hS gs.stage_buffer)
