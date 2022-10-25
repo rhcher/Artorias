@@ -1,6 +1,6 @@
-(module dotfiles.plugin.devicons
-  {autoload {devicons nvim-web-devicons}})
+(module dotfiles.plugin.devicons)
 
-(let [fnl-custom {:icon "" :color "#e6b439" :cterm_color "65" :name "fennel"}
-      fnl-alt {:icon "" :color "#7bc45c" :name "fennel"}]
-  (devicons.set_icon {:fnl fnl-alt}))
+(when-let [(_ devicons) (pcall require "nvim-web-devicons")]
+  (let [fnl-custom {:icon "" :color "#e6b439" :cterm_color "65" :name "fennel"}
+        fnl-alt {:icon "" :color "#7bc45c" :name "fennel"}]
+    (devicons.set_icon {:fnl fnl-alt})))

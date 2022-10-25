@@ -1,8 +1,8 @@
 (module dotfiles.plugin.move
-  {autoload {move gomove}
-   require-macros [dotfiles.macros]})
+  {require-macros [dotfiles.macros]})
 
-(move.setup {:map_defaults false})
+(when-let [(_ move) (pcall require "gomove")]
+  (move.setup {:map_defaults false}))
 
 (map :n "<A-n>" :<Plug>GoNSMLeft)
 (map :n "<A-m>" :<Plug>GoNSMDown)

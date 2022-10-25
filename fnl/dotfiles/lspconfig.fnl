@@ -2,11 +2,11 @@
   {autoload {util dotfiles.util
              cmplsp cmp_nvim_lsp
              lsp_util vim.lsp.util
-             a aniseed.core
-             saga lspsaga}})
+             a aniseed.core}})
 
-(saga.init_lsp_saga {:code_action_lightbulb {:sign_priority 99
-                                             :virtual_text false}})
+(when-let [(_ lspsaga) (pcall require "lspsaga")]
+  (lspsaga.init_lsp_saga {:code_action_lightbulb {:sign_priority 99
+                                                  :virtual_text false}}))
 
 (vim.api.nvim_create_autocmd
   :LspAttach

@@ -1,5 +1,4 @@
-(module dotfiles.plugin.indent
-  {autoload {:indent :indent_blankline}})
+(module dotfiles.plugin.indent)
 
 (def- gs
   {:char "│"
@@ -34,9 +33,12 @@
   (each [k v (pairs fennel-gs)]
     (tset vim.g (.. :indent_blankline_ k) v)))
 
-(indent.setup {:use_treesitter true
-               :context_patterns ["class" "function" "method" "^if" "^while" "^for" "^object" "^table"
-                                  "block" "arguments" "^attrset$" "^list$" "^let$" "^indented_string$"]
-               :filetype_exclude ["" "help" "fennel" "packer" "lspinfo" "tsplayground" "query" "scheme" "racket" "qf"]
-               :buftype_exclude ["terminal" "prompt" "toggleterm"]
-               :show_current_context true})
+(when-let [(_ indent) (pcall require "indent_blankline")]
+  (indent.setup {:use_treesitter true
+                 :use_treesitter_scope true
+                 :context_patterns ["class" "function" "method" "^if" "^while" "^for" "^object" "^table"
+                                    "block" "arguments" "^attrset$" "^list$" "^let$" "^indented_string$"]
+                 :filetype_exclude ["" "help" "fennel" "packer" "lspinfo" "tsplayground" "query" "scheme" "racket" "qf"]
+                 :buftype_exclude ["terminal" "prompt" "toggleterm"]
+                 :context_start_priority 90
+                 :show_current_context false}))

@@ -1,8 +1,8 @@
-(module dotfiles.plugin.bqf
-  {autoload {bqf bqf}})
+(module dotfiles.plugin.bqf)
 
-(bqf.setup {:preview {:auto_preview false}
-            :auto_resize_height true})
+(when-let [(_ bqf) (pcall require :bqf)]
+  (bqf.setup {:preview {:auto_preview false}
+              :auto_resize_height true}))
 
 ; pretty quicklist copy from nvim-bqf
 (fn _G.qftf [info]
