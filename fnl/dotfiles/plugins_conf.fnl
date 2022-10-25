@@ -1,16 +1,6 @@
 (module dotfiles.plugins_conf
   {require-macros [dotfiles.macros]})
 
-;; srcery
-(set vim.g.srcery_italic 1)
-
-;; oscyank
-(set vim.g.oscyank_silent true)
-
-;; sandwich plugin
-;; (vim.cmd "let g:sandwich#recipes = deepcopy(g:sandwich#default_recipes)")
-;; (vim.cmd "runtime macros/sandwich/keymap/surround.vim")
-
 ;; sexp plugin
 (set vim.g.sexp_filetypes "clojure,scheme,lisp,timl,fennel,janet,racket")
 (set vim.g.sexp_enable_insert_mode_mappings 0)
@@ -26,8 +16,14 @@
 (set vim.g.conjure#log#botright true)
 (set vim.g.conjure#client#scheme#stdio#command "petite")
 (set vim.g.conjure#client#scheme#stdio#prompt_pattern "> $?")
+(if (= (. (vim.fs.find "nvim" {:upward true}) 1)
+       (vim.fn.stdpath "config"))
+  (do
+    (set vim.g.conjure#mapping#doc_word "gk")
+    (set vim.g.conjure#filetype#fennel "conjure.client.fennel.aniseed"))
+  (set vim.g.conjure#filetype#fennel "conjure.client.fennel.stdio"))
+
 (set vim.g.conjure#client#scheme#stdio#value_prefix_pattern false)
-(set vim.g.conjure#mapping#doc_word "gk")
 
 ;; vim-haskell
 (set vim.g.haskell_indent_guard 2)
@@ -45,7 +41,7 @@
                                     :key_breakpoint ";b"})
 
 (let [plugins [:feline :matchparen :fidget :tabout
-               :neoscroll :Comment]]
+               :neoscroll :Comment :hlslens]]
   (each [_ plugin (ipairs plugins)]
     (when-let [(_ plug) (pcall require plugin)]
       (plug.setup {}))))
