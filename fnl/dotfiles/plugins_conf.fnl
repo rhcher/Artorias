@@ -56,7 +56,7 @@
                    :move_cursor false}))
 
 (when-let [(_ fzf) (pcall require :fzf-lua)]
-  (fzf.setup {:winopts {:split "belowright new"
+  (fzf.setup {:winopts {:split "bot new"
                         :border "single"}}))
 
 (when-let [(_ ufo) (pcall require :ufo)]
