@@ -123,6 +123,8 @@
             ;;                                   i
             ;;                                   0
             ;;                                   -1))
+            ;; TODO: this will confilict with other plugin using set_extmark api
+            ;; but nvim_buf_add_highlight works well
             (vim.api.nvim_buf_set_extmark (vim.api.nvim_get_current_buf)
                                           ns
                                           lsRange.start.line
