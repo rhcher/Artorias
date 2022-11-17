@@ -1,4 +1,5 @@
-(module dotfiles.plugin.cmp)
+(module dotfiles.plugin.cmp
+  {autoload {util dotfiles.util}})
 
 (def- underline
   (fn [entry1 entry2]
@@ -27,8 +28,6 @@
                                cmp.config.compare.score
                                cmp.config.compare.recently_used
                                cmp.config.compare.locality
-                               cmp.config.underline
-                               cmp.config.compare.kind
                                cmp.config.compare.length
                                cmp.config.compare.sort_text
                                cmp.config.compare.order]}
@@ -55,10 +54,8 @@
                                                  :before (fn [entry vim_item]
                                                            (tset vim_item :dup (or (. {:conjure 0} entry.source.name) 0))
                                                            vim_item)})} 
-       :sources (cmp.config.sources [{:name :nvim_lsp_signature_help}]
-                                    [{:name :path}]
+       :sources (cmp.config.sources [{:name :path}]
                                     [{:name :nvim_lsp}]
-                                    [{:name :conjure}]
                                     [{:name :buffer
                                       :keyword_length 3
                                       :option {:keyword_pattern "\\k\\+"
@@ -66,6 +63,9 @@
                                                               (each [_ win (ipairs (vim.api.nvim_list_wins))]
                                                                 (tset bufs (vim.api.nvim_win_get_buf win) true))
                                                               (vim.tbl_keys bufs))}}])})
+    (cmp.setup.filetype util.lisp-language
+                        {:sources [{:name "conjure"}
+                                   {:name "buffer"}]})
     (cmp.setup.cmdline "/"
                        {:mapping (cmp.mapping.preset.cmdline)
                         :sources [{:name "buffer"}]})
