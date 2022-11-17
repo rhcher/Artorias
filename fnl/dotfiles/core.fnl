@@ -27,7 +27,7 @@
 (set vim.opt.scrolloff 8)
 (set vim.opt.cursorline true)
 (set vim.opt.incsearch false)
-(vim.cmd "set diffopt+=internal,algorithm:patience")
+(vim.cmd "set diffopt+=linematch:60,algorithm:patience")
 (vim.cmd "set fo+=/")
 
 (if (= (vim.fn.executable "rg") 1)
