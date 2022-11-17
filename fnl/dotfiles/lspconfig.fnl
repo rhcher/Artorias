@@ -118,6 +118,11 @@
                      :pyls_isort {:enabled true}
                      :pylsp_mypy {:enabled true}}}})
 
+(def- pyright_config
+  {:python {:analysis {:autoSearchPaths true
+                       :useLibraryCodeForTypes true
+                       :diagnositcMode "workspace"}}})
+
 (def- hls_config
   {:haskell {:formattingProvider "ormolu"}})
 
@@ -145,6 +150,11 @@
   (set capabilities.textDocument.foldingRange {:dynamicRegistration false
                                                :lineFoldingOnly true})
   capabilities)
+
+(defn safe-start [config]
+  (let [bufnr (vim.api.nvim_get_current_buf)]
+    (when (not= (vim.api.nvim_buf_get_option bufnr "buftype") "nofile")
+      (config))))
 
 (let [root-pattern (fn [patterns]
                      (vim.fs.dirname

@@ -1,10 +1,3 @@
-(module dotfiles.ftplugin.cpp
-  {autoload {lsp dotfiles.plugin.lspconfig}})
+(module dotfiles.ftplugin.cpp)
 
-(vim.lsp.start
-  {:name "ccls"
-   :cmd ["ccls"]
-   :capabilities (lsp.capabilities)
-   :init_options lsp.ccls_config
-   :root_dir (lsp.root-pattern [".ccls" "compile-commands.json" ".ccls-root" ".git"])
-   :flags lsp.flags}) 
+(pcall require "dotfiles.ftplugin.c")
