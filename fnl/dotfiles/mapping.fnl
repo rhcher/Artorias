@@ -77,21 +77,6 @@
 (map :n :<leader>gg ":Git<CR><C-w>o")
 (map :n :<leader>ou ":UndotreeShow<cr>:UndotreeFocus<cr>")
 
-(let [fzf (require "fzf-lua")]
-  (map :n :<leader>ff fzf.files)
-  (map :n :<leader>fp #(fzf.files {:cwd "~/.config/nvim/"}))
-  (map :n :<leader>fs fzf.live_grep_native)
-  (map :n :<leader>fb fzf.buffers)
-  (map :n :<leader>bb fzf.buffers)
-  (map :n :<leader>fh fzf.help_tags)
-  (map :n :<leader>fk fzf.keymaps)
-  (map :n :<leader>fl fzf.blines)
-  (map :n :<leader>pl fzf.lines)
-  (map :n :<leader>fo fzf.oldfiles)
-  (map :n :<leader>fc fzf.commands)
-  (map :n :<leader>fq fzf.quickfix)
-  (map :n :<leader>fg fzf.git_bcommits))
-
 (vim.api.nvim_create_autocmd [:FileType]
                              {:pattern [:git :qf :man :help :lspinfo :fugitive :gitcommit]
                               :command "nnoremap <buffer><silent> q :close<CR>"})
