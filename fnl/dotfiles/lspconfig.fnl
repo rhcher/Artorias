@@ -2,75 +2,86 @@
   {autoload {util dotfiles.util
              cmplsp cmp_nvim_lsp
              lsp_util vim.lsp.util
+             semantic dotfiles.semanticTokens
              a aniseed.core}})
 
 (when-let [(_ lspsaga) (pcall require "lspsaga")]
   (lspsaga.init_lsp_saga {:code_action_lightbulb {:sign_priority 99
                                                   :virtual_text false}}))
 
-(vim.api.nvim_create_autocmd
-  :LspAttach
-  {:callback (fn [args]
-               (let [bufnr args.buf
-                     client (vim.lsp.get_client_by_id args.data.client_id)
-                     keymap (fn [mode from to] (vim.keymap.set mode from to {:buffer bufnr :noremap true :silent true}))]
-                 (when client.server_capabilities.documentFormattingProvider
-                   (keymap [:n :v] :<leader>lf vim.lsp.buf.format {:async true}))
+(vim.api.nvim_create_autocmd :LspAttach
+  {:callback
+   (fn [args]
+     (let [bufnr args.buf
+           client (vim.lsp.get_client_by_id args.data.client_id)
+           keymap (fn [mode from to] (vim.keymap.set mode from to {:buffer bufnr :noremap true :silent true}))]
+       (when client.server_capabilities.documentFormattingProvider
+         (keymap [:n :v] :<leader>lf vim.lsp.buf.format {:async true}))
 
-                 (when client.server_capabilities.callHierarchyProvider
-                   (keymap :n :<leader>ii vim.lsp.buf.incoming_calls)
-                   (keymap :n :<leader>io vim.lsp.buf.outgoing_calls))
+       (when client.server_capabilities.callHierarchyProvider
+         (keymap :n :<leader>ii vim.lsp.buf.incoming_calls)
+         (keymap :n :<leader>io vim.lsp.buf.outgoing_calls))
 
-                 (when client.server_capabilities.documentSymbolProvider
-                   (keymap :n :<leader>lw vim.lsp.buf.document_symbol))
+       (when client.server_capabilities.documentSymbolProvider
+         (keymap :n :<leader>lw vim.lsp.buf.document_symbol))
 
-                 (when client.server_capabilities.workspaceSymbolProvider
-                   (keymap :n :<leader>lW vim.lsp.buf.workspace_symbol))
+       (when client.server_capabilities.workspaceSymbolProvider
+         (keymap :n :<leader>lW vim.lsp.buf.workspace_symbol))
 
-                 (when client.server_capabilities.codeActionProvider
-                   (keymap [:n :v] :<leader>la "<cmd>Lspsaga code_action<CR>"))
+       (when client.server_capabilities.codeActionProvider
+         (keymap [:n :v] :<leader>la "<cmd>Lspsaga code_action<CR>"))
 
-                 (when client.server_capabilities.codeLensProvider
-                   (vim.api.nvim_create_autocmd [:BufEnter :CursorHold :InsertLeave]
-                                                {:buffer bufnr
-                                                 :callback vim.lsp.codelens.refresh})
-                   (keymap :n :<space>ll vim.lsp.codelens.run))
-                 (keymap :n :gd vim.lsp.buf.definition)
-                 (keymap :n :gD vim.lsp.buf.declaration)
-                 (keymap :n :gi vim.lsp.buf.implementation)
-                 (keymap :n :gr #(vim.lsp.buf.references {:includeDeclaration false}))
-                 (keymap :n :K vim.lsp.buf.hover)
-                 (keymap :n :<leader>lr ":Lspsaga rename<CR>")
+       (when client.server_capabilities.codeLensProvider
+         (vim.api.nvim_create_autocmd [:BufEnter :CursorHold :InsertLeave]
+                                      {:buffer bufnr
+                                       :callback vim.lsp.codelens.refresh})
+         (keymap :n :<space>ll vim.lsp.codelens.run))
 
-                 (when (= client.name :ccls)
-                   (let [ccls (require "dotfiles.ccls")
-                         map util.luamap]
-                     ;; ccls navigate
-                     (map :n :<C-k> #(ccls.navigate :L))
-                     (map :n :<C-j> #(ccls.navigate :R))
-                     (map :n :<C-l> #(ccls.navigate :D))
-                     (map :n :<C-h> #(ccls.navigate :U))
-                     ;; ccls call
-                     (map :n :<space>ii #(ccls.call :caller))
-                     (map :n :<space>io #(ccls.call :callee))
-                     ;; ccls var
-                     (map :n :<space>vf #(ccls.ccls_var :field))
-                     (map :n :<space>vl #(ccls.ccls_var :local))
-                     (map :n :<space>vp #(ccls.ccls_var :parameter))
-                     ;; ccls member
-                     (map :n :<space>mv #(ccls.member :variables))
-                     (map :n :<space>mf #(ccls.member :functions))
-                     (map :n :<space>mt #(ccls.member :types))
-                     ;; ccls inheritance#
-                     (map :n :<space>ib #(ccls.inheritance :base))
-                     (map :n :<space>id #(ccls.inheritance :derived))
-                     ;; ccls references #
-                     (map :n :<space>gw #(ccls.extend_ref :write))
-                     (map :n :<space>gr #(ccls.extend_ref :read))
-                     (map :n :<space>gm #(ccls.extend_ref :macro))
-                     (map :n :<space>gn #(ccls.extend_ref :notcall))))))})
-                     ;; (tset vim.lsp.handlers "$ccls/publishSemanticHighlight" ccls.semantic-hightlight-handler)
-                     ;; (tset vim.lsp.handlers "$ccls/publishSkippedRanges" ccls.skipped-ranges-handler)))))})
+       (when (and client.server_capabilities.semanticTokensProvider client.server_capabilities.semanticTokensProvider.full)
+         (let [aug (vim.api.nvim_create_augroup "SemanticTokens" {:clear true})]
+           (vim.api.nvim_clear_autocmds {:group aug
+                                         :buffer bufnr})
+           (vim.api.nvim_create_autocmd [:BufEnter :InsertLeave :CursorHold]
+                                        {:group aug
+                                         :buffer bufnr
+                                         :callback #(vim.lsp.buf.semantic_tokens_full)})))
+
+       (keymap :n :gd vim.lsp.buf.definition)
+       (keymap :n :gD vim.lsp.buf.declaration)
+       (keymap :n :gi vim.lsp.buf.implementation)
+       (keymap :n :gr #(vim.lsp.buf.references {:includeDeclaration false}))
+       (keymap :n :K vim.lsp.buf.hover)
+       (keymap :n :<leader>lr ":Lspsaga rename<CR>")
+
+       (when (= client.name :ccls)
+         (let [ccls (require "dotfiles.ccls")
+               map util.luamap]
+           ;; ccls navigate
+           (map :n :<C-k> #(ccls.navigate :L))
+           (map :n :<C-j> #(ccls.navigate :R))
+           (map :n :<C-l> #(ccls.navigate :D))
+           (map :n :<C-h> #(ccls.navigate :U))
+           ;; ccls call
+           (map :n :<space>ii #(ccls.call :caller))
+           (map :n :<space>io #(ccls.call :callee))
+           ;; ccls var
+           (map :n :<space>vf #(ccls.ccls_var :field))
+           (map :n :<space>vl #(ccls.ccls_var :local))
+           (map :n :<space>vp #(ccls.ccls_var :parameter))
+           ;; ccls member
+           (map :n :<space>mv #(ccls.member :variables))
+           (map :n :<space>mf #(ccls.member :functions))
+           (map :n :<space>mt #(ccls.member :types))
+           ;; ccls inheritance#
+           (map :n :<space>ib #(ccls.inheritance :base))
+           (map :n :<space>id #(ccls.inheritance :derived))
+           ;; ccls references #
+           (map :n :<space>gw #(ccls.extend_ref :write))
+           (map :n :<space>gr #(ccls.extend_ref :read))
+           (map :n :<space>gm #(ccls.extend_ref :macro))
+           (map :n :<space>gn #(ccls.extend_ref :notcall))))))})
+           ;; (tset vim.lsp.handlers "$ccls/publishSemanticHighlight" ccls.semantic-hightlight-handler)
+           ;; (tset vim.lsp.handlers "$ccls/publishSkippedRanges" ccls.skipped-ranges-handler)))))})
 
 (tset vim.lsp.handlers "textDocument/hover" (vim.lsp.with vim.lsp.handlers.hover {:border :single}))
 (tset vim.lsp.handlers "textDocument/signatureHelp" (vim.lsp.with vim.lsp.handlers.signature_help {:border :single}))
@@ -78,10 +89,8 @@
 (def ccls_config
   {:capabilities {:foldingRangeProvider true
                   :workspace {:wordspaceFolders {:support true}}}
-   :index {:onChange false
-           :threads (a.count (vim.loop.cpu_info))
+   :index {:threads (a.count (vim.loop.cpu_info))
            :initialNoLinkage true
-           :maxInitializerLines 50
            :initialBlacklist ["/(clang|lld|llvm)/(test|unittests)/"
                               "/llvm/(bindings|examples|utils)/"
                               "/StaticAnalyzer/"]}
@@ -94,7 +103,8 @@
 
 (def sumneko_lua_config
   {:Lua {:diagnostics {:enable true :globals [:vim]}
-         :completion {:callSnippet :Replace}
+         :completion {:callSnippet :Replace
+                      :showWord :Disable}
          :runtime {:version :LuaJIT}
          :IntelliSense {:traceLocalSet true
                         :traceReturn true
@@ -147,6 +157,7 @@
 
 (defn capabilities []
   (var capabilities (cmplsp.default_capabilities))
+  (set capabilities (semantic.extend-capabilities capabilities))
   (set capabilities.textDocument.foldingRange {:dynamicRegistration false
                                                :lineFoldingOnly true})
   capabilities)
@@ -163,44 +174,6 @@
   (var capabilities (cmplsp.default_capabilities))
   (set capabilities.textDocument.foldingRange {:dynamicRegistration false
                                                :lineFoldingOnly true})
-  ;; (vim.api.nvim_create_autocmd
-  ;;   :FileType
-  ;;   {:pattern [:c :cpp]
-  ;;    :callback
-  ;;    (fn [] (vim.lsp.start
-  ;;              {:name "ccls"
-  ;;               :cmd ["ccls"]
-  ;;               :capabilities capabilities
-  ;;               :init_options ccls_config
-  ;;               :root_dir (root-pattern [".ccls" "compile-commands.json" ".ccls-root" ".git"])
-  ;;               :flags flags}))})
-
-  ;; (vim.api.nvim_create_autocmd
-  ;;   :FileType
-  ;;   {:pattern [:lua]
-  ;;    :callback
-  ;;    (fn [] (vim.lsp.start
-  ;;             {:name "sumneko_lua"
-  ;;              :cmd ["/home/rhcher/sources/lua-language-server/bin/lua-language-server"]
-  ;;              :capabilities capabilities
-  ;;              :settings sumneko_lua_config
-  ;;              :root_dir (root-pattern [".luarc.json" ".luacheckrc" ".stylua.toml" "stylua.toml" "selene.toml" ".git"])
-  ;;              :single_file_support true
-  ;;              :flags flags}))})
-
-  ;; (vim.api.nvim_create_autocmd
-  ;;   :FileType
-  ;;   {:pattern [:python]
-  ;;    :callback
-  ;;    (fn [] (vim.lsp.start
-  ;;             {:name "pylsp"
-  ;;              :cmd ["pylsp"]
-  ;;              :capabilities capabilities
-  ;;              :settings pylsp_config
-  ;;              :root_dir (root-pattern [".git"])
-  ;;              :single_file_support true
-  ;;              :flags flags}))})
-  ;;
   (vim.api.nvim_create_autocmd
     :FileType
     {:pattern [:haskell :lhaskell]
