@@ -24,7 +24,7 @@
 (set vim.opt.numberwidth 2)
 (set vim.opt.signcolumn "yes")
 (set vim.opt.undofile true)
-(set vim.opt.scrolloff 4)
+(set vim.opt.scrolloff 8)
 (set vim.opt.cursorline true)
 (set vim.opt.incsearch false)
 (vim.cmd "set diffopt+=internal,algorithm:patience")
@@ -40,7 +40,7 @@
 (set vim.opt.ruler false)
 
 (set vim.opt.hidden true)
-(set vim.opt.updatetime 100)
+(set vim.opt.updatetime 50)
 (set vim.opt.clipboard "unnamedplus")
 (set vim.opt.laststatus 3)
 (set vim.opt.redrawtime 1500)
@@ -78,7 +78,7 @@
                              :* "win32yank.exe -i --crlf"}
                       :paste {:+ "win32yank.exe -o --lf"
                               :* "win32yank.exe -o --lf"}
-                      :cache_enable false})
+                      :cache_enable true})
 
 (vim.api.nvim_create_augroup "init" {})
 (vim.api.nvim_create_autocmd [:CmdWinEnter]
