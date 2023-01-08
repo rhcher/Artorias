@@ -36,16 +36,7 @@
          (vim.api.nvim_create_autocmd [:BufEnter :CursorHold :InsertLeave]
                                       {:buffer bufnr
                                        :callback vim.lsp.codelens.refresh})
-         (keymap :n :<space>ll vim.lsp.codelens.run))
-
-       (when (and client.server_capabilities.semanticTokensProvider client.server_capabilities.semanticTokensProvider.full)
-         (let [aug (vim.api.nvim_create_augroup "SemanticTokens" {:clear true})]
-           (vim.api.nvim_clear_autocmds {:group aug
-                                         :buffer bufnr})
-           (vim.api.nvim_create_autocmd [:BufEnter :InsertLeave :CursorHold]
-                                        {:group aug
-                                         :buffer bufnr
-                                         :callback #(vim.lsp.buf.semantic_tokens_full)})))
+         (keymap :n :<leader>ll vim.lsp.codelens.run))
 
        (keymap :n :gd vim.lsp.buf.definition)
        (keymap :n :gD vim.lsp.buf.declaration)
@@ -80,18 +71,47 @@
            (map :n :<space>gw #(ccls.extend_ref :write))
            (map :n :<space>gr #(ccls.extend_ref :read))
            (map :n :<space>gm #(ccls.extend_ref :macro))
-           (map :n :<space>gn #(ccls.extend_ref :notcall))))))})
+           (map :n :<space>gn #(ccls.extend_ref :notcall))
            ;; (tset vim.lsp.handlers "$ccls/publishSemanticHighlight" ccls.semantic-hightlight-handler)
            ;; (tset vim.lsp.handlers "$ccls/publishSkippedRanges" ccls.skipped-ranges-handler)))))})
 
-(tset vim.lsp.handlers "textDocument/hover" (vim.lsp.with vim.lsp.handlers.hover {:border :single}))
+           (let [timeout (vim.api.nvim_create_augroup "LspTimeOut" {:clear true})
+                 delete-empty-lsp-clients #(let [clients (vim.lsp.get_active_clients)]
+                                             (each [_ client (ipairs clients)]
+                                               (local bufs (vim.lsp.get_buffers_by_client_id client.id))
+                                               (when (= (length bufs) 0)
+                                                 (print (.. "stopping LSP client " client.name))
+                                                 (client:stop))))]
+             (vim.api.nvim_create_autocmd "BufDelete"
+                                          {:group timeout
+                                           :pattern "*"
+                                           :callback #(vim.defer_fn delete-empty-lsp-clients 5000)}))
+
+           (let [lsp-cancel (vim.api.nvim_create_augroup "LspCancelRequest" {})
+                 lsp-cancel-pending-requests (fn [bufnr]
+                                               (vim.schedule #(let [bufnr (if (or (= bufnr nil) (= bufnr 0))
+                                                                            (vim.api.nvim_get_current_buf)
+                                                                            bufnr)]
+                                                                (each [_ client (ipairs (vim.lsp.get_active_clients {:bufnr bufnr}))]
+                                                                  (each [id request (pairs (or client.requests {}))]
+                                                                    (when (and (= request.type "pending")
+                                                                               (= request.bufnr bufnr)
+                                                                               (not (request.method:match "semanticTokens")))
+                                                                      (client.cancel_request id)))))))]
+             (vim.api.nvim_create_autocmd ["CursorMoved" "BufLeave"]
+                                          {:group lsp-cancel
+                                           :buffer bufnr
+                                           :callback #(lsp-cancel-pending-requests)
+                                           :desc "lsp.cancel_pending_requests"}))))))})
+
 (tset vim.lsp.handlers "textDocument/hover" (vim.lsp.with vim.lsp.handlers.hover {:border :single :title "hover" :title_pos "left"}))
 (tset vim.lsp.handlers "textDocument/signatureHelp" (vim.lsp.with vim.lsp.handlers.signature_help {:border :single}))
 
 (def ccls_config
-  {:capabilities {:foldingRangeProvider true
-                  :workspace {:wordspaceFolders {:support true}}}
-   :index {:threads (a.count (vim.loop.cpu_info))
+  {:capabilities {:foldingRangeProvider false
+                  :workspace {:workspaceFolders {:supported false}}}
+   :index {:threads 4
+           ;; :threads (a.count (vim.loop.cpu_info))
            :initialNoLinkage true
            :initialBlacklist ["/(clang|lld|llvm)/(test|unittests)/"
                               "/llvm/(bindings|examples|utils)/"
