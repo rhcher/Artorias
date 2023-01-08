@@ -24,6 +24,7 @@
                                        "<ESC>I") {:expr true})))
 
 (map :n :<leader>bS ":SudaWrite<CR>")
+(map :n :<leader><leader> ":Inspect!<CR>")
 
 ;; terminal-mode
 (map :t :<a-h> :<C-\><C-n><C-w>h)
