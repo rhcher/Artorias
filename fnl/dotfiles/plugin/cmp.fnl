@@ -29,7 +29,6 @@
                                cmp.config.compare.recently_used
                                cmp.config.compare.locality
                                cmp.config.compare.length
-                               cmp.config.compare.sort_text
                                cmp.config.compare.order]}
        :experimental {:ghost_text true}
        :window {:documentation cmp-window-opts
