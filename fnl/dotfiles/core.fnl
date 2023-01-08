@@ -78,7 +78,7 @@
                              :* "win32yank.exe -i --crlf"}
                       :paste {:+ "win32yank.exe -o --lf"
                               :* "win32yank.exe -o --lf"}
-                      :cache_enable true})
+                      :cache_enable false})
 
 (vim.api.nvim_create_augroup "init" {})
 (vim.api.nvim_create_autocmd [:CmdWinEnter]

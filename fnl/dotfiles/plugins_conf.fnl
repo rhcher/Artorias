@@ -19,7 +19,7 @@
 (if (= (. (vim.fs.find "nvim" {:upward true}) 1)
        (vim.fn.stdpath "config"))
   (do
-    (set vim.g.conjure#mapping#doc_word "gk")
+    (set vim.g.conjure#mapping#doc_word false)
     (set vim.g.conjure#filetype#fennel "conjure.client.fennel.aniseed"))
   (set vim.g.conjure#filetype#fennel "conjure.client.fennel.stdio"))
 
@@ -92,4 +92,3 @@
 
 (when-let [(_ neogen) (pcall require :neogen)]
   (neogen.setup {:snippet_engine :snippy}))
-
