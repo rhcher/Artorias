@@ -7,7 +7,7 @@
       :cmd ["ccls"]
       :capabilities (lsp.capabilities)
       :init_options lsp.ccls_config
-      :root_dir (lsp.root-pattern [".ccls" "compile-commands.json" ".ccls-root" ".git"])
+      :root_dir (lsp.root-pattern [".ccls-root" "compile_commands.json" ".git"])
       :flags lsp.flags}))
 
 (defn clangd-capabilities []
@@ -16,15 +16,11 @@
   (tset capabilities :offsetEncoding ["utf-8" "utf-16"])
   capabilities)
 
-;; (defn start []
-;;   (local bufnr (vim.api.nvim_get_current_buf))
-;;   (when (not= (vim.api.nvim_buf_get_option bufnr "buftype") "nofile")
-;;     (vim.lsp.start
-;;       {:name "clangd"
-;;        :cmd ["clangd" "--header-insertion=never" "--background-index" "--cross-file-rename"]
-;;        :capabilities (clangd-capabilities)
-;;        :root_dir (lsp.root-pattern [".clangd" ".clang-tidy" ".clang-format" "compile-commands.json" "compile_flags.txt" "configure.ac"])
-;;        :single_support true
-;;        :flags lsp.flags})))
-
-;; (start)
+;; (lsp.safe-start
+;;   #(vim.lsp.start
+;;      {:name "clangd"
+;;       :cmd ["clangd" "--header-insertion=never" "--background-index" "--cross-file-rename"]
+;;       :capabilities (clangd-capabilities)
+;;       :root_dir (lsp.root-pattern [".clangd" ".clang-tidy" ".clang-format" "compile_commands.json" "compile_flags.txt" "configure.ac"])
+;;       :single_support true
+;;       :flags lsp.flags}))
