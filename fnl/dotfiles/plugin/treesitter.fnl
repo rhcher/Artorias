@@ -5,7 +5,7 @@
     {:ensure_installed [:c :cpp :rust :lua :python :cmake 
                         :vim :fennel :query :ocaml :ocaml_interface :haskell :scheme]
      :highlight {:enable true
-                 :disable [:c :cpp :help]
+                 :disable [:c :cpp :help :lua]
                  :additional_vim_regex_highlighting false}
      :indent {:enable false}
      :textobjects {:select {:enable true
