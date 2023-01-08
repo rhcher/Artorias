@@ -7,7 +7,8 @@
 
 (when-let [(_ lspsaga) (pcall require "lspsaga")]
   (lspsaga.init_lsp_saga {:code_action_lightbulb {:sign_priority 99
-                                                  :virtual_text false}}))
+                                                  :virtual_text false}
+                          :symbol_in_winbar {:enable true}}))
 
 (vim.api.nvim_create_autocmd :LspAttach
   {:callback
