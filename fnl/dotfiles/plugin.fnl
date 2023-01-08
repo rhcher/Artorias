@@ -27,7 +27,8 @@
 (use
   :Olical/aniseed {:branch :develop}
   :Olical/conjure {:branch :develop}
-  :rhcher/srcery-vim {}
+  :rhcher/srcery.nvim {}
+  :rebelot/kanagawa.nvim {}
   :rhcher/vim-paper {:opt true}
   :nvim-lua/plenary.nvim {}
   :wbthomason/packer.nvim {}
@@ -39,7 +40,6 @@
                                 :hrsh7th/cmp-path
                                 :PaterJason/cmp-conjure
                                 :hrsh7th/cmp-cmdline
-                                :hrsh7th/cmp-nvim-lsp-signature-help
                                 :onsails/lspkind-nvim]
                      :mod :cmp}
   :dcampos/nvim-snippy {}
@@ -56,6 +56,7 @@
   :kyazdani42/nvim-web-devicons {:mod :devicons}
   :nvim-tree/nvim-tree.lua {:mod :nvimtree :requires :kyazdani42/nvim-web-devicons}
   :gpanders/nvim-parinfer {:ft util.lisp-language}
+  ;; :eraserhd/parinfer-rust {:ft util.lisp-language :run "cargo build --release"}
   :kevinhwang91/nvim-bqf {:mod :bqf}
   :wellle/targets.vim {}
   :kylechui/nvim-surround {}
@@ -84,13 +85,15 @@
   :danymat/neogen {}
   :kevinhwang91/nvim-hlslens {:event :CmdlineEnter}
   :kazhala/close-buffers.nvim {:mod :close_buffers}
-  :jackguo380/vim-lsp-cxx-highlight {:ft [:c :cpp]}
-  :glepnir/lspsaga.nvim {}
+  :/home/rhcher/workspace/vim-lsp-cxx-highlight/ {:ft [:c :cpp]}
+  :glepnir/lspsaga.nvim {:branch :version_2.3}
   :anuvyklack/hydra.nvim {:mod :hydra :requires [:anuvyklack/keymap-layer.nvim]}
   :kevinhwang91/nvim-ufo {:requires [:kevinhwang91/promise-async]}
   :lukas-reineke/indent-blankline.nvim {:mod :indent}
   :mrjones2014/smart-splits.nvim {}
   :dhruvasagar/vim-table-mode {:cmd :TableModeToggle}
-  :abecodes/tabout.nvim {}
+  :abecodes/tabout.nvim {:wants "nvim-treesitter" :after "nvim-cmp"}
   :sakhnik/nvim-gdb {:run "./install.sh"}
-  :RRethy/vim-illuminate {})
+  :RRethy/vim-illuminate {}
+  :neovim/nvim-lspconfig {}
+  :cshuaimin/ssr.nvim {:module "ssr"})
