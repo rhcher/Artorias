@@ -7,7 +7,7 @@
 ((symbol) @function.macro
           (#any-of? @function.macro
            "->" "->>" "-?>" "-?>>" "?." "doto" "macro" "macrodebug" "partial" "pick-args"
-           "pick-values" "with-open"))
+           "pick-values" "with-open" "module"))
 
 ; ((symbol) @include
 ;           (#any-of? @include
@@ -21,6 +21,6 @@
 
 ((list .
    (symbol) @keyword)
- (#any-of? @keyword "def" "def-" "when-let" "if-let"))
+ (#any-of? @keyword "def" "def-" "when-let" "if-let" "defonce" "defonce-"))
 
 ((symbol) @include (#eq? @include "autoload"))
