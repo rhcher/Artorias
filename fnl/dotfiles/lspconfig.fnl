@@ -2,7 +2,6 @@
   {autoload {util dotfiles.util
              cmplsp cmp_nvim_lsp
              lsp_util vim.lsp.util
-             semantic dotfiles.semanticTokens
              a aniseed.core}})
 
 (when-let [(_ lspsaga) (pcall require "lspsaga")]
@@ -72,8 +71,6 @@
            (map :n :<space>gr #(ccls.extend_ref :read))
            (map :n :<space>gm #(ccls.extend_ref :macro))
            (map :n :<space>gn #(ccls.extend_ref :notcall))
-           ;; (tset vim.lsp.handlers "$ccls/publishSemanticHighlight" ccls.semantic-hightlight-handler)
-           ;; (tset vim.lsp.handlers "$ccls/publishSkippedRanges" ccls.skipped-ranges-handler)))))})
 
            (let [timeout (vim.api.nvim_create_augroup "LspTimeOut" {:clear true})
                  delete-empty-lsp-clients #(let [clients (vim.lsp.get_active_clients)]
@@ -179,7 +176,6 @@
 
 (defn capabilities []
   (var capabilities (cmplsp.default_capabilities))
-  (set capabilities (semantic.extend-capabilities capabilities))
   (set capabilities.textDocument.foldingRange {:dynamicRegistration false
                                                :lineFoldingOnly true})
   capabilities)
