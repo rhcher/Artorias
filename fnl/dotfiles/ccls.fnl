@@ -97,11 +97,10 @@
                       {:character character_end :line line_end} end
                       {:character character_start :line line_start} start]
                   (print "end: {" character_end line_end "}\n")
-                  (print "start: {" character_start line_start "}"))))
-              ;; (print (.. id " " kind " " lsRanges " " parentKind " " storage)))
-            (print "hell"))
-          (print "hello")
-          (print "hello"))))))
+                  (print "start: {" character_start line_start "}")))))
+          (print "hell"))
+        (print "hello")
+        (print "hello")))))
 
 (def skipped-ranges-handler
   (fn [err result ctx config]
@@ -116,15 +115,6 @@
                                             -1)
           {: skippedRanges : uri}
           (each [_ lsRange (ipairs skippedRanges)]
-            ;; (for [i lsRange.start.line lsRange.end.line]
-            ;;   (vim.api.nvim_buf_add_highlight (vim.api.nvim_get_current_buf)
-            ;;                                   ns
-            ;;                                   "Comment"
-            ;;                                   i
-            ;;                                   0
-            ;;                                   -1))
-            ;; TODO: this will confilict with other plugin using set_extmark api
-            ;; but nvim_buf_add_highlight works well
             (vim.api.nvim_buf_set_extmark (vim.api.nvim_get_current_buf)
                                           ns
                                           lsRange.start.line
