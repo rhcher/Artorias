@@ -8,7 +8,9 @@
                                 :prefix ""
                                 :source :if_many
                                 :focusable false
-                                :border :single}})
+                                :border :single
+                                :title "Diagnostic:"
+                                :title_pos "left"}})
 
 (let [signs {:Error " " :Warn " " :Hint " " :Info " "}]
   (each [type icon (pairs signs)]
