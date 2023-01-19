@@ -47,12 +47,13 @@
       (plug.setup {}))))
 
 (when-let [(_ surround) (pcall require :nvim-surround)]
-  (surround.setup {:surrounds {"(" {:add ["(" ")"]}
-                               ")" {:add ["( " " )"]}
-                               "{" {:add ["{" "}"]}
-                               "}" {:add ["{ " " }"]}
-                               "[" {:add ["[" "]"]}
-                               "]" {:add ["[ " " ]"]}}
+  (surround.setup {
+                   ;; :surrounds {"(" {:add ["(" ")"]}
+                   ;;             ")" {:add ["( " " )"]}
+                   ;;             "{" {:add ["{" "}"]}
+                   ;;             "}" {:add ["{ " " }"]}
+                   ;;             "[" {:add ["[" "]"]}
+                   ;;             "]" {:add ["[ " " ]"]}}
                    :move_cursor false}))
 
 (when-let [(_ fzf) (pcall require :fzf-lua)]
