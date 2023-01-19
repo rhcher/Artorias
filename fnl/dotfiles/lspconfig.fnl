@@ -41,7 +41,10 @@
        (keymap :n :gD vim.lsp.buf.declaration)
        (keymap :n :gi vim.lsp.buf.implementation)
        (keymap :n :gr #(vim.lsp.buf.references {:includeDeclaration false}))
-       (keymap :n :K vim.lsp.buf.hover)
+       (keymap :n :K #(let [ufo (require :ufo)
+                            winid (ufo.peekFoldedLinesUnderCursor)]
+                        (when (not winid)
+                           (vim.lsp.buf.hover))))
        (keymap :n :<leader>lr ":Lspsaga rename<CR>")
 
        (when (= client.name :ccls)
