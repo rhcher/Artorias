@@ -72,8 +72,11 @@
 (map :n :g* "g*<Cmd>lua require('hlslens').start()<CR>")
 (map :n :g# "g#<Cmd>lua require('hlslens').start()<CR>")
 
-(map :n :<leader>e ":NvimTreeToggle<CR>")
-(map :n :<leader>r ":NvimTreeRefresh<CR>")
+;; (map :n :<leader>e ":NvimTreeToggle<CR>")
+;; (map :n :<leader>r ":NvimTreeRefresh<CR>")
+
+(map :n :<leader>e ":Oil<CR>")
+;; (map :n :<leader>r ":NvimTreeRefresh<CR>")
 
 (map :n :<leader>gg ":Git<CR><C-w>o")
 (map :n :<leader>ou ":UndotreeShow<cr>:UndotreeFocus<cr>")

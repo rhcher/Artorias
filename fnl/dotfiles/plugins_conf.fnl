@@ -98,3 +98,6 @@
 
 (when-let [(_ neogen) (pcall require :neogen)]
   (neogen.setup {:snippet_engine :snippy}))
+
+(when-let [(_ oil) (pcall require :oil)]
+  (oil.setup))

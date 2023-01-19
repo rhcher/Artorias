@@ -54,7 +54,8 @@
   :tpope/vim-fugitive {}
   :wlangstroth/vim-racket {:ft :scheme}
   :kyazdani42/nvim-web-devicons {:mod :devicons}
-  :nvim-tree/nvim-tree.lua {:mod :nvimtree :requires :kyazdani42/nvim-web-devicons}
+  ;; :nvim-tree/nvim-tree.lua {:mod :nvimtree :requires :kyazdani42/nvim-web-devicons}
+  :stevearc/oil.nvim {}
   :gpanders/nvim-parinfer {:ft util.lisp-language}
   ;; :eraserhd/parinfer-rust {:ft util.lisp-language :run "cargo build --release"}
   :kevinhwang91/nvim-bqf {:mod :bqf}
@@ -86,7 +87,7 @@
   :kevinhwang91/nvim-hlslens {:event :CmdlineEnter}
   :kazhala/close-buffers.nvim {:mod :close_buffers}
   :/home/rhcher/workspace/vim-lsp-cxx-highlight/ {:ft [:c :cpp]}
-  :glepnir/lspsaga.nvim {:branch :version_2.3}
+  :glepnir/lspsaga.nvim {}
   :anuvyklack/hydra.nvim {:mod :hydra :requires [:anuvyklack/keymap-layer.nvim]}
   :kevinhwang91/nvim-ufo {:requires [:kevinhwang91/promise-async]}
   :lukas-reineke/indent-blankline.nvim {:mod :indent}
