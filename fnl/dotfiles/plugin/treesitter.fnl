@@ -2,7 +2,7 @@
 
 (when-let [(_ tsconfigs) (pcall require :nvim-treesitter.configs)]
   (tsconfigs.setup
-    {:ensure_installed [:c :cpp :rust :lua :python :cmake 
+    {:ensure_installed [:c :cpp :rust :lua :python :cmake :markdown
                         :vim :fennel :query :ocaml :ocaml_interface :haskell :scheme]
      :highlight {:enable true
                  :disable [:c :cpp :help :lua]
