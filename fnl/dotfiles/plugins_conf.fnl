@@ -76,7 +76,13 @@
   ;; (map :n :<tab> :za)
   (map :n :zR ufo.openAllFolds)
   (map :n :zM ufo.closeAllFolds)
-  (ufo.setup))
+  (local ftmap
+    {:vim "indent"
+     :fennel "treesitter"
+     :python "indent"
+     :git ""})
+  (ufo.setup {:provider_selector (fn [bufnr filetype buftype]
+                                   (. ftmap filetype))}))
 
 (when-let [(_ nrpattern) (pcall require :nrpattern)]
   (nrpattern.setup))
