@@ -30,7 +30,7 @@
 (vim.cmd "set diffopt+=linematch:60,algorithm:patience")
 (vim.cmd "set fo+=/")
 
-(if (= (vim.fn.executable "rg") 1)
+(when (= (vim.fn.executable "rg") 1)
   (do
     (set vim.opt.grepformat "%f:%l:%c:%m,%f:%l:%m")
     (set vim.opt.grepprg "rg --vimgrep --no-heading --smart-case")))
@@ -43,7 +43,7 @@
 (set vim.opt.updatetime 50)
 (set vim.opt.clipboard "unnamedplus")
 (set vim.opt.laststatus 3)
-(set vim.opt.redrawtime 1500)
+(set vim.opt.redrawtime 150)
 (set vim.opt.relativenumber true)
 (set vim.opt.listchars {:nbsp :⦸
                         :extends "»"
@@ -53,8 +53,9 @@
 (set vim.opt.fillchars "eob: ,fold: ,foldopen:,foldsep: ,foldclose:")
 (set vim.opt.foldcolumn :1)
 (set vim.opt.foldlevel 99)
-(set vim.opt.foldlevelstart -1)
+(set vim.opt.foldlevelstart 99)
 (set vim.opt.foldenable true)
+(set vim.opt.statuscolumn "%=%{&nu?(&rnu&&v:relnum?v:relnum:v:lnum):''}%s%C")
 (set vim.opt.splitkeep "screen")
 
 (set vim.opt.winwidth 10)
