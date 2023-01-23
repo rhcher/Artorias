@@ -46,62 +46,34 @@
                            (vim.lsp.buf.hover))))
        (keymap :n :<leader>lr ":Lspsaga rename<CR>")
 
-       (when (= client.name :ccls)
-         (let [ccls (require "dotfiles.ccls")
-               map util.luamap]
-           ;; ccls navigate
-           (map :n :<C-k> #(ccls.navigate :L))
-           (map :n :<C-j> #(ccls.navigate :R))
-           (map :n :<C-l> #(ccls.navigate :D))
-           (map :n :<C-h> #(ccls.navigate :U))
-           ;; ccls call
-           (map :n :<space>ii #(ccls.call :caller))
-           (map :n :<space>io #(ccls.call :callee))
-           ;; ccls var
-           (map :n :<space>vf #(ccls.ccls_var :field))
-           (map :n :<space>vl #(ccls.ccls_var :local))
-           (map :n :<space>vp #(ccls.ccls_var :parameter))
-           ;; ccls member
-           (map :n :<space>mv #(ccls.member :variables))
-           (map :n :<space>mf #(ccls.member :functions))
-           (map :n :<space>mt #(ccls.member :types))
-           ;; ccls inheritance#
-           (map :n :<space>ib #(ccls.inheritance :base))
-           (map :n :<space>id #(ccls.inheritance :derived))
-           ;; ccls references #
-           (map :n :<space>gw #(ccls.extend_ref :write))
-           (map :n :<space>gr #(ccls.extend_ref :read))
-           (map :n :<space>gm #(ccls.extend_ref :macro))
-           (map :n :<space>gn #(ccls.extend_ref :notcall))
+       (let [timeout (vim.api.nvim_create_augroup "LspTimeOut" {:clear true})
+             delete-empty-lsp-clients #(let [clients (vim.lsp.get_active_clients)]
+                                         (each [_ client (ipairs clients)]
+                                           (local bufs (vim.lsp.get_buffers_by_client_id client.id))
+                                           (when (= (length bufs) 0)
+                                             (print (.. "stopping LSP client " client.name))
+                                             (client:stop))))]
+         (vim.api.nvim_create_autocmd "BufDelete"
+                                      {:group timeout
+                                       :pattern "*"
+                                       :callback #(vim.defer_fn delete-empty-lsp-clients 5000)}))
 
-           (let [timeout (vim.api.nvim_create_augroup "LspTimeOut" {:clear true})
-                 delete-empty-lsp-clients #(let [clients (vim.lsp.get_active_clients)]
-                                             (each [_ client (ipairs clients)]
-                                               (local bufs (vim.lsp.get_buffers_by_client_id client.id))
-                                               (when (= (length bufs) 0)
-                                                 (print (.. "stopping LSP client " client.name))
-                                                 (client:stop))))]
-             (vim.api.nvim_create_autocmd "BufDelete"
-                                          {:group timeout
-                                           :pattern "*"
-                                           :callback #(vim.defer_fn delete-empty-lsp-clients 5000)}))
-
-           (let [lsp-cancel (vim.api.nvim_create_augroup "LspCancelRequest" {})
-                 lsp-cancel-pending-requests (fn [bufnr]
-                                               (vim.schedule #(let [bufnr (if (or (= bufnr nil) (= bufnr 0))
-                                                                            (vim.api.nvim_get_current_buf)
-                                                                            bufnr)]
-                                                                (each [_ client (ipairs (vim.lsp.get_active_clients {:bufnr bufnr}))]
-                                                                  (each [id request (pairs (or client.requests {}))]
-                                                                    (when (and (= request.type "pending")
-                                                                               (= request.bufnr bufnr)
-                                                                               (not (request.method:match "semanticTokens")))
-                                                                      (client.cancel_request id)))))))]
-             (vim.api.nvim_create_autocmd ["CursorMoved" "BufLeave"]
-                                          {:group lsp-cancel
-                                           :buffer bufnr
-                                           :callback #(lsp-cancel-pending-requests)
-                                           :desc "lsp.cancel_pending_requests"}))))))})
+       (let [lsp-cancel (vim.api.nvim_create_augroup "LspCancelRequest" {})
+             lsp-cancel-pending-requests (fn [bufnr]
+                                           (vim.schedule #(let [bufnr (if (or (= bufnr nil) (= bufnr 0))
+                                                                        (vim.api.nvim_get_current_buf)
+                                                                        bufnr)]
+                                                            (each [_ client (ipairs (vim.lsp.get_active_clients {:bufnr bufnr}))]
+                                                              (each [id request (pairs (or client.requests {}))]
+                                                                (when (and (= request.type "pending")
+                                                                           (= request.bufnr bufnr)
+                                                                           (not (request.method:match "semanticTokens")))
+                                                                  (client.cancel_request id)))))))]
+         (vim.api.nvim_create_autocmd ["CursorMoved" "BufLeave"]
+                                      {:group lsp-cancel
+                                       :buffer bufnr
+                                       :callback #(lsp-cancel-pending-requests)
+                                       :desc "lsp.cancel_pending_requests"}))))})
 
 (tset vim.lsp.handlers "textDocument/hover" (vim.lsp.with vim.lsp.handlers.hover {:border :single :title "hover" :title_pos "left"}))
 (tset vim.lsp.handlers "textDocument/signatureHelp" (vim.lsp.with vim.lsp.handlers.signature_help {:border :single}))
@@ -120,6 +92,34 @@
    :highlight {:lsRanges true}
    :cache {:directory "/tmp/ccls-cache/"}
    :xref {:maxNum 20000}})
+
+(defn- ccls_on_attach [client bufnr]
+  (let [ccls (require "dotfiles.ccls")
+        keymap (fn [mode from to] (vim.keymap.set mode from to {:buffer bufnr :noremap true :silent true}))]
+    ;; ccls navigate
+    (keymap :n :<C-k> #(ccls.navigate :L))
+    (keymap :n :<C-j> #(ccls.navigate :R))
+    (keymap :n :<C-l> #(ccls.navigate :D))
+    (keymap :n :<C-h> #(ccls.navigate :U))
+    ;; ccls call
+    (keymap :n :<space>ii #(ccls.call :caller))
+    (keymap :n :<space>io #(ccls.call :callee))
+    ;; ccls var
+    (keymap :n :<space>vf #(ccls.ccls_var :field))
+    (keymap :n :<space>vl #(ccls.ccls_var :local))
+    (keymap :n :<space>vp #(ccls.ccls_var :parameter))
+    ;; ccls member
+    (keymap :n :<space>mv #(ccls.member :variables))
+    (keymap :n :<space>mf #(ccls.member :functions))
+    (keymap :n :<space>mt #(ccls.member :types))
+    ;; ccls inheritance#
+    (keymap :n :<space>ib #(ccls.inheritance :base))
+    (keymap :n :<space>id #(ccls.inheritance :derived))
+    ;; ccls references #
+    (keymap :n :<space>gw #(ccls.extend_ref :write))
+    (keymap :n :<space>gr #(ccls.extend_ref :read))
+    (keymap :n :<space>gm #(ccls.extend_ref :macro))
+    (keymap :n :<space>gn #(ccls.extend_ref :notcall))))
 
 (def sumneko_lua_config
   {:Lua {:diagnostics {:enable true :globals [:vim]}
