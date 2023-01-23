@@ -1,6 +1,5 @@
 (module dotfiles.plugin.lspconfig
-  {autoload {util dotfiles.util
-             cmplsp cmp_nvim_lsp
+  {autoload {cmplsp cmp_nvim_lsp
              lsp_util vim.lsp.util
              a aniseed.core}})
 
@@ -108,10 +107,9 @@
 (tset vim.lsp.handlers "textDocument/signatureHelp" (vim.lsp.with vim.lsp.handlers.signature_help {:border :single}))
 
 (def ccls_config
-  {:capabilities {:foldingRangeProvider false
+  {:capabilities {:foldingRangeProvider true
                   :workspace {:workspaceFolders {:supported false}}}
-   :index {:threads 4
-           ;; :threads (a.count (vim.loop.cpu_info))
+   :index {:threads (a.count (vim.loop.cpu_info))
            :initialNoLinkage true
            :initialBlacklist ["/(clang|lld|llvm)/(test|unittests)/"
                               "/llvm/(bindings|examples|utils)/"
@@ -171,76 +169,46 @@
              :fromVimruntime true}
    :vimruntime ""})
 
-(def root-pattern (fn [patterns]
-                    (vim.fs.dirname
-                      (. (vim.fs.find patterns {:upward true}) 1))))
-
-(def flags {:debounce_text_changes 50})
-
-(defn capabilities []
-  (var capabilities (cmplsp.default_capabilities))
-  (set capabilities.textDocument.foldingRange {:dynamicRegistration false
-                                               :lineFoldingOnly true})
-  capabilities)
-
-(defn safe-start [config]
-  (let [bufnr (vim.api.nvim_get_current_buf)]
-    (when (not= (vim.api.nvim_buf_get_option bufnr "buftype") "nofile")
-      (config))))
-
-(let [root-pattern (fn [patterns]
-                     (vim.fs.dirname
-                       (. (vim.fs.find patterns {:upward true}) 1)))
+(let [(ok? lsp) (pcall require "lspconfig")
       flags {:debounce_text_changes 50}]
   (var capabilities (cmplsp.default_capabilities))
   (set capabilities.textDocument.foldingRange {:dynamicRegistration false
                                                :lineFoldingOnly true})
-  (vim.api.nvim_create_autocmd
-    :FileType
-    {:pattern [:haskell :lhaskell]
-     :callback #(vim.lsp.start
-                  {:name "hls"
-                   :cmd ["haskell-language-server-wrapper" "--lsp"]
-                   :capabilities capabilities
-                   :settings hls_config
-                   :root_dir (root-pattern ["hie.yaml" "stack.yaml" "cabal.project" "*.cabal" "package.yaml"])
-                   :lspinfo (fn [cfg]
-                              (var extra [])
-                              (let [on_stdout (fn [_ data _] (let [version (. data 1)] (table.insert extra (.. "version:   " version))))
-                                    opts {:cwd cfg.cwd
-                                          :stdout_buffered true
-                                          :on_stdout on_stdout}
-                                    chanid (vim.fn.jobstart [(. cfg.cmd 1) "--version"] opts)]
-                                (vim.fn.jobwait [chanid]))
-                              extra)
-                   :single_file_support true
-                   :flags flags})})
 
-  (vim.api.nvim_create_autocmd
-    :FileType
-    {:pattern [:ocaml :ocaml.menhir :ocaml.interface :ocaml.ocamllex :reason :dune]
-     :callback #(vim.lsp.start
-                  {:name "ocamllsp"
-                   :cmd ["ocamllsp"]
-                   :root_dir (root-pattern ["*.opam" "esy.json" "package.json" ".git" "dune-project" "dune-workspace"])
-                   :get_language_id (fn [_ ftype]
-                                      (let [language_id_of
-                                            {:menhir :ocmal.menhir
-                                             :ocaml :ocaml
-                                             :ocamlinterface :ocaml.interface
-                                             :ocamllex :ocaml.ocamllex
-                                             :reason :reason
-                                             :dune :dune}]
-                                        (. language_id_of ftype)))
-                   :flags flags})})
-
-  (vim.api.nvim_create_autocmd
-    :FileType
-    {:pattern [:vim]
-     :callback #(vim.lsp.start
-                  {:name "vimls"
-                   :cmd ["vim-language-server" "--stdio"]
-                   :root_dir (root-pattern [".git"])
-                   :init_options vimls-config
-                   :single_file_support true
-                   :flags flags})}))
+  (when ok?
+    (lsp.ccls.setup
+      {:on_attach ccls_on_attach
+       :capabilities capabilities
+       :init_options ccls_config
+       :flags flags})
+    ;; (lsp.clangd.setup
+    ;;   {:on_attach on_attach
+    ;;    :capabilities capabilities
+    ;;    :cmd [:clangd
+    ;;          :--clang-tidy
+    ;;          :--background-index
+    ;;          :--completion-style=detailed
+    ;;          "--clang-tidy-checks=-*,llvm-*,clang-analyzer-*"
+    ;;          :--cross-file-rename
+    ;;          :--header-insertion=never]
+    ;;          ;; :--pch-storage=disk]
+    ;;    :flags flags})
+    (lsp.sumneko_lua.setup
+      {:capabilities capabilities
+       :cmd ["/home/rhcher/sources/lua-language-server/bin/lua-language-server"]
+       :settings sumneko_lua_config
+       :flags flags})
+    (lsp.ocamllsp.setup
+      {:capabilities capabilities
+       :flags flags})
+    (lsp.vimls.setup
+      {:capabilities capabilities
+       :flags flags})
+    (lsp.hls.setup
+      {:capabilities capabilities
+       :settings hls_config
+       :flags flags})
+    (lsp.pyright.setup
+      {:capabilities capabilities
+       :settings pyright_config
+       :flags flags})))
