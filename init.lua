@@ -2,9 +2,6 @@
 -- We simply bootstrap packer and Aniseed here.
 -- It's then up to Aniseed to compile and load fnl/init.fnl
 
-local execute = vim.api.nvim_command
-local fn = vim.fn
-
 vim.lsp.set_log_level("ERROR")
 
 if vim.g.nvui then
@@ -14,37 +11,48 @@ if vim.g.nvui then
   vim.cmd [[NvuiCmdFontSize 13.0]]
 end
 
-local pack_path = fn.stdpath("data") .. "/site/pack"
-local fmt = string.format
+local lazy_path = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+local package_path = vim.fn.stdpath("data") .. "/lazy"
+if not vim.loop.fs_stat(lazy_path) then
+  vim.fn.system({
+    "git",
+    "clone",
+    "--filter=blob:none",
+    "--single-branch",
+    "https://github.com/folke/lazy.nvim.git",
+    lazy_path,
+  })
+end
 
-local function ensure(user, repo)
-  -- Ensures a given github.com/USER/REPO is cloned in the pack/packer/start directory.
-  local install_path = fmt("%s/packer/start/%s", pack_path, repo)
-  if fn.empty(fn.glob(install_path)) > 0 then
-    execute(fmt("!git clone https://github.com/%s/%s %s", user, repo, install_path))
-    execute(fmt("packadd %s", repo))
+function ensure(repo, package, dir)
+  if not dir then
+    vim.fn.system({
+      "git",
+      "clone",
+      "--filter=blob:none",
+      "--single-branch",
+      "https://github.com/" .. repo .. ".git",
+      package_path .. "/" .. package,
+    })
+    vim.opt.runtimepath:prepend(package_path .. "/" .. package)
+  else
+    local install_path = string.format("%s/%s", package_path, package)
+    vim.fn.system(string.format("rm -r %s", install_path))
+    vim.fn.system(string.format("ln -s %s %s", repo, package_path))
+    vim.opt.runtimepath:prepend(install_path)
   end
 end
 
--- Bootstrap essential plugins required for installing and loading the rest.
-ensure("wbthomason", "packer.nvim")
-ensure("Olical", "aniseed")
-ensure("lewis6991", "impatient.nvim")
+ensure("Olical/aniseed", "aniseed")
+ensure("rhcher/srcery", "srcery.nvim")
 
--- Load impatient which pre-compiles and caches Lua modules.
-require("impatient")
+vim.opt.runtimepath:prepend(lazy_path)
 
 -- Enable Aniseed's automatic compilation and loading of Fennel source code.
 vim.g["aniseed#env"] = {
   module = "dotfiles.init",
   compile = true
 }
-
-vim.cmd [[
-augroup matchup_matchparen_highlight
-  autocmd!
-  autocmd ColorScheme * hi! MatchWord ctermfg=none ctermbg=none guifg=none guibg=none
-augroup END]]
 
 vim.cmd [[let g:loaded_netrwPlugin = 1]]
 vim.cmd [[let g:loaded_tarPlugin = 1]]

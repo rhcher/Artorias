@@ -1,9 +1,7 @@
 (module dotfiles.init
   {require [dotfiles.core
             dotfiles.mapping
-            dotfiles.plugins_conf
             dotfiles.plugin
-            dotfiles.lspconfig
             dotfiles.diagnostic]
    autoload {c aniseed.compile}})
 

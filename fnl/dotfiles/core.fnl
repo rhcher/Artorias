@@ -72,8 +72,6 @@
 (nvim.ex.set :splitbelow)
 (nvim.ex.set :splitright)
 
-(vim.cmd.colorscheme :srcery)
-
 (set vim.g.clipboard {:name :win32yank-wsl
                       :copy {:+ "win32yank.exe -i --crlf"
                              :* "win32yank.exe -i --crlf"}
