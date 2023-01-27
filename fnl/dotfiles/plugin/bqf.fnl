@@ -1,7 +1,8 @@
 (module dotfiles.plugin.bqf)
 
 (when-let [(_ bqf) (pcall require :bqf)]
-  (bqf.setup {:preview {:auto_preview false}
+  (bqf.setup {:preview {:auto_preview false
+                        :border_chars [" " " " "━" "━" " " " " " " " " "█"]}
               :auto_resize_height true}))
 
 ; pretty quicklist copy from nvim-bqf
