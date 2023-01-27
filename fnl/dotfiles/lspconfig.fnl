@@ -6,7 +6,21 @@
 (when-let [(_ lspsaga) (pcall require "lspsaga")]
   (lspsaga.setup {:lightbulb {:sign_priority 99
                               :virtual_text false}
-                  :symbol_in_winbar {:enable true}}))
+                  :symbol_in_winbar {:enable true}
+                  :outline {:keys {:jump "<CR>"
+                                   :expand_collapse "o"}}
+                  :ui {:border ["" "━" "" "" "" "━" "" ""]
+                       :colors {:normal_bg "#121212"
+                                :title_bg "#FBB829"
+                                :red "#EF2F27"
+                                :magenta "#E02C6D"
+                                :orange "#FF5F00"
+                                :yellow "#FBB829"
+                                :green "#519F50"
+                                :cyan "#0AAEB3"
+                                :blue "#2C78BF"
+                                :white "#BAA67F"
+                                :black "#1C1B19"}}}))
 
 (vim.api.nvim_create_autocmd :LspAttach
   {:callback
@@ -41,9 +55,11 @@
        (keymap :n :gi vim.lsp.buf.implementation)
        (keymap :n :gr #(vim.lsp.buf.references {:includeDeclaration false}))
        (keymap :n :K #(let [ufo (require :ufo)
+                            lspsaga_hover (require :lspsaga.hover)
                             winid (ufo.peekFoldedLinesUnderCursor)]
                         (when (not winid)
-                           (vim.lsp.buf.hover))))
+                           (: lspsaga_hover "render_hover_doc"))))
+       (keymap :n :<leader>k "<cmd>Lspsaga hover_doc ++keep<CR>")
        (keymap :n :<leader>lr ":Lspsaga rename<CR>")
 
        (let [timeout (vim.api.nvim_create_augroup "LspTimeOut" {:clear true})
