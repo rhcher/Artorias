@@ -38,7 +38,8 @@
                  :use_treesitter_scope true
                  :context_patterns ["class" "function" "method" "^if" "^while" "^for" "^object" "^table"
                                     "block" "arguments" "^attrset$" "^list$" "^let$" "^indented_string$"]
-                 :filetype_exclude ["" "help" "fennel" "packer" "lspinfo" "tsplayground" "query" "scheme" "racket" "qf"]
+                 :filetype_exclude ["" "help" "fennel" "packer" "lspinfo" "tsplayground" "query" "scheme"
+                                    "racket" "qf" "dashboard" "markdown"]
                  :buftype_exclude ["terminal" "prompt" "toggleterm"]
                  :context_start_priority 90
                  :show_current_context false}))
