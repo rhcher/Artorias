@@ -1,6 +1,7 @@
 (module dotfiles.plugin
   {autoload {a aniseed.core
-             util dotfiles.util}
+             util dotfiles.util
+             : lazy}
    require-macros [dotfiles.macros]})
 
 (def plugins [])
@@ -189,8 +190,9 @@
                                           "[" {:add ["[" "]"]}
                                           "]" {:add ["[ " " ]"]}}}})
 
-;; (table.insert plugins {1 "mhinz/vim-grepper"
-;;                        :config (fn [] (require "dotfiles.plugin.grepper"))})
+(table.insert plugins {1 "mhinz/vim-grepper"
+                       :keys ["gs"]
+                       :config (fn [] (require "dotfiles.plugin.grepper"))})
 
 (table.insert plugins {1 "karb94/neoscroll.nvim"
                        :config true})
@@ -244,5 +246,8 @@
 (table.insert plugins {1 "dhruvasagar/vim-table-mode"
                        :init (fn [] (set vim.g.table_mode_corner "|"))})
 
-(let [lazy (require :lazy)]
-  (lazy.setup plugins))
+(table.insert plugins {1 "glepnir/dashboard-nvim"
+                       :event "VimEnter"
+                       :config (fn [] (require "dotfiles.plugin.dashboard"))})
+
+(lazy.setup plugins)
