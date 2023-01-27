@@ -45,7 +45,16 @@
                                       :onsails/lspkind-nvim]
                        :config (fn [] (require "dotfiles.plugin.cmp"))})
 
-(table.insert plugins "dcampos/nvim-snippy")
+(table.insert plugins {1 "dcampos/nvim-snippy"
+                       :init
+                       (fn []
+                         (let [snippy (require :snippy)]
+                           (vim.keymap.set [:i :s] :<C-l> #(if (snippy.can_jump 1)
+                                                             "<Plug>(snippy-next)"
+                                                             "<ESC>A") {:expr true})
+                           (vim.keymap.set [:i :s] :<C-h> #(if (snippy.can_jump -1)
+                                                             "<Plug>(snippy-previous)"
+                                                             "<ESC>I") {:expr true})))})
 (table.insert plugins {1 "stevearc/oil.nvim"
                        :dependencies {1 :nvim-tree/nvim-web-devicons
                                       :config (fn [] (require "dotfiles.plugin.devicons"))}
