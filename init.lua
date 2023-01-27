@@ -44,7 +44,6 @@ function ensure(repo, package, dir)
 end
 
 ensure("Olical/aniseed", "aniseed")
-ensure("rhcher/srcery", "srcery.nvim")
 
 vim.opt.runtimepath:prepend(lazy_path)
 
