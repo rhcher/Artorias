@@ -23,8 +23,10 @@
                          (set vim.g.conjure#client#scheme#stdio#value_prefix_pattern false))})
 (table.insert plugins {1 "rhcher/srcery.nvim" :priority 1000
                        :config (fn [] (vim.cmd.colorscheme "srcery"))})
+                       ;; :lazy true})
 
 (table.insert plugins {1 "rebelot/kanagawa.nvim"
+                       :config (fn [] (vim.cmd.colorscheme "kanagawa"))
                        :lazy true})
 
 (table.insert plugins {1 "rhcher/vim-paper"
@@ -147,6 +149,12 @@
                        :dependencies ["hrsh7th/cmp-nvim-lsp"
                                       "glepnir/lspsaga.nvim"]
                        :config (fn [] (require "dotfiles.lspconfig"))})
+
+(table.insert plugins {1 "glepnir/lspsaga.nvim"
+                       :event "BufRead"
+                       :config (fn [] (require "dotfiles.plugin.lspsaga"))
+                       :dependencies ["nvim-tree/nvim-web-devicons"
+                                      "nvim-treesitter/nvim-treesitter"]})
 
 (table.insert plugins {:dir "/home/rhcher/workspace/vim-lsp-cxx-highlight/"
                        :ft [:c :cpp]})
