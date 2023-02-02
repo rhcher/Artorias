@@ -7,5 +7,5 @@
    autoload {c aniseed.compile}})
 
 (c.glob :*.fnl
-        :/home/rhcher/.config/nvim/fnl/dotfiles/ftplugin/
+        :/home/rhcher/.config/nvim/after/ftplugin/
         :/home/rhcher/.config/nvim/after/ftplugin/)

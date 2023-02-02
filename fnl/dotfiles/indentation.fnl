@@ -35,12 +35,12 @@
                  "macro" true "match" true "doto" true "with-open" true
                  "collect" true "icollect" true "accumulate" true})
 
-(fn symbol-at [line pos]
+(defn- symbol-at [line pos]
   (-> line
       (: :sub pos)
       (: :match "[^%s]+")))
 
-(fn find-string-start [line end-quote-pos]
+(defn- find-string-start [line end-quote-pos]
   (var quote-pos nil)
   (var state :in-string)
   (for [pos (- end-quote-pos 1) 1 -1 &until (= state :end)]
@@ -53,7 +53,7 @@
       _ (set state :in-string)))
   quote-pos)
 
-(fn line-indent-type [stack line pos]
+(defn- line-indent-type [stack line pos]
   (let [c (line:sub pos pos)
         delimiter (. stack (length stack))]
     (if (= pos 0) nil
@@ -75,7 +75,7 @@
         (= c "(") (values :call pos (symbol-at line (+ pos 1)))
         (line-indent-type stack line (- pos 1)))))
 
-(fn find-comment-start [line]
+(defn- find-comment-start [line]
   (var semicolon-pos nil)
   (var state :normal)
   (for [pos 1 (length line) &until semicolon-pos]
@@ -87,7 +87,7 @@
       ("\"" :normal) (set state :in-string)))
   semicolon-pos)
 
-(fn indent_type [stack lines line-num]
+(defn indent_type [stack lines line-num]
   (let [line (. lines line-num)
         line-length (or (find-comment-start line) (length line))]
     (match (line-indent-type stack line line-length)
@@ -99,7 +99,7 @@
                               (values :call (- pos 1) fn-name))
       (where _ (> line-num 1)) (indent_type stack lines (- line-num 1)))))
 
-(fn _G.fennel_indentexpr [line-num]
+(defn fennel_indentexpr [line-num]
   (let [lines (vim.api.nvim_buf_get_lines 0 0 line-num true)]
     (match (indent_type [] lines (- line-num 1))
       (:table delimiter-pos) delimiter-pos
@@ -108,15 +108,8 @@
       _ 0)))
 
 (fn fennel-local []
-  (set vim.opt_local.softtabstop 2)
-  (set vim.opt_local.shiftwidth 2)
-  (set vim.opt_local.suffixesadd ".fnl")
-  (set vim.opt_local.indentkeys ["!" :o :O])
-  (set vim.opt_local.iskeyword
-    ["33-255" "^(" "^)" "^{" "^}" "^[" "^]" "^\"" "^'" "^~" "^;" "^," "^@-@" "^`" "^." "^:"])
-  (set vim.o.indentexpr "v:lua.fennel_indentexpr(v:lnum)"))
-  ;; (vim.cmd "set indentexpr=v:lua.fennel_indentexpr(v:lnum)")
+  (set vim.o.indentexpr "v:lua.require(\"dotfiles.indentation\").fennel_indentexpr(v:lnum)"))
 
 (vim.api.nvim_create_autocmd [:FileType]
-  {:pattern "fennel"
-   :callback #(fennel-local)})
+                             {:pattern "fennel"
+                              :callback #(fennel-local)})

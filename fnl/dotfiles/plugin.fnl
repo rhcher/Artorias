@@ -15,8 +15,12 @@
     (for [i 1 (a.count pkgs) 2]
       (let [name (. pkgs i)
             opts (. pkgs (+ i 1))]
+        ;; TODO: use :mod avoid require dotfiles.plugin.sometion
         (-?> (. opts :mod) (safe-require-plugin-config))
         (table.insert plugins (a.assoc opts 1 name))))
+    ;; TODO: workaround
+    (table.insert plugins {:dir "/home/rhcher/workspace/vim-lsp-cxx-highlight/"
+                           :ft [:c :cpp]})
     (lazy.setup plugins)))
 
 (use
@@ -28,8 +32,12 @@
                                      :config (fn [] (require "dotfiles.plugin.treesitter"))}
   "nvim-treesitter/nvim-treesitter-textobjects" {:dependencies
                                                  ["nvim-treesitter/nvim-treesitter"]}
-  "rebelot/kanagawa.nvim" {:config (fn [] (vim.cmd.colorscheme "kanagawa"))
-                           :priority 1000}
+  "rhcher/srcery.nvim" {:config (fn [] (vim.cmd.colorscheme "srcery"))
+                        :priority 1000}
+  "rhcher/vim-paper" {:lazy true}
+  "rebelot/kanagawa.nvim" {:lazy true}
+                           ;; :config (fn [] (vim.cmd.colorscheme "kanagawa"))
+                           ;; :priority 1000}
   "eraserhd/parinfer-rust" {:ft util.lisp-language
                             :build "cargo build --release"}
   "hrsh7th/nvim-cmp" {:dependencies [:hrsh7th/cmp-nvim-lsp
