@@ -89,3 +89,6 @@
                               :callback #(vim.highlight.on_yank {:higroup "Visual"
                                                                  :timeout 150
                                                                  :on_visual true})})
+
+(vim.api.nvim_create_autocmd [:FocusGained :TermClose :TermLeave]
+                             {:command "checktime"})

@@ -30,7 +30,7 @@
                                cmp.config.compare.locality
                                cmp.config.compare.length
                                cmp.config.compare.order]}
-       :experimental {:ghost_text true}
+       :experimental {:ghost_text {:hl_group "LspCodeLens"}}
        :window {:documentation cmp-window-opts
                 :completion cmp-window-opts}
        :mapping (cmp.mapping.preset.insert {:<C-d> (cmp.mapping.scroll_docs (- 4))

@@ -14,8 +14,7 @@
 (map :i :<C-j> :<esc>o)
 (map :i :<C-k> :<esc>O)
 
-(map :n :<leader>bS ":SudaWrite<CR>")
-(map :n :<leader><leader> ":Inspect!<CR>")
+(map :n :<leader><leader> ":Inspect<CR>")
 
 ;; terminal-mode
 (map :t :<a-h> :<C-\><C-n><C-w>h)
@@ -35,10 +34,7 @@
 (map :n :<leader>bs ":w <CR>")
 (map :n :<leader>wm ":tab sp<cr>")
 (map :n :<leader>wc ":only<cr>")
-; (map :n :<leader>bk ":bdelete!<cr>")
 (map :n :<leader>to ":tabonly<cr>")
-(map :n :<leader>sw ":mksession! .quicksave.vim<cr>")
-(map :n :<leader>sr ":source .quicksave.vim<cr>")
 ;; Delete hidden buffers.
 ; (map :n :<leader>bo ":call DeleteHiddenBuffers()<cr>")
 ;; Correct to first spelling suggestion.
@@ -55,13 +51,6 @@
 (map :x :X "<Plug>(Exchange)")
 (map :n :cxc "<Plug>(ExchangeClear)")
 (map :n :cxx "<Plug>(ExchangeLine)")
-
-(map :n :n "<Cmd>execute('normal! ' . v:count1 . 'n')<CR><Cmd>lua require('hlslens').start()<CR>zz")
-(map :n :N "<Cmd>execute('normal! ' . v:count1 . 'N')<CR><Cmd>lua require('hlslens').start()<CR>zz")
-(map :n :* "*<Cmd>lua require('hlslens').start()<CR>")
-(map :n :# "#<Cmd>lua require('hlslens').start()<CR>")
-(map :n :g* "g*<Cmd>lua require('hlslens').start()<CR>")
-(map :n :g# "g#<Cmd>lua require('hlslens').start()<CR>")
 
 (map :n :<leader>e ":Oil<CR>")
 

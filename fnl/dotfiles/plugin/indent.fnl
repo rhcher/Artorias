@@ -41,5 +41,6 @@
                  :filetype_exclude ["" "help" "fennel" "packer" "lspinfo" "tsplayground" "query" "scheme"
                                     "racket" "qf" "dashboard" "markdown"]
                  :buftype_exclude ["terminal" "prompt" "toggleterm"]
+                 :show_trailing_blankline_indent false
                  :context_start_priority 90
                  :show_current_context false}))
