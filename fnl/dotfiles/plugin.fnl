@@ -29,15 +29,6 @@
   "Olical/conjure" {:event "VeryLazy" :branch "develop"}
   "feline-nvim/feline.nvim" {:event "VeryLazy" :config true}
   "junegunn/fzf" {:event "VeryLazy" :build "./install --bin"}
-  "anuvyklack/windows.nvim" {:dependencies ["anuvyklack/middleclass"
-                                            "anuvyklack/animation.nvim"]
-                             :event "VeryLazy"
-                             :init
-                             (fn []
-                               (set vim.opt.winwidth 10)
-                               (set vim.opt.winminwidth 10)
-                               (set vim.opt.equalalways false))
-                             :config true}
   "gbprod/substitute.nvim" {:config true
                             :keys [["sx" "<cmd>lua require('substitute.exchange').operator()<cr>"]
                                    ["sxx" "<cmd>lua require('substitute.exchange').line()<cr>"]
