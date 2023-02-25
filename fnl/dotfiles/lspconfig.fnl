@@ -187,6 +187,7 @@
     ;          :--header-insertion=never]
     ;          ;; :--pch-storage=disk]
     ;    :flags flags})
+    (lsp.lua_ls.setup
       {:capabilities capabilities
        :cmd ["/home/rhcher/sources/lua-language-server/bin/lua-language-server"]
        :settings sumneko_lua_config
