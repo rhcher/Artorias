@@ -40,7 +40,7 @@
                             lspsaga_hover (require :lspsaga.hover)
                             winid (ufo.peekFoldedLinesUnderCursor)]
                         (when (not winid)
-                           (: lspsaga_hover "render_hover_doc"))))
+                          (: lspsaga_hover "render_hover_doc"))))
        (keymap :n :<leader>k "<cmd>Lspsaga hover_doc ++keep<CR>")
        (keymap :n :<leader>lr ":Lspsaga rename<CR>")
 
@@ -69,8 +69,8 @@
                                         :callback #(lsp-cancel-pending-requests)
                                         :desc "lsp.cancel_pending_requests"}]))))})
 
-(tset vim.lsp.handlers "textDocument/hover" (vim.lsp.with vim.lsp.handlers.hover {:border :single :title "hover" :title_pos "left"}))
-(tset vim.lsp.handlers "textDocument/signatureHelp" (vim.lsp.with vim.lsp.handlers.signature_help {:border :single}))
+;; (tset vim.lsp.handlers "textDocument/hover" (vim.lsp.with vim.lsp.handlers.hover {:border :single :title "hover" :title_pos "left"}))
+;; (tset vim.lsp.handlers "textDocument/signatureHelp" (vim.lsp.with vim.lsp.handlers.signature_help {:border :single}))
 
 (def ccls_config
   {:capabilities {:foldingRangeProvider true
@@ -175,19 +175,18 @@
        :capabilities capabilities
        :init_options ccls_config
        :flags flags})
-    ;; (lsp.clangd.setup
-    ;;   {:on_attach on_attach
-    ;;    :capabilities capabilities
-    ;;    :cmd [:clangd
-    ;;          :--clang-tidy
-    ;;          :--background-index
-    ;;          :--completion-style=detailed
-    ;;          "--clang-tidy-checks=-*,llvm-*,clang-analyzer-*"
-    ;;          :--cross-file-rename
-    ;;          :--header-insertion=never]
-    ;;          ;; :--pch-storage=disk]
-    ;;    :flags flags})
-    (lsp.sumneko_lua.setup
+    ; (lsp.clangd.setup
+    ;   {:on_attach on_attach
+    ;    :capabilities capabilities
+    ;    :cmd [:clangd
+    ;          :--clang-tidy
+    ;          :--background-index
+    ;          :--completion-style=detailed
+    ;          "--clang-tidy-checks=-*,llvm-*,clang-analyzer-*"
+    ;          :--cross-file-rename
+    ;          :--header-insertion=never]
+    ;          ;; :--pch-storage=disk]
+    ;    :flags flags})
       {:capabilities capabilities
        :cmd ["/home/rhcher/sources/lua-language-server/bin/lua-language-server"]
        :settings sumneko_lua_config
