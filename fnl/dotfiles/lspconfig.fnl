@@ -1,9 +1,10 @@
 (module dotfiles.plugin.lspconfig
   {autoload {cmplsp cmp_nvim_lsp
              lsp_util vim.lsp.util
-             a aniseed.core}})
+             a aniseed.core}
+   import-macros [[ac :aniseed.macros.autocmds]]})
 
-(vim.api.nvim_create_autocmd :LspAttach
+(ac.autocmd :LspAttach
   {:callback
    (fn [args]
      (let [bufnr args.buf
@@ -26,9 +27,9 @@
          (keymap [:n :v] :<leader>la "<cmd>Lspsaga code_action<CR>"))
 
        (when client.server_capabilities.codeLensProvider
-         (vim.api.nvim_create_autocmd [:BufEnter :CursorHold :InsertLeave]
-                                      {:buffer bufnr
-                                       :callback vim.lsp.codelens.refresh})
+         (ac.autocmd [:BufEnter :CursorHold :InsertLeave]
+                     {:buffer bufnr
+                      :callback vim.lsp.codelens.refresh})
          (keymap :n :<leader>ll vim.lsp.codelens.run))
 
        (keymap :n :gd vim.lsp.buf.definition)
@@ -43,20 +44,17 @@
        (keymap :n :<leader>k "<cmd>Lspsaga hover_doc ++keep<CR>")
        (keymap :n :<leader>lr ":Lspsaga rename<CR>")
 
-       (let [timeout (vim.api.nvim_create_augroup "LspTimeOut" {:clear true})
-             delete-empty-lsp-clients #(let [clients (vim.lsp.get_active_clients)]
+       (let [delete-empty-lsp-clients #(let [clients (vim.lsp.get_active_clients)]
                                          (each [_ client (ipairs clients)]
                                            (local bufs (vim.lsp.get_buffers_by_client_id client.id))
                                            (when (= (length bufs) 0)
-                                             (print (.. "stopping LSP client " client.name))
+                                             (print (.. "stopping LSP server " client.name))
                                              (client:stop))))]
-         (vim.api.nvim_create_autocmd "BufDelete"
-                                      {:group timeout
-                                       :pattern "*"
-                                       :callback #(vim.defer_fn delete-empty-lsp-clients 5000)}))
+         (ac.augroup "LspTimeOut"
+           [["BufDelete"] {:pattern "*"
+                           :callback #(vim.defer_fn delete-empty-lsp-clients 5000)}]))
 
-       (let [lsp-cancel (vim.api.nvim_create_augroup "LspCancelRequest" {})
-             lsp-cancel-pending-requests (fn [bufnr]
+       (let [lsp-cancel-pending-requests (fn [bufnr]
                                            (vim.schedule #(let [bufnr (if (or (= bufnr nil) (= bufnr 0))
                                                                         (vim.api.nvim_get_current_buf)
                                                                         bufnr)]
@@ -66,11 +64,10 @@
                                                                            (= request.bufnr bufnr)
                                                                            (not (request.method:match "semanticTokens")))
                                                                   (client.cancel_request id)))))))]
-         (vim.api.nvim_create_autocmd ["CursorMoved" "BufLeave"]
-                                      {:group lsp-cancel
-                                       :buffer bufnr
-                                       :callback #(lsp-cancel-pending-requests)
-                                       :desc "lsp.cancel_pending_requests"}))))})
+         (ac.augroup "LspCancelRequest"
+           [["CursorMoved" "BufLeave"] {:buffer bufnr
+                                        :callback #(lsp-cancel-pending-requests)
+                                        :desc "lsp.cancel_pending_requests"}]))))})
 
 (tset vim.lsp.handlers "textDocument/hover" (vim.lsp.with vim.lsp.handlers.hover {:border :single :title "hover" :title_pos "left"}))
 (tset vim.lsp.handlers "textDocument/signatureHelp" (vim.lsp.with vim.lsp.handlers.signature_help {:border :single}))
