@@ -55,7 +55,7 @@
                                        :command_palette true
                                        :long_message_to_split true}
                              :messages {:enabled false}}}
-  "nvim-treesitter/nvim-treesitter" {:event "BufReadPost"
+  "nvim-treesitter/nvim-treesitter" {:event ["BufReadPost" "BufNewFile"]
                                      :version false
                                      :build ":TSUpdate"
                                      :mod "treesitter"}
@@ -140,6 +140,7 @@
   "AndrewRadev/linediff.vim" {:cmd "Linediff"}
   "tyru/open-browser.vim" {:keys "<Plug>(openbrowser-smart-search)"}
   "kevinhwang91/nvim-ufo" {:dependencies ["kevinhwang91/promise-async"]
+                           :event "VeryLazy"
                            :config
                            #(let [ufo (require "ufo")]
                               (map :n :zR ufo.openAllFolds)
@@ -153,7 +154,7 @@
                                                                (. ftmap filetype))}))}
   "kevinhwang91/nvim-bqf" {:ft "qf"
                            :mod "bqf"}
-  "RRethy/vim-illuminate" {:event "BufReadPost"
+  "RRethy/vim-illuminate" {:event ["BufReadPost" "BufNewFile"]
                            :config
                            #(let [illuminate (require "illuminate")]
                               (illuminate.configure
@@ -161,16 +162,16 @@
                                  :modes_denylist [:i]
                                  :large_file_curoff 10000
                                  :large_file_overrides nil}))}
-  "neovim/nvim-lspconfig" {:event "BufReadPre"
-                           :dependencies ["hrsh7th/cmp-nvim-lsp"]
+  "neovim/nvim-lspconfig" {:event ["BufReadPre" "BufNewFile"]
+                           :dependencies ["hrsh7th/cmp-nvim-lsp"
+                                          "glepnir/lspsaga.nvim"]
                            :config #(require "dotfiles.lspconfig")}
-  "glepnir/lspsaga.nvim" {:event "BufRead"
-                          :dependencies ["nvim-tree/nvim-web-devicons"
+  "glepnir/lspsaga.nvim" {:dependencies ["nvim-tree/nvim-web-devicons"
                                          "nvim-treesitter/nvim-treesitter"]
                           :mod "lspsaga"}
   "abecodes/tabout.nvim" {:event "VeryLazy"
                           :opts {}}
-  "lukas-reineke/indent-blankline.nvim" {:event "BufReadPost"
+  "lukas-reineke/indent-blankline.nvim" {:event ["BufReadPost" "BufNewFile"]
                                          :mod "indent"}
   "numToStr/Comment.nvim" {:event "VeryLazy" :config true}
   "mbbill/undotree" {:cmd "UndotreeShow"}
@@ -179,7 +180,7 @@
   "wlangstroth/vim-racket" {:ft "scheme"}
   "kylechui/nvim-surround" {:opts {:move_cursor false}}
   "mhinz/vim-grepper" {:keys ["gs"] :mod "grepper"}
-  "lewis6991/gitsigns.nvim" {:event "BufReadPre" :mod "gitsigns"}
+  "lewis6991/gitsigns.nvim" {:event ["BufReadPre" "BufNewFile"] :mod "gitsigns"}
   "akinsho/nvim-toggleterm.lua" {:mod "terminal"}
   "ggandor/leap.nvim" {:event "VeryLazy"
                        :keys [{1 "s" :mode [:n :x :o] :desc "Leap forward to"}
