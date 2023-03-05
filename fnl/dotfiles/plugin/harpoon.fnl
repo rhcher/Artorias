@@ -1,5 +1,5 @@
 (module dotfiles.plugin.harpoon
-  {require-macros [dotfiles.macros]})
+  {import-macros [[{: map} :dotfiles.macros]]})
 
 (let [ui (require :harpoon.ui)
       mark (require :harpoon.mark)

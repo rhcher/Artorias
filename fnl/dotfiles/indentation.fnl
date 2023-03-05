@@ -3,7 +3,7 @@
 ;; https://github.com/otommod/dotfiles/blob/main/nvim/.config/nvim/fnl/rc.fnl
 
 (module dotfiles.indentation
-  {import-macros [[ac :aniseed.macros.autocmds]]})
+  {import-macros [[{: autocmd} :aniseed.macros.autocmds]]})
 
 ;; This contains heuristic-based functionality which can indent Fennel code
 ;; without fully parsing it. This can be useful in text editors when you can't
@@ -111,4 +111,4 @@
 (fn fennel-local []
   (set vim.o.indentexpr "v:lua.require(\"dotfiles.indentation\").fennel_indentexpr(v:lnum)"))
 
-(ac.autocmd [:FileType] {:pattern "fennel" :callback #(fennel-local)})
+(autocmd [:FileType] {:pattern "fennel" :callback #(fennel-local)})

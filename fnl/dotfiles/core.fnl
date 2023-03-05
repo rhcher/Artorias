@@ -1,6 +1,6 @@
 (module dotfiles.core
   {autoload {nvim aniseed.nvim}
-   import-macros [[ac :aniseed.macros.autocmds]]})
+   import-macros [[{: augroup} :aniseed.macros.autocmds]]})
 
 ;; Generic Neovim configuration.
 (set vim.opt.termguicolors true)
@@ -80,9 +80,9 @@
                               :* "win32yank.exe -o --lf"}
                       :cache_enable false})
 
-(ac.augroup :init
-            [[:CmdWinEnter] {:buffer 0 :command "cmap q <C-W>q"}]
-            [[:TextYankPost] {:callback #(vim.highlight.on_yank {:highlight "Visual"
-                                                                 :timeout 150
-                                                                 :on_visual true})}]
-            [[:FocusGained :TermClose :TermLeave] {:command "checktime"}])
+(augroup :init
+         [[:CmdWinEnter] {:buffer 0 :command "cmap q <C-W>q"}]
+         [[:TextYankPost] {:callback #(vim.highlight.on_yank {:highlight "Visual"
+                                                              :timeout 150
+                                                              :on_visual true})}]
+         [[:FocusGained :TermClose :TermLeave] {:command "checktime"}])

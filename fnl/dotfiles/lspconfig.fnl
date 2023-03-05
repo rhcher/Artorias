@@ -2,9 +2,9 @@
   {autoload {cmplsp cmp_nvim_lsp
              lsp_util vim.lsp.util
              a aniseed.core}
-   import-macros [[ac :aniseed.macros.autocmds]]})
+   import-macros [[{: autocmd : augroup} :aniseed.macros.autocmds]]})
 
-(ac.autocmd :LspAttach
+(autocmd :LspAttach
   {:callback
    (fn [args]
      (let [bufnr args.buf
@@ -27,9 +27,9 @@
          (keymap [:n :v] :<leader>la "<cmd>Lspsaga code_action<CR>"))
 
        (when client.server_capabilities.codeLensProvider
-         (ac.autocmd [:BufEnter :CursorHold :InsertLeave]
-                     {:buffer bufnr
-                      :callback vim.lsp.codelens.refresh})
+         (autocmd [:BufEnter :CursorHold :InsertLeave]
+                  {:buffer bufnr
+                   :callback vim.lsp.codelens.refresh})
          (keymap :n :<leader>ll vim.lsp.codelens.run))
 
        (keymap :n :gd vim.lsp.buf.definition)
@@ -50,7 +50,7 @@
                                            (when (= (length bufs) 0)
                                              (print (.. "stopping LSP server " client.name))
                                              (client:stop))))]
-         (ac.augroup "LspTimeOut"
+         (augroup "LspTimeOut"
            [["BufDelete"] {:pattern "*"
                            :callback #(vim.defer_fn delete-empty-lsp-clients 5000)}]))
 
@@ -64,7 +64,7 @@
                                                                            (= request.bufnr bufnr)
                                                                            (not (request.method:match "semanticTokens")))
                                                                   (client.cancel_request id)))))))]
-         (ac.augroup "LspCancelRequest"
+         (augroup "LspCancelRequest"
            [["CursorMoved" "BufLeave"] {:buffer bufnr
                                         :callback #(lsp-cancel-pending-requests)
                                         :desc "lsp.cancel_pending_requests"}]))))})

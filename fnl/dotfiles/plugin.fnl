@@ -2,7 +2,8 @@
   {autoload {a aniseed.core
              util dotfiles.util
              : lazy}
-   import-macros [[m :dotfiles.macros]]})
+   import-macros [[{: map} :dotfiles.macros]]})
+
 
 (defn use [...]
   (let [pkgs [...]
@@ -111,19 +112,19 @@
                       :opts {:winopts {:split "bot new"
                                        :border "single"}}
                       :init #(let [fzf (require "fzf-lua")]
-                               (m.map :n :<leader>ff fzf.files)
-                               (m.map :n :<leader>fp #(fzf.files {:cwd "~/.config/nvim/"}))
-                               (m.map :n :<leader>fs fzf.live_grep_native)
-                               (m.map :n :<leader>fb fzf.buffers)
-                               (m.map :n :<leader>bb fzf.buffers)
-                               (m.map :n :<leader>fh fzf.help_tags)
-                               (m.map :n :<leader>fk fzf.keymaps)
-                               (m.map :n :<leader>fl fzf.blines)
-                               (m.map :n :<leader>pl fzf.lines)
-                               (m.map :n :<leader>fo fzf.oldfiles)
-                               (m.map :n :<leader>fc fzf.commands)
-                               (m.map :n :<leader>fq fzf.quickfix)
-                               (m.map :n :<leader>fg fzf.git_bcommits))}
+                               (map :n :<leader>ff fzf.files)
+                               (map :n :<leader>fp #(fzf.files {:cwd "~/.config/nvim/"}))
+                               (map :n :<leader>fs fzf.live_grep_native)
+                               (map :n :<leader>fb fzf.buffers)
+                               (map :n :<leader>bb fzf.buffers)
+                               (map :n :<leader>fh fzf.help_tags)
+                               (map :n :<leader>fk fzf.keymaps)
+                               (map :n :<leader>fl fzf.blines)
+                               (map :n :<leader>pl fzf.lines)
+                               (map :n :<leader>fo fzf.oldfiles)
+                               (map :n :<leader>fc fzf.commands)
+                               (map :n :<leader>fq fzf.quickfix)
+                               (map :n :<leader>fg fzf.git_bcommits))}
   "nvim-tree/nvim-web-devicons" {:event "VeryLazy" :mod "devicons"}
   "tpope/vim-fugitive" {:cmd "Git"}
   "guns/vim-sexp" {:ft util.lisp-language
@@ -141,8 +142,8 @@
   "kevinhwang91/nvim-ufo" {:dependencies ["kevinhwang91/promise-async"]
                            :config
                            #(let [ufo (require "ufo")]
-                              (m.map :n :zR ufo.openAllFolds)
-                              (m.map :n :zM ufo.closeAllFolds)
+                              (map :n :zR ufo.openAllFolds)
+                              (map :n :zM ufo.closeAllFolds)
                               (local ftmap
                                      {:vim "indent"
                                       :fennel "treesitter"
@@ -202,8 +203,8 @@
   "kazhala/close-buffers.nvim" {:keys ["<leader>bk" "<leader>bo"]
                                 :config
                                 #(let [close-buffers (require "close_buffers")]
-                                   (m.map :n :<leader>bk #(close-buffers.delete {:type :this}))
-                                   (m.map :n :<leader>bo #(close-buffers.delete {:type :hidden})))}
+                                   (map :n :<leader>bk #(close-buffers.delete {:type :this}))
+                                   (map :n :<leader>bo #(close-buffers.delete {:type :hidden})))}
   "anuvyklack/hydra.nvim" {:event "VeryLazy"
                            :dependencies ["anuvyklack/keymap-layer.nvim"
                                           "mrjones2014/smart-splits.nvim"]
@@ -211,7 +212,7 @@
   "cshuaimin/ssr.nvim" {:keys ["<leader>sr"]
                         :config
                         #(let [ssr (require "ssr")]
-                           (m.map [:n :x] "<leader>sr" ssr.open))}
+                           (map [:n :x] "<leader>sr" ssr.open))}
   "dhruvasagar/vim-table-mode" {:cmd "TableModeToggle"
                                 :init (fn [] (set vim.g.table_mode_corner "|"))}
   "glepnir/dashboard-nvim" {:event "VimEnter" :mod "dashboard"})

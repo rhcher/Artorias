@@ -1,5 +1,5 @@
 (module dotfiles.plugin.terminal
-  {require-macros [dotfiles.macros]})
+  {import-macros [[{: map} :dotfiles.macros]]})
 
 (when-let [(_ term) (pcall require "toggleterm")]
   (term.setup {:size (fn [t]
