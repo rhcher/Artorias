@@ -17,8 +17,8 @@
     (let [hl (.. "DiagnosticSign" type)]
       (vim.fn.sign_define hl {:text icon :texthl hl :numhl hl}))))
 
-(map :n 
-     :<space>le 
+(map :n
+     :<space>le
      #(vim.diagnostic.open_float 0 {:scope "line"
                                     :close_events ["BufLeave" "CursorMoved" "InsertEnter" "FocusLost"]})
      {:noremap true :silent true})
