@@ -30,6 +30,22 @@
                  param)]
     (vim.lsp.buf_request 0 "$ccls/navigate" params handler)))
 
+(defn ccls_info []
+  (let [handler (fn [_ result _ _] (vim.print result))]
+    (vim.lsp.buf_request 0 "$ccls/info" nil handler)))
+
+(defn ccls_fileInfo []
+  (let [handler (fn [err result _ _]
+                  (vim.print err)
+                  (vim.print result))
+        params (let [param (util.make_text_document_params 0)]
+                 (tset param "dependencies" true)
+                 (tset param "includes" true)
+                 (tset param "skipped_ranges" true)
+                 param)]
+    (vim.print params)
+    (vim.lsp.buf_request 0 "$ccls/fileInfo" params handler)))
+
 (defn call [title]
   (let [handler (handler title)
         params (let [param (util.make_position_params)]

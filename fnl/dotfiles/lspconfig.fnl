@@ -113,7 +113,10 @@
     (keymap :n :<space>gw #(ccls.extend_ref :write))
     (keymap :n :<space>gr #(ccls.extend_ref :read))
     (keymap :n :<space>gm #(ccls.extend_ref :macro))
-    (keymap :n :<space>gn #(ccls.extend_ref :notcall))))
+    (keymap :n :<space>gn #(ccls.extend_ref :notcall))
+    ; ccls info
+    (keymap :n :<space>cf #(ccls.ccls_fileInfo))
+    (keymap :n :<space>ci #(ccls.ccls_info))))
 
 (def sumneko_lua_config
   {:Lua {:diagnostics {:enable true :globals [:vim]}
