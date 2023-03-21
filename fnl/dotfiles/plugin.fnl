@@ -4,6 +4,16 @@
              : lazy}
    import-macros [[{: map} :dotfiles.macros]]})
 
+(def- lazy-config
+  {:dev {:path "~/workspace/nvim_plugins/"}
+   :performance {:rtp {:disabled_plugins [:netrwPlugin
+                                          :tarPlugin
+                                          :tutor
+                                          :zipPlugin
+                                          :tohtml
+                                          :gzip
+                                          :matchit
+                                          :matchparen]}}})
 
 (defn use [...]
   (let [pkgs [...]
@@ -19,7 +29,7 @@
         (if (not= (a.get opts "dir" nil) nil)
             (table.insert plugins opts)
             (table.insert plugins (a.assoc opts 1 name)))))
-    (lazy.setup plugins)))
+    (lazy.setup plugins lazy-config)))
 
 (use
   "folke/lazy.nvim" {}
