@@ -65,9 +65,9 @@
                                                                            (not (request.method:match "semanticTokens")))
                                                                   (client.cancel_request id)))))))]
          (augroup "LspCancelRequest"
-           [["CursorMoved" "BufLeave"] {:buffer bufnr
-                                        :callback #(lsp-cancel-pending-requests)
-                                        :desc "lsp.cancel_pending_requests"}]))))})
+           [["BufLeave"] {:buffer bufnr
+                          :callback #(lsp-cancel-pending-requests)
+                          :desc "lsp.cancel_pending_requests"}]))))})
 
 ;; (tset vim.lsp.handlers "textDocument/hover" (vim.lsp.with vim.lsp.handlers.hover {:border :single :title "hover" :title_pos "left"}))
 ;; (tset vim.lsp.handlers "textDocument/signatureHelp" (vim.lsp.with vim.lsp.handlers.signature_help {:border :single}))
