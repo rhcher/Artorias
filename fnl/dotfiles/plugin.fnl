@@ -176,8 +176,10 @@
                                  :large_file_overrides nil}))}
   "neovim/nvim-lspconfig" {:event ["BufReadPre" "BufNewFile"]
                            :dependencies ["hrsh7th/cmp-nvim-lsp"
+                                          "folke/neodev.nvim"
                                           "glepnir/lspsaga.nvim"]
                            :config #(require "dotfiles.lspconfig")}
+  "folke/neodev.nvim" {:opts {}}
   "glepnir/lspsaga.nvim" {:dependencies ["nvim-tree/nvim-web-devicons"
                                          "nvim-treesitter/nvim-treesitter"]
                           :event "LspAttach"

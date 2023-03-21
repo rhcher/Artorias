@@ -168,7 +168,9 @@
    :vimruntime ""})
 
 (let [(ok? lsp) (pcall require "lspconfig")
-      flags {:debounce_text_changes 50}]
+      flags {:debounce_text_changes 50}
+      neodev (require "neodev")]
+  (neodev.setup)
   (var capabilities (cmplsp.default_capabilities))
   (set capabilities.textDocument.foldingRange {:dynamicRegistration false
                                                :lineFoldingOnly true})
