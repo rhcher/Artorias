@@ -163,6 +163,7 @@
                               (ufo.setup {:provider_selector (fn [bufnr filetype buftype]
                                                                (. ftmap filetype))}))}
   "kevinhwang91/nvim-bqf" {:ft "qf"
+                           :init #(require "dotfiles.qftf")
                            :mod "bqf"}
   "RRethy/vim-illuminate" {:event ["BufReadPost" "BufNewFile"]
                            :config
