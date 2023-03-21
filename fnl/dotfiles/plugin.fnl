@@ -191,7 +191,15 @@
   "NvChad/nvim-colorizer.lua" {:cmd "ColorizerToggle"}
   "tpope/vim-repeat" {:event "VeryLazy"}
   "wlangstroth/vim-racket" {:ft "scheme"}
-  "kylechui/nvim-surround" {:opts {:move_cursor false}}
+  "kylechui/nvim-surround" {:config #(let [surround (require "nvim-surround")
+                                           config (require "nvim-surround.config")]
+                                       (surround.setup {:move_cursor false
+                                                        :surrounds {"(" {:add ["(" ")"]
+                                                                         :find #(config.get_selection {:motion "a("})
+                                                                         :delete "^(.)().-(.)()$"}
+                                                                    ")" {:add ["( " " )"]
+                                                                         :find #(config.get_selection {:motion "a)"})
+                                                                         :delete "^(. ?)().-( ?.)()$"}}}))}
   "mhinz/vim-grepper" {:keys ["gs"] :mod "grepper"}
   "lewis6991/gitsigns.nvim" {:event ["BufReadPre" "BufNewFile"] :mod "gitsigns"}
   "akinsho/nvim-toggleterm.lua" {:mod "terminal"}
