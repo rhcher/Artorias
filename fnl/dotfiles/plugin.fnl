@@ -32,13 +32,14 @@
     (lazy.setup plugins lazy-config)))
 
 (use
-  "folke/lazy.nvim" {}
+  "folke/lazy.nvim" {:event "VeryLazy"}
   "vim-lsp-cxx-highlight" {:dir "/home/rhcher/workspace/vim-lsp-cxx-highlight/"
                            :ft [:c :cpp]}
-  "Olical/aniseed" {:event "VeryLazy" :branch "develop"}
-  "Olical/conjure" {:event "VeryLazy" :branch "develop"}
+  "Olical/aniseed" {:branch "develop"}
+  "Olical/conjure" {:branch "develop"}
   "glepnir/whiskyline.nvim" {:event "VimEnter"
-                             :config true :dependencies ["nvim-tree/nvim-web-devicons"]}
+                             :config true
+                             :dependencies ["nvim-tree/nvim-web-devicons"]}
   "junegunn/fzf" {:event "VeryLazy" :build "./install --bin"}
   "karb94/neoscroll.nvim" {:event "VeryLazy"
                            :config true}
@@ -179,6 +180,7 @@
                            :config #(require "dotfiles.lspconfig")}
   "glepnir/lspsaga.nvim" {:dependencies ["nvim-tree/nvim-web-devicons"
                                          "nvim-treesitter/nvim-treesitter"]
+                          :event "LspAttach"
                           :mod "lspsaga"}
   "abecodes/tabout.nvim" {:event "VeryLazy"
                           :opts {}}

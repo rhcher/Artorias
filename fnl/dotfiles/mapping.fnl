@@ -48,11 +48,6 @@
 
 (map [:n :v] :gx "<Plug>(openbrowser-smart-search)")
 
-(map :n :cx "<Plug>(Exchange)")
-(map :x :X "<Plug>(Exchange)")
-(map :n :cxc "<Plug>(ExchangeClear)")
-(map :n :cxx "<Plug>(ExchangeLine)")
-
 (map :n :<leader>e ":Oil<CR>")
 
 (map :n :<leader>gg ":Git<CR><C-w>o")

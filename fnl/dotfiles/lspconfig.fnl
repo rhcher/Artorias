@@ -123,6 +123,7 @@
          :completion {:callSnippet :Replace
                       :showWord :Disable}
          :runtime {:version :LuaJIT}
+         :workspace {:checkThirdParty false}
          :IntelliSense {:traceLocalSet true
                         :traceReturn true
                         :traceBeSetted true
@@ -172,6 +173,8 @@
   (set capabilities.textDocument.foldingRange {:dynamicRegistration false
                                                :lineFoldingOnly true})
 
+  ; (tset capabilities :workspace {:didChangeWatchedFiles
+  ;                                {:dynamicRegistration  true}})
   (when ok?
     (lsp.ccls.setup
       {:on_attach ccls_on_attach
@@ -188,7 +191,6 @@
     ;          "--clang-tidy-checks=-*,llvm-*,clang-analyzer-*"
     ;          :--cross-file-rename
     ;          :--header-insertion=never]
-    ;          ;; :--pch-storage=disk]
     ;    :flags flags})
     (lsp.lua_ls.setup
       {:capabilities capabilities
