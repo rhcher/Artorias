@@ -15,6 +15,14 @@
 (def- cmp-window-opts {:border :single
                        :winhighlight "Normal:Normal,FloatBorder:Normal,CursorLine:Visual,Search:None"})
 
+(def- cmp-buffer {:name :buffer
+                  :option {:keyword_length 3
+                           :keyword_pattern "\\k\\+"
+                           :get_bufnrs #(let [bufs {}]
+                                          (each [_ win (ipairs (vim.api.nvim_list_wins))]
+                                            (tset bufs (vim.api.nvim_win_get_buf win) true))
+                                          (vim.tbl_keys bufs))}})
+
 (let [(ok? cmp) (pcall require :cmp)
       snippy (require :snippy)
       lspkind (require :lspkind)]
@@ -52,19 +60,14 @@
                                                  :maxwidth 50
                                                  :before (fn [entry vim_item]
                                                            (tset vim_item :dup (or (. {:conjure 0} entry.source.name) 0))
-                                                           vim_item)})} 
-       :sources (cmp.config.sources [{:name :path}]
-                                    [{:name :nvim_lsp}]
-                                    [{:name :buffer
-                                      :keyword_length 3
-                                      :option {:keyword_pattern "\\k\\+"
-                                               :get_bufnrs #(let [bufs {}]
-                                                              (each [_ win (ipairs (vim.api.nvim_list_wins))]
-                                                                (tset bufs (vim.api.nvim_win_get_buf win) true))
-                                                              (vim.tbl_keys bufs))}}])})
+                                                           vim_item)})}
+       :sources (cmp.config.sources [{:name :nvim_lsp}]
+                                    [{:name :path}
+                                     cmp-buffer])})
     (cmp.setup.filetype util.lisp-language
                         {:sources [{:name "conjure"}
-                                   {:name "buffer"}]})
+                                   {:name "path"}
+                                   cmp-buffer]})
     (cmp.setup.cmdline "/"
                        {:mapping (cmp.mapping.preset.cmdline)
                         :sources [{:name "buffer"}]})
