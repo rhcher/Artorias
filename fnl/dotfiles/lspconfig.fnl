@@ -175,8 +175,9 @@
   (set capabilities.textDocument.foldingRange {:dynamicRegistration false
                                                :lineFoldingOnly true})
 
-  ; (tset capabilities :workspace {:didChangeWatchedFiles
-  ;                                {:dynamicRegistration  true}})
+  (var hls_capabilities capabilities)
+  (tset capabilities :workspace {:didChangeWatchedFiles
+                                 {:dynamicRegistration  true}})
   (when ok?
     (lsp.ccls.setup
       {:on_attach ccls_on_attach
@@ -206,7 +207,7 @@
       {:capabilities capabilities
        :flags flags})
     (lsp.hls.setup
-      {:capabilities capabilities
+      {:capabilities hls_capabilities
        :settings hls_config
        :flags flags})
     (lsp.pyright.setup
