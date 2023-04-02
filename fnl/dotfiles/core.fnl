@@ -25,7 +25,7 @@
 (set vim.opt.numberwidth 2)
 (set vim.opt.signcolumn "yes")
 (set vim.opt.undofile true)
-(set vim.opt.scrolloff 8)
+(set vim.opt.scrolloff 4)
 (set vim.opt.cursorline true)
 (set vim.opt.incsearch false)
 (vim.cmd "set diffopt+=linematch:60,algorithm:patience")

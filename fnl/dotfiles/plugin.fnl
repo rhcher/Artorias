@@ -181,7 +181,7 @@
                                  :modes_denylist [:i]
                                  :large_file_curoff 10000
                                  :large_file_overrides nil}))}
-  "neovim/nvim-lspconfig" {:event ["BufReadPre" "BufNewFile"]
+  "neovim/nvim-lspconfig" {:event ["LspAttach"]
                            :dependencies ["hrsh7th/cmp-nvim-lsp"
                                           "folke/neodev.nvim"
                                           "glepnir/lspsaga.nvim"]
