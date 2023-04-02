@@ -56,7 +56,6 @@
 (set vim.opt.foldlevel 99)
 (set vim.opt.foldlevelstart 99)
 (set vim.opt.foldenable true)
-(set vim.opt.statuscolumn "%=%{&nu?(&rnu&&v:relnum?v:relnum:v:lnum):''}%s%C")
 (set vim.opt.splitkeep "screen")
 
 (set vim.opt.winwidth 10)

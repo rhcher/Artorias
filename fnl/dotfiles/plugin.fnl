@@ -150,7 +150,14 @@
                                           "Julian/vim-textobj-variable-segment"]}
   "AndrewRadev/linediff.vim" {:cmd "Linediff"}
   "tyru/open-browser.vim" {:keys "<Plug>(openbrowser-smart-search)"}
-  "kevinhwang91/nvim-ufo" {:dependencies ["kevinhwang91/promise-async"]
+  "kevinhwang91/nvim-ufo" {:dependencies ["kevinhwang91/promise-async"
+                                          {1 :luukvbaal/statuscol.nvim
+                                           :config #(let [builtin (require "statuscol.builtin")
+                                                          statuscol (require "statuscol")]
+                                                      (statuscol.setup {:relculright true
+                                                                        :segments [{:text ["%s"] :click "v:lua.ScSa"}
+                                                                                   {:text [builtin.lnumfunc " "] :click "v:lua.ScLa"}
+                                                                                   {:text [builtin.foldfunc] :click "v:lua.ScFa"}]}))}]
                            :event "VeryLazy"
                            :config
                            #(let [ufo (require "ufo")]
