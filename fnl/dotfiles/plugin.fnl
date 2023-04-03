@@ -38,7 +38,7 @@
   "Olical/aniseed" {:branch "develop"}
   "Olical/conjure" {:branch "develop"}
   "glepnir/whiskyline.nvim" {:event "VimEnter"
-                             :config true
+                             :opts {:bg "#2a2a47"}
                              :dependencies ["nvim-tree/nvim-web-devicons"]}
   "junegunn/fzf" {:event "VeryLazy" :build "./install --bin"}
   "karb94/neoscroll.nvim" {:event "VeryLazy"
