@@ -1,6 +1,7 @@
 -- Entrypoint for my Neovim configuration!
 -- We simply bootstrap packer and Aniseed here.
 -- It's then up to Aniseed to compile and load fnl/init.fnl
+vim.loader.enable()
 
 vim.lsp.set_log_level("ERROR")
 
