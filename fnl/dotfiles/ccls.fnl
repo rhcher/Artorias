@@ -10,7 +10,7 @@
             (vim.fn.setqflist {} " " {:title title
                                       :items (util.locations_to_items result
                                                                       client.offset_encoding)})
-            (vim.cmd.botright "copen"))))))
+            (vim.api.nvim_command "botright copen"))))))
 
 (defn navigate [n]
   (let [handler (fn [_ result ctx _]

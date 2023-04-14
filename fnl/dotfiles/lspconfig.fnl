@@ -175,11 +175,11 @@
   (set capabilities.textDocument.foldingRange {:dynamicRegistration false
                                                :lineFoldingOnly true})
 
-  (var hls_capabilities (cmplsp.default_capabilities))
-  (set hls_capabilities.textDocument.foldingRange {:dynamicRegistration false
-                                                   :lineFoldingOnly true})
-  (tset hls_capabilities :workspace {:didChangeWatchedFiles
-                                     {:dynamicRegistration  true}})
+  (var capabilities_with_watched_files (cmplsp.default_capabilities))
+  (set capabilities_with_watched_files.textDocument.foldingRange {:dynamicRegistration false
+                                                                  :lineFoldingOnly true})
+  (tset capabilities_with_watched_files :workspace {:didChangeWatchedFiles
+                                                    {:dynamicRegistration  true}})
   (when ok?
     (lsp.ccls.setup
       {:on_attach ccls_on_attach
@@ -209,9 +209,12 @@
       {:capabilities capabilities
        :flags flags})
     (lsp.hls.setup
-      {:capabilities hls_capabilities
+      {:capabilities capabilities_with_watched_files
        :settings hls_config
        :flags flags})
+    ; (lsp.pylyzer.setup
+    ;   {:capabilities capabilities
+    ;    :flags flags})
     (lsp.pyright.setup
       {:capabilities capabilities
        :settings pyright_config
