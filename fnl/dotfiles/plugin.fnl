@@ -38,6 +38,7 @@
   "Olical/aniseed" {:branch "develop"}
   "Olical/conjure" {:branch "develop"}
   "glepnir/whiskyline.nvim" {:event "VimEnter"
+  "nvimdev/whiskyline.nvim" {:event "VimEnter"
                              :opts {:bg "#2a2a47"}
                              :dependencies ["nvim-tree/nvim-web-devicons"]}
   "junegunn/fzf" {:event "VeryLazy" :build "./install --bin"}
@@ -71,11 +72,14 @@
                                      :build ":TSUpdate"
                                      :mod "treesitter"}
   "rhcher/srcery.nvim" {:config #(vim.cmd.colorscheme "srcery")
+                        :cond true
                         :priority 1000}
-  "rhcher/vim-paper" {:lazy true}
-  "rebelot/kanagawa.nvim" {:lazy true}
-                           ; :config #(vim.cmd.colorscheme "kanagawa")
-                           ; :priority 1000}
+  "rhcher/vim-paper" {:config #(vim.cmd.colorscheme "paper")
+                      :cond false
+                      :priority 1000}
+  "rebelot/kanagawa.nvim" {:config #(vim.cmd.colorscheme "kanagawa")
+                           :cond false
+                           :priority 1000}
   "eraserhd/parinfer-rust" {:ft util.lisp-language
                             :build "cargo build --release"}
   "hrsh7th/nvim-cmp" {:version false
@@ -121,7 +125,8 @@
   "ibhagwan/fzf-lua" {:cmd "FzfLua"
                       :dependencies ["nvim-tree/nvim-web-devicons"]
                       :opts {:winopts {:split "bot new"
-                                       :border "single"}}
+                                       :border "single"}
+                             :copen "bot new"}
                       :init #(let [fzf (require "fzf-lua")]
                                (map :n :<leader>ff fzf.files)
                                (map :n :<leader>fp #(fzf.files {:cwd "~/.config/nvim/"}))
@@ -184,20 +189,27 @@
   "neovim/nvim-lspconfig" {:event ["LspAttach"]
                            :dependencies ["hrsh7th/cmp-nvim-lsp"
                                           "folke/neodev.nvim"
-                                          "glepnir/lspsaga.nvim"]
+                                          "nvimdev/lspsaga.nvim"]
                            :config #(require "dotfiles.lspconfig")}
   "folke/neodev.nvim" {:opts {}}
-  "glepnir/lspsaga.nvim" {:dependencies ["nvim-tree/nvim-web-devicons"
+  "nvimdev/lspsaga.nvim" {:dependencies ["nvim-tree/nvim-web-devicons"
                                          "nvim-treesitter/nvim-treesitter"]
                           :event "LspAttach"
                           :mod "lspsaga"}
   "abecodes/tabout.nvim" {:event "VeryLazy"
                           :opts {}}
+  "nvimdev/indentmini.nvim" {:event "BufEnter"
+                             :cond false
+                             :init #(vim.cmd "hi default link IndentLine Comment")
+                             :opts {:exclude ["fennel" "fzf" "dashboard" "help" "lazy"]}
+                             :dependencies ["nvim-treesitter/nvim-treesitter"]}
   "lukas-reineke/indent-blankline.nvim" {:event ["BufReadPost" "BufNewFile"]
                                          :mod "indent"}
   "numToStr/Comment.nvim" {:event "VeryLazy" :config true}
   "mbbill/undotree" {:cmd "UndotreeShow"}
-  "NvChad/nvim-colorizer.lua" {:cmd "ColorizerToggle"}
+  "NvChad/nvim-colorizer.lua" {:cmd "ColorizerToggle"
+                               :config #(let [colorizer (require "colorizer")]
+                                          (colorizer.setup))}
   "tpope/vim-repeat" {:event "VeryLazy"}
   "wlangstroth/vim-racket" {:ft "scheme"}
   "kylechui/nvim-surround" {:config #(let [surround (require "nvim-surround")
@@ -245,5 +257,5 @@
                         #(let [ssr (require "ssr")]
                            (map [:n :x] "<leader>sr" ssr.open))}
   "dhruvasagar/vim-table-mode" {:cmd "TableModeToggle"
-                                :init (fn [] (set vim.g.table_mode_corner "|"))}
+                                :init #(set vim.g.table_mode_corner "|")}
   "glepnir/dashboard-nvim" {:event "VimEnter" :mod "dashboard"})
