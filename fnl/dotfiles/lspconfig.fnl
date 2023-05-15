@@ -40,6 +40,7 @@
                             lspsaga_hover (require :lspsaga.hover)
                             winid (ufo.peekFoldedLinesUnderCursor)]
                         (when (not winid)
+                          ; (vim.lsp.buf.hover))))
                           (: lspsaga_hover "render_hover_doc"))))
        (keymap :n :<leader>k "<cmd>Lspsaga hover_doc ++keep<CR>")
        (keymap :n :<leader>lr ":Lspsaga rename<CR>")
@@ -175,11 +176,7 @@
   (set capabilities.textDocument.foldingRange {:dynamicRegistration false
                                                :lineFoldingOnly true})
 
-  (var capabilities_with_watched_files (cmplsp.default_capabilities))
-  (set capabilities_with_watched_files.textDocument.foldingRange {:dynamicRegistration false
-                                                                  :lineFoldingOnly true})
-  (tset capabilities_with_watched_files :workspace {:didChangeWatchedFiles
-                                                    {:dynamicRegistration  true}})
+  (tset capabilities :workspace {:didChangeWatchedFiles {:dynamicRegistration false}})
   (when ok?
     (lsp.ccls.setup
       {:on_attach ccls_on_attach
@@ -209,7 +206,7 @@
       {:capabilities capabilities
        :flags flags})
     (lsp.hls.setup
-      {:capabilities capabilities_with_watched_files
+      {:capabilities capabilities
        :settings hls_config
        :flags flags})
     ; (lsp.pylyzer.setup
