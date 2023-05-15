@@ -37,9 +37,9 @@
                            :ft [:c :cpp]}
   "Olical/aniseed" {:branch "develop"}
   "Olical/conjure" {:branch "develop"}
-  "glepnir/whiskyline.nvim" {:event "VimEnter"
   "nvimdev/whiskyline.nvim" {:event "VimEnter"
                              :opts {:bg "#2a2a47"}
+                                    ; :bg "#f2de91"}
                              :dependencies ["nvim-tree/nvim-web-devicons"]}
   "junegunn/fzf" {:event "VeryLazy" :build "./install --bin"}
   "karb94/neoscroll.nvim" {:event "VeryLazy"
@@ -51,11 +51,13 @@
                                    ["<leader>xc" "<cmd>lua require('substitute.exchange').cancel()<cr>"]]}
   "rcarriga/nvim-notify" {:keys [{1 "<leader>un"
                                   2 #((. (require "notify") :dismiss) {:silent true :pending true})}]
+                          :cond false
                           :opts {:timeout 3000
                                  :background_colour "#000000"
                                  :max_height (fn [] (math.floor (* vim.o.lines 0.75)))
                                  :max_width (fn [] (math.floor (* vim.o.columns 0.75)))}}
   "folke/noice.nvim" {:event "VeryLazy"
+                      :cond false
                       :dependencies ["MunifTanjim/nui.nvim"]
                       :keys [{1 "<S-Enter>"
                               2 #((. (require "noice") :redirect) (vim.fn.getcmdline))
@@ -109,12 +111,12 @@
   "dcampos/nvim-snippy" {:event "VeryLazy"
                          :init
                          #(let [snippy (require :snippy)]
-                              (vim.keymap.set [:i :s] :<C-l> #(if (snippy.can_jump 1)
-                                                                  "<Plug>(snippy-next)"
-                                                                  "<ESC>A") {:expr true})
-                              (vim.keymap.set [:i :s] :<C-h> #(if (snippy.can_jump -1)
-                                                                  "<Plug>(snippy-previous)"
-                                                                  "<ESC>I") {:expr true}))}
+                            (vim.keymap.set [:i :s] :<C-l> #(if (snippy.can_jump 1)
+                                                                "<Plug>(snippy-next)"
+                                                                "<ESC>A") {:expr true})
+                            (vim.keymap.set [:i :s] :<C-h> #(if (snippy.can_jump -1)
+                                                                "<Plug>(snippy-previous)"
+                                                                "<ESC>I") {:expr true}))}
   "ZhiyuanLck/smart-pairs" {:event "VeryLazy"
                             :mod "auto-pairs"}
   "stevearc/oil.nvim" {:cmd "Oil"
@@ -203,7 +205,7 @@
                              :init #(vim.cmd "hi default link IndentLine Comment")
                              :opts {:exclude ["fennel" "fzf" "dashboard" "help" "lazy"]}
                              :dependencies ["nvim-treesitter/nvim-treesitter"]}
-  "lukas-reineke/indent-blankline.nvim" {:event ["BufReadPost" "BufNewFile"]
+  "lukas-reineke/indent-blankline.nvim" {:event "VeryLazy"
                                          :mod "indent"}
   "numToStr/Comment.nvim" {:event "VeryLazy" :config true}
   "mbbill/undotree" {:cmd "UndotreeShow"}
@@ -258,4 +260,5 @@
                            (map [:n :x] "<leader>sr" ssr.open))}
   "dhruvasagar/vim-table-mode" {:cmd "TableModeToggle"
                                 :init #(set vim.g.table_mode_corner "|")}
-  "glepnir/dashboard-nvim" {:event "VimEnter" :mod "dashboard"})
+  "nvimdev/dashboard-nvim" {:event "VimEnter"
+                            :mod "dashboard"})

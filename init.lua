@@ -3,7 +3,7 @@
 -- It's then up to Aniseed to compile and load fnl/init.fnl
 vim.loader.enable()
 
-vim.lsp.set_log_level("ERROR")
+vim.lsp.set_log_level("off")
 
 if vim.g.nvui then
   -- Configure through vim commands
