@@ -155,7 +155,10 @@
                    :init
                    (fn []
                      (set vim.g.sexp_filetypes "clojure,scheme,lisp,timl,fennel,janet,racket")
-                     (set vim.g.sexp_enable_insert_mode_mappings 0))}
+                     (set vim.g.sexp_enable_insert_mode_mappings 0)
+                     (map [:n :x] :<localleader>i "<Plug>(sexp_round_head_wrap_list)")
+                     (map [:n :x] :<localleader>o "<Plug>(sexp_raise_list)")
+                     (map [:n :x] :<localleader>o "<Plug>(sexp_raise_element))"))}
   "svban/YankAssassin.vim" {:event "VeryLazy"}
   "kana/vim-textobj-user" {:event "VeryLazy"
                            :dependencies ["glts/vim-textobj-comment"
