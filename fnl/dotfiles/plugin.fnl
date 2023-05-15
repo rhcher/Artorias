@@ -148,7 +148,7 @@
                                (map :n :<leader>fc fzf.commands)
                                (map :n :<leader>fq fzf.quickfix)
                                (map :n :<leader>fg fzf.git_bcommits))}
-  "nvim-tree/nvim-web-devicons" {:event "VeryLazy" :mod "devicons"}
+  "nvim-tree/nvim-web-devicons" {:lazy true :mod "devicons"}
   "tpope/vim-fugitive" {:cmd "Git"}
   "guns/vim-sexp" {:ft util.lisp-language
                    :dependencies ["tpope/vim-sexp-mappings-for-regular-people"]
