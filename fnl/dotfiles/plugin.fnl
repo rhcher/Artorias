@@ -127,8 +127,9 @@
   "stevearc/oil.nvim" {:cmd "Oil"
                        :dependencies [:nvim-tree/nvim-web-devicons]
                        :opts {:columns ["icon" "permissions" "size" "mtime"]}}
-  "monkoose/matchparen.nvim" {:event "VeryLazy"
-                              :config true}
+  "utilyre/sentiment.nvim" {:version "*"
+                            :event "VeryLazy"
+                            :opts {}}
   "ibhagwan/fzf-lua" {:cmd "FzfLua"
                       :dependencies ["nvim-tree/nvim-web-devicons"]
                       :opts {:winopts {:split "bot new"
