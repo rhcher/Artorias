@@ -122,8 +122,8 @@
                             (vim.keymap.set [:i :s] :<C-h> #(if (snippy.can_jump -1)
                                                                 "<Plug>(snippy-previous)"
                                                                 "<ESC>I") {:expr true}))}
-  "ZhiyuanLck/smart-pairs" {:event "VeryLazy"
-                            :mod "auto-pairs"}
+  "altermo/ultimate-autopair.nvim" {:event ["InsertEnter" "CmdlineEnter"]
+                                    :mod "auto-pairs"}
   "stevearc/oil.nvim" {:cmd "Oil"
                        :dependencies [:nvim-tree/nvim-web-devicons]
                        :opts {:columns ["icon" "permissions" "size" "mtime"]}}
