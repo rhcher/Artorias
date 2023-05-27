@@ -83,7 +83,6 @@
                            :cond false
                            :priority 1000}
   "eraserhd/parinfer-rust" {:ft util.lisp-language
-                            :lazy true
                             :build "cargo build --release"}
   "harrygallagher4/nvim-parinfer-rust" {:ft util.lisp-language
                                         :config #(vim.api.nvim_create_autocmd "VimEnter"
