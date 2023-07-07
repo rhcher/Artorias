@@ -5,11 +5,11 @@ vim.loader.enable()
 
 vim.lsp.set_log_level("off")
 
-if vim.g.nvui then
-  -- Configure through vim commands
-  vim.cmd [[set guifont=Jetbrains\ Mono:h14]]
-  vim.cmd [[NvuiCmdFontFamily JetBrains Mono]]
-  vim.cmd [[NvuiCmdFontSize 13.0]]
+if vim.g.neovide then
+  vim.o.guifont = "JetBrainsMonoMedium NF,JetBrainsMono Nerd Font Propo:h13" -- text below applies for VimScript
+  vim.g.neovide_fullscreen = true
+  vim.g.neovide_cursor_animation_length = 0.1
+  vim.g.neovide_refresh_rate = 60
 end
 
 local lazy_path = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
