@@ -209,6 +209,9 @@
       {:capabilities capabilities
        :settings hls_config
        :flags flags})
+    (lsp.racket_langserver.setup
+      {:capabilities capabilities
+       :flags flags})
     ; (lsp.pylyzer.setup
     ;   {:capabilities capabilities
     ;    :flags flags})

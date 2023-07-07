@@ -222,7 +222,6 @@
                                :config #(let [colorizer (require "colorizer")]
                                           (colorizer.setup))}
   "tpope/vim-repeat" {:event "VeryLazy"}
-  "wlangstroth/vim-racket" {:ft "scheme"}
   "kylechui/nvim-surround" {:config #(let [surround (require "nvim-surround")
                                            config (require "nvim-surround.config")]
                                        (surround.setup {:move_cursor false

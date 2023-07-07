@@ -64,7 +64,7 @@
        :sources (cmp.config.sources [{:name :nvim_lsp}]
                                     [{:name :path}
                                      cmp-buffer])})
-    (cmp.setup.filetype util.lisp-language
+    (cmp.setup.filetype [:fennel :lisp :scheme :clojure :janet :timl]
                         {:sources [{:name "conjure"}
                                    {:name "path"}
                                    cmp-buffer]})
