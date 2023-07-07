@@ -57,7 +57,6 @@
                                  :max_height (fn [] (math.floor (* vim.o.lines 0.75)))
                                  :max_width (fn [] (math.floor (* vim.o.columns 0.75)))}}
   "folke/noice.nvim" {:event "VeryLazy"
-                      :cond false
                       :dependencies ["MunifTanjim/nui.nvim"]
                       :keys [{1 "<S-Enter>"
                               2 #((. (require "noice") :redirect) (vim.fn.getcmdline))

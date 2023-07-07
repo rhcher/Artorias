@@ -49,7 +49,7 @@
 (set vim.opt.listchars {:nbsp :⦸
                         :extends "»"
                         :precedes "«"
-                        :tab :▷⋯
+                        :tab :->
                         :trail :•})
 (set vim.opt.fillchars "eob: ,fold: ,foldopen:,foldsep: ,foldclose:")
 (set vim.opt.foldcolumn :1)
