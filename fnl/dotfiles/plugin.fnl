@@ -89,8 +89,7 @@
                             :build "cargo build --release"}
   "harrygallagher4/nvim-parinfer-rust" {:ft util.lisp-language
                                         :config #(vim.api.nvim_create_autocmd "VimEnter"
-                                                                              {:callback #(let [parinfer (require "parinfer")]
-                                                                                            (parinfer.setup))})}
+                                                                              {:callback #((. (require "parinfer") :setup))})}
   "hrsh7th/nvim-cmp" {:version false
                       :event "VeryLazy"
                       :dependencies [:hrsh7th/cmp-nvim-lsp
@@ -201,8 +200,7 @@
                                  :large_file_overrides nil}))}
   "neovim/nvim-lspconfig" {:event ["LspAttach"]
                            :dependencies ["hrsh7th/cmp-nvim-lsp"
-                                          "folke/neodev.nvim"
-                                          "nvimdev/lspsaga.nvim"]
+                                          "folke/neodev.nvim"]
                            :config #(require "dotfiles.lspconfig")}
   "folke/neodev.nvim" {:opts {}}
   "nvimdev/lspsaga.nvim" {:dependencies ["nvim-tree/nvim-web-devicons"
@@ -221,8 +219,7 @@
   "numToStr/Comment.nvim" {:event "VeryLazy" :config true}
   "mbbill/undotree" {:cmd "UndotreeShow"}
   "NvChad/nvim-colorizer.lua" {:cmd "ColorizerToggle"
-                               :config #(let [colorizer (require "colorizer")]
-                                          (colorizer.setup))}
+                               :config #((. (require "colorizer") :setup))}
   "tpope/vim-repeat" {:event "VeryLazy"}
   "kylechui/nvim-surround" {:config #(let [surround (require "nvim-surround")
                                            config (require "nvim-surround.config")]
@@ -247,8 +244,7 @@
                            (leap.add_default_mappings)))}
   "booperlv/nvim-gomove" {:event "VeryLazy" :mod "move"}
   "zegervdv/nrpattern.nvim" {:keys ["<C-a>" "<C-x>"]
-                             :config #(let [nrpattern (require "nrpattern")]
-                                        (nrpattern.setup))}
+                             :config #((. (require "nrpattern") :setup))}
   "ThePrimeagen/harpoon" {:keys ["<leader>uu" "<leader>ua" "<leader>un"
                                  "<leader>up" "<leader>tc"]
                           :dependencies ["nvim-lua/plenary.nvim"]
