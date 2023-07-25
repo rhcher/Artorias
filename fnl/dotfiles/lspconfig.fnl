@@ -32,6 +32,11 @@
                    :callback vim.lsp.codelens.refresh})
          (keymap :n :<leader>ll vim.lsp.codelens.run))
 
+       (when client.server_capabilities.inlayHintProvider
+         (let [(ok err) (pcall vim.lsp.inlay_hint bufnr true)]
+           (when (not ok)
+             (vim.print err))))
+
        (keymap :n :gd vim.lsp.buf.definition)
        (keymap :n :gD vim.lsp.buf.declaration)
        (keymap :n :gi vim.lsp.buf.implementation)
@@ -123,6 +128,7 @@
   {:Lua {:diagnostics {:enable true :globals [:vim]}
          :completion {:callSnippet :Replace
                       :showWord :Disable}
+         :hint {:enable true}
          :runtime {:version :LuaJIT}
          :workspace {:checkThirdParty false}
          :IntelliSense {:traceLocalSet true
