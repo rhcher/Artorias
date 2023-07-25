@@ -45,8 +45,8 @@
                             lspsaga_hover (require :lspsaga.hover)
                             winid (ufo.peekFoldedLinesUnderCursor)]
                         (when (not winid)
-                          ; (vim.lsp.buf.hover))))
-                          (: lspsaga_hover "render_hover_doc"))))
+                          (vim.lsp.buf.hover))))
+                          ; (: lspsaga_hover "render_hover_doc" {}))))
        (keymap :n :<leader>k "<cmd>Lspsaga hover_doc ++keep<CR>")
        (keymap :n :<leader>lr ":Lspsaga rename<CR>")
 
@@ -75,7 +75,7 @@
                           :callback #(lsp-cancel-pending-requests)
                           :desc "lsp.cancel_pending_requests"}]))))})
 
-;; (tset vim.lsp.handlers "textDocument/hover" (vim.lsp.with vim.lsp.handlers.hover {:border :single :title "hover" :title_pos "left"}))
+(tset vim.lsp.handlers "textDocument/hover" (vim.lsp.with vim.lsp.handlers.hover {:border :single :title "hover" :title_pos "left"}))
 ;; (tset vim.lsp.handlers "textDocument/signatureHelp" (vim.lsp.with vim.lsp.handlers.signature_help {:border :single}))
 
 (def ccls_config

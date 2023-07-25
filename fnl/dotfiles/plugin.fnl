@@ -61,7 +61,9 @@
                       :keys [{1 "<S-Enter>"
                               2 #((. (require "noice") :redirect) (vim.fn.getcmdline))
                               :mode "c"}]
-                      :opts {:lsp {:override {"vim.lsp.util.convert_input_to_markdown_lines" true
+                      :opts {:lsp {:progress {:enabled false}
+                                   :hover {:enabled false}
+                                   :override {"vim.lsp.util.convert_input_to_markdown_lines" true
                                               "vim.lsp.util.stylize_markdown" true
                                               "cmp.entry.get_documentation" true}}
                              :presets {:bottom_search true
