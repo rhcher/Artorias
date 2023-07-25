@@ -201,7 +201,7 @@
   "neovim/nvim-lspconfig" {:event ["LspAttach"]
                            :dependencies ["hrsh7th/cmp-nvim-lsp"
                                           "folke/neodev.nvim"]
-                           :config #(require "dotfiles.lspconfig")}
+                           :mod "lspconfig"}
   "folke/neodev.nvim" {:opts {}}
   "nvimdev/lspsaga.nvim" {:dependencies ["nvim-tree/nvim-web-devicons"
                                          "nvim-treesitter/nvim-treesitter"]
