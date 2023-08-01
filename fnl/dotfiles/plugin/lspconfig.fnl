@@ -10,29 +10,30 @@
      (let [bufnr args.buf
            client (vim.lsp.get_client_by_id args.data.client_id)
            keymap (fn [mode from to] (vim.keymap.set mode from to {:buffer bufnr :noremap true :silent true}))]
-       (when client.server_capabilities.documentFormattingProvider
+       (when (client.supports_method "textDocument/rangeFormatting")
          (keymap [:n :v] :<leader>lf vim.lsp.buf.format {:async true}))
 
-       (when client.server_capabilities.callHierarchyProvider
+       (when (client.supports_method "textDocument/prepareCallHierarchy")
          (keymap :n :<leader>ii vim.lsp.buf.incoming_calls)
          (keymap :n :<leader>io vim.lsp.buf.outgoing_calls))
 
-       (when client.server_capabilities.documentSymbolProvider
+       (when (client.supports_method "textDocument/documentSymbol")
          (keymap :n :<leader>lw vim.lsp.buf.document_symbol))
 
-       (when client.server_capabilities.workspaceSymbolProvider
+       (when (client.supports_method "workspace/symbol")
          (keymap :n :<leader>lW vim.lsp.buf.workspace_symbol))
 
-       (when client.server_capabilities.codeActionProvider
+       (when (client.supports_method "textDocument/codeAction")
          (keymap [:n :v] :<leader>la "<cmd>Lspsaga code_action<CR>"))
 
-       (when client.server_capabilities.codeLensProvider
+       (when (client.supports_method "textDocument/codeLens")
          (autocmd [:BufEnter :CursorHold :InsertLeave]
                   {:buffer bufnr
                    :callback vim.lsp.codelens.refresh})
-         (keymap :n :<leader>ll vim.lsp.codelens.run))
+         (when (client.supports_method "codeLens/resolve")
+           (keymap :n :<leader>ll vim.lsp.codelens.run)))
 
-       (when client.server_capabilities.inlayHintProvider
+       (when (client.supports_method "textDocument/inlayHint")
          (let [(ok err) (pcall vim.lsp.inlay_hint bufnr true)]
            (when (not ok)
              (vim.print err))))
@@ -50,7 +51,7 @@
        (keymap :n :<leader>k "<cmd>Lspsaga hover_doc ++keep<CR>")
        (keymap :n :<leader>lr ":Lspsaga rename<CR>")
 
-       (let [delete-empty-lsp-clients #(let [clients (vim.lsp.get_active_clients)]
+       (let [delete-empty-lsp-clients #(let [clients (vim.lsp.get_clients)]
                                          (each [_ client (ipairs clients)]
                                            (local bufs (vim.lsp.get_buffers_by_client_id client.id))
                                            (when (= (length bufs) 0)
