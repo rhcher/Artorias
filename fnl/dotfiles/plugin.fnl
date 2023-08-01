@@ -36,7 +36,8 @@
   "vim-lsp-cxx-highlight" {:dir "/home/rhcher/workspace/vim-lsp-cxx-highlight/"
                            :ft [:c :cpp]}
   "Olical/aniseed" {:branch "develop"}
-  "Olical/conjure" {:branch "develop"}
+  "Olical/conjure" {:branch "develop"
+                    :mod "conjure"}
   "nvimdev/whiskyline.nvim" {:event "VimEnter"
                              :opts {:bg "#2a2a47"}
                                     ; :bg "#f2de91"}
