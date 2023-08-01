@@ -59,22 +59,7 @@
                                              (client:stop))))]
          (augroup "LspTimeOut"
            [["BufDelete"] {:pattern "*"
-                           :callback #(vim.defer_fn delete-empty-lsp-clients 5000)}]))
-
-       (let [lsp-cancel-pending-requests (fn [bufnr]
-                                           (vim.schedule #(let [bufnr (if (or (= bufnr nil) (= bufnr 0))
-                                                                        (vim.api.nvim_get_current_buf)
-                                                                        bufnr)]
-                                                            (each [_ client (ipairs (vim.lsp.get_active_clients {:bufnr bufnr}))]
-                                                              (each [id request (pairs (or client.requests {}))]
-                                                                (when (and (= request.type "pending")
-                                                                           (= request.bufnr bufnr)
-                                                                           (not (request.method:match "semanticTokens")))
-                                                                  (client.cancel_request id)))))))]
-         (augroup "LspCancelRequest"
-           [["BufLeave"] {:buffer bufnr
-                          :callback #(lsp-cancel-pending-requests)
-                          :desc "lsp.cancel_pending_requests"}]))))})
+                           :callback #(vim.defer_fn delete-empty-lsp-clients 5000)}]))))})
 
 (tset vim.lsp.handlers "textDocument/hover" (vim.lsp.with vim.lsp.handlers.hover {:border :single :title "hover" :title_pos "left"}))
 ;; (tset vim.lsp.handlers "textDocument/signatureHelp" (vim.lsp.with vim.lsp.handlers.signature_help {:border :single}))
