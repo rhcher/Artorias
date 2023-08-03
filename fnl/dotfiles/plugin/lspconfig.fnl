@@ -1,6 +1,7 @@
 (module dotfiles.plugin.lspconfig
   {autoload {cmplsp cmp_nvim_lsp
              lsp_util vim.lsp.util
+             protocol vim.lsp.protocol
              a aniseed.core}
    import-macros [[{: autocmd : augroup} :aniseed.macros.autocmds]]})
 
@@ -8,32 +9,34 @@
   {:callback
    (fn [args]
      (let [bufnr args.buf
+           ms protocol.Methods
            client (vim.lsp.get_client_by_id args.data.client_id)
            keymap (fn [mode from to] (vim.keymap.set mode from to {:buffer bufnr :noremap true :silent true}))]
-       (when (client.supports_method "textDocument/rangeFormatting")
+       (when (and (client.supports_method ms.textDocument_formatting)
+                  (client.supports_method ms.textDocument_rangeFormatting))
          (keymap [:n :v] :<leader>lf vim.lsp.buf.format {:async true}))
 
-       (when (client.supports_method "textDocument/prepareCallHierarchy")
+       (when (client.supports_method ms.textDocument_prepareCallHierarchy)
          (keymap :n :<leader>ii vim.lsp.buf.incoming_calls)
          (keymap :n :<leader>io vim.lsp.buf.outgoing_calls))
 
-       (when (client.supports_method "textDocument/documentSymbol")
+       (when (client.supports_method ms.textDocument_documentSymbol)
          (keymap :n :<leader>lw vim.lsp.buf.document_symbol))
 
-       (when (client.supports_method "workspace/symbol")
+       (when (client.supports_method ms.workspace_symbol)
          (keymap :n :<leader>lW vim.lsp.buf.workspace_symbol))
 
-       (when (client.supports_method "textDocument/codeAction")
+       (when (client.supports_method ms.textDocument_codeAction)
          (keymap [:n :v] :<leader>la "<cmd>Lspsaga code_action<CR>"))
 
-       (when (client.supports_method "textDocument/codeLens")
+       (when (client.supports_method ms.textDocument_codeLens)
          (autocmd [:BufEnter :CursorHold :InsertLeave]
                   {:buffer bufnr
                    :callback vim.lsp.codelens.refresh})
-         (when (client.supports_method "codeLens/resolve")
+         (when (client.supports_method ms.codeLens_resolve)
            (keymap :n :<leader>ll vim.lsp.codelens.run)))
 
-       (when (client.supports_method "textDocument/inlayHint")
+       (when (client.supports_method ms.textDocument_inlayHint)
          (let [(ok err) (pcall vim.lsp.inlay_hint bufnr true)]
            (when (not ok)
              (vim.print err))))
