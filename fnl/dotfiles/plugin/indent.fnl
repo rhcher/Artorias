@@ -36,11 +36,7 @@
 (when-let [(_ indent) (pcall require "indent_blankline")]
   (indent.setup {:use_treesitter true
                  :use_treesitter_scope true
-                 :context_patterns ["class" "function" "method" "^if" "^while" "^for" "^object" "^table"
-                                    "block" "arguments" "^attrset$" "^list$" "^let$" "^indented_string$"]
                  :filetype_exclude ["" "help" "fennel" "packer" "lspinfo" "tsplayground" "query" "scheme"
                                     "racket" "qf" "dashboard" "markdown"]
                  :buftype_exclude ["terminal" "prompt" "toggleterm"]
-                 :show_trailing_blankline_indent false
-                 :context_start_priority 90
-                 :show_current_context false}))
+                 :show_trailing_blankline_indent false}))
