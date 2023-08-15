@@ -71,9 +71,11 @@
                                        :command_palette true
                                        :long_message_to_split true}
                              :messages {:enabled false}}}
-  "nvim-treesitter/nvim-treesitter" {:event ["BufReadPost" "BufNewFile"]
+  "nvim-treesitter/nvim-treesitter" {:event "VeryLazy"
                                      :version false
                                      :build ":TSUpdate"
+                                     :dependencies ["abecodes/tabout.nvim"
+                                                    "lukas-reineke/indent-blankline.nvim"]
                                      :mod "treesitter"}
   "rhcher/srcery.nvim" {:config #(vim.cmd.colorscheme "srcery")
                         :cond true
@@ -207,11 +209,6 @@
                           :mod "lspsaga"}
   "abecodes/tabout.nvim" {:event "VeryLazy"
                           :opts {}}
-  "nvimdev/indentmini.nvim" {:event "BufEnter"
-                             :cond false
-                             :init #(vim.cmd "hi default link IndentLine Comment")
-                             :opts {:exclude ["fennel" "fzf" "dashboard" "help" "lazy"]}
-                             :dependencies ["nvim-treesitter/nvim-treesitter"]}
   "lukas-reineke/indent-blankline.nvim" {:event "VeryLazy"
                                          :mod "indent"}
   "numToStr/Comment.nvim" {:event "VeryLazy" :config true}
