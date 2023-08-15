@@ -102,21 +102,10 @@
                                      :hrsh7th/cmp-cmdline
                                      :onsails/lspkind-nvim]
                       :mod "cmp"}
-  "echasnovski/mini.ai" {:event "VeryLazy"
-                         :dependencies [{1 "nvim-treesitter/nvim-treesitter-textobjects"
-                                         :init #(let [loader (require "lazy.core.loader")]
-                                                  (loader.disable_rtp_plugin "nvim-treesitter-textobjects"))}]
-                         :opts #(let [ai (require "mini.ai")]
-                                  {:n_lines 500
-                                   :search_method "cover_or_nearest"
-                                   :custom_textobjects {:o (ai.gen_spec.treesitter
-                                                             {:a ["@block.outer" "@conditional.outer" "@loop.outer"]
-                                                              :i ["@block.inner" "@conditional.inner" "@loop.inner"]} {})
-                                                        :a (ai.gen_spec.treesitter {:a "@parameter.outer" :i "@parameter.inner"})
-                                                        :f (ai.gen_spec.treesitter {:a "@function.outer" :i "@function.inner"} {})}})
-                         :config (fn [_ opts]
-                                   (let [ai (require "mini.ai")]
-                                     (ai.setup opts)))}
+  "AndrewRadev/sideways.vim" {:event "VeryLazy"
+                              :init #(do
+                                       (map [:x :o] :aa "<Plug>SidewaysArgumentTextobjA")
+                                       (map [:x :o] :ia "<Plug>SidewaysArgumentTextobjI"))}
   "dcampos/nvim-snippy" {:event "VeryLazy"
                          :init
                          #(let [snippy (require :snippy)]
