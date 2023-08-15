@@ -124,7 +124,6 @@
                         :traceReturn true
                         :traceBeSetted true
                         :traceFieldInject true}
-         :telemetry {:enable false}
          :format {:enable true
                   :defaultConfig {:indent_style :space
                                   :indent_size :2}}}})

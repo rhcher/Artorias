@@ -188,8 +188,8 @@
                               (illuminate.configure
                                 {:providers [:lsp :regex]
                                  :modes_denylist [:i]
-                                 :large_file_curoff 10000
-                                 :large_file_overrides nil}))}
+                                 :large_file_cutoff 5000
+                                 :large_file_overrides {:providers ["lsp"]}}))}
   "neovim/nvim-lspconfig" {:dependencies ["hrsh7th/cmp-nvim-lsp"]
                            :mod "lspconfig"}
   "nvimdev/lspsaga.nvim" {:dependencies ["nvim-tree/nvim-web-devicons"
