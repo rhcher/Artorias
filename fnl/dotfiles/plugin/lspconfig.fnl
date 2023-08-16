@@ -80,7 +80,7 @@
    :cache {:directory "/tmp/ccls-cache/"}
    :xref {:maxNum 20000}})
 
-(fn ccls_on_attach [client bufnr]
+(fn ccls_on_attach [_ _]
   (let [ccls (require "dotfiles.ccls")]
     ;; ccls navigate
     (map :n :<C-k> #(ccls.navigate :L))
@@ -201,9 +201,6 @@
     (lsp.racket_langserver.setup
       {:capabilities capabilities
        :flags flags})
-    ; (lsp.pylyzer.setup
-    ;   {:capabilities capabilities
-    ;    :flags flags})
     (lsp.pyright.setup
       {:capabilities capabilities
        :settings pyright_config
