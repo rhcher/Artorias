@@ -41,6 +41,7 @@
   "Olical/conjure" {:branch "develop"
                     :mod "conjure"}
   "nvimdev/whiskyline.nvim" {:event "VimEnter"
+                             :commit "1a49187330873542a3d783c7fafbc351ea2c0c56"
                              :opts {:bg "#2a2a47"}
                                     ; :bg "#f2de91"}
                              :dependencies ["nvim-tree/nvim-web-devicons"]}
