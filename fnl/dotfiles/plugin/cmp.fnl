@@ -1,7 +1,7 @@
-(module dotfiles.plugin.cmp
-  {autoload {util dotfiles.util}})
+(local {: autoload} (require :nfnl.module))
+(local util (autoload :dotfiles.util))
 
-(def- underline
+(local underline
   (fn [entry1 entry2]
     (var (_ entry1_under) (: entry1.completion_item.label :find "^_+"))
     (var (_ entry2_under) (: entry2.completion_item.label :find "^_+"))
@@ -12,16 +12,16 @@
         (< entry1_under entry2_under)
         true)))
 
-(def- cmp-window-opts {:border :single
-                       :winhighlight "Normal:Normal,FloatBorder:Normal,CursorLine:Visual,Search:None"})
+(local cmp-window-opts {:border :single
+                        :winhighlight "Normal:Normal,FloatBorder:Normal,CursorLine:Visual,Search:None"})
 
-(def- cmp-buffer {:name :buffer
-                  :option {:keyword_length 3
-                           :keyword_pattern "\\k\\+"
-                           :get_bufnrs #(let [bufs {}]
-                                          (each [_ win (ipairs (vim.api.nvim_list_wins))]
-                                            (tset bufs (vim.api.nvim_win_get_buf win) true))
-                                          (vim.tbl_keys bufs))}})
+(local cmp-buffer {:name :buffer
+                   :option {:keyword_length 3
+                            :keyword_pattern "\\k\\+"
+                            :get_bufnrs #(let [bufs {}]
+                                           (each [_ win (ipairs (vim.api.nvim_list_wins))]
+                                             (tset bufs (vim.api.nvim_win_get_buf win) true))
+                                           (vim.tbl_keys bufs))}})
 
 (let [(ok? cmp) (pcall require :cmp)
       snippy (require :snippy)

@@ -1,6 +1,4 @@
-(module dotfiles.plugin.indent)
-
-(def- gs
+(local gs
   {:char "│"
    :viewport_buffer 20
    :use_treesitter true
@@ -15,7 +13,7 @@
    :buftype_exclude
    ["terminal" "prompt" "toggleterm"]})
 
-(def- fennel-gs
+(local fennel-gs
   {:char ""
    :context_char "│"
    :filetype ["fennel"]
@@ -25,15 +23,15 @@
     "^icollect$" "^accumulate$" "^for$" "^for_clause$" "^quote$"
     "^iter_bindings$" "^parameters$"]})
 
-(defn normal-mode! []
+(fn normal-mode! []
   (each [k v (pairs gs)]
     (tset vim.g (.. :indent_blankline_ k) v)))
 
-(defn fennel-mode! []
+(fn fennel-mode! []
   (each [k v (pairs fennel-gs)]
     (tset vim.g (.. :indent_blankline_ k) v)))
 
-(when-let [(_ indent) (pcall require "indent_blankline")]
+(let [(_ indent) (pcall require "indent_blankline")]
   (indent.setup {:use_treesitter true
                  :use_treesitter_scope true
                  :filetype_exclude ["" "help" "fennel" "packer" "lspinfo" "tsplayground" "query" "scheme"

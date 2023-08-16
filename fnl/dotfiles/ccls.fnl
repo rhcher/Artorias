@@ -1,7 +1,7 @@
-(module dotfiles.ccls
-  {autoload {util vim.lsp.util}})
+(local {: autoload} (require "nfnl.module"))
+(local util (autoload "vim.lsp.util"))
 
-(defn- handler [title]
+(fn handler [title]
   (fn [_ result ctx _]
     (let [client (vim.lsp.get_client_by_id ctx.client_id)]
       (if (or (= result nil) (vim.tbl_isempty result))
@@ -12,7 +12,7 @@
                                                                       client.offset_encoding)})
             (vim.api.nvim_command "botright copen"))))))
 
-(defn navigate [n]
+(fn navigate [n]
   (let [handler (fn [_ result ctx _]
                   (if (or (= result nil) (vim.tbl_isempty result))
                     (vim.notify (.. "No " n " found"))
@@ -30,11 +30,11 @@
                  param)]
     (vim.lsp.buf_request 0 "$ccls/navigate" params handler)))
 
-(defn ccls_info []
+(fn ccls_info []
   (let [handler (fn [_ result _ _] (vim.print result))]
     (vim.lsp.buf_request 0 "$ccls/info" nil handler)))
 
-(defn ccls_fileInfo []
+(fn ccls_fileInfo []
   (let [handler (fn [err result _ _]
                   (vim.print err)
                   (vim.print result))
@@ -46,7 +46,7 @@
     (vim.print params)
     (vim.lsp.buf_request 0 "$ccls/fileInfo" params handler)))
 
-(defn call [title]
+(fn call [title]
   (let [handler (handler title)
         params (let [param (util.make_position_params)]
                  (tset param :callee (match title
@@ -56,7 +56,7 @@
     (print title)
     (vim.lsp.buf_request 0 "$ccls/call" params handler)))
 
-(defn ccls_var [title]
+(fn ccls_var [title]
   (let [handler (handler title)
         params (let [param (util.make_position_params)]
                  (tset param :kind (match title
@@ -68,7 +68,7 @@
     (print title)
     (vim.lsp.buf_request 0 "$ccls/vars" params handler)))
 
-(defn member [title]
+(fn member [title]
   (let [handler (handler (.. "class " title))
         params (let [param (util.make_position_params)]
                  (tset param :kind (match title
@@ -79,7 +79,7 @@
     (print (.. "Class " title))
     (vim.lsp.buf_request 0 "$ccls/member" params handler)))
 
-(defn inheritance [title]
+(fn inheritance [title]
   (let [handler (handler title)
         params (let [param (util.make_position_params)]
                  (tset param :derived (match title
@@ -89,7 +89,7 @@
     (print title)
     (vim.lsp.buf_request 0 "$ccls/inheritance" params handler)))
 
-(defn extend_ref [role]
+(fn extend_ref [role]
   (let [handler (handler (.. "Ref " role))
         params (let [param (util.make_position_params)]
                  (tset param :role (match role
@@ -101,7 +101,7 @@
     (print (.. "Ref " role))
     (vim.lsp.buf_request 0 "textDocument/references" params handler)))
 
-(def semantic-hightlight-handler
+(local semantic-hightlight-handler
   (fn [err result ctx config]
     (let [client (vim.lsp.get_client_by_id ctx.client_id)]
       (when client
@@ -118,7 +118,7 @@
         (print "hello")
         (print "hello")))))
 
-(def skipped-ranges-handler
+(local skipped-ranges-handler
   (fn [err result ctx config]
     (let [client (vim.lsp.get_client_by_id ctx.client_id)
           ns (vim.api.nvim_create_namespace "lsp-skipped-ranges-handler")]

@@ -1,7 +1,6 @@
-(module dotfiles.plugin.move
-  {import-macros [[{: map} :dotfiles.macros]]})
+(import-macros {: map} :dotfiles.macros)
 
-(when-let [(_ move) (pcall require "gomove")]
+(let [(_ move) (pcall require "gomove")]
   (move.setup {:map_defaults false}))
 
 (map :n "<A-n>" :<Plug>GoNSMLeft)

@@ -1,6 +1,4 @@
-(module dotfiles.plugin.hydra)
-
-(when-let [(_ hydra) (pcall require "hydra")]
+(let [(_ hydra) (pcall require "hydra")]
   (do
     (hydra {:name "Side scroll"
             :mode :n
@@ -10,7 +8,7 @@
                     [:H :zH]
                     [:L :zL {:desc "half screen ←/→"}]]})
 
-    (when-let [(_ splits) (pcall require "smart-splits")]
+    (let [(_ splits) (pcall require "smart-splits")]
       (hydra {:name "smooth scroll"
               :mode :n
               :body :<C-w>

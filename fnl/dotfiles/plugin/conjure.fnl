@@ -1,5 +1,4 @@
-(module dotfiles.plugin.conjure
-  {import-macros [[{: autocmd : augroup} :aniseed.macros.autocmds]]})
+(import-macros {: autocmd : augroup} :dotfiles.macros)
 
 (set vim.g.conjure#filetype#rust false)
 

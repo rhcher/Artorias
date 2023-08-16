@@ -1,13 +1,11 @@
-(module dotfiles.plugin.gitsigns
-  {autoload {gitsigns gitsigns}})
+(local {: autoload} (require :nfnl.module))
+(local gitsigns (autoload :gitsigns))
 
-(def- on_attach
+(import-macros {: map} "dotfiles.macros")
+
+(local on_attach
   (fn [bufnr]
-    (let [gs package.loaded.gitsigns
-          map (fn [mode l r opts]
-                (var opts (or opts {}))
-                (tset opts :buffer bufnr)
-                (vim.keymap.set mode l r opts))]
+    (let [gs package.loaded.gitsigns]
       (map :n "]c" #(if vim.wo.diff
                       "]c"
                       (do

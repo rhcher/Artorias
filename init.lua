@@ -1,62 +1,26 @@
--- Entrypoint for my Neovim configuration!
--- We simply bootstrap packer and Aniseed here.
--- It's then up to Aniseed to compile and load fnl/init.fnl
+-- [nfnl] Compiled from init.fnl by https://github.com/Olical/nfnl, do not edit.
 vim.loader.enable()
-
-vim.lsp.set_log_level("off")
-
-if vim.g.neovide then
-  vim.o.guifont = "JetBrainsMonoMedium NF,JetBrainsMono Nerd Font Propo:h13" -- text below applies for VimScript
-  vim.g.neovide_fullscreen = true
-  vim.g.neovide_cursor_animation_length = 0.1
-  vim.g.neovide_refresh_rate = 60
-end
-
-local lazy_path = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-local package_path = vim.fn.stdpath("data") .. "/lazy"
-
-function ensure(repo, package, dir)
-  if not dir then
-    local path = package_path .. "/" .. package
-    if not vim.loop.fs_stat(path) then
-      vim.fn.system({
-        "git",
-        "clone",
-        "--filter=blob:none",
-        "--single-branch",
-        "https://github.com/" .. repo .. ".git",
-        path,
-      })
-    end
-    vim.opt.runtimepath:prepend(path)
+local lazypath = (vim.fn.stdpath("data") .. "/lazy")
+local function ensure(user, repo)
+  local install_path = string.format("%s/%s", lazypath, repo)
+  if (vim.fn.empty(vim.fn.glob(install_path)) > 0) then
+    vim.api.nvim_command(string.format("!git clone --filter=blob:none --single-branch https://github.com/%s/%s %s", user, repo, install_path))
   else
-    local install_path = string.format("%s/%s", package_path, package)
-    vim.fn.system(string.format("rm -r %s", install_path))
-    vim.fn.system(string.format("ln -s %s %s", repo, package_path))
-    vim.opt.runtimepath:prepend(install_path)
   end
+  return (vim.opt.runtimepath):prepend(install_path)
 end
-
-ensure("folke/lazy.nvim", "lazy.nvim")
-ensure("Olical/aniseed", "aniseed")
-
-vim.opt.runtimepath:prepend(lazy_path)
-
--- Enable Aniseed's automatic compilation and loading of Fennel source code.
-vim.g["aniseed#env"] = {
-  module = "dotfiles.init",
-  compile = true
-}
-
-vim.cmd [[let g:loaded_netrwPlugin = 1]]
-vim.cmd [[let g:loaded_tarPlugin = 1]]
-vim.cmd [[let g:loaded_tutor_mode_plugin = 1]]
-vim.cmd [[let g:loaded_zipPlugin = 1]]
-vim.cmd [[let g:loaded_gzip = 1]]
-vim.cmd [[let g:loaded_2html_plugin = 1]]
-vim.cmd [[let g:loaded_matchit=1]]
-vim.cmd [[let g:loaded_matchparen=1]]
-vim.cmd [[let g:loaded_python_provider = 0]]
-vim.cmd [[let g:loaded_python3_provider = 0]]
-vim.cmd [[let g:loaded_node_provider = 0]]
-vim.cmd [[let g:loaded_perl_provider = 0]]
+ensure("folke", "lazy.nvim")
+ensure("Olical", "nfnl")
+require("dotfiles.init")
+vim.cmd("let g:loaded_netrwPlugin = 1")
+vim.cmd("let g:loaded_tarPlugin = 1")
+vim.cmd("let g:loaded_tutor_mode_plugin = 1")
+vim.cmd("let g:loaded_zipPlugin = 1")
+vim.cmd("let g:loaded_gzip = 1")
+vim.cmd("let g:loaded_2html_plugin = 1")
+vim.cmd("let g:loaded_matchit=1")
+vim.cmd("let g:loaded_matchparen=1")
+vim.cmd("let g:loaded_python_provider = 0")
+vim.cmd("let g:loaded_python3_provider = 0")
+vim.cmd("let g:loaded_node_provider = 0")
+return vim.cmd("let g:loaded_perl_provider = 0")

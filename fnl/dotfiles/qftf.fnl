@@ -1,5 +1,3 @@
-(module dotfiles.qftf)
-
 ; pretty quicklist copy from nvim-bqf
 (fn _G.qftf [info]
   (let [ret {}

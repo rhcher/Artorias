@@ -1,5 +1,4 @@
-(module dotfiles.diagnostic
-  {import-macros [[{: map} :dotfiles.macros]]})
+(import-macros {: map} :dotfiles.macros)
 
 (vim.diagnostic.config {:virtual_text false
                         :signs true

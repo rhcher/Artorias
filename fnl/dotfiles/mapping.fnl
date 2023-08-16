@@ -1,14 +1,9 @@
-(module dotfiles.mapping
-  {autoload {nvim aniseed.nvim
-             nu aniseed.nvim.util
-             core aniseed.core}
-   import-macros [[{: map} :dotfiles.macros]
-                  [{: autocmd} :aniseed.macros.autocmds]]})
+(import-macros {: map : autocmd} :dotfiles.macros)
 
 ;; Generic mapping configuration.
 (map :n :<space> :<nop> {:noremap true})
-(set nvim.g.mapleader " ")
-(set nvim.g.maplocalleader ",")
+(set vim.g.mapleader " ")
+(set vim.g.maplocalleader ",")
 
 ;; insert-mode
 (map :i :jk :<esc>)
@@ -36,8 +31,6 @@
 (map :n :<leader>wm ":tab sp<cr>")
 (map :n :<leader>wc ":only<cr>")
 (map :n :<leader>to ":tabonly<cr>")
-;; Delete hidden buffers.
-; (map :n :<leader>bo ":call DeleteHiddenBuffers()<cr>")
 ;; Correct to first spelling suggestion.
 (map :n :<leader>zz ":normal! 1z=<cr>")
 ;; Trim trialing whitespace.
@@ -59,21 +52,3 @@
 
 ;; fugitive remapping
 (set vim.g.nremap {"[m" "[f" "]m" "]f" "=" :o})
-
-(nu.fn-bridge
-  :DeleteHiddenBuffers
-  :dotfiles.mapping :delete-hidden-buffers)
-
-(defn delete-hidden-buffers []
-  (let [visible-bufs (->> (nvim.fn.range 1 (nvim.fn.tabpagenr :$))
-                          (core.map nvim.fn.tabpagebuflist)
-                          (unpack)
-                          (core.concat))]
-    (->> (nvim.fn.range 1 (nvim.fn.bufnr :$))
-         (core.filter
-           (fn [bufnr]
-             (and (nvim.fn.bufexists bufnr)
-                  (= -1 (nvim.fn.index visible-bufs bufnr)))))
-         (core.run!
-           (fn [bufnr]
-             (nvim.ex.bwipeout bufnr))))))

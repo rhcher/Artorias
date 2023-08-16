@@ -1,58 +1,56 @@
-(module dotfiles.plugin.lspconfig
-  {autoload {cmplsp cmp_nvim_lsp
-             lsp_util vim.lsp.util
-             protocol vim.lsp.protocol
-             a aniseed.core}
-   import-macros [[{: autocmd : augroup} :aniseed.macros.autocmds]]})
+(local {: autoload} (require "nfnl.module"))
+(local cmplsp (autoload "cmp_nvim_lsp"))
+(local protocol (autoload "vim.lsp.protocol"))
+(local a (autoload "nfnl.core"))
+(import-macros {: autocmd : augroup : map} "dotfiles.macros")
 
 (autocmd :LspAttach
   {:callback
    (fn [args]
      (let [bufnr args.buf
            ms protocol.Methods
-           client (vim.lsp.get_client_by_id args.data.client_id)
-           keymap (fn [mode from to] (vim.keymap.set mode from to {:buffer bufnr :noremap true :silent true}))]
+           client (vim.lsp.get_client_by_id args.data.client_id)]
        (when (and (client.supports_method ms.textDocument_formatting)
                   (client.supports_method ms.textDocument_rangeFormatting))
-         (keymap [:n :v] :<leader>lf vim.lsp.buf.format {:async true}))
+         (map [:n :v] :<leader>lf #(vim.lsp.buf.format {:async true})))
 
        (when (client.supports_method ms.textDocument_prepareCallHierarchy)
-         (keymap :n :<leader>ii vim.lsp.buf.incoming_calls)
-         (keymap :n :<leader>io vim.lsp.buf.outgoing_calls))
+         (map :n :<leader>ii vim.lsp.buf.incoming_calls)
+         (map :n :<leader>io vim.lsp.buf.outgoing_calls))
 
        (when (client.supports_method ms.textDocument_documentSymbol)
-         (keymap :n :<leader>lw vim.lsp.buf.document_symbol))
+         (map :n :<leader>lw vim.lsp.buf.document_symbol))
 
        (when (client.supports_method ms.workspace_symbol)
-         (keymap :n :<leader>lW vim.lsp.buf.workspace_symbol))
+         (map :n :<leader>lW vim.lsp.buf.workspace_symbol))
 
        (when (client.supports_method ms.textDocument_codeAction)
-         (keymap [:n :v] :<leader>la "<cmd>Lspsaga code_action<CR>"))
+         (map [:n :v] :<leader>la "<cmd>Lspsaga code_action<CR>"))
 
        (when (client.supports_method ms.textDocument_codeLens)
          (autocmd [:BufEnter :CursorHold :InsertLeave]
                   {:buffer bufnr
                    :callback vim.lsp.codelens.refresh})
          (when (client.supports_method ms.codeLens_resolve)
-           (keymap :n :<leader>ll vim.lsp.codelens.run)))
+           (map :n :<leader>ll vim.lsp.codelens.run)))
 
        (when (client.supports_method ms.textDocument_inlayHint)
          (let [(ok err) (pcall vim.lsp.inlay_hint bufnr true)]
            (when (not ok)
              (vim.print err))))
 
-       (keymap :n :gd vim.lsp.buf.definition)
-       (keymap :n :gD vim.lsp.buf.declaration)
-       (keymap :n :gi vim.lsp.buf.implementation)
-       (keymap :n :gr #(vim.lsp.buf.references {:includeDeclaration false}))
-       (keymap :n :K #(let [ufo (require :ufo)
+       (map :n :gd vim.lsp.buf.definition)
+       (map :n :gD vim.lsp.buf.declaration)
+       (map :n :gi vim.lsp.buf.implementation)
+       (map :n :gr #(vim.lsp.buf.references {:includeDeclaration false}))
+       (map :n :K #(let [ufo (require :ufo)
                             lspsaga_hover (require :lspsaga.hover)
                             winid (ufo.peekFoldedLinesUnderCursor)]
                         (when (not winid)
                           (vim.lsp.buf.hover))))
                           ; (: lspsaga_hover "render_hover_doc" {}))))
-       (keymap :n :<leader>k "<cmd>Lspsaga hover_doc ++keep<CR>")
-       (keymap :n :<leader>lr ":Lspsaga rename<CR>")
+       (map :n :<leader>k "<cmd>Lspsaga hover_doc ++keep<CR>")
+       (map :n :<leader>lr ":Lspsaga rename<CR>")
 
        (let [delete-empty-lsp-clients #(let [clients (vim.lsp.get_clients)]
                                          (each [_ client (ipairs clients)]
@@ -67,7 +65,7 @@
 (tset vim.lsp.handlers "textDocument/hover" (vim.lsp.with vim.lsp.handlers.hover {:border :single :title "hover" :title_pos "left"}))
 ;; (tset vim.lsp.handlers "textDocument/signatureHelp" (vim.lsp.with vim.lsp.handlers.signature_help {:border :single}))
 
-(def ccls_config
+(local ccls_config
   {:capabilities {:foldingRangeProvider true
                   :workspace {:workspaceFolders {:supported false}}}
    :index {:threads (a.count (vim.loop.cpu_info))
@@ -82,38 +80,37 @@
    :cache {:directory "/tmp/ccls-cache/"}
    :xref {:maxNum 20000}})
 
-(defn- ccls_on_attach [client bufnr]
-  (let [ccls (require "dotfiles.ccls")
-        keymap (fn [mode from to] (vim.keymap.set mode from to {:buffer bufnr :noremap true :silent true}))]
+(fn ccls_on_attach [client bufnr]
+  (let [ccls (require "dotfiles.ccls")]
     ;; ccls navigate
-    (keymap :n :<C-k> #(ccls.navigate :L))
-    (keymap :n :<C-j> #(ccls.navigate :R))
-    (keymap :n :<C-l> #(ccls.navigate :D))
-    (keymap :n :<C-h> #(ccls.navigate :U))
+    (map :n :<C-k> #(ccls.navigate :L))
+    (map :n :<C-j> #(ccls.navigate :R))
+    (map :n :<C-l> #(ccls.navigate :D))
+    (map :n :<C-h> #(ccls.navigate :U))
     ;; ccls call
-    (keymap :n :<space>ii #(ccls.call :caller))
-    (keymap :n :<space>io #(ccls.call :callee))
+    (map :n :<space>ii #(ccls.call :caller))
+    (map :n :<space>io #(ccls.call :callee))
     ;; ccls var
-    (keymap :n :<space>vf #(ccls.ccls_var :field))
-    (keymap :n :<space>vl #(ccls.ccls_var :local))
-    (keymap :n :<space>vp #(ccls.ccls_var :parameter))
+    (map :n :<space>vf #(ccls.ccls_var :field))
+    (map :n :<space>vl #(ccls.ccls_var :local))
+    (map :n :<space>vp #(ccls.ccls_var :parameter))
     ;; ccls member
-    (keymap :n :<space>mv #(ccls.member :variables))
-    (keymap :n :<space>mf #(ccls.member :functions))
-    (keymap :n :<space>mt #(ccls.member :types))
+    (map :n :<space>mv #(ccls.member :variables))
+    (map :n :<space>mf #(ccls.member :functions))
+    (map :n :<space>mt #(ccls.member :types))
     ;; ccls inheritance#
-    (keymap :n :<space>ib #(ccls.inheritance :base))
-    (keymap :n :<space>id #(ccls.inheritance :derived))
+    (map :n :<space>ib #(ccls.inheritance :base))
+    (map :n :<space>id #(ccls.inheritance :derived))
     ;; ccls references #
-    (keymap :n :<space>gw #(ccls.extend_ref :write))
-    (keymap :n :<space>gr #(ccls.extend_ref :read))
-    (keymap :n :<space>gm #(ccls.extend_ref :macro))
-    (keymap :n :<space>gn #(ccls.extend_ref :notcall))
+    (map :n :<space>gw #(ccls.extend_ref :write))
+    (map :n :<space>gr #(ccls.extend_ref :read))
+    (map :n :<space>gm #(ccls.extend_ref :macro))
+    (map :n :<space>gn #(ccls.extend_ref :notcall))
     ; ccls info
-    (keymap :n :<space>cf #(ccls.ccls_fileInfo))
-    (keymap :n :<space>ci #(ccls.ccls_info))))
+    (map :n :<space>cf #(ccls.ccls_fileInfo))
+    (map :n :<space>ci #(ccls.ccls_info))))
 
-(def sumneko_lua_config
+(local sumneko_lua_config
   {:Lua {:diagnostics {:enable true :globals [:vim]}
          :completion {:callSnippet :Replace
                       :showWord :Disable}
@@ -128,7 +125,7 @@
                   :defaultConfig {:indent_style :space
                                   :indent_size :2}}}})
 
-(def- pylsp_config
+(local pylsp_config
   {:pylsp {:plugins {:pylint {:enabled false
                               :executable :pylint}
                      :pyflakes {:enabled false}
@@ -141,15 +138,15 @@
                      :pyls_isort {:enabled true}
                      :pylsp_mypy {:enabled true}}}})
 
-(def- pyright_config
+(local pyright_config
   {:python {:analysis {:autoSearchPaths true
                        :useLibraryCodeForTypes true
                        :diagnositcMode "workspace"}}})
 
-(def- hls_config
+(local hls_config
   {:haskell {:formattingProvider "ormolu"}})
 
-(def- vimls-config
+(local vimls-config
   {:diagnositc {:enable true}
    :indexes {:count 3
              :gap 100

@@ -1,10 +1,12 @@
-(module dotfiles.plugin
-  {autoload {a aniseed.core
-             util dotfiles.util
-             : lazy}
-   import-macros [[{: map} :dotfiles.macros]]})
+(local {: autoload} (require :nfnl.module))
 
-(def- lazy-config
+(local lazy (autoload :lazy))
+(local a (autoload :nfnl.core))
+(local util (autoload :dotfiles.util))
+
+(import-macros {: map} :dotfiles.macros)
+
+(local lazy-config
   {:dev {:path "~/workspace/nvim_plugins/"}
    :performance {:rtp {:disabled_plugins [:netrwPlugin
                                           :tarPlugin
@@ -15,7 +17,7 @@
                                           :matchit
                                           :matchparen]}}})
 
-(defn use [...]
+(fn use [...]
   (let [pkgs [...]
         plugins []]
     (for [i 1 (a.count pkgs) 2]
@@ -35,7 +37,7 @@
   "folke/lazy.nvim" {:event "VeryLazy"}
   "vim-lsp-cxx-highlight" {:dir "/home/rhcher/workspace/vim-lsp-cxx-highlight/"
                            :ft [:c :cpp]}
-  "Olical/aniseed" {:branch "develop"}
+  "Olical/nfnl" {:ft "fennel"}
   "Olical/conjure" {:branch "develop"
                     :mod "conjure"}
   "nvimdev/whiskyline.nvim" {:event "VimEnter"
@@ -130,7 +132,7 @@
                              :copen "bot new"}
                       :init #(let [fzf (require "fzf-lua")]
                                (map :n :<leader>ff fzf.files)
-                               (map :n :<leader>fp #(fzf.files {:cwd "~/.config/nvim/"}))
+                               (map :n :<leader>fp #(fzf.files {:cwd "~/.config/nvim"}))
                                (map :n :<leader>fs fzf.live_grep_native)
                                (map :n :<leader>fb fzf.buffers)
                                (map :n :<leader>bb fzf.buffers)
@@ -180,6 +182,7 @@
                               (ufo.setup {:provider_selector (fn [bufnr filetype buftype]
                                                                (. ftmap filetype))}))}
   "kevinhwang91/nvim-bqf" {:ft "qf"
+                           :dev true
                            :init #(require "dotfiles.qftf")
                            :mod "bqf"}
   "RRethy/vim-illuminate" {:event ["BufReadPost" "BufNewFile"]
@@ -197,6 +200,7 @@
                           :event "LspAttach"
                           :mod "lspsaga"}
   "abecodes/tabout.nvim" {:event "VeryLazy"
+                          :dev true
                           :opts {}}
   "lukas-reineke/indent-blankline.nvim" {:event "VeryLazy"
                                          :mod "indent"}

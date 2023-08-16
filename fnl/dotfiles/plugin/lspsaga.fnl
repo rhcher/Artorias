@@ -1,6 +1,4 @@
-(module dotfiles.plugin.lspsaga)
-
-(when-let [(_ lspsaga) (pcall require "lspsaga")]
+(let [(_ lspsaga) (pcall require "lspsaga")]
   (lspsaga.setup {:lightbulb {:sign_priority 99
                               :virtual_text false}
                   :symbol_in_winbar {:enable true}

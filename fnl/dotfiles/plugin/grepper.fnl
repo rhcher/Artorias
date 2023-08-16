@@ -1,5 +1,3 @@
-(module dotfiles.plugin.grepper)
-
 (vim.keymap.set
   :n
   :<leader>*

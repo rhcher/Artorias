@@ -1,6 +1,4 @@
-(module dotfiles.core
-  {autoload {nvim aniseed.nvim}
-   import-macros [[{: augroup} :aniseed.macros.autocmds]]})
+(import-macros {: augroup} "dotfiles.macros")
 
 ;; Generic Neovim configuration.
 (set vim.opt.termguicolors true)
@@ -16,7 +14,7 @@
 (set vim.opt.autoindent true)
 (set vim.opt.tabstop 2)
 (set vim.opt.shiftwidth 2)
-;; (set vim.opt.smartindent true)
+(set vim.opt.smartindent true)
 
 (set vim.opt.softtabstop 2)
 (set vim.opt.ignorecase true)
@@ -64,13 +62,15 @@
 
 (vim.cmd "filetype plugin indent on")
 
-(nvim.ex.set :list)
-(nvim.ex.set :nowrap)
-(nvim.ex.set :noswapfile)
-(nvim.ex.set :nobackup)
-(nvim.ex.set :number)
-(nvim.ex.set :splitbelow)
-(nvim.ex.set :splitright)
+(set vim.opt.list true)
+(set vim.opt.wrap false)
+(set vim.opt.swapfile false)
+(set vim.opt.backup false)
+(set vim.opt.number true)
+(set vim.opt.splitbelow true)
+(set vim.opt.splitright true)
+
+(set vim.opt.lispoptions "expr:1")
 
 (set vim.g.clipboard {:name :win32yank-wsl
                       :copy {:+ "win32yank.exe -i --crlf"

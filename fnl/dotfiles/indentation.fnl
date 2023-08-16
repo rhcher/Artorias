@@ -2,8 +2,7 @@
 ;; and the way to integrate to nvim is from
 ;; https://github.com/otommod/dotfiles/blob/main/nvim/.config/nvim/fnl/rc.fnl
 
-(module dotfiles.indentation
-  {import-macros [[{: autocmd} :aniseed.macros.autocmds]]})
+(import-macros {: autocmd} :dotfiles.macros)
 
 ;; This contains heuristic-based functionality which can indent Fennel code
 ;; without fully parsing it. This can be useful in text editors when you can't
@@ -30,18 +29,16 @@
 (local delimiters {")" "(" "]" "[" "}" "{"})
 (local specials {"let" true "fn" true "lambda" true "λ" true "when" true
                  "eval-compiler" true "for" true "each" true "while" true
-                 "defn-" true "defn" true "def" true "def-" true
-                 "defonce" true "defonce-" true "module" true
-                 "when-let" true "if-let" true
+                 "import-macros" true
                  "macro" true "match" true "doto" true "with-open" true
                  "collect" true "icollect" true "accumulate" true})
 
-(defn- symbol-at [line pos]
+(fn symbol-at [line pos]
   (-> line
       (: :sub pos)
       (: :match "[^%s]+")))
 
-(defn- find-string-start [line end-quote-pos]
+(fn find-string-start [line end-quote-pos]
   (var quote-pos nil)
   (var state :in-string)
   (for [pos (- end-quote-pos 1) 1 -1 &until (= state :end)]
@@ -54,7 +51,7 @@
       _ (set state :in-string)))
   quote-pos)
 
-(defn- line-indent-type [stack line pos]
+(fn line-indent-type [stack line pos]
   (let [c (line:sub pos pos)
         delimiter (. stack (length stack))]
     (if (= pos 0) nil
@@ -76,7 +73,7 @@
         (= c "(") (values :call pos (symbol-at line (+ pos 1)))
         (line-indent-type stack line (- pos 1)))))
 
-(defn- find-comment-start [line]
+(fn find-comment-start [line]
   (var semicolon-pos nil)
   (var state :normal)
   (for [pos 1 (length line) &until semicolon-pos]
@@ -88,7 +85,7 @@
       ("\"" :normal) (set state :in-string)))
   semicolon-pos)
 
-(defn indent_type [stack lines line-num]
+(fn indent_type [stack lines line-num]
   (let [line (. lines line-num)
         line-length (or (find-comment-start line) (length line))]
     (match (line-indent-type stack line line-length)
@@ -100,7 +97,7 @@
                               (values :call (- pos 1) fn-name))
       (where _ (> line-num 1)) (indent_type stack lines (- line-num 1)))))
 
-(defn fennel_indentexpr [line-num]
+(fn fennel_indentexpr [line-num]
   (let [lines (vim.api.nvim_buf_get_lines 0 0 line-num true)]
     (match (indent_type [] lines (- line-num 1))
       (:table delimiter-pos) delimiter-pos
@@ -112,3 +109,12 @@
   (set vim.o.indentexpr "v:lua.require(\"dotfiles.indentation\").fennel_indentexpr(v:lnum)"))
 
 (autocmd [:FileType] {:pattern "fennel" :callback #(fennel-local)})
+
+{: delimiters
+ : specials
+ : symbol-at
+ : find-string-start
+ : line-indent-type
+ : find-comment-start
+ : indent_type
+ : fennel_indentexpr}

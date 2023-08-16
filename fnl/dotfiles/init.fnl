@@ -1,11 +1,5 @@
-(module dotfiles.init
-  {require [dotfiles.core
-            dotfiles.mapping
-            dotfiles.plugin
-            dotfiles.indentation
-            dotfiles.diagnostic]
-   autoload {c aniseed.compile}})
-
-(c.glob :*.fnl
-        :/home/rhcher/.config/nvim/after/ftplugin/
-        :/home/rhcher/.config/nvim/after/ftplugin/)
+(require "dotfiles.core")
+(require "dotfiles.mapping")
+(require "dotfiles.plugin")
+(require "dotfiles.indentation")
+(require "dotfiles.diagnostic")

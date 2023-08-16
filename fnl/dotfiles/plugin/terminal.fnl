@@ -1,7 +1,6 @@
-(module dotfiles.plugin.terminal
-  {import-macros [[{: map} :dotfiles.macros]]})
+(import-macros {: map} :dotfiles.macros)
 
-(when-let [(_ term) (pcall require "toggleterm")]
+(let [(_ term) (pcall require "toggleterm")]
   (term.setup {:size (fn [t]
                        (if (= t.direction "horizontal")
                            15
