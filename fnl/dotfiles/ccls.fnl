@@ -139,3 +139,12 @@
                                            :end_col lsRange.end.character
                                            :hl_group "Comment"
                                            :priority 150})))))))
+
+{: navigate
+ : ccls_info
+ : ccls_fileInfo
+ : call
+ : ccls_var
+ : member
+ : inheritance
+ : extend_ref}

@@ -252,4 +252,4 @@ local function _45_(err, result, ctx, config)
   end
 end
 skipped_ranges_handler = _45_
-return nil
+return {navigate = navigate, ccls_info = ccls_info, ccls_fileInfo = ccls_fileInfo, call = call, ccls_var = ccls_var, member = member, inheritance = inheritance, extend_ref = extend_ref}
