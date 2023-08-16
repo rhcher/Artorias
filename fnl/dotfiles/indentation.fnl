@@ -29,7 +29,7 @@
 (local delimiters {")" "(" "]" "[" "}" "{"})
 (local specials {"let" true "fn" true "lambda" true "λ" true "when" true
                  "eval-compiler" true "for" true "each" true "while" true
-                 "import-macros" true
+                 "import-macros" true "local" true
                  "macro" true "match" true "doto" true "with-open" true
                  "collect" true "icollect" true "accumulate" true})
 
@@ -106,7 +106,8 @@
       _ 0)))
 
 (fn fennel-local []
-  (set vim.o.indentexpr "v:lua.require(\"dotfiles.indentation\").fennel_indentexpr(v:lnum)"))
+  (set vim.opt_local.iskeyword ["33-255" "^(" "^)" "^{" "^}" "^[" "^]" "^\"" "^'" "^~" "^;" "^," "^@-@" "^`" "^:"])
+  (set vim.opt_local.indentexpr "v:lua.require(\"dotfiles.indentation\").fennel_indentexpr(v:lnum)"))
 
 (autocmd [:FileType] {:pattern "fennel" :callback #(fennel-local)})
 
