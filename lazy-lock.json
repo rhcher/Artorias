@@ -20,7 +20,7 @@
   "leap.nvim": { "branch": "main", "commit": "5efe985cf68fac3b6a6dfe7a75fbfaca8db2af9c" },
   "linediff.vim": { "branch": "main", "commit": "3925a50a02b4b1e7958807676f93e06b53c66e27" },
   "lspkind-nvim": { "branch": "master", "commit": "57610d5ab560c073c465d6faf0c19f200cb67e6e" },
-  "lspsaga.nvim": { "branch": "main", "commit": "a761bcebbacc49562c4e37337f1f8cc85e4483f9" },
+  "lspsaga.nvim": { "branch": "main", "commit": "91ae0e7853546b008303d147d0bf2fc9c9de97a9" },
   "neogen": { "branch": "main", "commit": "1dd0319ccf41b2498f45a3c7607f2ee325ffc6a0" },
   "neoscroll.nvim": { "branch": "master", "commit": "4bc0212e9f2a7bc7fe7a6bceb15b33e39f0f41fb" },
   "nfnl": { "branch": "main", "commit": "d4b02b46388b7770ee91d95028f45958c6019236" },
@@ -35,7 +35,7 @@
   "nvim-snippy": { "branch": "master", "commit": "7b50933b44ebefc85bf1734eadc4fcfcbbc781c7" },
   "nvim-surround": { "branch": "main", "commit": "0d6882635817a2677749a330127d12ac30a4f3c8" },
   "nvim-toggleterm.lua": { "branch": "main", "commit": "12cba0a1967b4f3f31903484dec72a6100dcf515" },
-  "nvim-treesitter": { "branch": "master", "commit": "11d79aa0f731439f2cd05579a64ac13857002f16" },
+  "nvim-treesitter": { "branch": "master", "commit": "922c396b2600653b8af12780077340768a0404fb" },
   "nvim-ufo": { "branch": "main", "commit": "aebd36bf5447862671356fcd5d4a8708ce6c9470" },
   "nvim-web-devicons": { "branch": "master", "commit": "ab899311f8ae00a47eae8e0879506cead8eb1561" },
   "oil.nvim": { "branch": "master", "commit": "8f7807946a67b5f1a515946f82251e33651bae29" },
@@ -62,5 +62,5 @@
   "vim-textobj-comment": { "branch": "master", "commit": "58ae4571b76a5bf74850698f23d235eef991dd4b" },
   "vim-textobj-user": { "branch": "master", "commit": "41a675ddbeefd6a93664a4dc52f302fe3086a933" },
   "vim-textobj-variable-segment": { "branch": "main", "commit": "51c323dca5c44f7a8e5a689b9156ef818d02188e" },
-  "whiskyline.nvim": { "branch": "main", "commit": "80035eaa70bed147065642dc1a2999730639a16f" }
+  "whiskyline.nvim": { "branch": "main", "commit": "1a49187330873542a3d783c7fafbc351ea2c0c56" }
 }
