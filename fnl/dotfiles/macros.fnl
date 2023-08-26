@@ -1,5 +1,6 @@
 ;; [nfnl-macro]
 
+;; copy from Olical/aniseed
 (fn autocmd [event opt]
   `(vim.api.nvim_create_autocmd
     ,event ,opt))
