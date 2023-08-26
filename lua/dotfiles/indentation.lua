@@ -111,7 +111,7 @@ local function indent_type(stack, lines, line_num)
 end
 local function fennel_indentexpr(line_num)
   local lines = vim.api.nvim_buf_get_lines(0, 0, line_num, true)
-  local _15_, _16_, _17_ = indent_type({}, lines, (line_num - 1))
+  local _15_, _16_, _17_ = indent_type({}, lines, line_num)
   if ((_15_ == "table") and (nil ~= _16_)) then
     local delimiter_pos = _16_
     return delimiter_pos

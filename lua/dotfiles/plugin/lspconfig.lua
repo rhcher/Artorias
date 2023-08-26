@@ -156,7 +156,7 @@ local function _2_(args)
   end
   if client.supports_method(ms.textDocument_codeLens) then
     vim.api.nvim_create_autocmd({"BufEnter", "CursorHold", "InsertLeave"}, {buffer = bufnr, callback = vim.lsp.codelens.refresh})
-    if client.supports_method(ms.codeLens_resolve) then
+    if client.supports_method(ms.workspace_executeCommand) then
       local opts_1_auto
       do
         local tbl_14_auto = {}
