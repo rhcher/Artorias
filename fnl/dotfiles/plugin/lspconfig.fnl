@@ -98,10 +98,10 @@
     (map :n :<space>mv #(ccls.member :variables))
     (map :n :<space>mf #(ccls.member :functions))
     (map :n :<space>mt #(ccls.member :types))
-    ;; ccls inheritance#
+    ;; ccls inheritance
     (map :n :<space>ib #(ccls.inheritance :base))
     (map :n :<space>id #(ccls.inheritance :derived))
-    ;; ccls references #
+    ;; ccls references
     (map :n :<space>gw #(ccls.extend_ref :write))
     (map :n :<space>gr #(ccls.extend_ref :read))
     (map :n :<space>gm #(ccls.extend_ref :macro))

@@ -910,7 +910,7 @@ local function ccls_on_attach(_, _0)
   return vim.keymap.set("n", "<space>ci", _140_, opts_1_auto)
 end
 local sumneko_lua_config = {Lua = {diagnostics = {enable = true, globals = {"vim"}}, completion = {callSnippet = "Replace", showWord = "Disable"}, hint = {enable = true}, runtime = {version = "LuaJIT"}, workspace = {checkThirdParty = false}, IntelliSense = {traceLocalSet = true, traceReturn = true, traceBeSetted = true, traceFieldInject = true}, format = {enable = true, defaultConfig = {indent_style = "space", indent_size = "2"}}}}
-local pylsp_config = {pylsp = {plugins = {pylint = {executable = "pylint", enabled = false}, pyflakes = {enabled = false}, pycodestyle = {enabled = false}, jedi_completion = {enabled = true, include_class_objects = true, eager = true, fuzzy = false, include_params = false}, pyls_isort = {enabled = true}, pylsp_mypy = {enabled = true}}}}
+local pylsp_config = {pylsp = {plugins = {pylint = {executable = "pylint", enabled = false}, pyflakes = {enabled = false}, pycodestyle = {enabled = false}, jedi_completion = {enabled = true, include_class_objects = true, eager = true, include_params = false, fuzzy = false}, pyls_isort = {enabled = true}, pylsp_mypy = {enabled = true}}}}
 local pyright_config = {python = {analysis = {autoSearchPaths = true, useLibraryCodeForTypes = true, diagnositcMode = "workspace"}}}
 local hls_config = {haskell = {formattingProvider = "ormolu"}}
 local vimls_config = {diagnositc = {enable = true}, indexes = {count = 3, gap = 100, projectRootPatterns = {"runtime", "nvim", ".git", "autoload", "plugin"}, runtimepath = true}, isNeovim = true, isKeyword = "@,48-57,_,192-255,-#", runtimepath = "", suggest = {fromRuntimepath = true, fromVimruntime = true}, vimruntime = ""}
