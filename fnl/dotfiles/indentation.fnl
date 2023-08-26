@@ -99,7 +99,7 @@
 
 (fn fennel_indentexpr [line-num]
   (let [lines (vim.api.nvim_buf_get_lines 0 0 line-num true)]
-    (match (indent_type [] lines (- line-num 1))
+    (match (indent_type [] lines line-num)
       (:table delimiter-pos) delimiter-pos
       (:special prev-indent) (+ prev-indent 2)
       (:call prev-indent fn-name) (+ prev-indent (length fn-name) 2)
