@@ -31,7 +31,7 @@
          (autocmd [:BufEnter :CursorHold :InsertLeave]
                   {:buffer bufnr
                    :callback vim.lsp.codelens.refresh})
-         (when (client.supports_method ms.codeLens_resolve)
+         (when (client.supports_method ms.workspace_executeCommand)
            (map :n :<leader>ll vim.lsp.codelens.run)))
 
        (when (client.supports_method ms.textDocument_inlayHint)
