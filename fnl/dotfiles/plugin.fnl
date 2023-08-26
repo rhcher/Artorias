@@ -35,11 +35,21 @@
 
 (use
   "folke/lazy.nvim" {:event "VeryLazy"}
-  "vim-lsp-cxx-highlight" {:dir "/home/rhcher/workspace/vim-lsp-cxx-highlight/"
-                           :ft [:c :cpp]}
   "Olical/nfnl" {:ft "fennel"}
   "Olical/conjure" {:branch "develop"
                     :mod "conjure"}
+  "nvim-lua/plenary.nvim" {}
+  "rhcher/srcery.nvim" {:config #(vim.cmd.colorscheme "srcery")
+                        :cond true
+                        :priority 1000}
+  "rhcher/vim-paper" {:config #(vim.cmd.colorscheme "paper")
+                      :cond false
+                      :priority 1000}
+  "rebelot/kanagawa.nvim" {:config #(vim.cmd.colorscheme "kanagawa")
+                           :cond false
+                           :priority 1000}
+  "vim-lsp-cxx-highlight" {:dir "/home/rhcher/workspace/vim-lsp-cxx-highlight/"
+                           :ft [:c :cpp]}
   "nvimdev/whiskyline.nvim" {:event "VimEnter"
                              :commit "1a49187330873542a3d783c7fafbc351ea2c0c56"
                              :opts {:bg "#2a2a47"}
@@ -80,15 +90,6 @@
                                      :dependencies ["abecodes/tabout.nvim"
                                                     "lukas-reineke/indent-blankline.nvim"]
                                      :mod "treesitter"}
-  "rhcher/srcery.nvim" {:config #(vim.cmd.colorscheme "srcery")
-                        :cond true
-                        :priority 1000}
-  "rhcher/vim-paper" {:config #(vim.cmd.colorscheme "paper")
-                      :cond false
-                      :priority 1000}
-  "rebelot/kanagawa.nvim" {:config #(vim.cmd.colorscheme "kanagawa")
-                           :cond false
-                           :priority 1000}
   "eraserhd/parinfer-rust" {:ft util.lisp-language
                             :config (fn [plugin]
                                       (vim.opt.rtp:append (.. plugin.dir "/target/release")))
