@@ -22,7 +22,6 @@ vim.opt.scrolloff = 4
 vim.opt.cursorline = true
 vim.opt.incsearch = false
 vim.cmd("set diffopt+=linematch:800,algorithm:patience")
-vim.cmd("set fo+=/")
 if (vim.fn.executable("rg") == 1) then
   vim.opt.grepformat = "%f:%l:%c:%m,%f:%l:%m"
   vim.opt.grepprg = "rg --vimgrep --no-heading --smart-case"
@@ -64,4 +63,9 @@ local function _2_()
 end
 vim.api.nvim_create_autocmd({"TextYankPost"}, {callback = _2_, group = group})
 vim.api.nvim_create_autocmd({"FocusGained", "TermClose", "TermLeave"}, {command = "checktime", group = group})
+local function _3_()
+  vim.opt.formatoptions = (vim.opt.formatoptions - "o")
+  return nil
+end
+vim.api.nvim_create_autocmd({"BufEnter"}, {callback = _3_, group = group})
 return nil

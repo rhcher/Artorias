@@ -27,7 +27,6 @@
 (set vim.opt.cursorline true)
 (set vim.opt.incsearch false)
 (vim.cmd "set diffopt+=linematch:800,algorithm:patience")
-(vim.cmd "set fo+=/")
 
 (when (= (vim.fn.executable "rg") 1)
   (do
@@ -84,4 +83,5 @@
          [[:TextYankPost] {:callback #(vim.highlight.on_yank {:highlight "Visual"
                                                               :timeout 150
                                                               :on_visual true})}]
-         [[:FocusGained :TermClose :TermLeave] {:command "checktime"}])
+         [[:FocusGained :TermClose :TermLeave] {:command "checktime"}]
+         [[:BufEnter] {:callback #(set vim.opt.formatoptions (- vim.opt.formatoptions "o"))}])
