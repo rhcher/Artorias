@@ -1,4 +1,4 @@
-(import-macros {: map : autocmd} :dotfiles.macros)
+(import-macros {: map : augroup} :dotfiles.macros)
 
 ;; Generic mapping configuration.
 (map :n :<space> :<nop> {:noremap true})
@@ -46,9 +46,15 @@
 (map :n :<leader>gg ":Git<CR><C-w>o")
 (map :n :<leader>ou ":UndotreeShow<cr>:UndotreeFocus<cr>")
 
-(autocmd [:FileType]
-         {:pattern [:git :qf :man :help :lspinfo :fugitive :gitcommit]
-          :command "nnoremap <buffer><silent> q :close<CR>"})
+(augroup :InputQquitEverythingIwant
+         [[:FileType] {:pattern [:git :qf :man :help :lspinfo :fugitive :gitcommit]
+                       :callback #(map [:n :v] :q ":close<CR>" {:buffer true})}]
+         [[:FileType] {:pattern ["*"]
+                       :callback #(when (= vim.bo.buftype "nofile")
+                                    (map [:n :v] :q ":close<CR>" {:buffer true}))}]
+         [[:BufEnter] {:pattern ["*"]
+                       :callback #(when (or (= vim.bo.filetype "") (= vim.bo.buftype ""))
+                                    (map [:n :v] :q ":close<CR>" {:buffer true}))}])
 
 ;; fugitive remapping
 (set vim.g.nremap {"[m" "[f" "]m" "]f" "=" :o})
