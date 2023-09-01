@@ -258,3 +258,7 @@
                                 :init #(set vim.g.table_mode_corner "|")}
   "nvimdev/dashboard-nvim" {:event "VimEnter"
                             :mod "dashboard"})
+  "kevinhwang91/nvim-hlslens" {:event "VeryLazy"
+                               :mod "hlslens"
+                               :dependencies ["haya14busa/vim-asterisk"]}
+  "mg979/vim-visual-multi" {:event "VeryLazy"})
