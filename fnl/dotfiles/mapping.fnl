@@ -53,7 +53,7 @@
                        :callback #(when (= vim.bo.buftype "nofile")
                                     (map [:n :v] :q ":close<CR>" {:buffer true}))}]
          [[:BufEnter] {:pattern ["*"]
-                       :callback #(when (or (= vim.bo.filetype "") (= vim.bo.buftype ""))
+                       :callback #(when (and (= vim.bo.filetype "") (= vim.bo.buftype ""))
                                     (map [:n :v] :q ":close<CR>" {:buffer true}))}])
 
 ;; fugitive remapping
