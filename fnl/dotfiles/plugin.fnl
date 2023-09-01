@@ -87,8 +87,6 @@
   "nvim-treesitter/nvim-treesitter" {:event "VeryLazy"
                                      :version false
                                      :build ":TSUpdate"
-                                     :dependencies ["abecodes/tabout.nvim"
-                                                    "lukas-reineke/indent-blankline.nvim"]
                                      :mod "treesitter"}
   "eraserhd/parinfer-rust" {:ft util.lisp-language
                             :config (fn [plugin]
@@ -121,6 +119,9 @@
                                                                 "<ESC>I") {:expr true}))}
   "altermo/ultimate-autopair.nvim" {:event ["InsertEnter" "CmdlineEnter"]
                                     :mod "auto-pairs"}
+  "abecodes/tabout.nvim" {:event "VeryLazy"
+                          :opts {}
+                          :dependencies ["nvim-treesitter/nvim-treesitter"]}
   "stevearc/oil.nvim" {:cmd "Oil"
                        :dependencies [:nvim-tree/nvim-web-devicons]
                        :opts {:columns ["icon" "permissions" "size" "mtime"]}}
@@ -200,11 +201,10 @@
   "nvimdev/lspsaga.nvim" {:dependencies ["nvim-tree/nvim-web-devicons"
                                          "nvim-treesitter/nvim-treesitter"]
                           :event "LspAttach"
+                          :dependencies ["nvim-treesitter/nvim-treesitter"]
                           :mod "lspsaga"}
-  "abecodes/tabout.nvim" {:event "VeryLazy"
-                          :dev true
-                          :opts {}}
   "lukas-reineke/indent-blankline.nvim" {:event "VeryLazy"
+                                         :dependencies ["nvim-treesitter/nvim-treesitter"]
                                          :mod "indent"}
   "numToStr/Comment.nvim" {:event "VeryLazy" :config true}
   "mbbill/undotree" {:cmd "UndotreeShow"}
