@@ -12,7 +12,7 @@ local function _2_(args)
     local opts_1_auto
     do
       local tbl_14_auto = {}
-      for k_2_auto, v_3_auto in pairs((nil or {})) do
+      for k_2_auto, v_3_auto in pairs(({buffer = bufnr} or {})) do
         local k_15_auto, v_16_auto = k_2_auto, v_3_auto
         if ((k_15_auto ~= nil) and (v_16_auto ~= nil)) then
           tbl_14_auto[k_15_auto] = v_16_auto
@@ -40,7 +40,7 @@ local function _2_(args)
       local opts_1_auto
       do
         local tbl_14_auto = {}
-        for k_2_auto, v_3_auto in pairs((nil or {})) do
+        for k_2_auto, v_3_auto in pairs(({buffer = bufnr} or {})) do
           local k_15_auto, v_16_auto = k_2_auto, v_3_auto
           if ((k_15_auto ~= nil) and (v_16_auto ~= nil)) then
             tbl_14_auto[k_15_auto] = v_16_auto
@@ -62,7 +62,7 @@ local function _2_(args)
     local opts_1_auto
     do
       local tbl_14_auto = {}
-      for k_2_auto, v_3_auto in pairs((nil or {})) do
+      for k_2_auto, v_3_auto in pairs(({buffer = bufnr} or {})) do
         local k_15_auto, v_16_auto = k_2_auto, v_3_auto
         if ((k_15_auto ~= nil) and (v_16_auto ~= nil)) then
           tbl_14_auto[k_15_auto] = v_16_auto
@@ -86,7 +86,7 @@ local function _2_(args)
     local opts_1_auto
     do
       local tbl_14_auto = {}
-      for k_2_auto, v_3_auto in pairs((nil or {})) do
+      for k_2_auto, v_3_auto in pairs(({buffer = bufnr} or {})) do
         local k_15_auto, v_16_auto = k_2_auto, v_3_auto
         if ((k_15_auto ~= nil) and (v_16_auto ~= nil)) then
           tbl_14_auto[k_15_auto] = v_16_auto
@@ -110,7 +110,7 @@ local function _2_(args)
     local opts_1_auto
     do
       local tbl_14_auto = {}
-      for k_2_auto, v_3_auto in pairs((nil or {})) do
+      for k_2_auto, v_3_auto in pairs(({buffer = bufnr} or {})) do
         local k_15_auto, v_16_auto = k_2_auto, v_3_auto
         if ((k_15_auto ~= nil) and (v_16_auto ~= nil)) then
           tbl_14_auto[k_15_auto] = v_16_auto
@@ -134,7 +134,7 @@ local function _2_(args)
     local opts_1_auto
     do
       local tbl_14_auto = {}
-      for k_2_auto, v_3_auto in pairs((nil or {})) do
+      for k_2_auto, v_3_auto in pairs(({buffer = bufnr} or {})) do
         local k_15_auto, v_16_auto = k_2_auto, v_3_auto
         if ((k_15_auto ~= nil) and (v_16_auto ~= nil)) then
           tbl_14_auto[k_15_auto] = v_16_auto
@@ -160,7 +160,7 @@ local function _2_(args)
       local opts_1_auto
       do
         local tbl_14_auto = {}
-        for k_2_auto, v_3_auto in pairs((nil or {})) do
+        for k_2_auto, v_3_auto in pairs(({buffer = bufnr} or {})) do
           local k_15_auto, v_16_auto = k_2_auto, v_3_auto
           if ((k_15_auto ~= nil) and (v_16_auto ~= nil)) then
             tbl_14_auto[k_15_auto] = v_16_auto
@@ -183,18 +183,23 @@ local function _2_(args)
   else
   end
   if client.supports_method(ms.textDocument_inlayHint) then
-    local ok, err = pcall(vim.lsp.inlay_hint, bufnr, true)
-    if not ok then
-      vim.print(err)
-    else
+    vim.lsp.inlay_hint(bufnr, true)
+    local group = vim.api.nvim_create_augroup("my_inlayHint", {clear = true})
+    local function _32_()
+      return vim.lsp.inlay_hint(bufnr, true)
     end
+    vim.api.nvim_create_autocmd({"InsertLeave"}, {buffer = bufnr, callback = _32_, group = group})
+    local function _33_()
+      return vim.lsp.inlay_hint(bufnr, false)
+    end
+    vim.api.nvim_create_autocmd({"InsertEnter"}, {buffer = bufnr, callback = _33_, group = group})
   else
   end
   do
     local opts_1_auto
     do
       local tbl_14_auto = {}
-      for k_2_auto, v_3_auto in pairs((nil or {})) do
+      for k_2_auto, v_3_auto in pairs(({buffer = bufnr} or {})) do
         local k_15_auto, v_16_auto = k_2_auto, v_3_auto
         if ((k_15_auto ~= nil) and (v_16_auto ~= nil)) then
           tbl_14_auto[k_15_auto] = v_16_auto
@@ -217,7 +222,7 @@ local function _2_(args)
     local opts_1_auto
     do
       local tbl_14_auto = {}
-      for k_2_auto, v_3_auto in pairs((nil or {})) do
+      for k_2_auto, v_3_auto in pairs(({buffer = bufnr} or {})) do
         local k_15_auto, v_16_auto = k_2_auto, v_3_auto
         if ((k_15_auto ~= nil) and (v_16_auto ~= nil)) then
           tbl_14_auto[k_15_auto] = v_16_auto
@@ -240,7 +245,7 @@ local function _2_(args)
     local opts_1_auto
     do
       local tbl_14_auto = {}
-      for k_2_auto, v_3_auto in pairs((nil or {})) do
+      for k_2_auto, v_3_auto in pairs(({buffer = bufnr} or {})) do
         local k_15_auto, v_16_auto = k_2_auto, v_3_auto
         if ((k_15_auto ~= nil) and (v_16_auto ~= nil)) then
           tbl_14_auto[k_15_auto] = v_16_auto
@@ -263,7 +268,7 @@ local function _2_(args)
     local opts_1_auto
     do
       local tbl_14_auto = {}
-      for k_2_auto, v_3_auto in pairs((nil or {})) do
+      for k_2_auto, v_3_auto in pairs(({buffer = bufnr} or {})) do
         local k_15_auto, v_16_auto = k_2_auto, v_3_auto
         if ((k_15_auto ~= nil) and (v_16_auto ~= nil)) then
           tbl_14_auto[k_15_auto] = v_16_auto
@@ -280,16 +285,16 @@ local function _2_(args)
       opts_1_auto.silent = true
     else
     end
-    local function _46_()
+    local function _47_()
       return vim.lsp.buf.references({includeDeclaration = false})
     end
-    vim.keymap.set("n", "gr", _46_, opts_1_auto)
+    vim.keymap.set("n", "gr", _47_, opts_1_auto)
   end
   do
     local opts_1_auto
     do
       local tbl_14_auto = {}
-      for k_2_auto, v_3_auto in pairs((nil or {})) do
+      for k_2_auto, v_3_auto in pairs(({buffer = bufnr} or {})) do
         local k_15_auto, v_16_auto = k_2_auto, v_3_auto
         if ((k_15_auto ~= nil) and (v_16_auto ~= nil)) then
           tbl_14_auto[k_15_auto] = v_16_auto
@@ -306,7 +311,7 @@ local function _2_(args)
       opts_1_auto.silent = true
     else
     end
-    local function _50_()
+    local function _51_()
       local ufo = require("ufo")
       local lspsaga_hover = require("lspsaga.hover")
       local winid = ufo.peekFoldedLinesUnderCursor()
@@ -316,13 +321,13 @@ local function _2_(args)
         return nil
       end
     end
-    vim.keymap.set("n", "K", _50_, opts_1_auto)
+    vim.keymap.set("n", "K", _51_, opts_1_auto)
   end
   do
     local opts_1_auto
     do
       local tbl_14_auto = {}
-      for k_2_auto, v_3_auto in pairs((nil or {})) do
+      for k_2_auto, v_3_auto in pairs(({buffer = bufnr} or {})) do
         local k_15_auto, v_16_auto = k_2_auto, v_3_auto
         if ((k_15_auto ~= nil) and (v_16_auto ~= nil)) then
           tbl_14_auto[k_15_auto] = v_16_auto
@@ -345,7 +350,7 @@ local function _2_(args)
     local opts_1_auto
     do
       local tbl_14_auto = {}
-      for k_2_auto, v_3_auto in pairs((nil or {})) do
+      for k_2_auto, v_3_auto in pairs(({buffer = bufnr} or {})) do
         local k_15_auto, v_16_auto = k_2_auto, v_3_auto
         if ((k_15_auto ~= nil) and (v_16_auto ~= nil)) then
           tbl_14_auto[k_15_auto] = v_16_auto
@@ -365,7 +370,7 @@ local function _2_(args)
     vim.keymap.set("n", "<leader>lr", ":Lspsaga rename<CR>", opts_1_auto)
   end
   local delete_empty_lsp_clients
-  local function _58_()
+  local function _59_()
     local clients = vim.lsp.get_clients()
     for _, client0 in ipairs(clients) do
       local bufs = vim.lsp.get_buffers_by_client_id(client0.id)
@@ -377,12 +382,12 @@ local function _2_(args)
     end
     return nil
   end
-  delete_empty_lsp_clients = _58_
+  delete_empty_lsp_clients = _59_
   local group = vim.api.nvim_create_augroup("LspTimeOut", {clear = true})
-  local function _60_()
+  local function _61_()
     return vim.defer_fn(delete_empty_lsp_clients, 5000)
   end
-  vim.api.nvim_create_autocmd({"BufDelete"}, {pattern = "*", callback = _60_, group = group})
+  vim.api.nvim_create_autocmd({"BufDelete"}, {pattern = "*", callback = _61_, group = group})
   return nil
 end
 vim.api.nvim_create_autocmd("LspAttach", {callback = _2_})
@@ -394,7 +399,7 @@ local function ccls_on_attach(_, _0)
     local opts_1_auto
     do
       local tbl_14_auto = {}
-      for k_2_auto, v_3_auto in pairs((nil or {})) do
+      for k_2_auto, v_3_auto in pairs(({buffer = bufnr} or {})) do
         local k_15_auto, v_16_auto = k_2_auto, v_3_auto
         if ((k_15_auto ~= nil) and (v_16_auto ~= nil)) then
           tbl_14_auto[k_15_auto] = v_16_auto
@@ -411,16 +416,16 @@ local function ccls_on_attach(_, _0)
       opts_1_auto.silent = true
     else
     end
-    local function _64_()
+    local function _65_()
       return ccls.navigate("L")
     end
-    vim.keymap.set("n", "<C-k>", _64_, opts_1_auto)
+    vim.keymap.set("n", "<C-k>", _65_, opts_1_auto)
   end
   do
     local opts_1_auto
     do
       local tbl_14_auto = {}
-      for k_2_auto, v_3_auto in pairs((nil or {})) do
+      for k_2_auto, v_3_auto in pairs(({buffer = bufnr} or {})) do
         local k_15_auto, v_16_auto = k_2_auto, v_3_auto
         if ((k_15_auto ~= nil) and (v_16_auto ~= nil)) then
           tbl_14_auto[k_15_auto] = v_16_auto
@@ -437,16 +442,16 @@ local function ccls_on_attach(_, _0)
       opts_1_auto.silent = true
     else
     end
-    local function _68_()
+    local function _69_()
       return ccls.navigate("R")
     end
-    vim.keymap.set("n", "<C-j>", _68_, opts_1_auto)
+    vim.keymap.set("n", "<C-j>", _69_, opts_1_auto)
   end
   do
     local opts_1_auto
     do
       local tbl_14_auto = {}
-      for k_2_auto, v_3_auto in pairs((nil or {})) do
+      for k_2_auto, v_3_auto in pairs(({buffer = bufnr} or {})) do
         local k_15_auto, v_16_auto = k_2_auto, v_3_auto
         if ((k_15_auto ~= nil) and (v_16_auto ~= nil)) then
           tbl_14_auto[k_15_auto] = v_16_auto
@@ -463,16 +468,16 @@ local function ccls_on_attach(_, _0)
       opts_1_auto.silent = true
     else
     end
-    local function _72_()
+    local function _73_()
       return ccls.navigate("D")
     end
-    vim.keymap.set("n", "<C-l>", _72_, opts_1_auto)
+    vim.keymap.set("n", "<C-l>", _73_, opts_1_auto)
   end
   do
     local opts_1_auto
     do
       local tbl_14_auto = {}
-      for k_2_auto, v_3_auto in pairs((nil or {})) do
+      for k_2_auto, v_3_auto in pairs(({buffer = bufnr} or {})) do
         local k_15_auto, v_16_auto = k_2_auto, v_3_auto
         if ((k_15_auto ~= nil) and (v_16_auto ~= nil)) then
           tbl_14_auto[k_15_auto] = v_16_auto
@@ -489,16 +494,16 @@ local function ccls_on_attach(_, _0)
       opts_1_auto.silent = true
     else
     end
-    local function _76_()
+    local function _77_()
       return ccls.navigate("U")
     end
-    vim.keymap.set("n", "<C-h>", _76_, opts_1_auto)
+    vim.keymap.set("n", "<C-h>", _77_, opts_1_auto)
   end
   do
     local opts_1_auto
     do
       local tbl_14_auto = {}
-      for k_2_auto, v_3_auto in pairs((nil or {})) do
+      for k_2_auto, v_3_auto in pairs(({buffer = bufnr} or {})) do
         local k_15_auto, v_16_auto = k_2_auto, v_3_auto
         if ((k_15_auto ~= nil) and (v_16_auto ~= nil)) then
           tbl_14_auto[k_15_auto] = v_16_auto
@@ -515,16 +520,16 @@ local function ccls_on_attach(_, _0)
       opts_1_auto.silent = true
     else
     end
-    local function _80_()
+    local function _81_()
       return ccls.call("caller")
     end
-    vim.keymap.set("n", "<space>ii", _80_, opts_1_auto)
+    vim.keymap.set("n", "<space>ii", _81_, opts_1_auto)
   end
   do
     local opts_1_auto
     do
       local tbl_14_auto = {}
-      for k_2_auto, v_3_auto in pairs((nil or {})) do
+      for k_2_auto, v_3_auto in pairs(({buffer = bufnr} or {})) do
         local k_15_auto, v_16_auto = k_2_auto, v_3_auto
         if ((k_15_auto ~= nil) and (v_16_auto ~= nil)) then
           tbl_14_auto[k_15_auto] = v_16_auto
@@ -541,16 +546,16 @@ local function ccls_on_attach(_, _0)
       opts_1_auto.silent = true
     else
     end
-    local function _84_()
+    local function _85_()
       return ccls.call("callee")
     end
-    vim.keymap.set("n", "<space>io", _84_, opts_1_auto)
+    vim.keymap.set("n", "<space>io", _85_, opts_1_auto)
   end
   do
     local opts_1_auto
     do
       local tbl_14_auto = {}
-      for k_2_auto, v_3_auto in pairs((nil or {})) do
+      for k_2_auto, v_3_auto in pairs(({buffer = bufnr} or {})) do
         local k_15_auto, v_16_auto = k_2_auto, v_3_auto
         if ((k_15_auto ~= nil) and (v_16_auto ~= nil)) then
           tbl_14_auto[k_15_auto] = v_16_auto
@@ -567,16 +572,16 @@ local function ccls_on_attach(_, _0)
       opts_1_auto.silent = true
     else
     end
-    local function _88_()
+    local function _89_()
       return ccls.ccls_var("field")
     end
-    vim.keymap.set("n", "<space>vf", _88_, opts_1_auto)
+    vim.keymap.set("n", "<space>vf", _89_, opts_1_auto)
   end
   do
     local opts_1_auto
     do
       local tbl_14_auto = {}
-      for k_2_auto, v_3_auto in pairs((nil or {})) do
+      for k_2_auto, v_3_auto in pairs(({buffer = bufnr} or {})) do
         local k_15_auto, v_16_auto = k_2_auto, v_3_auto
         if ((k_15_auto ~= nil) and (v_16_auto ~= nil)) then
           tbl_14_auto[k_15_auto] = v_16_auto
@@ -593,16 +598,16 @@ local function ccls_on_attach(_, _0)
       opts_1_auto.silent = true
     else
     end
-    local function _92_()
+    local function _93_()
       return ccls.ccls_var("local")
     end
-    vim.keymap.set("n", "<space>vl", _92_, opts_1_auto)
+    vim.keymap.set("n", "<space>vl", _93_, opts_1_auto)
   end
   do
     local opts_1_auto
     do
       local tbl_14_auto = {}
-      for k_2_auto, v_3_auto in pairs((nil or {})) do
+      for k_2_auto, v_3_auto in pairs(({buffer = bufnr} or {})) do
         local k_15_auto, v_16_auto = k_2_auto, v_3_auto
         if ((k_15_auto ~= nil) and (v_16_auto ~= nil)) then
           tbl_14_auto[k_15_auto] = v_16_auto
@@ -619,16 +624,16 @@ local function ccls_on_attach(_, _0)
       opts_1_auto.silent = true
     else
     end
-    local function _96_()
+    local function _97_()
       return ccls.ccls_var("parameter")
     end
-    vim.keymap.set("n", "<space>vp", _96_, opts_1_auto)
+    vim.keymap.set("n", "<space>vp", _97_, opts_1_auto)
   end
   do
     local opts_1_auto
     do
       local tbl_14_auto = {}
-      for k_2_auto, v_3_auto in pairs((nil or {})) do
+      for k_2_auto, v_3_auto in pairs(({buffer = bufnr} or {})) do
         local k_15_auto, v_16_auto = k_2_auto, v_3_auto
         if ((k_15_auto ~= nil) and (v_16_auto ~= nil)) then
           tbl_14_auto[k_15_auto] = v_16_auto
@@ -645,16 +650,16 @@ local function ccls_on_attach(_, _0)
       opts_1_auto.silent = true
     else
     end
-    local function _100_()
+    local function _101_()
       return ccls.member("variables")
     end
-    vim.keymap.set("n", "<space>mv", _100_, opts_1_auto)
+    vim.keymap.set("n", "<space>mv", _101_, opts_1_auto)
   end
   do
     local opts_1_auto
     do
       local tbl_14_auto = {}
-      for k_2_auto, v_3_auto in pairs((nil or {})) do
+      for k_2_auto, v_3_auto in pairs(({buffer = bufnr} or {})) do
         local k_15_auto, v_16_auto = k_2_auto, v_3_auto
         if ((k_15_auto ~= nil) and (v_16_auto ~= nil)) then
           tbl_14_auto[k_15_auto] = v_16_auto
@@ -671,16 +676,16 @@ local function ccls_on_attach(_, _0)
       opts_1_auto.silent = true
     else
     end
-    local function _104_()
+    local function _105_()
       return ccls.member("functions")
     end
-    vim.keymap.set("n", "<space>mf", _104_, opts_1_auto)
+    vim.keymap.set("n", "<space>mf", _105_, opts_1_auto)
   end
   do
     local opts_1_auto
     do
       local tbl_14_auto = {}
-      for k_2_auto, v_3_auto in pairs((nil or {})) do
+      for k_2_auto, v_3_auto in pairs(({buffer = bufnr} or {})) do
         local k_15_auto, v_16_auto = k_2_auto, v_3_auto
         if ((k_15_auto ~= nil) and (v_16_auto ~= nil)) then
           tbl_14_auto[k_15_auto] = v_16_auto
@@ -697,16 +702,16 @@ local function ccls_on_attach(_, _0)
       opts_1_auto.silent = true
     else
     end
-    local function _108_()
+    local function _109_()
       return ccls.member("types")
     end
-    vim.keymap.set("n", "<space>mt", _108_, opts_1_auto)
+    vim.keymap.set("n", "<space>mt", _109_, opts_1_auto)
   end
   do
     local opts_1_auto
     do
       local tbl_14_auto = {}
-      for k_2_auto, v_3_auto in pairs((nil or {})) do
+      for k_2_auto, v_3_auto in pairs(({buffer = bufnr} or {})) do
         local k_15_auto, v_16_auto = k_2_auto, v_3_auto
         if ((k_15_auto ~= nil) and (v_16_auto ~= nil)) then
           tbl_14_auto[k_15_auto] = v_16_auto
@@ -723,16 +728,16 @@ local function ccls_on_attach(_, _0)
       opts_1_auto.silent = true
     else
     end
-    local function _112_()
+    local function _113_()
       return ccls.inheritance("base")
     end
-    vim.keymap.set("n", "<space>ib", _112_, opts_1_auto)
+    vim.keymap.set("n", "<space>ib", _113_, opts_1_auto)
   end
   do
     local opts_1_auto
     do
       local tbl_14_auto = {}
-      for k_2_auto, v_3_auto in pairs((nil or {})) do
+      for k_2_auto, v_3_auto in pairs(({buffer = bufnr} or {})) do
         local k_15_auto, v_16_auto = k_2_auto, v_3_auto
         if ((k_15_auto ~= nil) and (v_16_auto ~= nil)) then
           tbl_14_auto[k_15_auto] = v_16_auto
@@ -749,16 +754,16 @@ local function ccls_on_attach(_, _0)
       opts_1_auto.silent = true
     else
     end
-    local function _116_()
+    local function _117_()
       return ccls.inheritance("derived")
     end
-    vim.keymap.set("n", "<space>id", _116_, opts_1_auto)
+    vim.keymap.set("n", "<space>id", _117_, opts_1_auto)
   end
   do
     local opts_1_auto
     do
       local tbl_14_auto = {}
-      for k_2_auto, v_3_auto in pairs((nil or {})) do
+      for k_2_auto, v_3_auto in pairs(({buffer = bufnr} or {})) do
         local k_15_auto, v_16_auto = k_2_auto, v_3_auto
         if ((k_15_auto ~= nil) and (v_16_auto ~= nil)) then
           tbl_14_auto[k_15_auto] = v_16_auto
@@ -775,16 +780,16 @@ local function ccls_on_attach(_, _0)
       opts_1_auto.silent = true
     else
     end
-    local function _120_()
+    local function _121_()
       return ccls.extend_ref("write")
     end
-    vim.keymap.set("n", "<space>gw", _120_, opts_1_auto)
+    vim.keymap.set("n", "<space>gw", _121_, opts_1_auto)
   end
   do
     local opts_1_auto
     do
       local tbl_14_auto = {}
-      for k_2_auto, v_3_auto in pairs((nil or {})) do
+      for k_2_auto, v_3_auto in pairs(({buffer = bufnr} or {})) do
         local k_15_auto, v_16_auto = k_2_auto, v_3_auto
         if ((k_15_auto ~= nil) and (v_16_auto ~= nil)) then
           tbl_14_auto[k_15_auto] = v_16_auto
@@ -801,16 +806,16 @@ local function ccls_on_attach(_, _0)
       opts_1_auto.silent = true
     else
     end
-    local function _124_()
+    local function _125_()
       return ccls.extend_ref("read")
     end
-    vim.keymap.set("n", "<space>gr", _124_, opts_1_auto)
+    vim.keymap.set("n", "<space>gr", _125_, opts_1_auto)
   end
   do
     local opts_1_auto
     do
       local tbl_14_auto = {}
-      for k_2_auto, v_3_auto in pairs((nil or {})) do
+      for k_2_auto, v_3_auto in pairs(({buffer = bufnr} or {})) do
         local k_15_auto, v_16_auto = k_2_auto, v_3_auto
         if ((k_15_auto ~= nil) and (v_16_auto ~= nil)) then
           tbl_14_auto[k_15_auto] = v_16_auto
@@ -827,16 +832,16 @@ local function ccls_on_attach(_, _0)
       opts_1_auto.silent = true
     else
     end
-    local function _128_()
+    local function _129_()
       return ccls.extend_ref("macro")
     end
-    vim.keymap.set("n", "<space>gm", _128_, opts_1_auto)
+    vim.keymap.set("n", "<space>gm", _129_, opts_1_auto)
   end
   do
     local opts_1_auto
     do
       local tbl_14_auto = {}
-      for k_2_auto, v_3_auto in pairs((nil or {})) do
+      for k_2_auto, v_3_auto in pairs(({buffer = bufnr} or {})) do
         local k_15_auto, v_16_auto = k_2_auto, v_3_auto
         if ((k_15_auto ~= nil) and (v_16_auto ~= nil)) then
           tbl_14_auto[k_15_auto] = v_16_auto
@@ -853,16 +858,16 @@ local function ccls_on_attach(_, _0)
       opts_1_auto.silent = true
     else
     end
-    local function _132_()
+    local function _133_()
       return ccls.extend_ref("notcall")
     end
-    vim.keymap.set("n", "<space>gn", _132_, opts_1_auto)
+    vim.keymap.set("n", "<space>gn", _133_, opts_1_auto)
   end
   do
     local opts_1_auto
     do
       local tbl_14_auto = {}
-      for k_2_auto, v_3_auto in pairs((nil or {})) do
+      for k_2_auto, v_3_auto in pairs(({buffer = bufnr} or {})) do
         local k_15_auto, v_16_auto = k_2_auto, v_3_auto
         if ((k_15_auto ~= nil) and (v_16_auto ~= nil)) then
           tbl_14_auto[k_15_auto] = v_16_auto
@@ -879,15 +884,15 @@ local function ccls_on_attach(_, _0)
       opts_1_auto.silent = true
     else
     end
-    local function _136_()
+    local function _137_()
       return ccls.ccls_fileInfo()
     end
-    vim.keymap.set("n", "<space>cf", _136_, opts_1_auto)
+    vim.keymap.set("n", "<space>cf", _137_, opts_1_auto)
   end
   local opts_1_auto
   do
     local tbl_14_auto = {}
-    for k_2_auto, v_3_auto in pairs((nil or {})) do
+    for k_2_auto, v_3_auto in pairs(({buffer = bufnr} or {})) do
       local k_15_auto, v_16_auto = k_2_auto, v_3_auto
       if ((k_15_auto ~= nil) and (v_16_auto ~= nil)) then
         tbl_14_auto[k_15_auto] = v_16_auto
@@ -904,13 +909,13 @@ local function ccls_on_attach(_, _0)
     opts_1_auto.silent = true
   else
   end
-  local function _140_()
+  local function _141_()
     return ccls.ccls_info()
   end
-  return vim.keymap.set("n", "<space>ci", _140_, opts_1_auto)
+  return vim.keymap.set("n", "<space>ci", _141_, opts_1_auto)
 end
 local sumneko_lua_config = {Lua = {diagnostics = {enable = true, globals = {"vim"}}, completion = {callSnippet = "Replace", showWord = "Disable"}, hint = {enable = true}, runtime = {version = "LuaJIT"}, workspace = {checkThirdParty = false}, IntelliSense = {traceLocalSet = true, traceReturn = true, traceBeSetted = true, traceFieldInject = true}, format = {enable = true, defaultConfig = {indent_style = "space", indent_size = "2"}}}}
-local pylsp_config = {pylsp = {plugins = {pylint = {executable = "pylint", enabled = false}, pyflakes = {enabled = false}, pycodestyle = {enabled = false}, jedi_completion = {enabled = true, include_class_objects = true, eager = true, include_params = false, fuzzy = false}, pyls_isort = {enabled = true}, pylsp_mypy = {enabled = true}}}}
+local pylsp_config = {pylsp = {plugins = {pylint = {executable = "pylint", enabled = false}, pyflakes = {enabled = false}, pycodestyle = {enabled = false}, jedi_completion = {enabled = true, include_class_objects = true, eager = true, fuzzy = false, include_params = false}, pyls_isort = {enabled = true}, pylsp_mypy = {enabled = true}}}}
 local pyright_config = {python = {analysis = {autoSearchPaths = true, useLibraryCodeForTypes = true, diagnositcMode = "workspace"}}}
 local hls_config = {haskell = {formattingProvider = "ormolu"}}
 local vimls_config = {diagnositc = {enable = true}, indexes = {count = 3, gap = 100, projectRootPatterns = {"runtime", "nvim", ".git", "autoload", "plugin"}, runtimepath = true}, isNeovim = true, isKeyword = "@,48-57,_,192-255,-#", runtimepath = "", suggest = {fromRuntimepath = true, fromVimruntime = true}, vimruntime = ""}

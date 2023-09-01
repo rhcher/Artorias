@@ -723,7 +723,7 @@ do
   end
   vim.api.nvim_create_autocmd({"FileType"}, {pattern = {"*"}, callback = _92_, group = group})
   local function _97_()
-    if ((vim.bo.filetype == "") or (vim.bo.buftype == "")) then
+    if ((vim.bo.filetype == "") and (vim.bo.buftype == "")) then
       local opts_1_auto
       do
         local tbl_14_auto = {}

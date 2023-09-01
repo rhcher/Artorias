@@ -12,45 +12,46 @@
            client (vim.lsp.get_client_by_id args.data.client_id)]
        (when (and (client.supports_method ms.textDocument_formatting)
                   (client.supports_method ms.textDocument_rangeFormatting))
-         (map [:n :v] :<leader>lf #(vim.lsp.buf.format {:async true})))
+         (map [:n :v] :<leader>lf #(vim.lsp.buf.format {:async true}) {:buffer bufnr}))
 
        (when (client.supports_method ms.textDocument_prepareCallHierarchy)
-         (map :n :<leader>ii vim.lsp.buf.incoming_calls)
-         (map :n :<leader>io vim.lsp.buf.outgoing_calls))
+         (map :n :<leader>ii vim.lsp.buf.incoming_calls {:buffer bufnr})
+         (map :n :<leader>io vim.lsp.buf.outgoing_calls {:buffer bufnr}))
 
        (when (client.supports_method ms.textDocument_documentSymbol)
-         (map :n :<leader>lw vim.lsp.buf.document_symbol))
+         (map :n :<leader>lw vim.lsp.buf.document_symbol {:buffer bufnr}))
 
        (when (client.supports_method ms.workspace_symbol)
-         (map :n :<leader>lW vim.lsp.buf.workspace_symbol))
+         (map :n :<leader>lW vim.lsp.buf.workspace_symbol {:buffer bufnr}))
 
        (when (client.supports_method ms.textDocument_codeAction)
-         (map [:n :v] :<leader>la "<cmd>Lspsaga code_action<CR>"))
+         (map [:n :v] :<leader>la "<cmd>Lspsaga code_action<CR>" {:buffer bufnr}))
 
        (when (client.supports_method ms.textDocument_codeLens)
          (autocmd [:BufEnter :CursorHold :InsertLeave]
                   {:buffer bufnr
                    :callback vim.lsp.codelens.refresh})
          (when (client.supports_method ms.workspace_executeCommand)
-           (map :n :<leader>ll vim.lsp.codelens.run)))
+           (map :n :<leader>ll vim.lsp.codelens.run {:buffer bufnr})))
 
        (when (client.supports_method ms.textDocument_inlayHint)
-         (let [(ok err) (pcall vim.lsp.inlay_hint bufnr true)]
-           (when (not ok)
-             (vim.print err))))
+         (vim.lsp.inlay_hint bufnr true)
+         (augroup "my_inlayHint"
+                  [["InsertLeave"] {:buffer bufnr :callback #(vim.lsp.inlay_hint bufnr true)}]
+                  [["InsertEnter"] {:buffer bufnr :callback #(vim.lsp.inlay_hint bufnr false)}]))
 
-       (map :n :gd vim.lsp.buf.definition)
-       (map :n :gD vim.lsp.buf.declaration)
-       (map :n :gi vim.lsp.buf.implementation)
-       (map :n :gr #(vim.lsp.buf.references {:includeDeclaration false}))
+       (map :n :gd vim.lsp.buf.definition {:buffer bufnr})
+       (map :n :gD vim.lsp.buf.declaration {:buffer bufnr})
+       (map :n :gi vim.lsp.buf.implementation {:buffer bufnr})
+       (map :n :gr #(vim.lsp.buf.references {:includeDeclaration false}) {:buffer bufnr})
        (map :n :K #(let [ufo (require :ufo)
                             lspsaga_hover (require :lspsaga.hover)
                             winid (ufo.peekFoldedLinesUnderCursor)]
                         (when (not winid)
-                          (vim.lsp.buf.hover))))
+                          (vim.lsp.buf.hover))) {:buffer bufnr})
                           ; (: lspsaga_hover "render_hover_doc" {}))))
-       (map :n :<leader>k "<cmd>Lspsaga hover_doc ++keep<CR>")
-       (map :n :<leader>lr ":Lspsaga rename<CR>")
+       (map :n :<leader>k "<cmd>Lspsaga hover_doc ++keep<CR>" {:buffer bufnr})
+       (map :n :<leader>lr ":Lspsaga rename<CR>" {:buffer bufnr})
 
        (let [delete-empty-lsp-clients #(let [clients (vim.lsp.get_clients)]
                                          (each [_ client (ipairs clients)]
@@ -83,32 +84,32 @@
 (fn ccls_on_attach [_ _]
   (let [ccls (require "dotfiles.ccls")]
     ;; ccls navigate
-    (map :n :<C-k> #(ccls.navigate :L))
-    (map :n :<C-j> #(ccls.navigate :R))
-    (map :n :<C-l> #(ccls.navigate :D))
-    (map :n :<C-h> #(ccls.navigate :U))
+    (map :n :<C-k> #(ccls.navigate :L) {:buffer bufnr})
+    (map :n :<C-j> #(ccls.navigate :R) {:buffer bufnr})
+    (map :n :<C-l> #(ccls.navigate :D) {:buffer bufnr})
+    (map :n :<C-h> #(ccls.navigate :U) {:buffer bufnr})
     ;; ccls call
-    (map :n :<space>ii #(ccls.call :caller))
-    (map :n :<space>io #(ccls.call :callee))
+    (map :n :<space>ii #(ccls.call :caller) {:buffer bufnr})
+    (map :n :<space>io #(ccls.call :callee) {:buffer bufnr})
     ;; ccls var
-    (map :n :<space>vf #(ccls.ccls_var :field))
-    (map :n :<space>vl #(ccls.ccls_var :local))
-    (map :n :<space>vp #(ccls.ccls_var :parameter))
+    (map :n :<space>vf #(ccls.ccls_var :field) {:buffer bufnr})
+    (map :n :<space>vl #(ccls.ccls_var :local) {:buffer bufnr})
+    (map :n :<space>vp #(ccls.ccls_var :parameter) {:buffer bufnr})
     ;; ccls member
-    (map :n :<space>mv #(ccls.member :variables))
-    (map :n :<space>mf #(ccls.member :functions))
-    (map :n :<space>mt #(ccls.member :types))
+    (map :n :<space>mv #(ccls.member :variables) {:buffer bufnr})
+    (map :n :<space>mf #(ccls.member :functions) {:buffer bufnr})
+    (map :n :<space>mt #(ccls.member :types) {:buffer bufnr})
     ;; ccls inheritance
-    (map :n :<space>ib #(ccls.inheritance :base))
-    (map :n :<space>id #(ccls.inheritance :derived))
+    (map :n :<space>ib #(ccls.inheritance :base) {:buffer bufnr})
+    (map :n :<space>id #(ccls.inheritance :derived) {:buffer bufnr})
     ;; ccls references
-    (map :n :<space>gw #(ccls.extend_ref :write))
-    (map :n :<space>gr #(ccls.extend_ref :read))
-    (map :n :<space>gm #(ccls.extend_ref :macro))
-    (map :n :<space>gn #(ccls.extend_ref :notcall))
+    (map :n :<space>gw #(ccls.extend_ref :write) {:buffer bufnr})
+    (map :n :<space>gr #(ccls.extend_ref :read) {:buffer bufnr})
+    (map :n :<space>gm #(ccls.extend_ref :macro) {:buffer bufnr})
+    (map :n :<space>gn #(ccls.extend_ref :notcall) {:buffer bufnr})
     ; ccls info
-    (map :n :<space>cf #(ccls.ccls_fileInfo))
-    (map :n :<space>ci #(ccls.ccls_info))))
+    (map :n :<space>cf #(ccls.ccls_fileInfo) {:buffer bufnr})
+    (map :n :<space>ci #(ccls.ccls_info) {:buffer bufnr})))
 
 (local sumneko_lua_config
   {:Lua {:diagnostics {:enable true :globals [:vim]}
