@@ -111,22 +111,26 @@ local function indent_type(stack, lines, line_num)
 end
 local function fennel_indentexpr(line_num)
   local lines = vim.api.nvim_buf_get_lines(0, 0, line_num, true)
-  local _15_, _16_, _17_ = indent_type({}, lines, (line_num - 1))
-  if ((_15_ == "table") and (nil ~= _16_)) then
-    local delimiter_pos = _16_
-    return delimiter_pos
-  elseif ((_15_ == "special") and (nil ~= _16_)) then
-    local prev_indent = _16_
-    return (prev_indent + 2)
-  elseif ((_15_ == "call") and (nil ~= _16_) and (nil ~= _17_)) then
-    local prev_indent = _16_
-    local fn_name = _17_
-    return (prev_indent + #fn_name + 2)
-  elseif true then
-    local _ = _15_
+  if (line_num == 1) then
     return 0
   else
-    return nil
+    local _15_, _16_, _17_ = indent_type({}, lines, (line_num - 1))
+    if ((_15_ == "table") and (nil ~= _16_)) then
+      local delimiter_pos = _16_
+      return delimiter_pos
+    elseif ((_15_ == "special") and (nil ~= _16_)) then
+      local prev_indent = _16_
+      return (prev_indent + 2)
+    elseif ((_15_ == "call") and (nil ~= _16_) and (nil ~= _17_)) then
+      local prev_indent = _16_
+      local fn_name = _17_
+      return (prev_indent + #fn_name + 2)
+    elseif true then
+      local _ = _15_
+      return 0
+    else
+      return nil
+    end
   end
 end
 local function fennel_local()
@@ -134,8 +138,8 @@ local function fennel_local()
   vim.opt_local.indentexpr = "v:lua.require(\"dotfiles.indentation\").fennel_indentexpr(v:lnum)"
   return nil
 end
-local function _19_()
+local function _20_()
   return fennel_local()
 end
-vim.api.nvim_create_autocmd({"FileType"}, {pattern = "fennel", callback = _19_})
-return {delimiters = delimiters, specials = specials, ["symbol-at"] = symbol_at, ["find-string-start"] = find_string_start, ["line-indent-type"] = line_indent_type, ["find-comment-start"] = find_comment_start, indent_type = indent_type, fennel_indentexpr = fennel_indentexpr}
+vim.api.nvim_create_autocmd({"FileType"}, {pattern = "fennel", callback = _20_})
+return {indent_type = indent_type, fennel_indentexpr = fennel_indentexpr}

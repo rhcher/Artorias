@@ -99,11 +99,13 @@
 
 (fn fennel_indentexpr [line-num]
   (let [lines (vim.api.nvim_buf_get_lines 0 0 line-num true)]
-    (match (indent_type [] lines (- line-num 1))
-      (:table delimiter-pos) delimiter-pos
-      (:special prev-indent) (+ prev-indent 2)
-      (:call prev-indent fn-name) (+ prev-indent (length fn-name) 2)
-      _ 0)))
+    (if (= line-num 1)
+        0
+        (match (indent_type [] lines (- line-num 1))
+          (:table delimiter-pos) delimiter-pos
+          (:special prev-indent) (+ prev-indent 2)
+          (:call prev-indent fn-name) (+ prev-indent (length fn-name) 2)
+          _ 0))))
 
 (fn fennel-local []
   (set vim.opt_local.iskeyword ["33-255" "^(" "^)" "^{" "^}" "^[" "^]" "^\"" "^'" "^~" "^;" "^," "^@-@" "^`" "^:"])
@@ -111,11 +113,5 @@
 
 (autocmd [:FileType] {:pattern "fennel" :callback #(fennel-local)})
 
-{: delimiters
- : specials
- : symbol-at
- : find-string-start
- : line-indent-type
- : find-comment-start
- : indent_type
+{: indent_type
  : fennel_indentexpr}
