@@ -103,24 +103,57 @@
 
 (local semantic-hightlight-handler
   (fn [err result ctx config]
-    (let [client (vim.lsp.get_client_by_id ctx.client_id)]
+    (let [client (vim.lsp.get_clients {:id ctx.client_id})
+          {: symbols : uri} result
+          ns (vim.api.nvim_create_namespace "ccls-semantic-hightlights")
+          highlighter (fn [symbol hl_group]
+                        (each [_ lsRange (ipairs symbol.lsRanges)]
+                          (vim.api.nvim_buf_set_extmark (vim.api.nvim_get_current_buf)
+                                                        ns
+                                                        lsRange.start.line
+                                                        lsRange.start.character
+                                                        {:end_row lsRange.end.line
+                                                         :end_col lsRange.end.character
+                                                         :hl_group hl_group
+                                                         :priority 150})))]
       (when client
-        (let [{: symbols : uri} result]
-          (each [_ symbol (ipairs symbols)]
-            (let [{: id : kind : lsRanges : parentKind : ranges : storage} symbol]
-              (each [_ lsRange (ipairs lsRanges)]
-                (let [{: end : start} lsRange
-                      {:character character_end :line line_end} end
-                      {:character character_start :line line_start} start]
-                  (print "end: {" character_end line_end "}\n")
-                  (print "start: {" character_start line_start "}")))))
-          (print "hell"))
-        (print "hello")
-        (print "hello")))))
+        (vim.api.nvim_buf_clear_namespace (vim.api.nvim_get_current_buf) ns 0 -1)
+        (each [_ symbol (ipairs symbols)]
+          (match symbol
+            (where symbol (= symbol.kind 3)) ; Namespace
+            (highlighter symbol "LspCxxHlGroupNamespace")
+            (where symbol (= symbol.kind 12)) ; Function
+            (highlighter symbol "LspCxxHlSymFunction")
+            (where symbol (= symbol.kind 6)) ; Method
+            (highlighter symbol "LspCxxHlSymMethod")
+            (where symbol (= symbol.kind 254)) ; StaticMethod
+            (highlighter symbol "LspCxxHlSymStaticMethod")
+            (where symbol (= symbol.kind 9)) ; Constructor
+            (highlighter symbol "LspCxxHlSymConstructor")
+            (where symbol (= symbol.kind 13)) ; Variable
+            (highlighter symbol "LspCxxHlSymVariable")
+            (where symbol (= symbol.kind 253)) ; Parameter
+            (highlighter symbol "LspCxxHlSymParameter")
+            (where symbol (= symbol.kind 5)) ; class
+            (highlighter symbol "LspCxxHlSymClass")
+            (where symbol (= symbol.kind 23)) ; struct
+            (highlighter symbol "LspCxxHlSymStruct")
+            (where symbol (= symbol.kind 10)) ; Enum
+            (highlighter symbol "LspCxxHlSymEnum")
+            (where symbol (= symbol.kind 252)) ; TypeAlias
+            (highlighter symbol "LspCxxHlSymTypeAlias")
+            (where symbol (= symbol.kind 26)) ; TypeParameter
+            (highlighter symbol "LspCxxHlSymTypeParameter")
+            (where symbol (= symbol.kind 8)) ; Field
+            (highlighter symbol "LspCxxHlSymField")
+            (where symbol (= symbol.kind 22)) ; Enummember
+            (highlighter symbol "LspCxxHlSymEnumMember")
+            (where symbol (= symbol.kind 255)) ; Macro
+            (highlighter symbol "LspCxxHlSymMacro")))))))
 
 (local skipped-ranges-handler
   (fn [err result ctx config]
-    (let [client (vim.lsp.get_client_by_id ctx.client_id)
+    (let [client (vim.lsp.get_clients {:id ctx.client_id})
           ns (vim.api.nvim_create_namespace "lsp-skipped-ranges-handler")]
       (when (and client result)
         (match result
@@ -138,7 +171,7 @@
                                           {:end_row lsRange.end.line
                                            :end_col lsRange.end.character
                                            :hl_group "Comment"
-                                           :priority 150})))))))
+                                           :priority 151})))))))
 
 {: navigate
  : ccls_info
@@ -147,4 +180,6 @@
  : ccls_var
  : member
  : inheritance
- : extend_ref}
+ : extend_ref
+ : semantic-hightlight-handler
+ : skipped-ranges-handler}

@@ -889,30 +889,35 @@ local function ccls_on_attach(_, _0)
     end
     vim.keymap.set("n", "<space>cf", _137_, opts_1_auto)
   end
-  local opts_1_auto
   do
-    local tbl_14_auto = {}
-    for k_2_auto, v_3_auto in pairs(({buffer = bufnr} or {})) do
-      local k_15_auto, v_16_auto = k_2_auto, v_3_auto
-      if ((k_15_auto ~= nil) and (v_16_auto ~= nil)) then
-        tbl_14_auto[k_15_auto] = v_16_auto
-      else
+    local opts_1_auto
+    do
+      local tbl_14_auto = {}
+      for k_2_auto, v_3_auto in pairs(({buffer = bufnr} or {})) do
+        local k_15_auto, v_16_auto = k_2_auto, v_3_auto
+        if ((k_15_auto ~= nil) and (v_16_auto ~= nil)) then
+          tbl_14_auto[k_15_auto] = v_16_auto
+        else
+        end
       end
+      opts_1_auto = tbl_14_auto
     end
-    opts_1_auto = tbl_14_auto
+    if (opts_1_auto.noremap == nil) then
+      opts_1_auto.noremap = true
+    else
+    end
+    if (opts_1_auto.silent == nil) then
+      opts_1_auto.silent = true
+    else
+    end
+    local function _141_()
+      return ccls.ccls_info()
+    end
+    vim.keymap.set("n", "<space>ci", _141_, opts_1_auto)
   end
-  if (opts_1_auto.noremap == nil) then
-    opts_1_auto.noremap = true
-  else
-  end
-  if (opts_1_auto.silent == nil) then
-    opts_1_auto.silent = true
-  else
-  end
-  local function _141_()
-    return ccls.ccls_info()
-  end
-  return vim.keymap.set("n", "<space>ci", _141_, opts_1_auto)
+  vim.lsp.handlers["$ccls/publishSkippedRanges"] = ccls["skipped-ranges-handler"]
+  vim.lsp.handlers["$ccls/publishSemanticHighlight"] = ccls["semantic-hightlight-handler"]
+  return nil
 end
 local sumneko_lua_config = {Lua = {diagnostics = {enable = true, globals = {"vim"}}, completion = {callSnippet = "Replace", showWord = "Disable"}, hint = {enable = true}, runtime = {version = "LuaJIT"}, workspace = {checkThirdParty = false}, IntelliSense = {traceLocalSet = true, traceReturn = true, traceBeSetted = true, traceFieldInject = true}, format = {enable = true, defaultConfig = {indent_style = "space", indent_size = "2"}}}}
 local pylsp_config = {pylsp = {plugins = {pylint = {executable = "pylint", enabled = false}, pyflakes = {enabled = false}, pycodestyle = {enabled = false}, jedi_completion = {enabled = true, include_class_objects = true, eager = true, fuzzy = false, include_params = false}, pyls_isort = {enabled = true}, pylsp_mypy = {enabled = true}}}}

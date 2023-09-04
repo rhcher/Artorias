@@ -109,7 +109,10 @@
     (map :n :<space>gn #(ccls.extend_ref :notcall) {:buffer bufnr})
     ; ccls info
     (map :n :<space>cf #(ccls.ccls_fileInfo) {:buffer bufnr})
-    (map :n :<space>ci #(ccls.ccls_info) {:buffer bufnr})))
+    (map :n :<space>ci #(ccls.ccls_info) {:buffer bufnr})
+    ; ccls semantic hightlight
+    (tset vim.lsp.handlers "$ccls/publishSkippedRanges" ccls.skipped-ranges-handler)
+    (tset vim.lsp.handlers "$ccls/publishSemanticHighlight" ccls.semantic-hightlight-handler)))
 
 (local sumneko_lua_config
   {:Lua {:diagnostics {:enable true :globals [:vim]}

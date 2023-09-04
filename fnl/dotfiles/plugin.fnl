@@ -48,8 +48,6 @@
   "rebelot/kanagawa.nvim" {:config #(vim.cmd.colorscheme "kanagawa")
                            :cond false
                            :priority 1000}
-  "vim-lsp-cxx-highlight" {:dir "/home/rhcher/workspace/vim-lsp-cxx-highlight/"
-                           :ft [:c :cpp]}
   "nvimdev/whiskyline.nvim" {:event "VimEnter"
                              :commit "1a49187330873542a3d783c7fafbc351ea2c0c56"
                              :opts {:bg "#2a2a47"}
