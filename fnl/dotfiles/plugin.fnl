@@ -118,6 +118,8 @@
                                                                 "<Plug>(snippy-previous)"
                                                                 "<ESC>I") {:expr true}))}
   "altermo/ultimate-autopair.nvim" {:event ["InsertEnter" "CmdlineEnter"]
+                                    :branch "v0.6"
+                                    :dependencies ["nvim-treesitter/nvim-treesitter"]
                                     :mod "auto-pairs"}
   "abecodes/tabout.nvim" {:event "VeryLazy"
                           :opts {}
@@ -163,7 +165,7 @@
                            :dependencies ["glts/vim-textobj-comment"
                                           "Julian/vim-textobj-variable-segment"]}
   "AndrewRadev/linediff.vim" {:cmd "Linediff"}
-  "tyru/open-browser.vim" {:keys "<Plug>(openbrowser-smart-search)"}
+  "tyru/open-browser.vim" {:event "VeryLazy"}
   "kevinhwang91/nvim-ufo" {:dependencies ["kevinhwang91/promise-async"
                                           {1 :luukvbaal/statuscol.nvim
                                            :config #(let [builtin (require "statuscol.builtin")
@@ -194,8 +196,7 @@
                               (illuminate.configure
                                 {:providers [:lsp :regex]
                                  :modes_denylist [:i]
-                                 :large_file_cutoff 5000
-                                 :large_file_overrides {:providers ["lsp"]}}))}
+                                 :large_file_cutoff 5000}))}
   "neovim/nvim-lspconfig" {:dependencies ["hrsh7th/cmp-nvim-lsp"]
                            :mod "lspconfig"}
   "nvimdev/lspsaga.nvim" {:dependencies ["nvim-tree/nvim-web-devicons"
@@ -257,7 +258,9 @@
   "dhruvasagar/vim-table-mode" {:cmd "TableModeToggle"
                                 :init #(set vim.g.table_mode_corner "|")}
   "nvimdev/dashboard-nvim" {:event "VimEnter"
-                            :mod "dashboard"})
+                            :mod "dashboard"}
+  "gbprod/cutlass.nvim" {:event "VeryLazy"
+                         :opts {}}
   "kevinhwang91/nvim-hlslens" {:event "VeryLazy"
                                :mod "hlslens"
                                :dependencies ["haya14busa/vim-asterisk"]}
