@@ -1,6 +1,6 @@
 -- [nfnl] Compiled from fnl/dotfiles/indentation.fnl by https://github.com/Olical/nfnl, do not edit.
 local delimiters = {[")"] = "(", ["]"] = "[", ["}"] = "{"}
-local specials = {let = true, fn = true, lambda = true, ["\206\187"] = true, when = true, ["eval-compiler"] = true, ["for"] = true, each = true, ["while"] = true, ["import-macros"] = true, ["local"] = true, macro = true, match = true, doto = true, ["with-open"] = true, collect = true, icollect = true, accumulate = true}
+local specials = {let = true, fn = true, lambda = true, ["\206\187"] = true, when = true, ["eval-compiler"] = true, ["for"] = true, each = true, ["while"] = true, ["import-macros"] = true, ["local"] = true, case = true, macro = true, match = true, doto = true, ["with-open"] = true, collect = true, icollect = true, accumulate = true}
 local function symbol_at(line, pos)
   return line:sub(pos):match("[^%s]+")
 end

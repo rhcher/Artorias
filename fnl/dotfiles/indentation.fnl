@@ -29,7 +29,7 @@
 (local delimiters {")" "(" "]" "[" "}" "{"})
 (local specials {"let" true "fn" true "lambda" true "λ" true "when" true
                  "eval-compiler" true "for" true "each" true "while" true
-                 "import-macros" true "local" true
+                 "import-macros" true "local" true "case" true
                  "macro" true "match" true "doto" true "with-open" true
                  "collect" true "icollect" true "accumulate" true})
 
