@@ -189,17 +189,18 @@ local function _38_(err, result, ctx, config)
   local _let_39_ = result
   local symbols = _let_39_["symbols"]
   local uri = _let_39_["uri"]
+  local bufnr = vim.uri_to_bufnr(uri)
   local ns = vim.api.nvim_create_namespace("ccls-semantic-hightlights")
   local highlighter
   local function _40_(symbol, hl_group)
     for _, lsRange in ipairs(symbol.lsRanges) do
-      vim.api.nvim_buf_set_extmark(vim.api.nvim_get_current_buf(), ns, lsRange.start.line, lsRange.start.character, {end_row = lsRange["end"].line, end_col = lsRange["end"].character, hl_group = hl_group, priority = 150})
+      vim.api.nvim_buf_set_extmark(bufnr, ns, lsRange.start.line, lsRange.start.character, {end_row = lsRange["end"].line, end_col = lsRange["end"].character, hl_group = hl_group, priority = 125, strict = false})
     end
     return nil
   end
   highlighter = _40_
   if client then
-    vim.api.nvim_buf_clear_namespace(vim.api.nvim_get_current_buf(), ns, 0, -1)
+    vim.api.nvim_buf_clear_namespace(bufnr, ns, 0, -1)
     for _, symbol in ipairs(symbols) do
       local _41_ = symbol
       local function _42_()
@@ -328,12 +329,12 @@ local function _59_(err, result, ctx, config)
     if (((_G.type(_60_) == "table") and (nil ~= (_60_).skippedRanges) and (nil ~= (_60_).uri)) and _61_()) then
       local skippedRanges = (_60_).skippedRanges
       local uri = (_60_).uri
-      return vim.api.nvim_buf_clear_namespace(vim.api.nvim_get_current_buf(), ns, 0, -1)
+      return vim.api.nvim_buf_clear_namespace(vim.uri_to_bufnr(uri), ns, 0, -1)
     elseif ((_G.type(_60_) == "table") and (nil ~= (_60_).skippedRanges) and (nil ~= (_60_).uri)) then
       local skippedRanges = (_60_).skippedRanges
       local uri = (_60_).uri
       for _, lsRange in ipairs(skippedRanges) do
-        vim.api.nvim_buf_set_extmark(vim.api.nvim_get_current_buf(), ns, lsRange.start.line, lsRange.start.character, {end_row = lsRange["end"].line, end_col = lsRange["end"].character, hl_group = "Comment", priority = 151})
+        vim.api.nvim_buf_set_extmark(vim.uri_to_bufnr(uri), ns, lsRange.start.line, lsRange.start.character, {end_row = lsRange["end"].line, end_col = lsRange["end"].character, hl_group = "Comment", priority = 126})
       end
       return nil
     else

@@ -105,19 +105,21 @@
   (fn [err result ctx config]
     (let [client (vim.lsp.get_clients {:id ctx.client_id})
           {: symbols : uri} result
+          bufnr (vim.uri_to_bufnr uri)
           ns (vim.api.nvim_create_namespace "ccls-semantic-hightlights")
           highlighter (fn [symbol hl_group]
                         (each [_ lsRange (ipairs symbol.lsRanges)]
-                          (vim.api.nvim_buf_set_extmark (vim.api.nvim_get_current_buf)
+                          (vim.api.nvim_buf_set_extmark bufnr
                                                         ns
                                                         lsRange.start.line
                                                         lsRange.start.character
                                                         {:end_row lsRange.end.line
                                                          :end_col lsRange.end.character
                                                          :hl_group hl_group
-                                                         :priority 150})))]
+                                                         :strict false
+                                                         :priority 125})))]
       (when client
-        (vim.api.nvim_buf_clear_namespace (vim.api.nvim_get_current_buf) ns 0 -1)
+        (vim.api.nvim_buf_clear_namespace bufnr ns 0 -1)
         (each [_ symbol (ipairs symbols)]
           (match symbol
             (where symbol (= symbol.kind 3)) ; Namespace
@@ -158,20 +160,20 @@
       (when (and client result)
         (match result
           (where {: skippedRanges : uri} (= (length skippedRanges) 0))
-          (vim.api.nvim_buf_clear_namespace (vim.api.nvim_get_current_buf)
+          (vim.api.nvim_buf_clear_namespace (vim.uri_to_bufnr uri)
                                             ns
                                             0
                                             -1)
           {: skippedRanges : uri}
           (each [_ lsRange (ipairs skippedRanges)]
-            (vim.api.nvim_buf_set_extmark (vim.api.nvim_get_current_buf)
+            (vim.api.nvim_buf_set_extmark (vim.uri_to_bufnr uri)
                                           ns
                                           lsRange.start.line
                                           lsRange.start.character
                                           {:end_row lsRange.end.line
                                            :end_col lsRange.end.character
                                            :hl_group "Comment"
-                                           :priority 151})))))))
+                                           :priority 126})))))))
 
 {: navigate
  : ccls_info
