@@ -122,7 +122,7 @@
   "abecodes/tabout.nvim" {:event "VeryLazy"
                           :opts {}
                           :dependencies ["nvim-treesitter/nvim-treesitter"]}
-  "stevearc/oil.nvim" {:cmd "Oil"
+  "stevearc/oil.nvim" {:event "VeryLazy"
                        :dependencies [:nvim-tree/nvim-web-devicons]
                        :opts {:columns ["icon" "permissions" "size" "mtime"]}}
   "utilyre/sentiment.nvim" {:version "*"
