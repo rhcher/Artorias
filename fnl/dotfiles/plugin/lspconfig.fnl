@@ -81,7 +81,7 @@
    :cache {:directory "/tmp/ccls-cache/"}
    :xref {:maxNum 20000}})
 
-(fn ccls_on_attach [_ _]
+(fn ccls_on_attach [_ bufnr]
   (let [ccls (require "dotfiles.ccls")]
     ;; ccls navigate
     (map :n :<C-k> #(ccls.navigate :L) {:buffer bufnr})
@@ -177,8 +177,7 @@
        :init_options ccls_config
        :flags flags})
     ; (lsp.clangd.setup
-    ;   {:on_attach on_attach
-    ;    :capabilities capabilities
+    ;   {:capabilities capabilities
     ;    :cmd [:clangd
     ;          :--clang-tidy
     ;          :--background-index
