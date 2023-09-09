@@ -49,6 +49,7 @@
                         :tab :->
                         :trail :•})
 (set vim.opt.fillchars "eob: ,fold: ,foldopen:,foldsep: ,foldclose:")
+(vim.opt.fillchars:append {:diff "╱"})
 (set vim.opt.foldcolumn :1)
 (set vim.opt.foldlevel 99)
 (set vim.opt.foldlevelstart 99)
