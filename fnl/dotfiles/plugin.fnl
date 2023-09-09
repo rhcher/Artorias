@@ -119,9 +119,6 @@
                                     :branch "v0.6"
                                     :dependencies ["nvim-treesitter/nvim-treesitter"]
                                     :mod "auto-pairs"}
-  "abecodes/tabout.nvim" {:event "VeryLazy"
-                          :opts {}
-                          :dependencies ["nvim-treesitter/nvim-treesitter"]}
   "stevearc/oil.nvim" {:event "VeryLazy"
                        :dependencies [:nvim-tree/nvim-web-devicons]
                        :opts {:columns ["icon" "permissions" "size" "mtime"]}}
