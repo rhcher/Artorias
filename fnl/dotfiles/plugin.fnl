@@ -107,6 +107,7 @@
                                        (map [:x :o] :aa "<Plug>SidewaysArgumentTextobjA")
                                        (map [:x :o] :ia "<Plug>SidewaysArgumentTextobjI"))}
   "dcampos/nvim-snippy" {:event "VeryLazy"
+                         :commit "ee3b830787538f259b84867c8971c4284abc4a8d"
                          :init
                          #(let [snippy (require :snippy)]
                             (vim.keymap.set [:i :s] :<C-l> #(if (snippy.can_jump 1)
