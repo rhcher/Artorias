@@ -212,6 +212,8 @@
                                  :modes_denylist [:i]
                                  :large_file_cutoff 5000}))}
   "lukas-reineke/indent-blankline.nvim" {:event "VeryLazy"
+                                         :cond false
+                                         :branch "v3"
                                          :dependencies ["nvim-treesitter/nvim-treesitter"]
                                          :mod "indent"}
   "numToStr/Comment.nvim" {:event "VeryLazy" :config true}
