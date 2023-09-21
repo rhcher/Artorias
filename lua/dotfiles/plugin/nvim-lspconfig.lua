@@ -1,4 +1,4 @@
--- [nfnl] Compiled from fnl/dotfiles/plugin/lspconfig.fnl by https://github.com/Olical/nfnl, do not edit.
+-- [nfnl] Compiled from fnl/dotfiles/plugin/nvim-lspconfig.fnl by https://github.com/Olical/nfnl, do not edit.
 local _local_1_ = require("nfnl.module")
 local autoload = _local_1_["autoload"]
 local protocol = autoload("vim.lsp.protocol")
@@ -542,7 +542,7 @@ local capabilities = cmplsp.default_capabilities()
 capabilities.textDocument.foldingRange = {lineFoldingOnly = true, dynamicRegistration = false}
 capabilities["workspace"] = {didChangeWatchedFiles = {dynamicRegistration = false}}
 if ok_3f then
-  lsp.ccls.setup({on_attach = ccls_on_attach, capabilities = capabilities, init_options = ccls_config, flags = flags})
+  lsp.clangd.setup({capabilities = capabilities, cmd = {"clangd", "--clang-tidy", "--background-index", "--completion-style=detailed", "--clang-tidy-checks=-*,llvm-*,clang-analyzer-*", "--cross-file-rename", "--header-insertion=never"}, flags = flags})
   lsp.lua_ls.setup({capabilities = capabilities, cmd = {"/home/rhcher/sources/lua-language-server/bin/lua-language-server"}, settings = sumneko_lua_config, flags = flags})
   lsp.ocamllsp.setup({capabilities = capabilities, flags = flags})
   lsp.vimls.setup({capabilities = capabilities, flags = flags})
