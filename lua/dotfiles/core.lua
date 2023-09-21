@@ -38,6 +38,7 @@ vim.opt.redrawtime = 150
 vim.opt.relativenumber = true
 vim.opt.listchars = {nbsp = "\226\166\184", extends = "\194\187", precedes = "\194\171", tab = "->", trail = "\226\128\162"}
 vim.opt.fillchars = "eob: ,fold: ,foldopen:\239\145\188,foldsep: ,foldclose:\239\145\160"
+do end (vim.opt.fillchars):append({diff = "\226\149\177"})
 vim.opt.foldcolumn = "1"
 vim.opt.foldlevel = 99
 vim.opt.foldlevelstart = 99
