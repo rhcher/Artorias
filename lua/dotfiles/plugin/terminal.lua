@@ -33,7 +33,7 @@ do
     opts_1_auto.silent = true
   else
   end
-  vim.keymap.set("n", "<space>ot", "<cmd>ToggleTerm direction=horizontal<CR>", opts_1_auto)
+  vim.keymap.set("n", "<leader>ot", "<cmd>ToggleTerm direction=horizontal<CR>", opts_1_auto)
 end
 local opts_1_auto
 do
@@ -55,4 +55,4 @@ if (opts_1_auto.silent == nil) then
   opts_1_auto.silent = true
 else
 end
-return vim.keymap.set("n", "<space>oT", "<cmd>ToggleTerm direction=vertical<CR>", opts_1_auto)
+return vim.keymap.set("n", "<leader>oT", "<cmd>ToggleTerm direction=vertical<CR>", opts_1_auto)

@@ -16,5 +16,5 @@
                :close_on_exit true
                :shell vim.o.shell}))
 
-(map :n :<space>ot "<cmd>ToggleTerm direction=horizontal<CR>")
-(map :n :<space>oT "<cmd>ToggleTerm direction=vertical<CR>")
+(map :n :<leader>ot "<cmd>ToggleTerm direction=horizontal<CR>")
+(map :n :<leader>oT "<cmd>ToggleTerm direction=vertical<CR>")

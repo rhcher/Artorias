@@ -219,7 +219,8 @@
                                                                          :delete "^(. ?)().-( ?.)()$"}}}))}
   "mhinz/vim-grepper" {:keys ["gs"] :mod "grepper"}
   "lewis6991/gitsigns.nvim" {:event ["BufReadPre" "BufNewFile"] :mod "gitsigns"}
-  "akinsho/nvim-toggleterm.lua" {:mod "terminal"}
+  "akinsho/nvim-toggleterm.lua" {:keys ["<leader>ot" "<leader>oT"]
+                                 :mod "terminal"}
   "ggandor/leap.nvim" {:event "VeryLazy"
                        :keys [{1 "s" :mode [:n :x :o] :desc "Leap forward to"}
                               {1 "S" :mode [:n :x :o] :desc "Leap backward to"}]
