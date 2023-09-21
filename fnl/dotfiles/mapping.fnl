@@ -39,8 +39,6 @@
 (map :n "[b" :<cmd>bprev<CR>)
 (map :n "]b" :<cmd>bnext<CR>)
 
-(map [:n :v] :gx "<Plug>(openbrowser-smart-search)")
-
 (map :n :<leader>e ":Oil<CR>")
 
 (map :n :<leader>gg ":Git<CR><C-w>o")

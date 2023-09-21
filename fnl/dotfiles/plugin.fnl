@@ -179,7 +179,8 @@
                            :dependencies ["glts/vim-textobj-comment"
                                           "Julian/vim-textobj-variable-segment"]}
   "AndrewRadev/linediff.vim" {:cmd "Linediff"}
-  "tyru/open-browser.vim" {:event "VeryLazy"}
+  "tyru/open-browser.vim" {:keys [{1 "gx" 2 "<Plug>(openbrowser-smart-search)"
+                                   :mode [:n :v]}]}
   "kevinhwang91/nvim-ufo" {:dependencies ["kevinhwang91/promise-async"
                                           {1 :luukvbaal/statuscol.nvim
                                            :config #(let [builtin (require "statuscol.builtin")
