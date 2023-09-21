@@ -271,4 +271,7 @@
   "kevinhwang91/nvim-hlslens" {:event "VeryLazy"
                                :mod "hlslens"
                                :dependencies ["haya14busa/vim-asterisk"]}
-  "mg979/vim-visual-multi" {:event "VeryLazy"})
+  "mg979/vim-visual-multi" {:event "VeryLazy"}
+  "max397574/better-escape.nvim" {:event "VeryLazy"
+                                  :config #((. (require "better_escape") :setup) {:mapping ["jk"]})}
+  "sindrets/diffview.nvim" {:cmd "DiffviewOpen"})
