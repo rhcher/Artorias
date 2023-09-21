@@ -751,5 +751,5 @@ do
   end
   vim.api.nvim_create_autocmd({"BufEnter"}, {pattern = {"*"}, callback = _97_, group = group})
 end
-vim.g.nremap = {["[m"] = "[f", ["]m"] = "]f", ["="] = "o"}
+vim.g.nremap = {["[m"] = "[f", ["]m"] = "]f", ["="] = "<tab>"}
 return nil

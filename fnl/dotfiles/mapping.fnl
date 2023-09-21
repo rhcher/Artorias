@@ -57,4 +57,4 @@
                                     (map [:n :v] :q ":close<CR>" {:buffer true}))}])
 
 ;; fugitive remapping
-(set vim.g.nremap {"[m" "[f" "]m" "]f" "=" :o})
+(set vim.g.nremap {"[m" "[f" "]m" "]f" "=" "<tab>"})
