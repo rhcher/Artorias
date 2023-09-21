@@ -53,7 +53,6 @@
                            :cond false
                            :priority 1000}
   "nvimdev/whiskyline.nvim" {:event "VimEnter"
-                             :commit "1a49187330873542a3d783c7fafbc351ea2c0c56"
                              :opts {:bg "#2a2a47"}
                                     ; :bg "#f2de91"}
                              :dependencies ["nvim-tree/nvim-web-devicons"]}
@@ -79,8 +78,8 @@
                               :mode "c"}]
                       :opts {:lsp {:progress {:enabled false}
                                    :hover {:enabled false}
-                                   :override {"vim.lsp.util.convert_input_to_markdown_lines" true
-                                              "vim.lsp.util.stylize_markdown" true
+                                   :override {"vim.lsp.util.convert_input_to_markdown_lines" false
+                                              "vim.lsp.util.stylize_markdown" false
                                               "cmp.entry.get_documentation" true}}
                              :presets {:bottom_search true
                                        :command_palette true
@@ -112,7 +111,6 @@
   "onsails/lspkind-nvim" {:event "LspAttach"
                           :dependencies ["hrsh7th/nvim-cmp" "neovim/nvim-lspconfig"]}
   "dcampos/nvim-snippy" {:event "VeryLazy"
-                         :commit "ee3b830787538f259b84867c8971c4284abc4a8d"
                          :init
                          #(let [snippy (require :snippy)]
                             (vim.keymap.set [:i :s] :<C-l> #(if (snippy.can_jump 1)
@@ -203,7 +201,6 @@
                               (ufo.setup {:provider_selector (fn [bufnr filetype buftype]
                                                                (. ftmap filetype))}))}
   "kevinhwang91/nvim-bqf" {:ft "qf"
-                           :dev true
                            :init #(require "dotfiles.qftf")
                            :mod "bqf"}
   "RRethy/vim-illuminate" {:event ["BufReadPost" "BufNewFile"]
