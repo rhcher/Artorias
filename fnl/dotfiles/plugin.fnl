@@ -7,7 +7,8 @@
 (import-macros {: map} :dotfiles.macros)
 
 (local lazy-config
-  {:dev {:path "~/workspace/nvim_plugins/"}
+  {:defaults {:lazy true}
+   :dev {:path "~/workspace/nvim_plugins/"}
    :performance {:rtp {:disabled_plugins [:netrwPlugin
                                           :tarPlugin
                                           :tutor
@@ -36,11 +37,14 @@
 (use
   "folke/lazy.nvim" {:event "VeryLazy"}
   "Olical/nfnl" {:ft "fennel"}
-  "Olical/conjure" {:branch "develop"
+  "Olical/conjure" {:lazy false
+                    :branch "develop"
                     :mod "conjure"}
   "nvim-lua/plenary.nvim" {}
+  "nvim-tree/nvim-web-devicons" {:mod "devicons"}
   "rhcher/srcery.nvim" {:config #(vim.cmd.colorscheme "srcery")
                         :cond true
+                        :lazy false
                         :priority 1000}
   "rhcher/vim-paper" {:config #(vim.cmd.colorscheme "paper")
                       :cond false
@@ -82,8 +86,7 @@
                                        :command_palette true
                                        :long_message_to_split true}
                              :messages {:enabled false}}}
-  "nvim-treesitter/nvim-treesitter" {:event "VeryLazy"
-                                     :version false
+  "nvim-treesitter/nvim-treesitter" {:version false
                                      :build ":TSUpdate"
                                      :mod "treesitter"}
   "eraserhd/parinfer-rust" {:ft util.lisp-language
@@ -94,18 +97,20 @@
                                         :config #(vim.api.nvim_create_autocmd "VimEnter"
                                                                               {:callback #((. (require "parinfer") :setup))})}
   "hrsh7th/nvim-cmp" {:version false
-                      :event "VeryLazy"
-                      :dependencies [:hrsh7th/cmp-nvim-lsp
-                                     :hrsh7th/cmp-buffer
-                                     :hrsh7th/cmp-path
-                                     :PaterJason/cmp-conjure
-                                     :hrsh7th/cmp-cmdline
-                                     :onsails/lspkind-nvim]
+                      :lazy false
                       :mod "cmp"}
-  "AndrewRadev/sideways.vim" {:event "VeryLazy"
-                              :init #(do
-                                       (map [:x :o] :aa "<Plug>SidewaysArgumentTextobjA")
-                                       (map [:x :o] :ia "<Plug>SidewaysArgumentTextobjI"))}
+  "hrsh7th/cmp-nvim-lsp" {:event "LspAttach"
+                          :dependencies ["hrsh7th/nvim-cmp" "neovim/nvim-lspconfig"]}
+  "hrsh7th/cmp-buffer" {:event ["BufEnter"]
+                        :dependencies ["hrsh7th/nvim-cmp"]}
+  "hrsh7th/cmp-path" {:event "VeryLazy"
+                      :dependencies ["hrsh7th/nvim-cmp"]}
+  "PaterJason/cmp-conjure" {:event "VeryLazy"
+                            :dependencies ["hrsh7th/nvim-cmp" "Olical/conjure"]}
+  "hrsh7th/cmp-cmdline" {:event ["CmdlineEnter"]
+                         :dependencies ["hrsh7th/nvim-cmp"]}
+  "onsails/lspkind-nvim" {:event "LspAttach"
+                          :dependencies ["hrsh7th/nvim-cmp" "neovim/nvim-lspconfig"]}
   "dcampos/nvim-snippy" {:event "VeryLazy"
                          :commit "ee3b830787538f259b84867c8971c4284abc4a8d"
                          :init
@@ -116,6 +121,20 @@
                             (vim.keymap.set [:i :s] :<C-h> #(if (snippy.can_jump -1)
                                                                 "<Plug>(snippy-previous)"
                                                                 "<ESC>I") {:expr true}))}
+  "neovim/nvim-lspconfig" {:event "LspAttach"
+                           :mod "nvim-lspconfig"}
+  "nvimdev/lspsaga.nvim" {:dependencies ["nvim-tree/nvim-web-devicons"
+                                         "nvim-treesitter/nvim-treesitter"
+                                         "neovim/nvim-lspconfig"]
+                          :event "LspAttach"
+                          :mod "lspsaga"}
+  "Wansmer/symbol-usage.nvim" {:event "LspAttach"
+                               :cond false
+                               :opts {:vt_position "end_of_line"}}
+  "AndrewRadev/sideways.vim" {:event "VeryLazy"
+                              :init #(do
+                                       (map [:x :o] :aa "<Plug>SidewaysArgumentTextobjA")
+                                       (map [:x :o] :ia "<Plug>SidewaysArgumentTextobjI"))}
   "altermo/ultimate-autopair.nvim" {:event ["InsertEnter" "CmdlineEnter"]
                                     :branch "v0.6"
                                     :dependencies ["nvim-treesitter/nvim-treesitter"]
@@ -145,8 +164,9 @@
                                (map :n :<leader>fc fzf.commands)
                                (map :n :<leader>fq fzf.quickfix)
                                (map :n :<leader>fg fzf.git_bcommits))}
-  "nvim-tree/nvim-web-devicons" {:lazy true :mod "devicons"}
   "tpope/vim-fugitive" {:cmd "Git"}
+  "junegunn/gv.vim" {:cmd "GV"
+                     :dependencies ["tpope/vim-fugitive"]}
   "guns/vim-sexp" {:ft util.lisp-language
                    :dependencies ["tpope/vim-sexp-mappings-for-regular-people"]
                    :init
@@ -193,13 +213,6 @@
                                 {:providers [:lsp :regex]
                                  :modes_denylist [:i]
                                  :large_file_cutoff 5000}))}
-  "neovim/nvim-lspconfig" {:dependencies ["hrsh7th/cmp-nvim-lsp"]
-                           :mod "lspconfig"}
-  "nvimdev/lspsaga.nvim" {:dependencies ["nvim-tree/nvim-web-devicons"
-                                         "nvim-treesitter/nvim-treesitter"]
-                          :event "LspAttach"
-                          :dependencies ["nvim-treesitter/nvim-treesitter"]
-                          :mod "lspsaga"}
   "lukas-reineke/indent-blankline.nvim" {:event "VeryLazy"
                                          :dependencies ["nvim-treesitter/nvim-treesitter"]
                                          :mod "indent"}
