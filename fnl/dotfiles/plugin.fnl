@@ -235,14 +235,9 @@
   "akinsho/nvim-toggleterm.lua" {:keys ["<leader>ot" "<leader>oT"]
                                  :mod "terminal"}
   "ggandor/leap.nvim" {:event "VeryLazy"
-                       :keys [{1 "s" :mode [:n :x :o] :desc "Leap forward to"}
-                              {1 "S" :mode [:n :x :o] :desc "Leap backward to"}]
-                       :config
-                       (fn [_ opts]
-                         (let [leap (require "leap")]
-                           (each [k v (pairs opts)]
-                             (tset leap.opts k v))
-                           (leap.add_default_mappings)))}
+                       :keys [{1 "s" :mode [:n :x :o] :desc "Leap forward to"}]
+                       :config #(let [leap (require "leap")]
+                                  (map [:n :x :o] "s" #(leap.leap {:target_windows [(vim.fn.win_getid)]})))}
   "booperlv/nvim-gomove" {:event "VeryLazy" :mod "move"}
   "zegervdv/nrpattern.nvim" {:keys ["<C-a>" "<C-x>"]
                              :config #((. (require "nrpattern") :setup))}
