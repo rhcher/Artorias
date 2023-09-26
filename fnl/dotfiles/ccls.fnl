@@ -1,5 +1,6 @@
 (local {: autoload} (require "nfnl.module"))
 (local util (autoload "vim.lsp.util"))
+(local api vim.api)
 
 (fn handler [title]
   (fn [_ result ctx _]
@@ -106,39 +107,37 @@
     (let [client (vim.lsp.get_clients {:id ctx.client_id})
           {: symbols : uri} result
           bufnr (vim.uri_to_bufnr uri)
-          ns (vim.api.nvim_create_namespace "ccls-semantic-hightlights")
+          ns (api.nvim_create_namespace "ccls-semantic-hightlights")
           highlighter (fn [symbol hl_group]
                         (each [_ lsRange (ipairs symbol.lsRanges)]
-                          (vim.api.nvim_buf_set_extmark bufnr
-                                                        ns
-                                                        lsRange.start.line
-                                                        lsRange.start.character
-                                                        {:end_row lsRange.end.line
-                                                         :end_col lsRange.end.character
-                                                         :hl_group hl_group
-                                                         :strict false
-                                                         :priority 125})))]
+                          (api.nvim_buf_set_extmark bufnr
+                                                    ns
+                                                    lsRange.start.line
+                                                    lsRange.start.character
+                                                    {:end_row lsRange.end.line
+                                                     :end_col lsRange.end.character
+                                                     :hl_group hl_group
+                                                     :strict false
+                                                     :priority 125})))]
       (when client
-        (vim.api.nvim_buf_clear_namespace bufnr ns 0 -1)
+        (api.nvim_buf_clear_namespace bufnr ns 0 -1)
         (each [_ symbol (ipairs symbols)]
           (match symbol
             (where symbol (= symbol.kind 3)) ; Namespace
             (highlighter symbol "LspCxxHlGroupNamespace")
-            (where symbol (= symbol.kind 12)) ; Function
-            (highlighter symbol "LspCxxHlSymFunction")
             (where symbol (= symbol.kind 6)) ; Method
             (highlighter symbol "LspCxxHlSymMethod")
-            (where symbol (= symbol.kind 254)) ; StaticMethod
-            (highlighter symbol "LspCxxHlSymStaticMethod")
             (where symbol (= symbol.kind 9)) ; Constructor
             (highlighter symbol "LspCxxHlSymConstructor")
+            (where symbol (= symbol.kind 12)) ; Function
+            (highlighter symbol "LspCxxHlSymFunction")
+            (where symbol (= symbol.kind 254)) ; StaticMethod
+            (highlighter symbol "LspCxxHlSymStaticMethod")
             (where symbol (= symbol.kind 13)) ; Variable
             (highlighter symbol "LspCxxHlSymVariable")
             (where symbol (= symbol.kind 253)) ; Parameter
             (highlighter symbol "LspCxxHlSymParameter")
-            (where symbol (= symbol.kind 5)) ; class
-            (highlighter symbol "LspCxxHlSymClass")
-            (where symbol (= symbol.kind 23)) ; struct
+            (where symbol (= symbol.kind (or 5 23))) ; class or struct
             (highlighter symbol "LspCxxHlSymStruct")
             (where symbol (= symbol.kind 10)) ; Enum
             (highlighter symbol "LspCxxHlSymEnum")
@@ -156,24 +155,21 @@
 (local skipped-ranges-handler
   (fn [err result ctx config]
     (let [client (vim.lsp.get_clients {:id ctx.client_id})
-          ns (vim.api.nvim_create_namespace "lsp-skipped-ranges-handler")]
+          ns (api.nvim_create_namespace "lsp-skipped-ranges-handler")]
       (when (and client result)
         (match result
           (where {: skippedRanges : uri} (= (length skippedRanges) 0))
-          (vim.api.nvim_buf_clear_namespace (vim.uri_to_bufnr uri)
-                                            ns
-                                            0
-                                            -1)
+          (api.nvim_buf_clear_namespace (vim.uri_to_bufnr uri) ns 0 -1)
           {: skippedRanges : uri}
           (each [_ lsRange (ipairs skippedRanges)]
-            (vim.api.nvim_buf_set_extmark (vim.uri_to_bufnr uri)
-                                          ns
-                                          lsRange.start.line
-                                          lsRange.start.character
-                                          {:end_row lsRange.end.line
-                                           :end_col lsRange.end.character
-                                           :hl_group "Comment"
-                                           :priority 126})))))))
+            (api.nvim_buf_set_extmark (vim.uri_to_bufnr uri)
+                                      ns
+                                      lsRange.start.line
+                                      lsRange.start.character
+                                      {:end_row lsRange.end.line
+                                       :end_col lsRange.end.character
+                                       :hl_group "Comment"
+                                       :priority 126})))))))
 
 {: navigate
  : ccls_info
