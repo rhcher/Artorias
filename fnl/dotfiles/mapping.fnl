@@ -6,7 +6,6 @@
 (set vim.g.maplocalleader ",")
 
 ;; insert-mode
-(map :i :jk :<esc>)
 (map :i :<C-j> :<esc>o)
 (map :i :<C-k> :<esc>O)
 
@@ -27,10 +26,11 @@
 (map :n :<A-j> :<C-w>j)
 (map :n :<A-k> :<C-w>k)
 (map :n :<A-l> :<C-w>l)
-(map :n :<leader>bs ":w <CR>")
+(map :n :<leader>bs ":w<CR>")
 (map :n :<leader>wm ":tab sp<cr>")
 (map :n :<leader>wc ":only<cr>")
 (map :n :<leader>to ":tabonly<cr>")
+(map :n :<leader>td ":tabclose<cr>")
 ;; Correct to first spelling suggestion.
 (map :n :<leader>zz ":normal! 1z=<cr>")
 ;; Trim trialing whitespace.
@@ -38,6 +38,8 @@
 
 (map :n "[b" :<cmd>bprev<CR>)
 (map :n "]b" :<cmd>bnext<CR>)
+(map :n "[t" :<cmd>tabp<CR>)
+(map :n "]t" :<cmd>tabn<CR>)
 
 (map :n :<leader>e ":Oil<CR>")
 

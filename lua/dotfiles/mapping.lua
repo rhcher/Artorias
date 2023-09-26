@@ -45,29 +45,6 @@ do
     opts_1_auto.silent = true
   else
   end
-  vim.keymap.set("i", "jk", "<esc>", opts_1_auto)
-end
-do
-  local opts_1_auto
-  do
-    local tbl_14_auto = {}
-    for k_2_auto, v_3_auto in pairs((nil or {})) do
-      local k_15_auto, v_16_auto = k_2_auto, v_3_auto
-      if ((k_15_auto ~= nil) and (v_16_auto ~= nil)) then
-        tbl_14_auto[k_15_auto] = v_16_auto
-      else
-      end
-    end
-    opts_1_auto = tbl_14_auto
-  end
-  if (opts_1_auto.noremap == nil) then
-    opts_1_auto.noremap = true
-  else
-  end
-  if (opts_1_auto.silent == nil) then
-    opts_1_auto.silent = true
-  else
-  end
   vim.keymap.set("i", "<C-j>", "<esc>o", opts_1_auto)
 end
 do
@@ -413,7 +390,7 @@ do
     opts_1_auto.silent = true
   else
   end
-  vim.keymap.set("n", "<leader>bs", ":w <CR>", opts_1_auto)
+  vim.keymap.set("n", "<leader>bs", ":w<CR>", opts_1_auto)
 end
 do
   local opts_1_auto
@@ -483,6 +460,29 @@ do
   else
   end
   vim.keymap.set("n", "<leader>to", ":tabonly<cr>", opts_1_auto)
+end
+do
+  local opts_1_auto
+  do
+    local tbl_14_auto = {}
+    for k_2_auto, v_3_auto in pairs((nil or {})) do
+      local k_15_auto, v_16_auto = k_2_auto, v_3_auto
+      if ((k_15_auto ~= nil) and (v_16_auto ~= nil)) then
+        tbl_14_auto[k_15_auto] = v_16_auto
+      else
+      end
+    end
+    opts_1_auto = tbl_14_auto
+  end
+  if (opts_1_auto.noremap == nil) then
+    opts_1_auto.noremap = true
+  else
+  end
+  if (opts_1_auto.silent == nil) then
+    opts_1_auto.silent = true
+  else
+  end
+  vim.keymap.set("n", "<leader>td", ":tabclose<cr>", opts_1_auto)
 end
 do
   local opts_1_auto
@@ -597,6 +597,52 @@ do
     opts_1_auto.silent = true
   else
   end
+  vim.keymap.set("n", "[t", "<cmd>tabp<CR>", opts_1_auto)
+end
+do
+  local opts_1_auto
+  do
+    local tbl_14_auto = {}
+    for k_2_auto, v_3_auto in pairs((nil or {})) do
+      local k_15_auto, v_16_auto = k_2_auto, v_3_auto
+      if ((k_15_auto ~= nil) and (v_16_auto ~= nil)) then
+        tbl_14_auto[k_15_auto] = v_16_auto
+      else
+      end
+    end
+    opts_1_auto = tbl_14_auto
+  end
+  if (opts_1_auto.noremap == nil) then
+    opts_1_auto.noremap = true
+  else
+  end
+  if (opts_1_auto.silent == nil) then
+    opts_1_auto.silent = true
+  else
+  end
+  vim.keymap.set("n", "]t", "<cmd>tabn<CR>", opts_1_auto)
+end
+do
+  local opts_1_auto
+  do
+    local tbl_14_auto = {}
+    for k_2_auto, v_3_auto in pairs((nil or {})) do
+      local k_15_auto, v_16_auto = k_2_auto, v_3_auto
+      if ((k_15_auto ~= nil) and (v_16_auto ~= nil)) then
+        tbl_14_auto[k_15_auto] = v_16_auto
+      else
+      end
+    end
+    opts_1_auto = tbl_14_auto
+  end
+  if (opts_1_auto.noremap == nil) then
+    opts_1_auto.noremap = true
+  else
+  end
+  if (opts_1_auto.silent == nil) then
+    opts_1_auto.silent = true
+  else
+  end
   vim.keymap.set("n", "<leader>e", ":Oil<CR>", opts_1_auto)
 end
 do
@@ -647,7 +693,7 @@ do
 end
 do
   local group = vim.api.nvim_create_augroup("InputQquitEverythingIwant", {clear = true})
-  local function _85_()
+  local function _91_()
     local opts_1_auto
     do
       local tbl_14_auto = {}
@@ -670,8 +716,8 @@ do
     end
     return vim.keymap.set({"n", "v"}, "q", ":close<CR>", opts_1_auto)
   end
-  vim.api.nvim_create_autocmd({"FileType"}, {pattern = {"git", "qf", "man", "help", "lspinfo", "fugitive", "gitcommit"}, callback = _85_, group = group})
-  local function _89_()
+  vim.api.nvim_create_autocmd({"FileType"}, {pattern = {"git", "qf", "man", "help", "lspinfo", "fugitive", "gitcommit"}, callback = _91_, group = group})
+  local function _95_()
     if (vim.bo.buftype == "nofile") then
       local opts_1_auto
       do
@@ -698,8 +744,8 @@ do
       return nil
     end
   end
-  vim.api.nvim_create_autocmd({"FileType"}, {pattern = {"*"}, callback = _89_, group = group})
-  local function _94_()
+  vim.api.nvim_create_autocmd({"FileType"}, {pattern = {"*"}, callback = _95_, group = group})
+  local function _100_()
     if ((vim.bo.filetype == "") and (vim.bo.buftype == "")) then
       local opts_1_auto
       do
@@ -726,7 +772,7 @@ do
       return nil
     end
   end
-  vim.api.nvim_create_autocmd({"BufEnter"}, {pattern = {"*"}, callback = _94_, group = group})
+  vim.api.nvim_create_autocmd({"BufEnter"}, {pattern = {"*"}, callback = _100_, group = group})
 end
 vim.g.nremap = {["[m"] = "[f", ["]m"] = "]f", ["="] = "<tab>"}
 return nil
