@@ -247,7 +247,7 @@ local function _38_(err, result, ctx, config)
                     highlighter(symbol, "LspCxxHlSymParameter")
                   else
                     local function _49_()
-                      return (symbol.kind == (5 or 23))
+                      return ((symbol.kind == 5) or (symbol.kind == 23))
                     end
                     if ((_41_ == symbol) and _49_()) then
                       highlighter(symbol, "LspCxxHlSymStruct")

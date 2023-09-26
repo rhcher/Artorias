@@ -137,7 +137,7 @@
             (highlighter symbol "LspCxxHlSymVariable")
             (where symbol (= symbol.kind 253)) ; Parameter
             (highlighter symbol "LspCxxHlSymParameter")
-            (where symbol (= symbol.kind (or 5 23))) ; class or struct
+            (where symbol (or (= symbol.kind 5) (= symbol.kind 23))) ; class or struct
             (highlighter symbol "LspCxxHlSymStruct")
             (where symbol (= symbol.kind 10)) ; Enum
             (highlighter symbol "LspCxxHlSymEnum")
