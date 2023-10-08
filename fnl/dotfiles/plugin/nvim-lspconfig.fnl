@@ -7,15 +7,16 @@
   {:capabilities {:foldingRangeProvider true
                   :workspace {:workspaceFolders {:supported false}}}
    :index {:threads (a.count (vim.loop.cpu_info))
-           :initialNoLinkage true}
-           ; :initialBlacklist ["/(clang|lld|llvm)/(test|unittests)/"
-           ;                    "/llvm/(bindings|examples|utils)/"
-           ;                    "/StaticAnalyzer/"]}
+           :initialNoLinkage true
+           :initialBlacklist ["/(clang|lld|llvm)/(test|unittests)/"
+                              "/llvm/(bindings|examples|utils)/"
+                              "/StaticAnalyzer/"]}
    :diagnostics {:onChange -1
                  :onOpen 1000
                  :onSave 50}
    :highlight {:lsRanges true}
-   :cache {:directory "/tmp/ccls-cache/"}
+   :cache {:retainInMemory 1
+           :directory "/tmp/ccls-cache/"}
    :xref {:maxNum 20000}})
 
 (fn ccls_on_attach [_ bufnr]
@@ -102,28 +103,28 @@
 
 (let [(ok? lsp) (pcall require "lspconfig")
       flags {:debounce_text_changes 50}
-      cmplsp (require "cmp_nvim_lsp")]
+      (_ cmplsp) (pcall require "cmp_nvim_lsp")]
   (var capabilities (cmplsp.default_capabilities))
   (set capabilities.textDocument.foldingRange {:dynamicRegistration false
                                                :lineFoldingOnly true})
 
   (tset capabilities :workspace {:didChangeWatchedFiles {:dynamicRegistration false}})
   (when ok?
-    ; (lsp.ccls.setup
-    ;   {:on_attach ccls_on_attach
-    ;    :capabilities capabilities
-    ;    :init_options ccls_config
-    ;    :flags flags})
-    (lsp.clangd.setup
-      {:capabilities capabilities
-       :cmd [:clangd
-             :--clang-tidy
-             :--background-index
-             :--completion-style=detailed
-             "--clang-tidy-checks=-*,llvm-*,clang-analyzer-*"
-             :--cross-file-rename
-             :--header-insertion=never]
+    (lsp.ccls.setup
+      {:on_attach ccls_on_attach
+       :capabilities capabilities
+       :init_options ccls_config
        :flags flags})
+    ; (lsp.clangd.setup
+    ;   {:capabilities capabilities
+    ;    :cmd [:clangd
+    ;          :--clang-tidy
+    ;          :--background-index
+    ;          :--completion-style=detailed
+    ;          "--clang-tidy-checks=-*,llvm-*,clang-analyzer-*"
+    ;          :--cross-file-rename
+    ;          :--header-insertion=never]
+    ;    :flags flags})
     (lsp.lua_ls.setup
       {:capabilities capabilities
        :cmd ["/home/rhcher/sources/lua-language-server/bin/lua-language-server"]
