@@ -413,7 +413,7 @@ do
     opts_1_auto.silent = true
   else
   end
-  vim.keymap.set("n", "<leader>wm", ":tab sp<cr>", opts_1_auto)
+  vim.keymap.set("n", "<leader>wm", ":tabnew<cr>", opts_1_auto)
 end
 do
   local opts_1_auto

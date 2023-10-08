@@ -27,7 +27,7 @@
 (map :n :<A-k> :<C-w>k)
 (map :n :<A-l> :<C-w>l)
 (map :n :<leader>bs ":w<CR>")
-(map :n :<leader>wm ":tab sp<cr>")
+(map :n :<leader>wm ":tabnew<cr>")
 (map :n :<leader>wc ":only<cr>")
 (map :n :<leader>to ":tabonly<cr>")
 (map :n :<leader>td ":tabclose<cr>")
