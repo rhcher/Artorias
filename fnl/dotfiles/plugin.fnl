@@ -91,20 +91,16 @@
                                         :config #(vim.api.nvim_create_autocmd "VimEnter"
                                                                               {:callback #((. (require "parinfer") :setup))})}
   "hrsh7th/nvim-cmp" {:version false
-                      :lazy false
+                      :event ["InsertEnter"]
+                      :dependencies ["hrsh7th/cmp-nvim-lsp"
+                                     "hrsh7th/cmp-buffer"
+                                     "hrsh7th/cmp-path"
+                                     "PaterJason/cmp-conjure"
+                                     "hrsh7th/cmp-cmdline"
+                                     "onsails/lspkind-nvim"]
                       :mod "cmp"}
-  "hrsh7th/cmp-nvim-lsp" {:event "LspAttach"
-                          :dependencies ["hrsh7th/nvim-cmp" "neovim/nvim-lspconfig"]}
-  "hrsh7th/cmp-buffer" {:event ["BufEnter"]
-                        :dependencies ["hrsh7th/nvim-cmp"]}
-  "hrsh7th/cmp-path" {:event "VeryLazy"
-                      :dependencies ["hrsh7th/nvim-cmp"]}
-  "PaterJason/cmp-conjure" {:event "VeryLazy"
-                            :dependencies ["hrsh7th/nvim-cmp" "Olical/conjure"]}
-  "hrsh7th/cmp-cmdline" {:event ["CmdlineEnter"]
-                         :dependencies ["hrsh7th/nvim-cmp"]}
-  "onsails/lspkind-nvim" {:event "LspAttach"
-                          :dependencies ["hrsh7th/nvim-cmp" "neovim/nvim-lspconfig"]}
+  "onsails/lspkind-nvim" {:event "LspAttach"}
+  "hrsh7th/cmp-cmdline" {:event "CmdlineEnter"}
   "dcampos/nvim-snippy" {:event "VeryLazy"
                          :init
                          #(let [snippy (require :snippy)]
