@@ -164,15 +164,10 @@
   "tpope/vim-fugitive" {:cmd "Git"}
   "junegunn/gv.vim" {:cmd "GV"
                      :dependencies ["tpope/vim-fugitive"]}
-  "guns/vim-sexp" {:ft util.lisp-language
-                   :dependencies ["tpope/vim-sexp-mappings-for-regular-people"]
-                   :init
-                   (fn []
-                     (set vim.g.sexp_filetypes "clojure,scheme,lisp,timl,fennel,janet,racket")
-                     (set vim.g.sexp_enable_insert_mode_mappings 0)
-                     (map [:n :x] :<localleader>i "<Plug>(sexp_round_head_wrap_list)")
-                     (map [:n :x] :<localleader>o "<Plug>(sexp_raise_list)")
-                     (map [:n :x] :<localleader>o "<Plug>(sexp_raise_element))"))}
+  "julienvincent/nvim-paredit" {:ft util.lisp-language
+                                :mod "nvim-paredit"}
+  "julienvincent/nvim-paredit-fennel" {:ft [:fennel]
+                                       :dependencies "julienvincent/nvim-paredit"}
   "svban/YankAssassin.vim" {:event "VeryLazy"}
   "kana/vim-textobj-user" {:event "VeryLazy"
                            :dependencies ["glts/vim-textobj-comment"
