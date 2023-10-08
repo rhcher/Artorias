@@ -218,7 +218,8 @@
                                :main "colorizer"
                                :config true}
   "tpope/vim-repeat" {:event "VeryLazy"}
-  "kylechui/nvim-surround" {:config #(let [surround (require "nvim-surround")
+  "kylechui/nvim-surround" {:event "VeryLazy"
+                            :config #(let [surround (require "nvim-surround")
                                            config (require "nvim-surround.config")]
                                        (surround.setup {:move_cursor false
                                                         :surrounds {"(" {:add ["(" ")"]
