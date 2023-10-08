@@ -110,6 +110,8 @@
                             (map [:i :s] :<C-h> #(if (snippy.can_jump -1)
                                                   "<Plug>(snippy-previous)"
                                                   "<ESC>I") {:expr true}))}
+  "neovim/nvim-lspconfig" {:dependencies ["hrsh7th/cmp-nvim-lsp"]
+                           :lazy false
                            :mod "nvim-lspconfig"}
   "mfussenegger/nvim-dap" {:lazy false
                            :mod "dap"
@@ -121,8 +123,7 @@
   "theHamsta/nvim-dap-virtual-text" {:lazy false
                                      :opts {}}
   "nvimdev/lspsaga.nvim" {:dependencies ["nvim-tree/nvim-web-devicons"
-                                         "nvim-treesitter/nvim-treesitter"
-                                         "neovim/nvim-lspconfig"]
+                                         "nvim-treesitter/nvim-treesitter"]
                           :event "LspAttach"
                           :mod "lspsaga"}
   "Wansmer/symbol-usage.nvim" {:event "LspAttach"
@@ -170,8 +171,7 @@
                                        :dependencies "julienvincent/nvim-paredit"}
   "svban/YankAssassin.vim" {:event "VeryLazy"}
   "kana/vim-textobj-user" {:event "VeryLazy"
-                           :dependencies ["glts/vim-textobj-comment"
-                                          "Julian/vim-textobj-variable-segment"]}
+                           :dependencies ["glts/vim-textobj-comment"]}
   "AndrewRadev/linediff.vim" {:cmd "Linediff"}
   "tyru/open-browser.vim" {:keys [{1 "gx" 2 "<Plug>(openbrowser-smart-search)"
                                    :mode [:n :v]}]}
@@ -260,7 +260,8 @@
   "dhruvasagar/vim-table-mode" {:cmd "TableModeToggle"
                                 :init #(set vim.g.table_mode_corner "|")}
   "nvimdev/dashboard-nvim" {:event "VimEnter"
-                            :mod "dashboard"}
+                            :mod "dashboard"
+                            :dependencies ["nvim-tree/nvim-web-devicons"]}
   "gbprod/cutlass.nvim" {:event "VeryLazy"
                          :opts {}}
   "kevinhwang91/nvim-hlslens" {:event "VeryLazy"
