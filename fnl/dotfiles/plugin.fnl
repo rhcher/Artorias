@@ -273,9 +273,6 @@
   "max397574/better-escape.nvim" {:event "VeryLazy"
                                   :config #((. (require "better_escape") :setup) {:mapping ["jk"]})}
   "sindrets/diffview.nvim" {:cmd "DiffviewOpen"}
-  "EtiamNullam/deferred-clipboard.nvim" {:event "VeryLazy"
-                                         :opts {:lazy true}
-                                         :cond (not= vim.env.WSL_DISTRO_NAME nil)}
   "chrisgrieser/nvim-spider" {:keys [{1 "w" 2 "<cmd>lua require('spider').motion('w')<CR>" :mode [:n :o :x]}
                                      {1 "e" 2 "<cmd>lua require('spider').motion('e')<CR>" :mode [:n :o :x]}
                                      {1 "b" 2 "<cmd>lua require('spider').motion('b')<CR>" :mode [:n :o :x]}
