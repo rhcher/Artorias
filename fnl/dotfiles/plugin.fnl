@@ -104,13 +104,12 @@
   "dcampos/nvim-snippy" {:event "VeryLazy"
                          :init
                          #(let [snippy (require :snippy)]
-                            (vim.keymap.set [:i :s] :<C-l> #(if (snippy.can_jump 1)
-                                                                "<Plug>(snippy-next)"
-                                                                "<ESC>A") {:expr true})
-                            (vim.keymap.set [:i :s] :<C-h> #(if (snippy.can_jump -1)
-                                                                "<Plug>(snippy-previous)"
-                                                                "<ESC>I") {:expr true}))}
-  "neovim/nvim-lspconfig" {:event "LspAttach"
+                            (map [:i :s] :<C-l> #(if (snippy.can_jump 1)
+                                                     "<Plug>(snippy-next)"
+                                                     "<ESC>A") {:expr true})
+                            (map [:i :s] :<C-h> #(if (snippy.can_jump -1)
+                                                  "<Plug>(snippy-previous)"
+                                                  "<ESC>I") {:expr true}))}
                            :mod "nvim-lspconfig"}
   "nvimdev/lspsaga.nvim" {:dependencies ["nvim-tree/nvim-web-devicons"
                                          "nvim-treesitter/nvim-treesitter"
