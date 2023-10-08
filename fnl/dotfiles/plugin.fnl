@@ -215,7 +215,8 @@
   "numToStr/Comment.nvim" {:event "VeryLazy" :config true}
   "mbbill/undotree" {:cmd "UndotreeShow"}
   "NvChad/nvim-colorizer.lua" {:cmd "ColorizerToggle"
-                               :config #((. (require "colorizer") :setup))}
+                               :main "colorizer"
+                               :config true}
   "tpope/vim-repeat" {:event "VeryLazy"}
   "kylechui/nvim-surround" {:config #(let [surround (require "nvim-surround")
                                            config (require "nvim-surround.config")]
@@ -257,8 +258,7 @@
                            :mod "hydra"}
   "cshuaimin/ssr.nvim" {:keys ["<leader>sr"]
                         :config
-                        #(let [ssr (require "ssr")]
-                           (map [:n :x] "<leader>sr" ssr.open))}
+                        #(map [:n :x] "<leader>sr" (. (require "ssr") :open))}
   "dhruvasagar/vim-table-mode" {:cmd "TableModeToggle"
                                 :init #(set vim.g.table_mode_corner "|")}
   "nvimdev/dashboard-nvim" {:event "VimEnter"
