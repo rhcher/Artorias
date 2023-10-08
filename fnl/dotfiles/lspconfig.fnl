@@ -17,7 +17,8 @@
          (map :n :<leader>io vim.lsp.buf.outgoing_calls {:buffer bufnr}))
 
        (when (client.supports_method ms.textDocument_documentSymbol)
-         (map :n :<leader>lw vim.lsp.buf.document_symbol {:buffer bufnr}))
+         (map :n :<leader>lw "<cmd>Lspsaga outline<CR>" {:buffer bufnr}))
+         ; (map :n :<leader>lw vim.lsp.buf.document_symbol {:buffer bufnr}))
 
        (when (client.supports_method ms.workspace_symbol)
          (map :n :<leader>lW vim.lsp.buf.workspace_symbol {:buffer bufnr}))
@@ -46,8 +47,7 @@
                          (_ lspsaga_hover) (pcall require :lspsaga.hover)
                          winid (ufo.peekFoldedLinesUnderCursor)]
                      (when (not winid)
-                       (vim.lsp.buf.hover))) {:buffer bufnr})
-                       ; (: lspsaga_hover "render_hover_doc" {}))
+                       (lspsaga_hover:render_hover_doc {}))) {:buffer bufnr})
        (map :n :<leader>k "<cmd>Lspsaga hover_doc ++keep<CR>" {:buffer bufnr})
        (map :n :<leader>lr ":Lspsaga rename<CR>" {:buffer bufnr})
 

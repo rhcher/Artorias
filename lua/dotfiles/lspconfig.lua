@@ -101,7 +101,7 @@ local function _2_(args)
       opts_1_auto.silent = true
     else
     end
-    vim.keymap.set("n", "<leader>lw", vim.lsp.buf.document_symbol, opts_1_auto)
+    vim.keymap.set("n", "<leader>lw", "<cmd>Lspsaga outline<CR>", opts_1_auto)
   else
   end
   if client.supports_method(ms.workspace_symbol) then
@@ -317,7 +317,7 @@ local function _2_(args)
       local _0, lspsaga_hover = pcall(require, "lspsaga.hover")
       local winid = ufo.peekFoldedLinesUnderCursor()
       if not winid then
-        return vim.lsp.buf.hover()
+        return lspsaga_hover:render_hover_doc({})
       else
         return nil
       end
