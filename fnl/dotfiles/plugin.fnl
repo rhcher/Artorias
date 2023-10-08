@@ -228,10 +228,13 @@
   "lewis6991/gitsigns.nvim" {:event ["BufReadPre" "BufNewFile"] :mod "gitsigns"}
   "akinsho/nvim-toggleterm.lua" {:keys ["<leader>ot" "<leader>oT"]
                                  :mod "terminal"}
-  "ggandor/leap.nvim" {:event "VeryLazy"
-                       :keys [{1 "s" :mode [:n :x :o] :desc "Leap forward to"}]
-                       :config #(let [leap (require "leap")]
-                                  (map [:n :x :o] "s" #(leap.leap {:target_windows [(vim.fn.win_getid)]})))}
+  "folke/flash.nvim" {:event "VeryLazy"
+                      :opts {}
+                      :keys [{1 "s" :mode [:n :x :o] 2 #((. (require "flash") :jump))}
+                             {1 "S" :mode [:n :x :o] 2 #((. (require "flash") :treesitter))}
+                             {1 "r" :mode :o 2 #((. (require "flash") :remote))}
+                             {1 "R" :mode [:x :o] 2 #((. (require "flash") :treesitter_search))}
+                             {1 "<C-s>" :mode :c 2 #((. (require "flash") :toggle))}]}
   "booperlv/nvim-gomove" {:event "VeryLazy" :mod "move"}
   "zegervdv/nrpattern.nvim" {:keys ["<C-a>" "<C-x>"]
                              :config #((. (require "nrpattern") :setup))}
