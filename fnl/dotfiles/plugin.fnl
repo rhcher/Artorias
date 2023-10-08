@@ -42,16 +42,11 @@
                     :mod "conjure"}
   "nvim-lua/plenary.nvim" {}
   "nvim-tree/nvim-web-devicons" {:mod "devicons"}
-  "rhcher/srcery.nvim" {:config #(vim.cmd.colorscheme "srcery")
-                        :cond true
-                        :lazy false
-                        :priority 1000}
-  "rhcher/vim-paper" {:config #(vim.cmd.colorscheme "paper")
-                      :cond false
-                      :priority 1000}
-  "rebelot/kanagawa.nvim" {:config #(vim.cmd.colorscheme "kanagawa")
-                           :cond false
-                           :priority 1000}
+  "rhcher/srcery.nvim" {:lazy false
+                        :priority 1000
+                        :config #(vim.cmd.colorscheme "srcery")}
+  "rhcher/vim-paper" {:priority 1000}
+  "rebelot/kanagawa.nvim" {:priority 1000}
   "nvimdev/whiskyline.nvim" {:event "VimEnter"
                              :opts {:bg "#2a2a47"}
                                     ; :bg "#f2de91"}
