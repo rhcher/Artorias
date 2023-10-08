@@ -172,6 +172,8 @@
   "svban/YankAssassin.vim" {:event "VeryLazy"}
   "kana/vim-textobj-user" {:event "VeryLazy"
                            :dependencies ["glts/vim-textobj-comment"]}
+  "chrisgrieser/nvim-various-textobjs" {:keys [{1 "iv" 2 "<cmd>lua require('various-textobjs').subword('inner')<CR>" :mode [:o :x]}
+                                               {1 "av" 2 "<cmd>lua require('various-textobjs').subword('outer')<CR>" :mode [:o :x]}]}
   "AndrewRadev/linediff.vim" {:cmd "Linediff"}
   "tyru/open-browser.vim" {:keys [{1 "gx" 2 "<Plug>(openbrowser-smart-search)"
                                    :mode [:n :v]}]}
