@@ -111,6 +111,15 @@
                                                   "<Plug>(snippy-previous)"
                                                   "<ESC>I") {:expr true}))}
                            :mod "nvim-lspconfig"}
+  "mfussenegger/nvim-dap" {:lazy false
+                           :mod "dap"
+                           :dependencies ["rcarriga/nvim-dap-ui"
+                                          "theHamsta/nvim-dap-virtual-text"]}
+  "rcarriga/nvim-dap-ui" {:keys [{1 "<leader>du" 2 #((. (require "dapui") "toggle") {})}
+                                 {1 "<leader>de" 2 #((. (require "dapui") "eval")) :mode [:n :v]}]
+                          :mod "dap"}
+  "theHamsta/nvim-dap-virtual-text" {:lazy false
+                                     :opts {}}
   "nvimdev/lspsaga.nvim" {:dependencies ["nvim-tree/nvim-web-devicons"
                                          "nvim-treesitter/nvim-treesitter"
                                          "neovim/nvim-lspconfig"]
