@@ -98,12 +98,12 @@
                                      "hrsh7th/cmp-path"
                                      "PaterJason/cmp-conjure"
                                      "hrsh7th/cmp-cmdline"
-                                     "onsails/lspkind-nvim"]
+                                     "onsails/lspkind-nvim"
+                                     "dcampos/nvim-snippy"]
                       :mod "cmp"}
   "onsails/lspkind-nvim" {:event "LspAttach"}
   "hrsh7th/cmp-cmdline" {:event "CmdlineEnter"}
-  "dcampos/nvim-snippy" {:event "VeryLazy"
-                         :init
+  "dcampos/nvim-snippy" {:config
                          #(let [snippy (require :snippy)]
                             (map [:i :s] :<C-l> #(if (snippy.can_jump 1)
                                                      "<Plug>(snippy-next)"
