@@ -178,6 +178,10 @@
   "AndrewRadev/linediff.vim" {:cmd "Linediff"}
   "tyru/open-browser.vim" {:keys [{1 "gx" 2 "<Plug>(openbrowser-smart-search)"
                                    :mode [:n :v]}]}
+  "kevinhwang91/nvim-fundo" {:dependencies ["kevinhwang91/promise-async"]
+                             :event "VeryLazy"
+                             :build #((. (require "fundo") :install))
+                             :config true}
   "kevinhwang91/nvim-ufo" {:dependencies ["kevinhwang91/promise-async"
                                           {1 :luukvbaal/statuscol.nvim
                                            :config #(let [builtin (require "statuscol.builtin")
