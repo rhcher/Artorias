@@ -280,4 +280,7 @@
                                      {1 "b" 2 "<cmd>lua require('spider').motion('b')<CR>" :mode [:n :o :x]}
                                      {1 "ge" 2 "<cmd>lua require('spider').motion('ge')<CR>" :mode [:n :o :x]}]}
   "tiagovla/scope.nvim" {:lazy false
-                         :config true})
+                         :config true}
+  "nvim-dd.git" {:url "https://gitlab.com/yorickpeterse/nvim-dd.git"
+                 :event "VeryLazy"
+                 :opts {:timeout 200}})
