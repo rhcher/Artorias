@@ -110,21 +110,21 @@
 
   (tset capabilities :workspace {:didChangeWatchedFiles {:dynamicRegistration false}})
   (when ok?
-    (lsp.ccls.setup
-      {:on_attach ccls_on_attach
-       :capabilities capabilities
-       :init_options ccls_config
-       :flags flags})
-    ; (lsp.clangd.setup
-    ;   {:capabilities capabilities
-    ;    :cmd [:clangd
-    ;          :--clang-tidy
-    ;          :--background-index
-    ;          :--completion-style=detailed
-    ;          "--clang-tidy-checks=-*,llvm-*,clang-analyzer-*"
-    ;          :--cross-file-rename
-    ;          :--header-insertion=never]
+    ; (lsp.ccls.setup
+    ;   {:on_attach ccls_on_attach
+    ;    :capabilities capabilities
+    ;    :init_options ccls_config
     ;    :flags flags})
+    (lsp.clangd.setup
+      {:capabilities capabilities
+       :cmd [:clangd
+             :--clang-tidy
+             :--background-index
+             :--completion-style=detailed
+             "--clang-tidy-checks=-*,llvm-*,clang-analyzer-*"
+             :--cross-file-rename
+             :--header-insertion=never]
+       :flags flags})
     (lsp.lua_ls.setup
       {:capabilities capabilities
        :cmd ["/home/rhcher/sources/lua-language-server/bin/lua-language-server"]
