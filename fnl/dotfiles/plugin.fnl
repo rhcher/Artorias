@@ -199,7 +199,8 @@
                                      {:vim "indent"
                                       :fennel "treesitter"
                                       :python "indent"
-                                      :git ""})
+                                      :git ""
+                                      :sagaoutline ""})
                               (ufo.setup {:provider_selector (fn [bufnr filetype buftype]
                                                                (. ftmap filetype))}))}
   "kevinhwang91/nvim-bqf" {:ft "qf"
