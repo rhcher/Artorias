@@ -85,4 +85,6 @@
                                                               :timeout 150
                                                               :on_visual true})}]
          [[:FocusGained :TermClose :TermLeave] {:command "checktime"}]
-         [[:BufEnter] {:callback #(set vim.opt.formatoptions (- vim.opt.formatoptions "o"))}])
+         [[:BufEnter] {:callback #(set vim.opt.formatoptions (- vim.opt.formatoptions "o"))}]
+         [[:WinClosed] {:nested true
+                        :command "if expand('<amatch>') == win_getid() | wincmd p | endif"}])
