@@ -6,7 +6,7 @@
                :bs {:map "<C-w>"
                     :space false
                     :single_delete false}
-               :space {:enable false}
+               :space {:enable true}
                :tabout {:enable true
                         :map "<tab>"
                         :hopout true

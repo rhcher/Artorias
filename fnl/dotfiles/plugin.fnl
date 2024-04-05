@@ -37,7 +37,8 @@
 
 (use
   "folke/lazy.nvim" {:event "VeryLazy"}
-  "Olical/nfnl" {:ft "fennel"}
+  "Olical/nfnl" {:lazy false}
+                 ; :commit "eaeef3337d7377cf16d8592ad2d345b1a192e4f2"}
   "Olical/conjure" {:lazy false
                     :branch "develop"
                     :mod "conjure"}
@@ -46,14 +47,23 @@
   "rhcher/srcery.nvim" {:lazy false
                         :priority 1000
                         :config #(vim.cmd.colorscheme "srcery")}
-  "rhcher/vim-paper" {:priority 1000}
+  "metalelf0/jellybeans-nvim" {:lazy false
+                               :priority 1000}
+  "rktjmp/lush.nvim" {:lazy false}
+  "rhcher/vim-paper" {:priority 1000
+                      :config #(vim.cmd.colorscheme "paper")}
   "rebelot/kanagawa.nvim" {:priority 1000}
+  "nvim-lualine/lualine.nvim" {:event "VeryLazy"
+                               :config true
+                               :dependencies "nvim-tree/nvim-web-devicons"}
   "nvimdev/whiskyline.nvim" {:event "VimEnter"
+                             :cond false
                              :opts {:bg "#2a2a47"}
                                     ; :bg "#f2de91"}
                              :dependencies ["nvim-tree/nvim-web-devicons"]}
   "junegunn/fzf" {:event "VeryLazy" :build "./install --bin"}
   "karb94/neoscroll.nvim" {:event "VeryLazy"
+                           :cond false
                            :config true}
   "gbprod/substitute.nvim" {:config true
                             :keys [["<leader>x" "<cmd>lua require('substitute.exchange').operator()<cr>"]
@@ -120,11 +130,14 @@
                                           "theHamsta/nvim-dap-virtual-text"]}
   "rcarriga/nvim-dap-ui" {:keys [{1 "<leader>du" 2 #((. (require "dapui") "toggle") {})}
                                  {1 "<leader>de" 2 #((. (require "dapui") "eval")) :mode [:n :v]}]
+                          :dependencies ["mfussenegger/nvim-dap"
+                                         "nvim-neotest/nvim-nio"]
                           :mod "dap"}
   "theHamsta/nvim-dap-virtual-text" {:lazy false
                                      :opts {}}
   "nvimdev/lspsaga.nvim" {:dependencies ["nvim-tree/nvim-web-devicons"
                                          "nvim-treesitter/nvim-treesitter"]
+                          :commit "7f0bb62a6651e49b9a4e4a3e49d9e81fb61c8912"
                           :event "LspAttach"
                           :mod "lspsaga"}
   "Wansmer/symbol-usage.nvim" {:event "LspAttach"
@@ -135,6 +148,7 @@
                                        (map [:x :o] :aa "<Plug>SidewaysArgumentTextobjA")
                                        (map [:x :o] :ia "<Plug>SidewaysArgumentTextobjI"))}
   "altermo/ultimate-autopair.nvim" {:event ["InsertEnter" "CmdlineEnter"]
+                                    ; :commit "e562928d698262214259eb61b71d3db0358c6032"
                                     :branch "v0.6"
                                     :dependencies ["nvim-treesitter/nvim-treesitter"]
                                     :mod "auto-pairs"}
@@ -200,7 +214,8 @@
                                       :fennel "treesitter"
                                       :python "indent"
                                       :git ""
-                                      :sagaoutline ""})
+                                      :sagaoutline ""
+                                      :sagafinder ""})
                               (ufo.setup {:provider_selector (fn [bufnr filetype buftype]
                                                                (. ftmap filetype))}))}
   "kevinhwang91/nvim-bqf" {:ft "qf"
@@ -250,6 +265,7 @@
                              :config #((. (require "nrpattern") :setup))}
   "ThePrimeagen/harpoon" {:keys ["<leader>uu" "<leader>ua" "<leader>un"
                                  "<leader>up" "<leader>tc"]
+                          :branch "harpoon2"
                           :dependencies ["nvim-lua/plenary.nvim"]
                           :mod "harpoon"}
   "danymat/neogen" {:cmd "Neogen"
@@ -283,9 +299,14 @@
   "chrisgrieser/nvim-spider" {:keys [{1 "w" 2 "<cmd>lua require('spider').motion('w')<CR>" :mode [:n :o :x]}
                                      {1 "e" 2 "<cmd>lua require('spider').motion('e')<CR>" :mode [:n :o :x]}
                                      {1 "b" 2 "<cmd>lua require('spider').motion('b')<CR>" :mode [:n :o :x]}
-                                     {1 "ge" 2 "<cmd>lua require('spider').motion('ge')<CR>" :mode [:n :o :x]}]}
+                                     {1 "ge" 2 "<cmd>lua require('spider').motion('ge')<CR>" :mode [:n :o :x]}]
+                              :commit "e0eeac5480704cc3fdd5bdadd4901ca5409d7838"}
   "tiagovla/scope.nvim" {:lazy false
                          :config true}
   "nvim-dd.git" {:url "https://gitlab.com/yorickpeterse/nvim-dd.git"
                  :event "VeryLazy"
-                 :opts {:timeout 200}})
+                 :opts {:timeout 200}}
+  "p00f/clangd_extensions.nvim" {}
+  "willothy/flatten.nvim" {:lazy false
+                           :config true
+                           :priority 1001})

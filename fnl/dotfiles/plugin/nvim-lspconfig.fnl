@@ -19,6 +19,10 @@
            :directory "/tmp/ccls-cache/"}
    :xref {:maxNum 20000}})
 
+(fn clangd_on_attach [_ bufnr]
+  (let [myclangd (require "dotfiles.clangd")]
+    (map :n :<leader>cc #(myclangd.ast) {:buffer bufnr})))
+
 (fn ccls_on_attach [_ bufnr]
   (let [ccls (require "dotfiles.ccls")]
     ;; ccls navigate
@@ -108,7 +112,7 @@
   (set capabilities.textDocument.foldingRange {:dynamicRegistration false
                                                :lineFoldingOnly true})
 
-  (tset capabilities :workspace {:didChangeWatchedFiles {:dynamicRegistration false}})
+  ; (tset capabilities :workspace {:didChangeWatchedFiles {:dynamicRegistration false}})
   (when ok?
     ; (lsp.ccls.setup
     ;   {:on_attach ccls_on_attach
@@ -116,7 +120,8 @@
     ;    :init_options ccls_config
     ;    :flags flags})
     (lsp.clangd.setup
-      {:capabilities capabilities
+      {:on_attach clangd_on_attach
+       :capabilities capabilities
        :cmd [:clangd
              :--clang-tidy
              :--background-index

@@ -24,6 +24,7 @@
          (map :n :<leader>lW vim.lsp.buf.workspace_symbol {:buffer bufnr}))
 
        (when (client.supports_method ms.textDocument_codeAction)
+         ; (map [:n :v] :<leader>la vim.lsp.buf.code_action {:buffer bufnr})
          (map [:n :v] :<leader>la "<cmd>Lspsaga code_action<CR>" {:buffer bufnr}))
 
        (when (client.supports_method ms.textDocument_codeLens)
@@ -33,11 +34,10 @@
          (when (client.supports_method ms.workspace_executeCommand)
            (map :n :<leader>ll vim.lsp.codelens.run {:buffer bufnr})))
 
-       (when (client.supports_method ms.textDocument_inlayHint)
-         (vim.lsp.inlay_hint bufnr true)
-         (augroup "my_inlayHint"
-                  [["InsertLeave"] {:buffer bufnr :callback #(vim.defer_fn #(vim.lsp.inlay_hint bufnr true) 1000)}]
-                  [["InsertEnter"] {:buffer bufnr :callback #(vim.lsp.inlay_hint bufnr false)}]))
+       ; (when (client.supports_method ms.textDocument_inlayHint)
+       ;   (vim.lsp.inlay_hint.enable 0 true)
+       ;   (autocmd ["InsertLeave"] {:buffer bufnr :callback #(vim.defer_fn #(vim.lsp.inlay_hint.enable 0 true) 1000)})
+       ;   (autocmd ["InsertEnter"] {:buffer bufnr :callback #(vim.lsp.inlay_hint.enable 0 false)}))
 
        (map :n :gd vim.lsp.buf.definition {:buffer bufnr})
        (map :n :gD vim.lsp.buf.declaration {:buffer bufnr})
@@ -50,6 +50,14 @@
                        (lspsaga_hover:render_hover_doc {}))) {:buffer bufnr})
        (map :n :<leader>k "<cmd>Lspsaga hover_doc ++keep<CR>" {:buffer bufnr})
        (map :n :<leader>lr ":Lspsaga rename<CR>" {:buffer bufnr})
+
+       ; (map [:i :s] :<C-l> #(if (vim.snippet.jumpable 1)
+       ;                          (vim.snippet.jump 1)
+       ;                          (vim.api.nvim_input "<Esc>A")))
+       ;
+       ; (map [:i :s] :<C-h> #(if (vim.snippet.jumpable -1)
+       ;                          (vim.snippet.jump -1)
+       ;                          (vim.api.nvim_input "<Esc>I")))
 
        (let [delete-empty-lsp-clients #(let [clients (vim.lsp.get_clients)]
                                          (each [_ client (ipairs clients)]

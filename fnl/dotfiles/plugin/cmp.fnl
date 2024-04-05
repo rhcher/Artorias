@@ -31,6 +31,7 @@
       {:snippet {:expand (fn [args] (snippy.expand_snippet args.body))}
        :completion {:completeopt "menu,menuone,noselect"
                     :keyword_pattern "\\k\\+"}
+       ; :view {:entries {:follow_cursor true}}
        :sorting {:comparators [cmp.config.compare.offset
                                cmp.config.compare.exact
                                cmp.config.compare.score

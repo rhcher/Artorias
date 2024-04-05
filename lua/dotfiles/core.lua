@@ -4,6 +4,8 @@ vim.opt.mouse = "a"
 vim.opt.sessionoptions = "blank,curdir,folds,help,tabpages,winsize"
 vim.opt.jumpoptions = "stack"
 vim.opt.pumheight = 10
+vim.opt.exrc = true
+vim.opt.termsync = false
 vim.opt.textwidth = 100
 vim.opt.smarttab = true
 vim.opt.expandtab = true
@@ -35,7 +37,6 @@ vim.opt.updatetime = 50
 vim.opt.clipboard = "unnamedplus"
 vim.opt.laststatus = 3
 vim.opt.redrawtime = 150
-vim.opt.relativenumber = true
 vim.opt.listchars = {nbsp = "\226\166\184", extends = "\194\187", precedes = "\194\171", tab = "->", trail = "\226\128\162"}
 vim.opt.fillchars = "eob: ,fold: ,foldopen:\239\145\188,foldsep: ,foldclose:\239\145\160"
 do end (vim.opt.fillchars):append({diff = "\226\149\177"})
@@ -43,7 +44,7 @@ vim.opt.foldcolumn = "1"
 vim.opt.foldlevel = 99
 vim.opt.foldlevelstart = 99
 vim.opt.foldenable = true
-vim.opt.splitkeep = "screen"
+vim.opt.splitkeep = "topline"
 vim.opt.winwidth = 10
 vim.opt.winminwidth = 10
 vim.opt.equalalways = false
@@ -57,16 +58,31 @@ vim.opt.splitbelow = true
 vim.opt.splitright = true
 vim.opt.lispoptions = "expr:1"
 vim.g.clipboard = {name = "win32yank-wsl", copy = {["+"] = "win32yank.exe -i --crlf", ["*"] = "win32yank.exe -i --crlf"}, paste = {["+"] = "win32yank.exe -o --lf", ["*"] = "win32yank.exe -o --lf"}, cache_enable = false}
-local group = vim.api.nvim_create_augroup("init", {clear = true})
-vim.api.nvim_create_autocmd({"CmdWinEnter"}, {buffer = 0, command = "cmap q <C-W>q", group = group})
-local function _2_()
-  return vim.highlight.on_yank({highlight = "Visual", timeout = 150, on_visual = true})
+do
+  local group = vim.api.nvim_create_augroup("init", {clear = true})
+  vim.api.nvim_create_autocmd({"CmdWinEnter"}, {buffer = 0, command = "cmap q <C-W>q", group = group})
+  local function _2_()
+    return vim.highlight.on_yank({highlight = "Visual", timeout = 150, on_visual = true})
+  end
+  vim.api.nvim_create_autocmd({"TextYankPost"}, {callback = _2_, group = group})
+  vim.api.nvim_create_autocmd({"FocusGained", "TermClose", "TermLeave"}, {command = "checktime", group = group})
+  local function _3_()
+    vim.opt.formatoptions = (vim.opt.formatoptions - "o")
+    return nil
+  end
+  vim.api.nvim_create_autocmd({"BufEnter"}, {callback = _3_, group = group})
+  vim.api.nvim_create_autocmd({"WinClosed"}, {nested = true, command = "if expand('<amatch>') == win_getid() | wincmd p | endif", group = group})
 end
-vim.api.nvim_create_autocmd({"TextYankPost"}, {callback = _2_, group = group})
-vim.api.nvim_create_autocmd({"FocusGained", "TermClose", "TermLeave"}, {command = "checktime", group = group})
-local function _3_()
-  vim.opt.formatoptions = (vim.opt.formatoptions - "o")
+if vim.g.neovide then
+  vim.o.guifont = "JetBrainsMonoMedium NF,JetBrainsMono Nerd Font Propo:h13"
+  vim.g.neovide_confirm_quit = false
+  vim.g.neovide_fullscreen = true
+  vim.g.neovide_scroll_animation_length = 0.5
+  vim.g.neovide_hide_mouse_when_typing = true
+  vim.g.neovide_unlink_border_highlights = true
+  vim.g.neovide_refresh_rate = 60
+  vim.g.neovide_no_idle = true
+  return nil
+else
   return nil
 end
-vim.api.nvim_create_autocmd({"BufEnter"}, {callback = _3_, group = group})
-return nil
