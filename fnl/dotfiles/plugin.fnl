@@ -38,7 +38,6 @@
 (use
   "folke/lazy.nvim" {:event "VeryLazy"}
   "Olical/nfnl" {:lazy false}
-                 ; :commit "eaeef3337d7377cf16d8592ad2d345b1a192e4f2"}
   "Olical/conjure" {:lazy false
                     :branch "develop"
                     :mod "conjure"}
@@ -137,7 +136,6 @@
                                      :opts {}}
   "nvimdev/lspsaga.nvim" {:dependencies ["nvim-tree/nvim-web-devicons"
                                          "nvim-treesitter/nvim-treesitter"]
-                          :commit "7f0bb62a6651e49b9a4e4a3e49d9e81fb61c8912"
                           :event "LspAttach"
                           :mod "lspsaga"}
   "Wansmer/symbol-usage.nvim" {:event "LspAttach"
@@ -148,7 +146,6 @@
                                        (map [:x :o] :aa "<Plug>SidewaysArgumentTextobjA")
                                        (map [:x :o] :ia "<Plug>SidewaysArgumentTextobjI"))}
   "altermo/ultimate-autopair.nvim" {:event ["InsertEnter" "CmdlineEnter"]
-                                    ; :commit "e562928d698262214259eb61b71d3db0358c6032"
                                     :branch "v0.6"
                                     :dependencies ["nvim-treesitter/nvim-treesitter"]
                                     :mod "auto-pairs"}
@@ -229,11 +226,8 @@
                                  :modes_denylist [:i]
                                  :large_file_cutoff 5000}))}
   "lukas-reineke/indent-blankline.nvim" {:event "VeryLazy"
-                                         :cond false
-                                         :branch "v3"
-                                         :dependencies ["nvim-treesitter/nvim-treesitter"]
                                          :mod "indent"}
-  "numToStr/Comment.nvim" {:event "VeryLazy" :config true}
+  ; "numToStr/Comment.nvim" {:event "VeryLazy" :config true}
   "mbbill/undotree" {:cmd "UndotreeShow"}
   "NvChad/nvim-colorizer.lua" {:cmd "ColorizerToggle"
                                :main "colorizer"
@@ -265,7 +259,6 @@
                              :config #((. (require "nrpattern") :setup))}
   "ThePrimeagen/harpoon" {:keys ["<leader>uu" "<leader>ua" "<leader>un"
                                  "<leader>up" "<leader>tc"]
-                          :branch "harpoon2"
                           :dependencies ["nvim-lua/plenary.nvim"]
                           :mod "harpoon"}
   "danymat/neogen" {:cmd "Neogen"
@@ -306,7 +299,6 @@
   "nvim-dd.git" {:url "https://gitlab.com/yorickpeterse/nvim-dd.git"
                  :event "VeryLazy"
                  :opts {:timeout 200}}
-  "p00f/clangd_extensions.nvim" {}
   "willothy/flatten.nvim" {:lazy false
                            :config true
                            :priority 1001})
