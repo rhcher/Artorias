@@ -46,6 +46,10 @@
 (map :n :<leader>gg ":Git<CR><C-w>o")
 (map :n :<leader>ou ":UndotreeShow<cr>:UndotreeFocus<cr>")
 
+(vim.keymap.del "n" "grr")
+(vim.keymap.del "n" "grn")
+(vim.keymap.del "n" "gra")
+
 (augroup :InputQquitEverythingIwant
          [[:FileType] {:pattern [:git :qf :man :help :lspinfo :fugitive :gitcommit]
                        :callback #(map [:n :v] :q ":close<CR>" {:buffer true})}]

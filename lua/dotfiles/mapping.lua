@@ -691,6 +691,9 @@ do
   end
   vim.keymap.set("n", "<leader>ou", ":UndotreeShow<cr>:UndotreeFocus<cr>", opts_1_auto)
 end
+vim.keymap.del("n", "grr")
+vim.keymap.del("n", "grn")
+vim.keymap.del("n", "gra")
 do
   local group = vim.api.nvim_create_augroup("InputQquitEverythingIwant", {clear = true})
   local function _91_()
