@@ -149,11 +149,14 @@ local function _2_(args)
       opts_1_auto.silent = true
     else
     end
-    vim.keymap.set({"n", "v"}, "<leader>la", "<cmd>Lspsaga code_action<CR>", opts_1_auto)
+    vim.keymap.set({"n", "v"}, "<leader>la", vim.lsp.buf.code_action, opts_1_auto)
   else
   end
   if client.supports_method(ms.textDocument_codeLens) then
-    vim.api.nvim_create_autocmd({"BufEnter", "CursorHold", "InsertLeave"}, {buffer = bufnr, callback = vim.lsp.codelens.refresh})
+    local function _27_()
+      return vim.lsp.codelens.refresh({bufnr = bufnr})
+    end
+    vim.api.nvim_create_autocmd({"BufEnter", "CursorHold", "InsertLeave"}, {buffer = bufnr, callback = _27_})
     if client.supports_method(ms.workspace_executeCommand) then
       local opts_1_auto
       do
@@ -270,10 +273,10 @@ local function _2_(args)
       opts_1_auto.silent = true
     else
     end
-    local function _44_()
+    local function _45_()
       return vim.lsp.buf.references({includeDeclaration = false})
     end
-    vim.keymap.set("n", "gr", _44_, opts_1_auto)
+    vim.keymap.set("n", "gr", _45_, opts_1_auto)
   end
   do
     local opts_1_auto
@@ -296,7 +299,7 @@ local function _2_(args)
       opts_1_auto.silent = true
     else
     end
-    local function _48_()
+    local function _49_()
       local _, ufo = pcall(require, "ufo")
       local _0, lspsaga_hover = pcall(require, "lspsaga.hover")
       local winid = ufo.peekFoldedLinesUnderCursor()
@@ -306,7 +309,7 @@ local function _2_(args)
         return nil
       end
     end
-    vim.keymap.set("n", "K", _48_, opts_1_auto)
+    vim.keymap.set("n", "K", _49_, opts_1_auto)
   end
   do
     local opts_1_auto
@@ -355,7 +358,7 @@ local function _2_(args)
     vim.keymap.set("n", "<leader>lr", ":Lspsaga rename<CR>", opts_1_auto)
   end
   local delete_empty_lsp_clients
-  local function _56_()
+  local function _57_()
     local clients = vim.lsp.get_clients()
     for _, client0 in ipairs(clients) do
       local bufs = vim.lsp.get_buffers_by_client_id(client0.id)
@@ -367,12 +370,12 @@ local function _2_(args)
     end
     return nil
   end
-  delete_empty_lsp_clients = _56_
+  delete_empty_lsp_clients = _57_
   local group = vim.api.nvim_create_augroup("LspTimeOut", {clear = true})
-  local function _58_()
+  local function _59_()
     return vim.defer_fn(delete_empty_lsp_clients, 5000)
   end
-  vim.api.nvim_create_autocmd({"BufDelete"}, {pattern = "*", callback = _58_, group = group})
+  vim.api.nvim_create_autocmd({"BufDelete"}, {pattern = "*", callback = _59_, group = group})
   return nil
 end
 vim.api.nvim_create_autocmd("LspAttach", {callback = _2_})

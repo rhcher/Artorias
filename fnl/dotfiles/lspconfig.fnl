@@ -24,13 +24,13 @@
          (map :n :<leader>lW vim.lsp.buf.workspace_symbol {:buffer bufnr}))
 
        (when (client.supports_method ms.textDocument_codeAction)
-         ; (map [:n :v] :<leader>la vim.lsp.buf.code_action {:buffer bufnr})
-         (map [:n :v] :<leader>la "<cmd>Lspsaga code_action<CR>" {:buffer bufnr}))
+         (map [:n :v] :<leader>la vim.lsp.buf.code_action {:buffer bufnr}))
+         ;(map [:n :v] :<leader>la "<cmd>Lspsaga code_action<CR>" {:buffer bufnr}))
 
        (when (client.supports_method ms.textDocument_codeLens)
          (autocmd [:BufEnter :CursorHold :InsertLeave]
                   {:buffer bufnr
-                   :callback vim.lsp.codelens.refresh})
+                   :callback #(vim.lsp.codelens.refresh {:bufnr bufnr})})
          (when (client.supports_method ms.workspace_executeCommand)
            (map :n :<leader>ll vim.lsp.codelens.run {:buffer bufnr})))
 
