@@ -292,8 +292,7 @@
   "chrisgrieser/nvim-spider" {:keys [{1 "w" 2 "<cmd>lua require('spider').motion('w')<CR>" :mode [:n :o :x]}
                                      {1 "e" 2 "<cmd>lua require('spider').motion('e')<CR>" :mode [:n :o :x]}
                                      {1 "b" 2 "<cmd>lua require('spider').motion('b')<CR>" :mode [:n :o :x]}
-                                     {1 "ge" 2 "<cmd>lua require('spider').motion('ge')<CR>" :mode [:n :o :x]}]
-                              :commit "e0eeac5480704cc3fdd5bdadd4901ca5409d7838"}
+                                     {1 "ge" 2 "<cmd>lua require('spider').motion('ge')<CR>" :mode [:n :o :x]}]}
   "tiagovla/scope.nvim" {:lazy false
                          :config true}
   "nvim-dd.git" {:url "https://gitlab.com/yorickpeterse/nvim-dd.git"
