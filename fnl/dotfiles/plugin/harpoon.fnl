@@ -1,6 +1,6 @@
 (import-macros {: map} :dotfiles.macros)
 
-(let [harpoon (require "harpoon")]
-  (harpoon.setup)
-  (map :n :<leader>uu #(harpoon.ui:toggle_quick_menu (harpoon:list)))
-  (map :n :<leader>ua #(: (harpoon:list) :append)))
+(let [ui (require "harpoon.ui")
+      mark (require "harpoon.mark")]
+  (map :n :<leader>uu #(ui.toggle_quick_menu))
+  (map :n :<leader>ua #(mark.add_file)))

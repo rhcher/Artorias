@@ -1,6 +1,6 @@
 -- [nfnl] Compiled from fnl/dotfiles/plugin/harpoon.fnl by https://github.com/Olical/nfnl, do not edit.
-local harpoon = require("harpoon")
-harpoon.setup()
+local ui = require("harpoon.ui")
+local mark = require("harpoon.mark")
 do
   local opts_1_auto
   do
@@ -23,7 +23,7 @@ do
   else
   end
   local function _4_()
-    return (harpoon.ui):toggle_quick_menu(harpoon:list())
+    return ui.toggle_quick_menu()
   end
   vim.keymap.set("n", "<leader>uu", _4_, opts_1_auto)
 end
@@ -48,6 +48,6 @@ if (opts_1_auto.silent == nil) then
 else
 end
 local function _8_()
-  return harpoon:list():append()
+  return mark.add_file()
 end
 return vim.keymap.set("n", "<leader>ua", _8_, opts_1_auto)
