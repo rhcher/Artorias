@@ -355,4 +355,4 @@ local function _2_(bufnr)
   return vim.keymap.set({"x", "o"}, "ih", ":<C-U>Gitsigns select_hunk<CR>", opts_1_auto)
 end
 on_attach = _2_
-return gitsigns.setup({sign_priority = 5, on_attach = on_attach, signs = {add = {hl = "DiffAdd", text = "\226\148\130", numhl = "GitSignsAddNr"}, change = {hl = "DiffChange", text = "\226\148\130", numhl = "GitSignsChangeNr"}, changedelete = {hl = "DiffChange", text = "~", numhl = "GitSignsChangeNr"}, delete = {hl = "DiffDelete", text = "_", numhl = "GitsignsDeleteNr"}, topdelete = {hl = "DiffDelete", text = "\226\128\190", numhl = "GitSignsDeleteNr"}}, status_formatter = nil, watch_gitdir = {interval = 100}})
+return gitsigns.setup({sign_priority = 5, on_attach = on_attach, signs = {add = {text = "\226\148\130"}, change = {text = "\226\148\130"}, changedelete = {text = "~"}, delete = {text = "_"}, topdelete = {text = "\226\128\190"}}, status_formatter = nil, watch_gitdir = {interval = 100}})

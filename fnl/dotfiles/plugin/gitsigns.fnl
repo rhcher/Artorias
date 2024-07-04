@@ -35,20 +35,10 @@
 (gitsigns.setup
   {:sign_priority 5
    :on_attach on_attach
-   :signs {:add {:hl :DiffAdd
-                 :text "│"
-                 :numhl "GitSignsAddNr"}
-           :change {:hl :DiffChange
-                    :text "│"
-                    :numhl "GitSignsChangeNr"}
-           :changedelete {:hl :DiffChange
-                          :text "~"
-                          :numhl "GitSignsChangeNr"}
-           :delete {:hl "DiffDelete"
-                    :text "_"
-                    :numhl "GitsignsDeleteNr"}
-           :topdelete {:hl "DiffDelete"
-                       :text "‾"
-                       :numhl "GitSignsDeleteNr"}}
+   :signs {:add {:text "│"}
+           :change {:text "│"}
+           :changedelete {:text "~"}
+           :delete {:text "_"}
+           :topdelete {:text "‾"}}
    :status_formatter nil
    :watch_gitdir {:interval 100}})
