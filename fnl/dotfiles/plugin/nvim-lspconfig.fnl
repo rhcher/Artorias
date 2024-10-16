@@ -62,7 +62,8 @@
                       :showWord :Disable}
          :hint {:enable true}
          :runtime {:version :LuaJIT}
-         :workspace {:checkThirdParty false}
+         :workspace {:checkThirdParty false
+                     :library [vim.env.VIMRUNTIME]}
          :IntelliSense {:traceLocalSet true
                         :traceReturn true
                         :traceBeSetted true
@@ -131,24 +132,32 @@
              :--header-insertion=never]
        :flags flags})
     (lsp.lua_ls.setup
-      {:capabilities capabilities
-       :cmd ["/home/rhcher/sources/lua-language-server/bin/lua-language-server"]
+      {:cmd ["/home/rhcher/sources/lua-language-server/bin/lua-language-server"]
+       :capabilities capabilities
        :settings sumneko_lua_config
        :flags flags})
     (lsp.ocamllsp.setup
-      {:capabilities capabilities
+      {
+       :capabilities capabilities
        :flags flags})
     (lsp.vimls.setup
-      {:capabilities capabilities
+      {
+       :capabilities capabilities
        :flags flags})
     (lsp.hls.setup
-      {:capabilities capabilities
+      {
+       :capabilities capabilities
        :settings hls_config
        :flags flags})
     (lsp.racket_langserver.setup
-      {:capabilities capabilities
+      {
+       :capabilities capabilities
        :flags flags})
     (lsp.pyright.setup
-      {:capabilities capabilities
+      {
+       :capabilities capabilities
        :settings pyright_config
-       :flags flags})))
+       :flags flags})
+    (lsp.leanls.setup {
+                       :capabilities capabilities
+                       :flags flags})))

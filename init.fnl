@@ -1,6 +1,8 @@
 (vim.loader.enable)
 (local lazypath (.. (vim.fn.stdpath :data) "/lazy"))
 
+(vim.lsp.log.set_level vim.log.levels.OFF)
+
 (fn ensure [user repo]
   (let [install-path (string.format "%s/%s" lazypath repo)]
     (when (> (vim.fn.empty (vim.fn.glob install-path)) 0)

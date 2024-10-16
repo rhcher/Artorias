@@ -1,7 +1,10 @@
 (import-macros {: map} :dotfiles.macros)
 
-(vim.diagnostic.config {:virtual_text false
-                        :signs true
+(vim.diagnostic.config {:virtual_text true
+                        :signs {:text {:vim.diagnostic.severity.ERROR "😨"
+                                       :vim.diagnostic.severity.WARN "😒"
+                                       :vim.diagnostic.severity.HINT "😍"
+                                       :vim.diagnostic.severity.INFO "😘"}}
                         :float {:header ""
                                 :prefix ""
                                 :source :if_many
@@ -9,11 +12,6 @@
                                 :border :single
                                 :title "Diagnostic:"
                                 :title_pos "left"}})
-
-(let [signs {:Error " " :Warn " " :Hint " " :Info " "}]
-  (each [type icon (pairs signs)]
-    (let [hl (.. "DiagnosticSign" type)]
-      (vim.fn.sign_define hl {:text icon :texthl hl :numhl hl}))))
 
 (map :n
      :<space>le

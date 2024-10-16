@@ -44,7 +44,7 @@
 (set vim.opt.clipboard "unnamedplus")
 (set vim.opt.laststatus 3)
 (set vim.opt.redrawtime 150)
-; (set vim.opt.relativenumber true)
+;(set vim.opt.relativenumber true)
 (set vim.opt.listchars {:nbsp :⦸
                         :extends "»"
                         :precedes "«"
@@ -56,7 +56,7 @@
 (set vim.opt.foldlevel 99)
 (set vim.opt.foldlevelstart 99)
 (set vim.opt.foldenable true)
-(set vim.opt.splitkeep "topline")
+(set vim.opt.splitkeep "screen")
 
 (set vim.opt.winwidth 10)
 (set vim.opt.winminwidth 10)
@@ -88,6 +88,7 @@
                                                               :on_visual true})}]
          [[:FocusGained :TermClose :TermLeave] {:command "checktime"}]
          [[:BufEnter] {:callback #(set vim.opt.formatoptions (- vim.opt.formatoptions "o"))}]
+         [[:FileType] {:pattern "cpp" :command "set cinkeys-=:"}]
          [[:WinClosed] {:nested true
                         :command "if expand('<amatch>') == win_getid() | wincmd p | endif"}])
 
@@ -95,7 +96,7 @@
   (set vim.o.guifont "JetBrainsMonoMedium NF,JetBrainsMono Nerd Font Propo:h13")
   (set vim.g.neovide_confirm_quit false)
   (set vim.g.neovide_fullscreen true)
-  (set vim.g.neovide_scroll_animation_length 0.5)
+  ; (set vim.g.neovide_scroll_animation_length 0.5)
   (set vim.g.neovide_hide_mouse_when_typing true)
   (set vim.g.neovide_unlink_border_highlights true)
   (set vim.g.neovide_refresh_rate 60)

@@ -1,5 +1,4 @@
-(let [paredit (require "nvim-paredit")
-      paredit-fennel (require "nvim-paredit-fennel")]
+(let [paredit (require "nvim-paredit")]
   (paredit.setup {:keys {:<localleader>w [#(paredit.cursor.place_cursor
                                              (paredit.wrap.wrap_element_under_cursor "( " ")")
                                              {:placement "inner_start"
@@ -19,5 +18,4 @@
                                              (paredit.wrap.wrap_enclosing_form_under_cursor "(" " )")
                                              {:placement "inner_end"
                                               :mode "insert"})
-                                          "Wrap form insert tail"]}})
-  (paredit-fennel.setup))
+                                          "Wrap form insert tail"]}}))

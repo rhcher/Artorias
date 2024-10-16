@@ -21,10 +21,9 @@ local function find_string_start(line, end_quote_pos)
     elseif (true and (_2_ == "maybe-quote")) then
       local _ = _1_
       state = "end"
-    elseif true then
+    else
       local _ = _1_
       state = "in-string"
-    else
     end
   end
   return quote_pos
@@ -97,11 +96,12 @@ local function indent_type(stack, lines, line_num)
       return "call", (pos - 1), fn_name
     end
   else
-    local function _13_()
+    local and_13_ = true
+    if and_13_ then
       local _ = _9_
-      return (line_num > 1)
+      and_13_ = (line_num > 1)
     end
-    if (true and _13_()) then
+    if and_13_ then
       local _ = _9_
       return indent_type(stack, lines, (line_num - 1))
     else
@@ -114,22 +114,20 @@ local function fennel_indentexpr(line_num)
   if (line_num == 1) then
     return 0
   else
-    local _15_, _16_, _17_ = indent_type({}, lines, (line_num - 1))
-    if ((_15_ == "table") and (nil ~= _16_)) then
-      local delimiter_pos = _16_
+    local _16_, _17_, _18_ = indent_type({}, lines, (line_num - 1))
+    if ((_16_ == "table") and (nil ~= _17_)) then
+      local delimiter_pos = _17_
       return delimiter_pos
-    elseif ((_15_ == "special") and (nil ~= _16_)) then
-      local prev_indent = _16_
+    elseif ((_16_ == "special") and (nil ~= _17_)) then
+      local prev_indent = _17_
       return (prev_indent + 2)
-    elseif ((_15_ == "call") and (nil ~= _16_) and (nil ~= _17_)) then
-      local prev_indent = _16_
-      local fn_name = _17_
+    elseif ((_16_ == "call") and (nil ~= _17_) and (nil ~= _18_)) then
+      local prev_indent = _17_
+      local fn_name = _18_
       return (prev_indent + #fn_name + 2)
-    elseif true then
-      local _ = _15_
-      return 0
     else
-      return nil
+      local _ = _16_
+      return 0
     end
   end
 end
@@ -138,8 +136,8 @@ local function fennel_local()
   vim.opt_local.indentexpr = "v:lua.require(\"dotfiles.indentation\").fennel_indentexpr(v:lnum)"
   return nil
 end
-local function _20_()
+local function _21_()
   return fennel_local()
 end
-vim.api.nvim_create_autocmd({"FileType"}, {pattern = "fennel", callback = _20_})
+vim.api.nvim_create_autocmd({"FileType"}, {pattern = "fennel", callback = _21_})
 return {indent_type = indent_type, fennel_indentexpr = fennel_indentexpr}

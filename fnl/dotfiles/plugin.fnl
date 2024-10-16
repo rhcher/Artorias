@@ -37,7 +37,8 @@
 
 (use
   "folke/lazy.nvim" {:event "VeryLazy"}
-  "Olical/nfnl" {:lazy false}
+  "Olical/nfnl" {:lazy false
+                 :branch "main"}
   "Olical/conjure" {:lazy false
                     :branch "develop"
                     :mod "conjure"}
@@ -46,20 +47,19 @@
   "rhcher/srcery.nvim" {:lazy false
                         :priority 1000
                         :config #(vim.cmd.colorscheme "srcery")}
-  "metalelf0/jellybeans-nvim" {:lazy false
-                               :priority 1000}
-  "rktjmp/lush.nvim" {:lazy false}
-  "rhcher/vim-paper" {:priority 1000
-                      :config #(vim.cmd.colorscheme "paper")}
-  "rebelot/kanagawa.nvim" {:priority 1000}
+  ; "metalelf0/jellybeans-nvim" {:lazy false
+  ;                              :priority 1000}
+  ; "rktjmp/lush.nvim" {:lazy false}
+  ; "rhcher/vim-paper" {:priority 1000
+  ;                     :config #(vim.cmd.colorscheme "paper")}
+  ; "rebelot/kanagawa.nvim" {:priority 1000}
   "nvim-lualine/lualine.nvim" {:event "VeryLazy"
                                :config true
                                :dependencies "nvim-tree/nvim-web-devicons"}
-  "nvimdev/whiskyline.nvim" {:event "VimEnter"
-                             :cond false
-                             :opts {:bg "#2a2a47"}
-                                    ; :bg "#f2de91"}
-                             :dependencies ["nvim-tree/nvim-web-devicons"]}
+  ; "nvimdev/whiskyline.nvim" {:event "VimEnter"
+  ;                            :opts {:bg "#2a2a47"
+  ;                                   :bg "#f2de91"}
+  ;                            :dependencies ["nvim-tree/nvim-web-devicons"]}
   "junegunn/fzf" {:event "VeryLazy" :build "./install --bin"}
   "karb94/neoscroll.nvim" {:event "VeryLazy"
                            :cond false
@@ -71,12 +71,12 @@
                                    ["<leader>xc" "<cmd>lua require('substitute.exchange').cancel()<cr>"]]}
   "rcarriga/nvim-notify" {:keys [{1 "<leader>un"
                                   2 #((. (require "notify") :dismiss) {:silent true :pending true})}]
-                          :cond false
                           :opts {:timeout 3000
                                  :background_colour "#000000"
                                  :max_height (fn [] (math.floor (* vim.o.lines 0.75)))
                                  :max_width (fn [] (math.floor (* vim.o.columns 0.75)))}}
   "folke/noice.nvim" {:event "VeryLazy"
+                      :cond false
                       :dependencies ["MunifTanjim/nui.nvim"]
                       :keys [{1 "<S-Enter>"
                               2 #((. (require "noice") :redirect) (vim.fn.getcmdline))
@@ -100,7 +100,12 @@
   "harrygallagher4/nvim-parinfer-rust" {:ft util.lisp-language
                                         :config #(vim.api.nvim_create_autocmd "VimEnter"
                                                                               {:callback #((. (require "parinfer") :setup))})}
-  "hrsh7th/nvim-cmp" {:version false
+
+  ; "saghen/blink.cmp" {:lazy false
+  ;                     :version "v0.*"
+  ;                     :opts {:highlight {:use_nvim_cmp_as_default true}}}
+  "yioneko/nvim-cmp" {:version false
+                      :branch "perf"
                       :event ["InsertEnter"]
                       :dependencies ["hrsh7th/cmp-nvim-lsp"
                                      "hrsh7th/cmp-buffer"
@@ -109,9 +114,9 @@
                                      "hrsh7th/cmp-cmdline"
                                      "onsails/lspkind-nvim"
                                      "dcampos/nvim-snippy"]
-                      :mod "cmp"}
-  "onsails/lspkind-nvim" {:event "LspAttach"}
+                      :mod "completion"}
   "hrsh7th/cmp-cmdline" {:event "CmdlineEnter"}
+  "onsails/lspkind-nvim" {:event "LspAttach"}
   "dcampos/nvim-snippy" {:config
                          #(let [snippy (require :snippy)]
                             (map [:i :s] :<C-l> #(if (snippy.can_jump 1)
@@ -120,7 +125,8 @@
                             (map [:i :s] :<C-h> #(if (snippy.can_jump -1)
                                                   "<Plug>(snippy-previous)"
                                                   "<ESC>I") {:expr true}))}
-  "neovim/nvim-lspconfig" {:dependencies ["hrsh7th/cmp-nvim-lsp"]
+  "neovim/nvim-lspconfig" {
+                           :dependencies ["hrsh7th/cmp-nvim-lsp"]
                            :lazy false
                            :mod "nvim-lspconfig"}
   "mfussenegger/nvim-dap" {:lazy false
@@ -156,6 +162,7 @@
                             :event "VeryLazy"
                             :opts {}}
   "ibhagwan/fzf-lua" {:cmd "FzfLua"
+                      :commit "eb63a4bbfd203942737f76d4cf5424f6fb016a9d"
                       :dependencies ["nvim-tree/nvim-web-devicons"]
                       :opts {:winopts {:split "bot new"
                                        :border "single"}
@@ -179,8 +186,6 @@
                      :dependencies ["tpope/vim-fugitive"]}
   "julienvincent/nvim-paredit" {:ft util.lisp-language
                                 :mod "nvim-paredit"}
-  "julienvincent/nvim-paredit-fennel" {:ft [:fennel]
-                                       :dependencies "julienvincent/nvim-paredit"}
   "svban/YankAssassin.vim" {:event "VeryLazy"}
   "kana/vim-textobj-user" {:event "VeryLazy"
                            :dependencies ["glts/vim-textobj-comment"]}
@@ -244,7 +249,8 @@
                                                                          :find #(config.get_selection {:motion "a)"})
                                                                          :delete "^(. ?)().-( ?.)()$"}}}))}
   "mhinz/vim-grepper" {:keys ["gs"] :mod "grepper"}
-  "lewis6991/gitsigns.nvim" {:event ["BufReadPre" "BufNewFile"] :mod "gitsigns"}
+  "lewis6991/gitsigns.nvim" {:event ["BufReadPre" "BufNewFile"]
+                             :mod "gitsigns"}
   "akinsho/nvim-toggleterm.lua" {:keys ["<leader>ot" "<leader>oT"]
                                  :mod "terminal"}
   "folke/flash.nvim" {:event "VeryLazy"
@@ -278,6 +284,7 @@
   "dhruvasagar/vim-table-mode" {:cmd "TableModeToggle"
                                 :init #(set vim.g.table_mode_corner "|")}
   "nvimdev/dashboard-nvim" {:event "VimEnter"
+                            :cond false
                             :mod "dashboard"
                             :dependencies ["nvim-tree/nvim-web-devicons"]}
   "gbprod/cutlass.nvim" {:event "VeryLazy"
@@ -300,4 +307,14 @@
                  :opts {:timeout 200}}
   "willothy/flatten.nvim" {:lazy false
                            :config true
-                           :priority 1001})
+                           :priority 1001}
+  "Julian/lean.nvim" {:event ["BufReadPre *.lean" "BufNewFile *.lean"]
+                      :dependencies ["neovim/nvim-lspconfig"
+                                     "nvim-lua/plenary.nvim"]
+                      :opts {:lsp {}
+                             :mappings true}}
+  "MeanderingProgrammer/markdown.nvim" {:main "render-markdown"
+                                        :lazy false
+                                        :opts {}
+                                        :name "render-markdown"
+                                        :dependencies ["nvim-treesitter/nvim-treesitter"]})

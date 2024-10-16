@@ -1,6 +1,7 @@
 -- [nfnl] Compiled from init.fnl by https://github.com/Olical/nfnl, do not edit.
 vim.loader.enable()
 local lazypath = (vim.fn.stdpath("data") .. "/lazy")
+vim.lsp.log.set_level(vim.log.levels.OFF)
 local function ensure(user, repo)
   local install_path = string.format("%s/%s", lazypath, repo)
   if (vim.fn.empty(vim.fn.glob(install_path)) > 0) then

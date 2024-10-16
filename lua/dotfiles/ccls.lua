@@ -34,7 +34,7 @@ local function navigate(n)
   local params
   do
     local param = util.make_position_params()
-    do end (param)["direction"] = n
+    param["direction"] = n
     params = param
   end
   return vim.lsp.buf_request(0, "$ccls/navigate", params, handler0)
@@ -57,7 +57,7 @@ local function ccls_fileInfo()
   local params
   do
     local param = util.make_text_document_params(0)
-    do end (param)["dependencies"] = true
+    param["dependencies"] = true
     param["includes"] = true
     param["skipped_ranges"] = true
     params = param
@@ -70,18 +70,15 @@ local function call(title)
   local params
   do
     local param = util.make_position_params()
-    local _10_
-    do
-      local _9_ = title
-      if (_9_ == "caller") then
-        _10_ = false
-      elseif (_9_ == "callee") then
-        _10_ = true
-      else
-        _10_ = nil
-      end
+    local _9_
+    if (title == "caller") then
+      _9_ = false
+    elseif (title == "callee") then
+      _9_ = true
+    else
+      _9_ = nil
     end
-    param["callee"] = _10_
+    param["callee"] = _9_
     params = param
   end
   print(title)
@@ -92,22 +89,19 @@ local function ccls_var(title)
   local params
   do
     local param = util.make_position_params()
-    local _15_
-    do
-      local _14_ = title
-      if (_14_ == "field") then
-        _15_ = 1
-      elseif (_14_ == "local") then
-        _15_ = 2
-      elseif (_14_ == "fieldOrLocal") then
-        _15_ = 3
-      elseif (_14_ == "parameter") then
-        _15_ = 4
-      else
-        _15_ = nil
-      end
+    local _13_
+    if (title == "field") then
+      _13_ = 1
+    elseif (title == "local") then
+      _13_ = 2
+    elseif (title == "fieldOrLocal") then
+      _13_ = 3
+    elseif (title == "parameter") then
+      _13_ = 4
+    else
+      _13_ = nil
     end
-    param["kind"] = _15_
+    param["kind"] = _13_
     params = param
   end
   print(title)
@@ -118,20 +112,17 @@ local function member(title)
   local params
   do
     local param = util.make_position_params()
-    local _22_
-    do
-      local _21_ = title
-      if (_21_ == "variables") then
-        _22_ = 4
-      elseif (_21_ == "functions") then
-        _22_ = 3
-      elseif (_21_ == "types") then
-        _22_ = 2
-      else
-        _22_ = nil
-      end
+    local _19_
+    if (title == "variables") then
+      _19_ = 4
+    elseif (title == "functions") then
+      _19_ = 3
+    elseif (title == "types") then
+      _19_ = 2
+    else
+      _19_ = nil
     end
-    param["kind"] = _22_
+    param["kind"] = _19_
     params = param
   end
   print(("Class " .. title))
@@ -142,18 +133,15 @@ local function inheritance(title)
   local params
   do
     local param = util.make_position_params()
-    local _28_
-    do
-      local _27_ = title
-      if (_27_ == "base") then
-        _28_ = false
-      elseif (_27_ == "derived") then
-        _28_ = true
-      else
-        _28_ = nil
-      end
+    local _24_
+    if (title == "base") then
+      _24_ = false
+    elseif (title == "derived") then
+      _24_ = true
+    else
+      _24_ = nil
     end
-    param["derived"] = _28_
+    param["derived"] = _24_
     params = param
   end
   print(title)
@@ -164,20 +152,17 @@ local function extend_ref(role)
   local params
   do
     local param = util.make_position_params()
-    local _33_
-    do
-      local _32_ = role
-      if (_32_ == "read") then
-        _33_ = 8
-      elseif (_32_ == "write") then
-        _33_ = 16
-      elseif (_32_ == "macro") then
-        _33_ = 64
-      else
-        _33_ = nil
-      end
+    local _28_
+    if (role == "read") then
+      _28_ = 8
+    elseif (role == "write") then
+      _28_ = 16
+    elseif (role == "macro") then
+      _28_ = 64
+    else
+      _28_ = nil
     end
-    param["role"] = _33_
+    param["role"] = _28_
     param["excludeRole"] = 32
     params = param
   end
@@ -185,107 +170,119 @@ local function extend_ref(role)
   return vim.lsp.buf_request(0, "textDocument/references", params, handler0)
 end
 local semantic_hightlight_handler
-local function _38_(err, result, ctx, config)
+local function _33_(err, result, ctx, config)
   local client = vim.lsp.get_clients({id = ctx.client_id})
-  local _let_39_ = result
-  local symbols = _let_39_["symbols"]
-  local uri = _let_39_["uri"]
+  local symbols = result["symbols"]
+  local uri = result["uri"]
   local bufnr = vim.uri_to_bufnr(uri)
   local ns = api.nvim_create_namespace("ccls-semantic-hightlights")
   local highlighter
-  local function _40_(symbol, hl_group)
+  local function _34_(symbol, hl_group)
     for _, lsRange in ipairs(symbol.lsRanges) do
       api.nvim_buf_set_extmark(bufnr, ns, lsRange.start.line, lsRange.start.character, {end_row = lsRange["end"].line, end_col = lsRange["end"].character, hl_group = hl_group, priority = 125, strict = false})
     end
     return nil
   end
-  highlighter = _40_
+  highlighter = _34_
   if client then
     api.nvim_buf_clear_namespace(bufnr, ns, 0, -1)
     for _, symbol in ipairs(symbols) do
-      local _41_ = symbol
-      local function _42_()
-        return (symbol.kind == 3)
+      local and_35_ = (symbol == symbol)
+      if and_35_ then
+        and_35_ = (symbol.kind == 3)
       end
-      if ((_41_ == symbol) and _42_()) then
+      if and_35_ then
         highlighter(symbol, "LspCxxHlGroupNamespace")
       else
-        local function _43_()
-          return (symbol.kind == 6)
+        local and_37_ = (symbol == symbol)
+        if and_37_ then
+          and_37_ = (symbol.kind == 6)
         end
-        if ((_41_ == symbol) and _43_()) then
+        if and_37_ then
           highlighter(symbol, "LspCxxHlSymMethod")
         else
-          local function _44_()
-            return (symbol.kind == 9)
+          local and_39_ = (symbol == symbol)
+          if and_39_ then
+            and_39_ = (symbol.kind == 9)
           end
-          if ((_41_ == symbol) and _44_()) then
+          if and_39_ then
             highlighter(symbol, "LspCxxHlSymConstructor")
           else
-            local function _45_()
-              return (symbol.kind == 12)
+            local and_41_ = (symbol == symbol)
+            if and_41_ then
+              and_41_ = (symbol.kind == 12)
             end
-            if ((_41_ == symbol) and _45_()) then
+            if and_41_ then
               highlighter(symbol, "LspCxxHlSymFunction")
             else
-              local function _46_()
-                return (symbol.kind == 254)
+              local and_43_ = (symbol == symbol)
+              if and_43_ then
+                and_43_ = (symbol.kind == 254)
               end
-              if ((_41_ == symbol) and _46_()) then
+              if and_43_ then
                 highlighter(symbol, "LspCxxHlSymStaticMethod")
               else
-                local function _47_()
-                  return (symbol.kind == 13)
+                local and_45_ = (symbol == symbol)
+                if and_45_ then
+                  and_45_ = (symbol.kind == 13)
                 end
-                if ((_41_ == symbol) and _47_()) then
+                if and_45_ then
                   highlighter(symbol, "LspCxxHlSymVariable")
                 else
-                  local function _48_()
-                    return (symbol.kind == 253)
+                  local and_47_ = (symbol == symbol)
+                  if and_47_ then
+                    and_47_ = (symbol.kind == 253)
                   end
-                  if ((_41_ == symbol) and _48_()) then
+                  if and_47_ then
                     highlighter(symbol, "LspCxxHlSymParameter")
                   else
-                    local function _49_()
-                      return ((symbol.kind == 5) or (symbol.kind == 23))
+                    local and_49_ = (symbol == symbol)
+                    if and_49_ then
+                      and_49_ = ((symbol.kind == 5) or (symbol.kind == 23))
                     end
-                    if ((_41_ == symbol) and _49_()) then
+                    if and_49_ then
                       highlighter(symbol, "LspCxxHlSymStruct")
                     else
-                      local function _50_()
-                        return (symbol.kind == 10)
+                      local and_51_ = (symbol == symbol)
+                      if and_51_ then
+                        and_51_ = (symbol.kind == 10)
                       end
-                      if ((_41_ == symbol) and _50_()) then
+                      if and_51_ then
                         highlighter(symbol, "LspCxxHlSymEnum")
                       else
-                        local function _51_()
-                          return (symbol.kind == 252)
+                        local and_53_ = (symbol == symbol)
+                        if and_53_ then
+                          and_53_ = (symbol.kind == 252)
                         end
-                        if ((_41_ == symbol) and _51_()) then
+                        if and_53_ then
                           highlighter(symbol, "LspCxxHlSymTypeAlias")
                         else
-                          local function _52_()
-                            return (symbol.kind == 26)
+                          local and_55_ = (symbol == symbol)
+                          if and_55_ then
+                            and_55_ = (symbol.kind == 26)
                           end
-                          if ((_41_ == symbol) and _52_()) then
+                          if and_55_ then
                             highlighter(symbol, "LspCxxHlSymTypeParameter")
                           else
-                            local function _53_()
-                              return (symbol.kind == 8)
+                            local and_57_ = (symbol == symbol)
+                            if and_57_ then
+                              and_57_ = (symbol.kind == 8)
                             end
-                            if ((_41_ == symbol) and _53_()) then
+                            if and_57_ then
                               highlighter(symbol, "LspCxxHlSymField")
                             else
-                              local function _54_()
-                                return (symbol.kind == 22)
+                              local and_59_ = (symbol == symbol)
+                              if and_59_ then
+                                and_59_ = (symbol.kind == 22)
                               end
-                              if ((_41_ == symbol) and _54_()) then
+                              if and_59_ then
                                 highlighter(symbol, "LspCxxHlSymEnumMember")
                               else
-                                local function _55_()
-                                  return (symbol.kind == 255)
+                                local and_61_ = (symbol == symbol)
+                                if and_61_ then
+                                  and_61_ = (symbol.kind == 255)
                                 end
-                                if ((_41_ == symbol) and _55_()) then
+                                if and_61_ then
                                   highlighter(symbol, "LspCxxHlSymMacro")
                                 else
                                 end
@@ -308,25 +305,25 @@ local function _38_(err, result, ctx, config)
     return nil
   end
 end
-semantic_hightlight_handler = _38_
+semantic_hightlight_handler = _33_
 local skipped_ranges_handler
-local function _58_(err, result, ctx, config)
+local function _65_(err, result, ctx, config)
   local client = vim.lsp.get_clients({id = ctx.client_id})
   local ns = api.nvim_create_namespace("lsp-skipped-ranges-handler")
   if (client and result) then
-    local _59_ = result
-    local function _60_()
-      local skippedRanges = (_59_).skippedRanges
-      local uri = (_59_).uri
-      return (#skippedRanges == 0)
+    local and_66_ = ((_G.type(result) == "table") and (nil ~= result.skippedRanges) and (nil ~= result.uri))
+    if and_66_ then
+      local skippedRanges = result.skippedRanges
+      local uri = result.uri
+      and_66_ = (#skippedRanges == 0)
     end
-    if (((_G.type(_59_) == "table") and (nil ~= (_59_).skippedRanges) and (nil ~= (_59_).uri)) and _60_()) then
-      local skippedRanges = (_59_).skippedRanges
-      local uri = (_59_).uri
+    if and_66_ then
+      local skippedRanges = result.skippedRanges
+      local uri = result.uri
       return api.nvim_buf_clear_namespace(vim.uri_to_bufnr(uri), ns, 0, -1)
-    elseif ((_G.type(_59_) == "table") and (nil ~= (_59_).skippedRanges) and (nil ~= (_59_).uri)) then
-      local skippedRanges = (_59_).skippedRanges
-      local uri = (_59_).uri
+    elseif ((_G.type(result) == "table") and (nil ~= result.skippedRanges) and (nil ~= result.uri)) then
+      local skippedRanges = result.skippedRanges
+      local uri = result.uri
       for _, lsRange in ipairs(skippedRanges) do
         api.nvim_buf_set_extmark(vim.uri_to_bufnr(uri), ns, lsRange.start.line, lsRange.start.character, {end_row = lsRange["end"].line, end_col = lsRange["end"].character, hl_group = "Comment", priority = 126})
       end
@@ -338,5 +335,5 @@ local function _58_(err, result, ctx, config)
     return nil
   end
 end
-skipped_ranges_handler = _58_
+skipped_ranges_handler = _65_
 return {navigate = navigate, ccls_info = ccls_info, ccls_fileInfo = ccls_fileInfo, call = call, ccls_var = ccls_var, member = member, inheritance = inheritance, extend_ref = extend_ref, ["semantic-hightlight-handler"] = semantic_hightlight_handler, ["skipped-ranges-handler"] = skipped_ranges_handler}

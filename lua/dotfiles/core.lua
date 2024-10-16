@@ -39,12 +39,12 @@ vim.opt.laststatus = 3
 vim.opt.redrawtime = 150
 vim.opt.listchars = {nbsp = "\226\166\184", extends = "\194\187", precedes = "\194\171", tab = "->", trail = "\226\128\162"}
 vim.opt.fillchars = "eob: ,fold: ,foldopen:\239\145\188,foldsep: ,foldclose:\239\145\160"
-do end (vim.opt.fillchars):append({diff = "\226\149\177"})
+vim.opt.fillchars:append({diff = "\226\149\177"})
 vim.opt.foldcolumn = "1"
 vim.opt.foldlevel = 99
 vim.opt.foldlevelstart = 99
 vim.opt.foldenable = true
-vim.opt.splitkeep = "topline"
+vim.opt.splitkeep = "screen"
 vim.opt.winwidth = 10
 vim.opt.winminwidth = 10
 vim.opt.equalalways = false
@@ -71,13 +71,13 @@ do
     return nil
   end
   vim.api.nvim_create_autocmd({"BufEnter"}, {callback = _3_, group = group})
+  vim.api.nvim_create_autocmd({"FileType"}, {pattern = "cpp", command = "set cinkeys-=:", group = group})
   vim.api.nvim_create_autocmd({"WinClosed"}, {nested = true, command = "if expand('<amatch>') == win_getid() | wincmd p | endif", group = group})
 end
 if vim.g.neovide then
   vim.o.guifont = "JetBrainsMonoMedium NF,JetBrainsMono Nerd Font Propo:h13"
   vim.g.neovide_confirm_quit = false
   vim.g.neovide_fullscreen = true
-  vim.g.neovide_scroll_animation_length = 0.5
   vim.g.neovide_hide_mouse_when_typing = true
   vim.g.neovide_unlink_border_highlights = true
   vim.g.neovide_refresh_rate = 60

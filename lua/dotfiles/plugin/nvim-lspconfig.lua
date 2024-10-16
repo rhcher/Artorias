@@ -8,15 +8,15 @@ local function clangd_on_attach(_, bufnr)
   local myclangd = require("dotfiles.clangd")
   local opts_1_auto
   do
-    local tbl_14_auto = {}
+    local tbl_16_auto = {}
     for k_2_auto, v_3_auto in pairs(({buffer = bufnr} or {})) do
-      local k_15_auto, v_16_auto = k_2_auto, v_3_auto
-      if ((k_15_auto ~= nil) and (v_16_auto ~= nil)) then
-        tbl_14_auto[k_15_auto] = v_16_auto
+      local k_17_auto, v_18_auto = k_2_auto, v_3_auto
+      if ((k_17_auto ~= nil) and (v_18_auto ~= nil)) then
+        tbl_16_auto[k_17_auto] = v_18_auto
       else
       end
     end
-    opts_1_auto = tbl_14_auto
+    opts_1_auto = tbl_16_auto
   end
   if (opts_1_auto.noremap == nil) then
     opts_1_auto.noremap = true
@@ -36,15 +36,15 @@ local function ccls_on_attach(_, bufnr)
   do
     local opts_1_auto
     do
-      local tbl_14_auto = {}
+      local tbl_16_auto = {}
       for k_2_auto, v_3_auto in pairs(({buffer = bufnr} or {})) do
-        local k_15_auto, v_16_auto = k_2_auto, v_3_auto
-        if ((k_15_auto ~= nil) and (v_16_auto ~= nil)) then
-          tbl_14_auto[k_15_auto] = v_16_auto
+        local k_17_auto, v_18_auto = k_2_auto, v_3_auto
+        if ((k_17_auto ~= nil) and (v_18_auto ~= nil)) then
+          tbl_16_auto[k_17_auto] = v_18_auto
         else
         end
       end
-      opts_1_auto = tbl_14_auto
+      opts_1_auto = tbl_16_auto
     end
     if (opts_1_auto.noremap == nil) then
       opts_1_auto.noremap = true
@@ -62,15 +62,15 @@ local function ccls_on_attach(_, bufnr)
   do
     local opts_1_auto
     do
-      local tbl_14_auto = {}
+      local tbl_16_auto = {}
       for k_2_auto, v_3_auto in pairs(({buffer = bufnr} or {})) do
-        local k_15_auto, v_16_auto = k_2_auto, v_3_auto
-        if ((k_15_auto ~= nil) and (v_16_auto ~= nil)) then
-          tbl_14_auto[k_15_auto] = v_16_auto
+        local k_17_auto, v_18_auto = k_2_auto, v_3_auto
+        if ((k_17_auto ~= nil) and (v_18_auto ~= nil)) then
+          tbl_16_auto[k_17_auto] = v_18_auto
         else
         end
       end
-      opts_1_auto = tbl_14_auto
+      opts_1_auto = tbl_16_auto
     end
     if (opts_1_auto.noremap == nil) then
       opts_1_auto.noremap = true
@@ -88,15 +88,15 @@ local function ccls_on_attach(_, bufnr)
   do
     local opts_1_auto
     do
-      local tbl_14_auto = {}
+      local tbl_16_auto = {}
       for k_2_auto, v_3_auto in pairs(({buffer = bufnr} or {})) do
-        local k_15_auto, v_16_auto = k_2_auto, v_3_auto
-        if ((k_15_auto ~= nil) and (v_16_auto ~= nil)) then
-          tbl_14_auto[k_15_auto] = v_16_auto
+        local k_17_auto, v_18_auto = k_2_auto, v_3_auto
+        if ((k_17_auto ~= nil) and (v_18_auto ~= nil)) then
+          tbl_16_auto[k_17_auto] = v_18_auto
         else
         end
       end
-      opts_1_auto = tbl_14_auto
+      opts_1_auto = tbl_16_auto
     end
     if (opts_1_auto.noremap == nil) then
       opts_1_auto.noremap = true
@@ -114,15 +114,15 @@ local function ccls_on_attach(_, bufnr)
   do
     local opts_1_auto
     do
-      local tbl_14_auto = {}
+      local tbl_16_auto = {}
       for k_2_auto, v_3_auto in pairs(({buffer = bufnr} or {})) do
-        local k_15_auto, v_16_auto = k_2_auto, v_3_auto
-        if ((k_15_auto ~= nil) and (v_16_auto ~= nil)) then
-          tbl_14_auto[k_15_auto] = v_16_auto
+        local k_17_auto, v_18_auto = k_2_auto, v_3_auto
+        if ((k_17_auto ~= nil) and (v_18_auto ~= nil)) then
+          tbl_16_auto[k_17_auto] = v_18_auto
         else
         end
       end
-      opts_1_auto = tbl_14_auto
+      opts_1_auto = tbl_16_auto
     end
     if (opts_1_auto.noremap == nil) then
       opts_1_auto.noremap = true
@@ -140,15 +140,15 @@ local function ccls_on_attach(_, bufnr)
   do
     local opts_1_auto
     do
-      local tbl_14_auto = {}
+      local tbl_16_auto = {}
       for k_2_auto, v_3_auto in pairs(({buffer = bufnr} or {})) do
-        local k_15_auto, v_16_auto = k_2_auto, v_3_auto
-        if ((k_15_auto ~= nil) and (v_16_auto ~= nil)) then
-          tbl_14_auto[k_15_auto] = v_16_auto
+        local k_17_auto, v_18_auto = k_2_auto, v_3_auto
+        if ((k_17_auto ~= nil) and (v_18_auto ~= nil)) then
+          tbl_16_auto[k_17_auto] = v_18_auto
         else
         end
       end
-      opts_1_auto = tbl_14_auto
+      opts_1_auto = tbl_16_auto
     end
     if (opts_1_auto.noremap == nil) then
       opts_1_auto.noremap = true
@@ -166,15 +166,15 @@ local function ccls_on_attach(_, bufnr)
   do
     local opts_1_auto
     do
-      local tbl_14_auto = {}
+      local tbl_16_auto = {}
       for k_2_auto, v_3_auto in pairs(({buffer = bufnr} or {})) do
-        local k_15_auto, v_16_auto = k_2_auto, v_3_auto
-        if ((k_15_auto ~= nil) and (v_16_auto ~= nil)) then
-          tbl_14_auto[k_15_auto] = v_16_auto
+        local k_17_auto, v_18_auto = k_2_auto, v_3_auto
+        if ((k_17_auto ~= nil) and (v_18_auto ~= nil)) then
+          tbl_16_auto[k_17_auto] = v_18_auto
         else
         end
       end
-      opts_1_auto = tbl_14_auto
+      opts_1_auto = tbl_16_auto
     end
     if (opts_1_auto.noremap == nil) then
       opts_1_auto.noremap = true
@@ -192,15 +192,15 @@ local function ccls_on_attach(_, bufnr)
   do
     local opts_1_auto
     do
-      local tbl_14_auto = {}
+      local tbl_16_auto = {}
       for k_2_auto, v_3_auto in pairs(({buffer = bufnr} or {})) do
-        local k_15_auto, v_16_auto = k_2_auto, v_3_auto
-        if ((k_15_auto ~= nil) and (v_16_auto ~= nil)) then
-          tbl_14_auto[k_15_auto] = v_16_auto
+        local k_17_auto, v_18_auto = k_2_auto, v_3_auto
+        if ((k_17_auto ~= nil) and (v_18_auto ~= nil)) then
+          tbl_16_auto[k_17_auto] = v_18_auto
         else
         end
       end
-      opts_1_auto = tbl_14_auto
+      opts_1_auto = tbl_16_auto
     end
     if (opts_1_auto.noremap == nil) then
       opts_1_auto.noremap = true
@@ -218,15 +218,15 @@ local function ccls_on_attach(_, bufnr)
   do
     local opts_1_auto
     do
-      local tbl_14_auto = {}
+      local tbl_16_auto = {}
       for k_2_auto, v_3_auto in pairs(({buffer = bufnr} or {})) do
-        local k_15_auto, v_16_auto = k_2_auto, v_3_auto
-        if ((k_15_auto ~= nil) and (v_16_auto ~= nil)) then
-          tbl_14_auto[k_15_auto] = v_16_auto
+        local k_17_auto, v_18_auto = k_2_auto, v_3_auto
+        if ((k_17_auto ~= nil) and (v_18_auto ~= nil)) then
+          tbl_16_auto[k_17_auto] = v_18_auto
         else
         end
       end
-      opts_1_auto = tbl_14_auto
+      opts_1_auto = tbl_16_auto
     end
     if (opts_1_auto.noremap == nil) then
       opts_1_auto.noremap = true
@@ -244,15 +244,15 @@ local function ccls_on_attach(_, bufnr)
   do
     local opts_1_auto
     do
-      local tbl_14_auto = {}
+      local tbl_16_auto = {}
       for k_2_auto, v_3_auto in pairs(({buffer = bufnr} or {})) do
-        local k_15_auto, v_16_auto = k_2_auto, v_3_auto
-        if ((k_15_auto ~= nil) and (v_16_auto ~= nil)) then
-          tbl_14_auto[k_15_auto] = v_16_auto
+        local k_17_auto, v_18_auto = k_2_auto, v_3_auto
+        if ((k_17_auto ~= nil) and (v_18_auto ~= nil)) then
+          tbl_16_auto[k_17_auto] = v_18_auto
         else
         end
       end
-      opts_1_auto = tbl_14_auto
+      opts_1_auto = tbl_16_auto
     end
     if (opts_1_auto.noremap == nil) then
       opts_1_auto.noremap = true
@@ -270,15 +270,15 @@ local function ccls_on_attach(_, bufnr)
   do
     local opts_1_auto
     do
-      local tbl_14_auto = {}
+      local tbl_16_auto = {}
       for k_2_auto, v_3_auto in pairs(({buffer = bufnr} or {})) do
-        local k_15_auto, v_16_auto = k_2_auto, v_3_auto
-        if ((k_15_auto ~= nil) and (v_16_auto ~= nil)) then
-          tbl_14_auto[k_15_auto] = v_16_auto
+        local k_17_auto, v_18_auto = k_2_auto, v_3_auto
+        if ((k_17_auto ~= nil) and (v_18_auto ~= nil)) then
+          tbl_16_auto[k_17_auto] = v_18_auto
         else
         end
       end
-      opts_1_auto = tbl_14_auto
+      opts_1_auto = tbl_16_auto
     end
     if (opts_1_auto.noremap == nil) then
       opts_1_auto.noremap = true
@@ -296,15 +296,15 @@ local function ccls_on_attach(_, bufnr)
   do
     local opts_1_auto
     do
-      local tbl_14_auto = {}
+      local tbl_16_auto = {}
       for k_2_auto, v_3_auto in pairs(({buffer = bufnr} or {})) do
-        local k_15_auto, v_16_auto = k_2_auto, v_3_auto
-        if ((k_15_auto ~= nil) and (v_16_auto ~= nil)) then
-          tbl_14_auto[k_15_auto] = v_16_auto
+        local k_17_auto, v_18_auto = k_2_auto, v_3_auto
+        if ((k_17_auto ~= nil) and (v_18_auto ~= nil)) then
+          tbl_16_auto[k_17_auto] = v_18_auto
         else
         end
       end
-      opts_1_auto = tbl_14_auto
+      opts_1_auto = tbl_16_auto
     end
     if (opts_1_auto.noremap == nil) then
       opts_1_auto.noremap = true
@@ -322,15 +322,15 @@ local function ccls_on_attach(_, bufnr)
   do
     local opts_1_auto
     do
-      local tbl_14_auto = {}
+      local tbl_16_auto = {}
       for k_2_auto, v_3_auto in pairs(({buffer = bufnr} or {})) do
-        local k_15_auto, v_16_auto = k_2_auto, v_3_auto
-        if ((k_15_auto ~= nil) and (v_16_auto ~= nil)) then
-          tbl_14_auto[k_15_auto] = v_16_auto
+        local k_17_auto, v_18_auto = k_2_auto, v_3_auto
+        if ((k_17_auto ~= nil) and (v_18_auto ~= nil)) then
+          tbl_16_auto[k_17_auto] = v_18_auto
         else
         end
       end
-      opts_1_auto = tbl_14_auto
+      opts_1_auto = tbl_16_auto
     end
     if (opts_1_auto.noremap == nil) then
       opts_1_auto.noremap = true
@@ -348,15 +348,15 @@ local function ccls_on_attach(_, bufnr)
   do
     local opts_1_auto
     do
-      local tbl_14_auto = {}
+      local tbl_16_auto = {}
       for k_2_auto, v_3_auto in pairs(({buffer = bufnr} or {})) do
-        local k_15_auto, v_16_auto = k_2_auto, v_3_auto
-        if ((k_15_auto ~= nil) and (v_16_auto ~= nil)) then
-          tbl_14_auto[k_15_auto] = v_16_auto
+        local k_17_auto, v_18_auto = k_2_auto, v_3_auto
+        if ((k_17_auto ~= nil) and (v_18_auto ~= nil)) then
+          tbl_16_auto[k_17_auto] = v_18_auto
         else
         end
       end
-      opts_1_auto = tbl_14_auto
+      opts_1_auto = tbl_16_auto
     end
     if (opts_1_auto.noremap == nil) then
       opts_1_auto.noremap = true
@@ -374,15 +374,15 @@ local function ccls_on_attach(_, bufnr)
   do
     local opts_1_auto
     do
-      local tbl_14_auto = {}
+      local tbl_16_auto = {}
       for k_2_auto, v_3_auto in pairs(({buffer = bufnr} or {})) do
-        local k_15_auto, v_16_auto = k_2_auto, v_3_auto
-        if ((k_15_auto ~= nil) and (v_16_auto ~= nil)) then
-          tbl_14_auto[k_15_auto] = v_16_auto
+        local k_17_auto, v_18_auto = k_2_auto, v_3_auto
+        if ((k_17_auto ~= nil) and (v_18_auto ~= nil)) then
+          tbl_16_auto[k_17_auto] = v_18_auto
         else
         end
       end
-      opts_1_auto = tbl_14_auto
+      opts_1_auto = tbl_16_auto
     end
     if (opts_1_auto.noremap == nil) then
       opts_1_auto.noremap = true
@@ -400,15 +400,15 @@ local function ccls_on_attach(_, bufnr)
   do
     local opts_1_auto
     do
-      local tbl_14_auto = {}
+      local tbl_16_auto = {}
       for k_2_auto, v_3_auto in pairs(({buffer = bufnr} or {})) do
-        local k_15_auto, v_16_auto = k_2_auto, v_3_auto
-        if ((k_15_auto ~= nil) and (v_16_auto ~= nil)) then
-          tbl_14_auto[k_15_auto] = v_16_auto
+        local k_17_auto, v_18_auto = k_2_auto, v_3_auto
+        if ((k_17_auto ~= nil) and (v_18_auto ~= nil)) then
+          tbl_16_auto[k_17_auto] = v_18_auto
         else
         end
       end
-      opts_1_auto = tbl_14_auto
+      opts_1_auto = tbl_16_auto
     end
     if (opts_1_auto.noremap == nil) then
       opts_1_auto.noremap = true
@@ -426,15 +426,15 @@ local function ccls_on_attach(_, bufnr)
   do
     local opts_1_auto
     do
-      local tbl_14_auto = {}
+      local tbl_16_auto = {}
       for k_2_auto, v_3_auto in pairs(({buffer = bufnr} or {})) do
-        local k_15_auto, v_16_auto = k_2_auto, v_3_auto
-        if ((k_15_auto ~= nil) and (v_16_auto ~= nil)) then
-          tbl_14_auto[k_15_auto] = v_16_auto
+        local k_17_auto, v_18_auto = k_2_auto, v_3_auto
+        if ((k_17_auto ~= nil) and (v_18_auto ~= nil)) then
+          tbl_16_auto[k_17_auto] = v_18_auto
         else
         end
       end
-      opts_1_auto = tbl_14_auto
+      opts_1_auto = tbl_16_auto
     end
     if (opts_1_auto.noremap == nil) then
       opts_1_auto.noremap = true
@@ -452,15 +452,15 @@ local function ccls_on_attach(_, bufnr)
   do
     local opts_1_auto
     do
-      local tbl_14_auto = {}
+      local tbl_16_auto = {}
       for k_2_auto, v_3_auto in pairs(({buffer = bufnr} or {})) do
-        local k_15_auto, v_16_auto = k_2_auto, v_3_auto
-        if ((k_15_auto ~= nil) and (v_16_auto ~= nil)) then
-          tbl_14_auto[k_15_auto] = v_16_auto
+        local k_17_auto, v_18_auto = k_2_auto, v_3_auto
+        if ((k_17_auto ~= nil) and (v_18_auto ~= nil)) then
+          tbl_16_auto[k_17_auto] = v_18_auto
         else
         end
       end
-      opts_1_auto = tbl_14_auto
+      opts_1_auto = tbl_16_auto
     end
     if (opts_1_auto.noremap == nil) then
       opts_1_auto.noremap = true
@@ -478,15 +478,15 @@ local function ccls_on_attach(_, bufnr)
   do
     local opts_1_auto
     do
-      local tbl_14_auto = {}
+      local tbl_16_auto = {}
       for k_2_auto, v_3_auto in pairs(({buffer = bufnr} or {})) do
-        local k_15_auto, v_16_auto = k_2_auto, v_3_auto
-        if ((k_15_auto ~= nil) and (v_16_auto ~= nil)) then
-          tbl_14_auto[k_15_auto] = v_16_auto
+        local k_17_auto, v_18_auto = k_2_auto, v_3_auto
+        if ((k_17_auto ~= nil) and (v_18_auto ~= nil)) then
+          tbl_16_auto[k_17_auto] = v_18_auto
         else
         end
       end
-      opts_1_auto = tbl_14_auto
+      opts_1_auto = tbl_16_auto
     end
     if (opts_1_auto.noremap == nil) then
       opts_1_auto.noremap = true
@@ -504,15 +504,15 @@ local function ccls_on_attach(_, bufnr)
   do
     local opts_1_auto
     do
-      local tbl_14_auto = {}
+      local tbl_16_auto = {}
       for k_2_auto, v_3_auto in pairs(({buffer = bufnr} or {})) do
-        local k_15_auto, v_16_auto = k_2_auto, v_3_auto
-        if ((k_15_auto ~= nil) and (v_16_auto ~= nil)) then
-          tbl_14_auto[k_15_auto] = v_16_auto
+        local k_17_auto, v_18_auto = k_2_auto, v_3_auto
+        if ((k_17_auto ~= nil) and (v_18_auto ~= nil)) then
+          tbl_16_auto[k_17_auto] = v_18_auto
         else
         end
       end
-      opts_1_auto = tbl_14_auto
+      opts_1_auto = tbl_16_auto
     end
     if (opts_1_auto.noremap == nil) then
       opts_1_auto.noremap = true
@@ -530,15 +530,15 @@ local function ccls_on_attach(_, bufnr)
   do
     local opts_1_auto
     do
-      local tbl_14_auto = {}
+      local tbl_16_auto = {}
       for k_2_auto, v_3_auto in pairs(({buffer = bufnr} or {})) do
-        local k_15_auto, v_16_auto = k_2_auto, v_3_auto
-        if ((k_15_auto ~= nil) and (v_16_auto ~= nil)) then
-          tbl_14_auto[k_15_auto] = v_16_auto
+        local k_17_auto, v_18_auto = k_2_auto, v_3_auto
+        if ((k_17_auto ~= nil) and (v_18_auto ~= nil)) then
+          tbl_16_auto[k_17_auto] = v_18_auto
         else
         end
       end
-      opts_1_auto = tbl_14_auto
+      opts_1_auto = tbl_16_auto
     end
     if (opts_1_auto.noremap == nil) then
       opts_1_auto.noremap = true
@@ -557,7 +557,7 @@ local function ccls_on_attach(_, bufnr)
   vim.lsp.handlers["$ccls/publishSemanticHighlight"] = ccls["semantic-hightlight-handler"]
   return nil
 end
-local sumneko_lua_config = {Lua = {diagnostics = {enable = true, globals = {"vim"}}, completion = {callSnippet = "Replace", showWord = "Disable"}, hint = {enable = true}, runtime = {version = "LuaJIT"}, workspace = {checkThirdParty = false}, IntelliSense = {traceLocalSet = true, traceReturn = true, traceBeSetted = true, traceFieldInject = true}, format = {enable = true, defaultConfig = {indent_style = "space", indent_size = "2"}}}}
+local sumneko_lua_config = {Lua = {diagnostics = {enable = true, globals = {"vim"}}, completion = {callSnippet = "Replace", showWord = "Disable"}, hint = {enable = true}, runtime = {version = "LuaJIT"}, workspace = {library = {vim.env.VIMRUNTIME}, checkThirdParty = false}, IntelliSense = {traceLocalSet = true, traceReturn = true, traceBeSetted = true, traceFieldInject = true}, format = {enable = true, defaultConfig = {indent_style = "space", indent_size = "2"}}}}
 local pylsp_config = {pylsp = {plugins = {pylint = {executable = "pylint", enabled = false}, pyflakes = {enabled = false}, pycodestyle = {enabled = false}, jedi_completion = {enabled = true, include_class_objects = true, eager = true, fuzzy = false, include_params = false}, pyls_isort = {enabled = true}, pylsp_mypy = {enabled = true}}}}
 local pyright_config = {python = {analysis = {autoSearchPaths = true, useLibraryCodeForTypes = true, diagnositcMode = "workspace"}}}
 local hls_config = {haskell = {formattingProvider = "ormolu"}}
@@ -569,12 +569,13 @@ local capabilities = cmplsp.default_capabilities()
 capabilities.textDocument.foldingRange = {lineFoldingOnly = true, dynamicRegistration = false}
 if ok_3f then
   lsp.clangd.setup({on_attach = clangd_on_attach, capabilities = capabilities, cmd = {"clangd", "--clang-tidy", "--background-index", "--completion-style=detailed", "--clang-tidy-checks=-*,llvm-*,clang-analyzer-*", "--cross-file-rename", "--header-insertion=never"}, flags = flags})
-  lsp.lua_ls.setup({capabilities = capabilities, cmd = {"/home/rhcher/sources/lua-language-server/bin/lua-language-server"}, settings = sumneko_lua_config, flags = flags})
+  lsp.lua_ls.setup({cmd = {"/home/rhcher/sources/lua-language-server/bin/lua-language-server"}, capabilities = capabilities, settings = sumneko_lua_config, flags = flags})
   lsp.ocamllsp.setup({capabilities = capabilities, flags = flags})
   lsp.vimls.setup({capabilities = capabilities, flags = flags})
   lsp.hls.setup({capabilities = capabilities, settings = hls_config, flags = flags})
   lsp.racket_langserver.setup({capabilities = capabilities, flags = flags})
-  return lsp.pyright.setup({capabilities = capabilities, settings = pyright_config, flags = flags})
+  lsp.pyright.setup({capabilities = capabilities, settings = pyright_config, flags = flags})
+  return lsp.leanls.setup({capabilities = capabilities, flags = flags})
 else
   return nil
 end

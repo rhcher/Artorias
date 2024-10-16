@@ -3,7 +3,7 @@
 
 (let [pair (require "ultimate-autopair")]
   (pair.setup {:cr {:conf {:nft util.lisp-language}}
-               :bs {:map "<C-w>"
+               :bs {; :map ["<C-w>" "<del"]
                     :space false
                     :single_delete false}
                :space {:enable true}
