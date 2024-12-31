@@ -6,6 +6,13 @@
 (local ccls_config
   {:capabilities {:foldingRangeProvider true
                   :workspace {:workspaceFolders {:supported false}}}
+   :clang {:excludeArgs ["-fconserve-stack"
+                         "-fno-allow-store-data-races"
+                         "-Wp"
+                         "-MMD"
+                         "-fomit-frame-pointer"
+                         "-Wmissing-prototypes"
+                         "-Wstrict-prototypes"]}
    :index {:threads (a.count (vim.loop.cpu_info))
            :initialNoLinkage true
            :initialBlacklist ["/(clang|lld|llvm)/(test|unittests)/"
@@ -52,7 +59,7 @@
     ; ccls info
     (map :n :<space>cf #(ccls.ccls_fileInfo) {:buffer bufnr})
     (map :n :<space>ci #(ccls.ccls_info) {:buffer bufnr})
-    ; ccls semantic hightlight
+    ; ; ccls semantic hightlight
     (tset vim.lsp.handlers "$ccls/publishSkippedRanges" ccls.skipped-ranges-handler)
     (tset vim.lsp.handlers "$ccls/publishSemanticHighlight" ccls.semantic-hightlight-handler)))
 
@@ -160,4 +167,6 @@
        :flags flags})
     (lsp.leanls.setup {
                        :capabilities capabilities
-                       :flags flags})))
+                       :flags flags})
+    (lsp.zls.setup {:capabilities capabilities
+                    :flags flags})))

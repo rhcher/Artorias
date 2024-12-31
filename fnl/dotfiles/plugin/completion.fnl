@@ -29,6 +29,7 @@
   (when ok?
     (cmp.setup
       {:snippet {:expand (fn [args] (snippy.expand_snippet args.body))}
+       :performance {:debounce 20}
        :completion {:completeopt "menu,menuone,noselect"
                     :keyword_pattern "\\k\\+"}
        ; :view {:entries {:follow_cursor true}}
@@ -39,7 +40,7 @@
                                cmp.config.compare.locality
                                cmp.config.compare.length
                                cmp.config.compare.order]}
-       :experimental {:ghost_text {:hl_group "LspCodeLens"}}
+       ; :experimental {:ghost_text {:hl_group "LspCodeLens"}}
        :window {:documentation cmp-window-opts
                 :completion cmp-window-opts}
        :mapping (cmp.mapping.preset.insert {:<C-d> (cmp.mapping.scroll_docs (- 4))

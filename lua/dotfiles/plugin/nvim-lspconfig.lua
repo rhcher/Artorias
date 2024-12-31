@@ -3,7 +3,7 @@ local _local_1_ = require("nfnl.module")
 local autoload = _local_1_["autoload"]
 local protocol = autoload("vim.lsp.protocol")
 local a = autoload("nfnl.core")
-local ccls_config = {capabilities = {foldingRangeProvider = true, workspace = {workspaceFolders = {supported = false}}}, index = {threads = a.count(vim.loop.cpu_info()), initialNoLinkage = true, initialBlacklist = {"/(clang|lld|llvm)/(test|unittests)/", "/llvm/(bindings|examples|utils)/", "/StaticAnalyzer/"}}, diagnostics = {onChange = -1, onOpen = 1000, onSave = 50}, highlight = {lsRanges = true}, cache = {retainInMemory = 1, directory = "/tmp/ccls-cache/"}, xref = {maxNum = 20000}}
+local ccls_config = {capabilities = {foldingRangeProvider = true, workspace = {workspaceFolders = {supported = false}}}, clang = {excludeArgs = {"-fconserve-stack", "-fno-allow-store-data-races", "-Wp", "-MMD", "-fomit-frame-pointer", "-Wmissing-prototypes", "-Wstrict-prototypes"}}, index = {threads = a.count(vim.loop.cpu_info()), initialNoLinkage = true, initialBlacklist = {"/(clang|lld|llvm)/(test|unittests)/", "/llvm/(bindings|examples|utils)/", "/StaticAnalyzer/"}}, diagnostics = {onChange = -1, onOpen = 1000, onSave = 50}, highlight = {lsRanges = true}, cache = {retainInMemory = 1, directory = "/tmp/ccls-cache/"}, xref = {maxNum = 20000}}
 local function clangd_on_attach(_, bufnr)
   local myclangd = require("dotfiles.clangd")
   local opts_1_auto
@@ -575,7 +575,8 @@ if ok_3f then
   lsp.hls.setup({capabilities = capabilities, settings = hls_config, flags = flags})
   lsp.racket_langserver.setup({capabilities = capabilities, flags = flags})
   lsp.pyright.setup({capabilities = capabilities, settings = pyright_config, flags = flags})
-  return lsp.leanls.setup({capabilities = capabilities, flags = flags})
+  lsp.leanls.setup({capabilities = capabilities, flags = flags})
+  return lsp.zls.setup({capabilities = capabilities, flags = flags})
 else
   return nil
 end

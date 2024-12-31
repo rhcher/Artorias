@@ -40,7 +40,7 @@
   "Olical/nfnl" {:lazy false
                  :branch "main"}
   "Olical/conjure" {:lazy false
-                    :branch "develop"
+                    :branch "main"
                     :mod "conjure"}
   "nvim-lua/plenary.nvim" {}
   "nvim-tree/nvim-web-devicons" {:mod "devicons"}
@@ -104,9 +104,8 @@
   ; "saghen/blink.cmp" {:lazy false
   ;                     :version "v0.*"
   ;                     :opts {:highlight {:use_nvim_cmp_as_default true}}}
-  "yioneko/nvim-cmp" {:version false
-                      :branch "perf"
-                      :event ["InsertEnter"]
+  "hrsh7th/nvim-cmp" {:version false
+                      ; :event ["InsertEnter"]
                       :dependencies ["hrsh7th/cmp-nvim-lsp"
                                      "hrsh7th/cmp-buffer"
                                      "hrsh7th/cmp-path"
@@ -162,7 +161,6 @@
                             :event "VeryLazy"
                             :opts {}}
   "ibhagwan/fzf-lua" {:cmd "FzfLua"
-                      :commit "eb63a4bbfd203942737f76d4cf5424f6fb016a9d"
                       :dependencies ["nvim-tree/nvim-web-devicons"]
                       :opts {:winopts {:split "bot new"
                                        :border "single"}
@@ -294,7 +292,9 @@
                                :dependencies ["haya14busa/vim-asterisk"]}
   "mg979/vim-visual-multi" {:event "VeryLazy"}
   "max397574/better-escape.nvim" {:event "VeryLazy"
-                                  :config #((. (require "better_escape") :setup) {:mapping ["jk"]})}
+                                  :config #((. (require "better_escape") :setup) {:mappings {:i {:j {:k "<Esc>"}}
+                                                                                             :t {:j {:k "<Esc>"}}
+                                                                                             :s {:j {:k "<Esc>"}}}})}
   "sindrets/diffview.nvim" {:cmd "DiffviewOpen"}
   "chrisgrieser/nvim-spider" {:keys [{1 "w" 2 "<cmd>lua require('spider').motion('w')<CR>" :mode [:n :o :x]}
                                      {1 "e" 2 "<cmd>lua require('spider').motion('e')<CR>" :mode [:n :o :x]}
@@ -313,8 +313,8 @@
                                      "nvim-lua/plenary.nvim"]
                       :opts {:lsp {}
                              :mappings true}}
-  "MeanderingProgrammer/markdown.nvim" {:main "render-markdown"
-                                        :lazy false
-                                        :opts {}
-                                        :name "render-markdown"
-                                        :dependencies ["nvim-treesitter/nvim-treesitter"]})
+  "OXY2DEV/markview.nvim" {:lazy false
+                           :dependencies ["nvim-treesitter/nvim-treesitter"
+                                          "nvim-tree/nvim-web-devicons"]})
+  ; "hrsh7th/nvim-deck" {:lazy false
+  ;                      :mod "deck"})

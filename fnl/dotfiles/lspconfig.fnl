@@ -47,7 +47,9 @@
                          (_ lspsaga_hover) (pcall require :lspsaga.hover)
                          winid (ufo.peekFoldedLinesUnderCursor)]
                      (when (not winid)
-                       (lspsaga_hover:render_hover_doc {}))) {:buffer bufnr})
+                       (vim.lsp.buf.hover)))
+                  {:buffer bufnr})
+                       ; (lspsaga_hover:render_hover_doc {}))) {:buffer bufnr})
        (map :n :<leader>k "<cmd>Lspsaga hover_doc ++keep<CR>" {:buffer bufnr})
        (map :n :<leader>lr ":Lspsaga rename<CR>" {:buffer bufnr})
 
