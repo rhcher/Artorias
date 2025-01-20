@@ -139,7 +139,7 @@
              :--header-insertion=never]
        :flags flags})
     (lsp.lua_ls.setup
-      {:cmd ["/home/rhcher/sources/lua-language-server/bin/lua-language-server"]
+      {;:cmd ["/home/rhcher/sources/lua-language-server/bin/lua-language-server"]
        :capabilities capabilities
        :settings sumneko_lua_config
        :flags flags})

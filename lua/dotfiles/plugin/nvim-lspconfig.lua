@@ -569,7 +569,7 @@ local capabilities = cmplsp.default_capabilities()
 capabilities.textDocument.foldingRange = {lineFoldingOnly = true, dynamicRegistration = false}
 if ok_3f then
   lsp.clangd.setup({on_attach = clangd_on_attach, capabilities = capabilities, cmd = {"clangd", "--clang-tidy", "--background-index", "--completion-style=detailed", "--clang-tidy-checks=-*,llvm-*,clang-analyzer-*", "--cross-file-rename", "--header-insertion=never"}, flags = flags})
-  lsp.lua_ls.setup({cmd = {"/home/rhcher/sources/lua-language-server/bin/lua-language-server"}, capabilities = capabilities, settings = sumneko_lua_config, flags = flags})
+  lsp.lua_ls.setup({capabilities = capabilities, settings = sumneko_lua_config, flags = flags})
   lsp.ocamllsp.setup({capabilities = capabilities, flags = flags})
   lsp.vimls.setup({capabilities = capabilities, flags = flags})
   lsp.hls.setup({capabilities = capabilities, settings = hls_config, flags = flags})

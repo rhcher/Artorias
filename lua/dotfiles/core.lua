@@ -20,7 +20,6 @@ vim.opt.infercase = true
 vim.opt.numberwidth = 2
 vim.opt.signcolumn = "yes"
 vim.opt.undofile = true
-vim.opt.scrolloff = 4
 vim.opt.cursorline = true
 vim.opt.incsearch = false
 vim.cmd("set diffopt+=linematch:800,algorithm:patience")
@@ -57,7 +56,6 @@ vim.opt.number = true
 vim.opt.splitbelow = true
 vim.opt.splitright = true
 vim.opt.lispoptions = "expr:1"
-vim.g.clipboard = {name = "win32yank-wsl", copy = {["+"] = "win32yank.exe -i --crlf", ["*"] = "win32yank.exe -i --crlf"}, paste = {["+"] = "win32yank.exe -o --lf", ["*"] = "win32yank.exe -o --lf"}, cache_enable = false}
 do
   local group = vim.api.nvim_create_augroup("init", {clear = true})
   vim.api.nvim_create_autocmd({"CmdWinEnter"}, {buffer = 0, command = "cmap q <C-W>q", group = group})
@@ -72,16 +70,18 @@ do
   end
   vim.api.nvim_create_autocmd({"BufEnter"}, {callback = _3_, group = group})
   vim.api.nvim_create_autocmd({"FileType"}, {pattern = "cpp", command = "set cinkeys-=:", group = group})
+  local function _4_()
+    vim.g.snacks_indent = false
+    return nil
+  end
+  vim.api.nvim_create_autocmd({"FileType"}, {pattern = "fennel", callback = _4_, group = group})
   vim.api.nvim_create_autocmd({"WinClosed"}, {nested = true, command = "if expand('<amatch>') == win_getid() | wincmd p | endif", group = group})
 end
 if vim.g.neovide then
-  vim.o.guifont = "JetBrainsMonoMedium NF,JetBrainsMono Nerd Font Propo:h13"
   vim.g.neovide_confirm_quit = false
   vim.g.neovide_fullscreen = true
   vim.g.neovide_hide_mouse_when_typing = true
   vim.g.neovide_unlink_border_highlights = true
-  vim.g.neovide_refresh_rate = 60
-  vim.g.neovide_no_idle = true
   return nil
 else
   return nil

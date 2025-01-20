@@ -25,7 +25,7 @@
 (set vim.opt.numberwidth 2)
 (set vim.opt.signcolumn "yes")
 (set vim.opt.undofile true)
-(set vim.opt.scrolloff 4)
+; (set vim.opt.scrolloff 4)
 (set vim.opt.cursorline true)
 (set vim.opt.incsearch false)
 (vim.cmd "set diffopt+=linematch:800,algorithm:patience")
@@ -74,12 +74,12 @@
 
 (set vim.opt.lispoptions "expr:1")
 
-(set vim.g.clipboard {:name :win32yank-wsl
-                      :copy {:+ "win32yank.exe -i --crlf"
-                             :* "win32yank.exe -i --crlf"}
-                      :paste {:+ "win32yank.exe -o --lf"
-                              :* "win32yank.exe -o --lf"}
-                      :cache_enable false})
+; (set vim.g.clipboard {:name :win32yank-wsl
+;                       :copy {:+ "win32yank.exe -i --crlf"
+;                              :* "win32yank.exe -i --crlf"}
+;                       :paste {:+ "win32yank.exe -o --lf"
+;                               :* "win32yank.exe -o --lf"}
+;                       :cache_enable false})
 
 (augroup :init
          [[:CmdWinEnter] {:buffer 0 :command "cmap q <C-W>q"}]
@@ -89,16 +89,17 @@
          [[:FocusGained :TermClose :TermLeave] {:command "checktime"}]
          [[:BufEnter] {:callback #(set vim.opt.formatoptions (- vim.opt.formatoptions "o"))}]
          [[:FileType] {:pattern "cpp" :command "set cinkeys-=:"}]
+         [[:FileType] {:pattern "fennel" :callback #(set vim.g.snacks_indent false)}]
          [[:WinClosed] {:nested true
                         :command "if expand('<amatch>') == win_getid() | wincmd p | endif"}])
 
 (when vim.g.neovide
-  (set vim.o.guifont "JetBrainsMonoMedium NF,JetBrainsMono Nerd Font Propo:h13")
+  ; (set vim.o.guifont "JetBrainsMonoMedium Nerd Font Mono,JetBrainsMonoNL Nerd Font Mono,TsangerJinKai03:h14")
   (set vim.g.neovide_confirm_quit false)
   (set vim.g.neovide_fullscreen true)
   ; (set vim.g.neovide_scroll_animation_length 0.5)
   (set vim.g.neovide_hide_mouse_when_typing true)
-  (set vim.g.neovide_unlink_border_highlights true)
-  (set vim.g.neovide_refresh_rate 60)
-  (set vim.g.neovide_no_idle true))
+  (set vim.g.neovide_unlink_border_highlights true))
+  ; (set vim.g.neovide_refresh_rate 165))
+  ; (set vim.g.neovide_no_idle true))
   ; (set vim.g.neovide_transparency 0.9))

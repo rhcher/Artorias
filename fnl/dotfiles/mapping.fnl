@@ -41,7 +41,7 @@
 (map :n "[t" :<cmd>tabp<CR>)
 (map :n "]t" :<cmd>tabn<CR>)
 
-(map :n :<leader>e ":Oil<CR>")
+; (map :n :<leader>e ":Oil<CR>")
 
 (map :n :<leader>gg ":Git<CR><C-w>o")
 (map :n :<leader>ou ":UndotreeShow<cr>:UndotreeFocus<cr>")

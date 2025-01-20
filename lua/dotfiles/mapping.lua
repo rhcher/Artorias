@@ -643,29 +643,6 @@ do
     opts_1_auto.silent = true
   else
   end
-  vim.keymap.set("n", "<leader>e", ":Oil<CR>", opts_1_auto)
-end
-do
-  local opts_1_auto
-  do
-    local tbl_16_auto = {}
-    for k_2_auto, v_3_auto in pairs((nil or {})) do
-      local k_17_auto, v_18_auto = k_2_auto, v_3_auto
-      if ((k_17_auto ~= nil) and (v_18_auto ~= nil)) then
-        tbl_16_auto[k_17_auto] = v_18_auto
-      else
-      end
-    end
-    opts_1_auto = tbl_16_auto
-  end
-  if (opts_1_auto.noremap == nil) then
-    opts_1_auto.noremap = true
-  else
-  end
-  if (opts_1_auto.silent == nil) then
-    opts_1_auto.silent = true
-  else
-  end
   vim.keymap.set("n", "<leader>gg", ":Git<CR><C-w>o", opts_1_auto)
 end
 do
@@ -697,7 +674,7 @@ vim.keymap.del("n", "gra")
 vim.keymap.del("n", "gri")
 do
   local group = vim.api.nvim_create_augroup("InputQquitEverythingIwant", {clear = true})
-  local function _91_()
+  local function _88_()
     local opts_1_auto
     do
       local tbl_16_auto = {}
@@ -720,8 +697,8 @@ do
     end
     return vim.keymap.set({"n", "v"}, "q", ":close<CR>", opts_1_auto)
   end
-  vim.api.nvim_create_autocmd({"FileType"}, {pattern = {"git", "qf", "man", "help", "lspinfo", "fugitive", "gitcommit"}, callback = _91_, group = group})
-  local function _95_()
+  vim.api.nvim_create_autocmd({"FileType"}, {pattern = {"git", "qf", "man", "help", "lspinfo", "fugitive", "gitcommit"}, callback = _88_, group = group})
+  local function _92_()
     if (vim.bo.buftype == "nofile") then
       local opts_1_auto
       do
@@ -748,8 +725,8 @@ do
       return nil
     end
   end
-  vim.api.nvim_create_autocmd({"FileType"}, {pattern = {"*"}, callback = _95_, group = group})
-  local function _100_()
+  vim.api.nvim_create_autocmd({"FileType"}, {pattern = {"*"}, callback = _92_, group = group})
+  local function _97_()
     if ((vim.bo.filetype == "") and (vim.bo.buftype == "")) then
       local opts_1_auto
       do
@@ -776,7 +753,7 @@ do
       return nil
     end
   end
-  vim.api.nvim_create_autocmd({"BufEnter"}, {pattern = {"*"}, callback = _100_, group = group})
+  vim.api.nvim_create_autocmd({"BufEnter"}, {pattern = {"*"}, callback = _97_, group = group})
 end
 vim.g.nremap = {["[m"] = "[f", ["]m"] = "]f", ["="] = "<tab>"}
 return nil

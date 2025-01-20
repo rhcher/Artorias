@@ -43,15 +43,18 @@
                     :branch "main"
                     :mod "conjure"}
   "nvim-lua/plenary.nvim" {}
-  "nvim-tree/nvim-web-devicons" {:mod "devicons"}
+  "nvim-tree/nvim-web-devicons" {:mod "devicons"
+                                 :cond false}
   "rhcher/srcery.nvim" {:lazy false
                         :priority 1000
                         :config #(vim.cmd.colorscheme "srcery")}
   ; "metalelf0/jellybeans-nvim" {:lazy false
   ;                              :priority 1000}
   ; "rktjmp/lush.nvim" {:lazy false}
-  ; "rhcher/vim-paper" {:priority 1000
-  ;                     :config #(vim.cmd.colorscheme "paper")}
+  "rhcher/vim-paper" {:priority 1000
+                      :lazy false
+                      :cond false
+                      :config #(vim.cmd.colorscheme "paper")}
   ; "rebelot/kanagawa.nvim" {:priority 1000}
   "nvim-lualine/lualine.nvim" {:event "VeryLazy"
                                :config true
@@ -100,10 +103,6 @@
   "harrygallagher4/nvim-parinfer-rust" {:ft util.lisp-language
                                         :config #(vim.api.nvim_create_autocmd "VimEnter"
                                                                               {:callback #((. (require "parinfer") :setup))})}
-
-  ; "saghen/blink.cmp" {:lazy false
-  ;                     :version "v0.*"
-  ;                     :opts {:highlight {:use_nvim_cmp_as_default true}}}
   "hrsh7th/nvim-cmp" {:version false
                       ; :event ["InsertEnter"]
                       :dependencies ["hrsh7th/cmp-nvim-lsp"
@@ -155,6 +154,7 @@
                                     :dependencies ["nvim-treesitter/nvim-treesitter"]
                                     :mod "auto-pairs"}
   "stevearc/oil.nvim" {:event "VeryLazy"
+                       :cond false
                        :dependencies [:nvim-tree/nvim-web-devicons]
                        :opts {:columns ["icon" "permissions" "size" "mtime"]}}
   "utilyre/sentiment.nvim" {:version "*"
@@ -162,6 +162,7 @@
                             :opts {}}
   "ibhagwan/fzf-lua" {:cmd "FzfLua"
                       :dependencies ["nvim-tree/nvim-web-devicons"]
+                      :cond false
                       :opts {:winopts {:split "bot new"
                                        :border "single"}
                              :copen "bot new"}
@@ -229,6 +230,7 @@
                                  :modes_denylist [:i]
                                  :large_file_cutoff 5000}))}
   "lukas-reineke/indent-blankline.nvim" {:event "VeryLazy"
+                                         :cond false
                                          :mod "indent"}
   ; "numToStr/Comment.nvim" {:event "VeryLazy" :config true}
   "mbbill/undotree" {:cmd "UndotreeShow"}
@@ -315,6 +317,9 @@
                              :mappings true}}
   "OXY2DEV/markview.nvim" {:lazy false
                            :dependencies ["nvim-treesitter/nvim-treesitter"
-                                          "nvim-tree/nvim-web-devicons"]})
-  ; "hrsh7th/nvim-deck" {:lazy false
-  ;                      :mod "deck"})
+                                          "nvim-tree/nvim-web-devicons"]}
+  "folke/snacks.nvim" {:priority 1000
+                       :lazy false
+                       :mod "snacks"}
+  "echasnovski/mini.nvim" {:version false
+                           :mod "mini"})
