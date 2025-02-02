@@ -115,12 +115,14 @@
 
 (let [(ok? lsp) (pcall require "lspconfig")
       flags {:debounce_text_changes 50}
-      (_ cmplsp) (pcall require "cmp_nvim_lsp")]
-  (var capabilities (cmplsp.default_capabilities))
+      (_ cmplsp) (pcall require "cmp_nvim_lsp")
+      (_ blinklsp) (pcall require "blink.cmp")]
+  ; (var capabilities (cmplsp.default_capabilities))
+  (var capabilities (blinklsp.get_lsp_capabilities))
   (set capabilities.textDocument.foldingRange {:dynamicRegistration false
                                                :lineFoldingOnly true})
 
-  ; (tset capabilities :workspace {:didChangeWatchedFiles {:dynamicRegistration false}})
+  (tset capabilities :workspace {:didChangeWatchedFiles {:dynamicRegistration false}})
   (when ok?
     ; (lsp.ccls.setup
     ;   {:on_attach ccls_on_attach

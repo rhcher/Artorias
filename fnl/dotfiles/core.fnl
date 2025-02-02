@@ -7,7 +7,7 @@
 (set vim.opt.jumpoptions "stack")
 (set vim.opt.pumheight 10)
 (set vim.opt.exrc true)
-(set vim.opt.termsync false)
+(set vim.opt.termsync true)
 
 (set vim.opt.textwidth 100)
 
@@ -92,6 +92,16 @@
          [[:FileType] {:pattern "fennel" :callback #(set vim.g.snacks_indent false)}]
          [[:WinClosed] {:nested true
                         :command "if expand('<amatch>') == win_getid() | wincmd p | endif"}])
+
+(when (= (vim.fn.has :nvim-0.11) 1)
+  (local expand-orig vim.snippet.expand)
+  (fn vim.snippet.expand [...]
+    (let [tab-map (vim.fn.maparg :<Tab> :i false true)
+          stab-map (vim.fn.maparg :<S-Tab> :i false true)]
+      (expand-orig ...)
+      (vim.schedule (fn [] (set (tab-map.buffer stab-map.buffer) (values 1 1))
+                      (vim.fn.mapset :i false tab-map)
+                      (vim.fn.mapset :i false stab-map))))))
 
 (when vim.g.neovide
   ; (set vim.o.guifont "JetBrainsMonoMedium Nerd Font Mono,JetBrainsMonoNL Nerd Font Mono,TsangerJinKai03:h14")

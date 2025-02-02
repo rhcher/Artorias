@@ -63,9 +63,9 @@
                                                  :before (fn [entry vim_item]
                                                            (tset vim_item :dup (or (. {:conjure 0} entry.source.name) 0))
                                                            vim_item)})}
-       :sources (cmp.config.sources [{:name :nvim_lsp}]
-                                    [{:name :path}
-                                     cmp-buffer])})
+       :sources (cmp.config.sources [{:name :nvim_lsp}])})
+                                    ; [{:name :path}
+                                    ;  cmp-buffer])})
     (cmp.setup.filetype [:fennel :lisp :scheme :clojure :janet :timl]
                         {:sources [{:name "conjure"}
                                    {:name "path"}

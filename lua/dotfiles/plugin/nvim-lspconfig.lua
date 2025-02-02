@@ -565,8 +565,10 @@ local vimls_config = {diagnositc = {enable = true}, indexes = {count = 3, gap = 
 local ok_3f, lsp = pcall(require, "lspconfig")
 local flags = {debounce_text_changes = 50}
 local _, cmplsp = pcall(require, "cmp_nvim_lsp")
-local capabilities = cmplsp.default_capabilities()
+local _0, blinklsp = pcall(require, "blink.cmp")
+local capabilities = blinklsp.get_lsp_capabilities()
 capabilities.textDocument.foldingRange = {lineFoldingOnly = true, dynamicRegistration = false}
+capabilities["workspace"] = {didChangeWatchedFiles = {dynamicRegistration = false}}
 if ok_3f then
   lsp.clangd.setup({on_attach = clangd_on_attach, capabilities = capabilities, cmd = {"clangd", "--clang-tidy", "--background-index", "--completion-style=detailed", "--clang-tidy-checks=-*,llvm-*,clang-analyzer-*", "--cross-file-rename", "--header-insertion=never"}, flags = flags})
   lsp.lua_ls.setup({capabilities = capabilities, settings = sumneko_lua_config, flags = flags})

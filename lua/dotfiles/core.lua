@@ -5,7 +5,7 @@ vim.opt.sessionoptions = "blank,curdir,folds,help,tabpages,winsize"
 vim.opt.jumpoptions = "stack"
 vim.opt.pumheight = 10
 vim.opt.exrc = true
-vim.opt.termsync = false
+vim.opt.termsync = true
 vim.opt.textwidth = 100
 vim.opt.smarttab = true
 vim.opt.expandtab = true
@@ -76,6 +76,21 @@ do
   end
   vim.api.nvim_create_autocmd({"FileType"}, {pattern = "fennel", callback = _4_, group = group})
   vim.api.nvim_create_autocmd({"WinClosed"}, {nested = true, command = "if expand('<amatch>') == win_getid() | wincmd p | endif", group = group})
+end
+if (vim.fn.has("nvim-0.11") == 1) then
+  local expand_orig = vim.snippet.expand
+  vim.snippet.expand = function(...)
+    local tab_map = vim.fn.maparg("<Tab>", "i", false, true)
+    local stab_map = vim.fn.maparg("<S-Tab>", "i", false, true)
+    expand_orig(...)
+    local function _5_()
+      tab_map.buffer, stab_map.buffer = 1, 1
+      vim.fn.mapset("i", false, tab_map)
+      return vim.fn.mapset("i", false, stab_map)
+    end
+    return vim.schedule(_5_)
+  end
+else
 end
 if vim.g.neovide then
   vim.g.neovide_confirm_quit = false

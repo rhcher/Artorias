@@ -3,9 +3,9 @@ _G.qftf = function(info)
   local ret = {}
   local items
   if (info.quickfix == 1) then
-    items = (vim.fn.getqflist({id = info.id, items = 0})).items
+    items = vim.fn.getqflist({id = info.id, items = 0}).items
   else
-    items = (vim.fn.getloclist(info.winid, {id = info.id, items = 0})).items
+    items = vim.fn.getloclist(info.winid, {id = info.id, items = 0}).items
   end
   local limit = 31
   local fname_fmt1 = ("%-" .. limit .. "s")
@@ -46,7 +46,7 @@ _G.qftf = function(info)
       if (e.type == "") then
         qtype = ""
       else
-        qtype = (" " .. (e.type):sub(1, 1):upper())
+        qtype = (" " .. e.type:sub(1, 1):upper())
       end
       str = valid_fmt:format(fname, lnum, col, qtype, e.text)
     else

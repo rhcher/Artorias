@@ -59,10 +59,6 @@
   "nvim-lualine/lualine.nvim" {:event "VeryLazy"
                                :config true
                                :dependencies "nvim-tree/nvim-web-devicons"}
-  ; "nvimdev/whiskyline.nvim" {:event "VimEnter"
-  ;                            :opts {:bg "#2a2a47"
-  ;                                   :bg "#f2de91"}
-  ;                            :dependencies ["nvim-tree/nvim-web-devicons"]}
   "junegunn/fzf" {:event "VeryLazy" :build "./install --bin"}
   "karb94/neoscroll.nvim" {:event "VeryLazy"
                            :cond false
@@ -72,27 +68,6 @@
                                    ["<leader>xx" "<cmd>lua require('substitute.exchange').line()<cr>"]
                                    {1 "X" 2 "<cmd>lua require('substitute.exchange').visual()<cr>" :mode "x"}
                                    ["<leader>xc" "<cmd>lua require('substitute.exchange').cancel()<cr>"]]}
-  "rcarriga/nvim-notify" {:keys [{1 "<leader>un"
-                                  2 #((. (require "notify") :dismiss) {:silent true :pending true})}]
-                          :opts {:timeout 3000
-                                 :background_colour "#000000"
-                                 :max_height (fn [] (math.floor (* vim.o.lines 0.75)))
-                                 :max_width (fn [] (math.floor (* vim.o.columns 0.75)))}}
-  "folke/noice.nvim" {:event "VeryLazy"
-                      :cond false
-                      :dependencies ["MunifTanjim/nui.nvim"]
-                      :keys [{1 "<S-Enter>"
-                              2 #((. (require "noice") :redirect) (vim.fn.getcmdline))
-                              :mode "c"}]
-                      :opts {:lsp {:progress {:enabled false}
-                                   :hover {:enabled false}
-                                   :override {"vim.lsp.util.convert_input_to_markdown_lines" false
-                                              "vim.lsp.util.stylize_markdown" false
-                                              "cmp.entry.get_documentation" false}}
-                             :presets {:bottom_search true
-                                       :command_palette true
-                                       :long_message_to_split true}
-                             :messages {:enabled false}}}
   "nvim-treesitter/nvim-treesitter" {:version false
                                      :build ":TSUpdate"
                                      :mod "treesitter"}
@@ -103,19 +78,35 @@
   "harrygallagher4/nvim-parinfer-rust" {:ft util.lisp-language
                                         :config #(vim.api.nvim_create_autocmd "VimEnter"
                                                                               {:callback #((. (require "parinfer") :setup))})}
-  "hrsh7th/nvim-cmp" {:version false
-                      ; :event ["InsertEnter"]
-                      :dependencies ["hrsh7th/cmp-nvim-lsp"
-                                     "hrsh7th/cmp-buffer"
-                                     "hrsh7th/cmp-path"
-                                     "PaterJason/cmp-conjure"
-                                     "hrsh7th/cmp-cmdline"
-                                     "onsails/lspkind-nvim"
-                                     "dcampos/nvim-snippy"]
-                      :mod "completion"}
-  "hrsh7th/cmp-cmdline" {:event "CmdlineEnter"}
+  "saghen/blink.cmp" {:version "*"
+                      :opts {:keymap {:preset "super-tab"
+                                      :<C-y> ["select_and_accept" "fallback"]
+                                      :<Tab> ["select_and_accept" "snippet_forward" "fallback"]}
+                             :appearance {:use_nvim_cmp_as_default true
+                                          :nerd_font_variant "mono"}
+                             :completion {:trigger {:prefetch_on_insert false}
+                                          :list {:selection {:preselect false}}}
+                             :sources {:default ["lsp" "path" "buffer"]}
+                                       ; :providers {:lsp {:transform_items nil}}}
+                             :signature {:enabled true}}}
+                             ; :opts_extend {1 "sources.default"}}}
+  "nvimdev/phoenix.nvim" {:version "*"
+                          :cond false
+                          :lazy false}
+  ; "hrsh7th/nvim-cmp" {:version false
+  ;                     :event ["InsertEnter"]
+  ;                     :dependencies ["hrsh7th/cmp-nvim-lsp"
+  ;                                    "hrsh7th/cmp-buffer"
+  ;                                    "hrsh7th/cmp-path"
+  ;                                    "PaterJason/cmp-conjure"
+  ;                                    "hrsh7th/cmp-cmdline"
+  ;                                    "onsails/lspkind-nvim"
+  ;                                    "dcampos/nvim-snippy"]
+  ;                     :mod "completion"}
+  ; "hrsh7th/cmp-cmdline" {:event "CmdlineEnter"}
   "onsails/lspkind-nvim" {:event "LspAttach"}
   "dcampos/nvim-snippy" {:config
+                         :cond false
                          #(let [snippy (require :snippy)]
                             (map [:i :s] :<C-l> #(if (snippy.can_jump 1)
                                                      "<Plug>(snippy-next)"
@@ -123,8 +114,7 @@
                             (map [:i :s] :<C-h> #(if (snippy.can_jump -1)
                                                   "<Plug>(snippy-previous)"
                                                   "<ESC>I") {:expr true}))}
-  "neovim/nvim-lspconfig" {
-                           :dependencies ["hrsh7th/cmp-nvim-lsp"]
+  "neovim/nvim-lspconfig" {:dependencies ["saghen/blink.cmp"]
                            :lazy false
                            :mod "nvim-lspconfig"}
   "mfussenegger/nvim-dap" {:lazy false
@@ -149,7 +139,7 @@
                               :init #(do
                                        (map [:x :o] :aa "<Plug>SidewaysArgumentTextobjA")
                                        (map [:x :o] :ia "<Plug>SidewaysArgumentTextobjI"))}
-  "altermo/ultimate-autopair.nvim" {:event ["InsertEnter" "CmdlineEnter"]
+  "altermo/ultimate-autopair.nvim" {:event ["ModeChanged *:[vi]"]
                                     :branch "v0.6"
                                     :dependencies ["nvim-treesitter/nvim-treesitter"]
                                     :mod "auto-pairs"}
@@ -232,7 +222,6 @@
   "lukas-reineke/indent-blankline.nvim" {:event "VeryLazy"
                                          :cond false
                                          :mod "indent"}
-  ; "numToStr/Comment.nvim" {:event "VeryLazy" :config true}
   "mbbill/undotree" {:cmd "UndotreeShow"}
   "NvChad/nvim-colorizer.lua" {:cmd "ColorizerToggle"
                                :main "colorizer"
@@ -322,4 +311,5 @@
                        :lazy false
                        :mod "snacks"}
   "echasnovski/mini.nvim" {:version false
+                           :keys [["<leader>e" "<cmd>lua MiniFiles.open()<CR>"]]
                            :mod "mini"})

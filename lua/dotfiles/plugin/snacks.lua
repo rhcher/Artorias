@@ -2,7 +2,7 @@
 local layout_ivy = {layout = {{border = "bottom", height = 1, win = "input"}, {{border = "none", win = "list"}, {border = "left", title = "{preview}", width = 0.6, win = "preview"}, box = "horizontal"}, border = "top", box = "vertical", height = 0.4, row = ( - 1), title = " {title} {live} {flags}", title_pos = "left", width = 0, backdrop = false}}
 do
   local _, snacks = pcall(require, "snacks")
-  snacks.setup({indent = {}, picker = {layout = layout_ivy}, quickfile = {}, notifier = {}})
+  snacks.setup({indent = {animate = {style = "down"}}, picker = {layout = layout_ivy}, quickfile = {}, notifier = {}})
 end
 do
   local opts_1_auto

@@ -1,5 +1,5 @@
 -- [nfnl] Compiled from fnl/dotfiles/diagnostic.fnl by https://github.com/Olical/nfnl, do not edit.
-vim.diagnostic.config({virtual_text = true, signs = {text = {["vim.diagnostic.severity.ERROR"] = "\240\159\152\168", ["vim.diagnostic.severity.WARN"] = "\240\159\152\146", ["vim.diagnostic.severity.HINT"] = "\240\159\152\141", ["vim.diagnostic.severity.INFO"] = "\240\159\152\152"}}, float = {header = "", prefix = "", source = "if_many", border = "single", title = "Diagnostic:", title_pos = "left", focusable = false}})
+vim.diagnostic.config({virtual_text = true, signs = {text = {[vim.diagnostic.severity.ERROR] = "\240\159\152\168", [vim.diagnostic.severity.WARN] = "\240\159\152\146", [vim.diagnostic.severity.HINT] = "\240\159\152\141", [vim.diagnostic.severity.INFO] = "\240\159\152\152"}}, float = {header = "", prefix = "", source = "if_many", border = "single", title = "Diagnostic:", title_pos = "left", focusable = false}})
 do
   local opts_1_auto
   do

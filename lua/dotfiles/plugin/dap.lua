@@ -25,7 +25,7 @@ local function _2_(str)
       end
       if (i <= #str) then
         quote_refs_cnt = (quote_refs_cnt - 1)
-        do end (arg_list)[(#arg_list + 1)] = str:sub(start, i)
+        arg_list[(#arg_list + 1)] = str:sub(start, i)
         start = find_next_start(str, (i + 1))
         i = start
       else
@@ -58,7 +58,7 @@ do
   local function _8_()
     return vim.fn.input("Path to executable", (vim.fn.getcwd() .. "/"), "file")
   end
-  dap.configurations.cpp = {{name = "Launch file", type = "cppdbg", request = "launch", program = _6_, args = _7_, cwd = "${workspaceFolder}", stopAtEntry = true, setupCommands = {{text = "-enable-pretty-printing", description = "enable pretty printing", ignoreFailures = false}}}, {name = "Attach process", type = "cppdbg", request = "attach", processId = (require("dap.utils")).pick_process, cwd = "${workspaceFolder}", program = _8_}}
+  dap.configurations.cpp = {{name = "Launch file", type = "cppdbg", request = "launch", program = _6_, args = _7_, cwd = "${workspaceFolder}", stopAtEntry = true, setupCommands = {{text = "-enable-pretty-printing", description = "enable pretty printing", ignoreFailures = false}}}, {name = "Attach process", type = "cppdbg", request = "attach", processId = require("dap.utils").pick_process, cwd = "${workspaceFolder}", program = _8_}}
   dap.configurations.c = dap.configurations.cpp
   dapui.setup({})
   local function _9_()
@@ -81,15 +81,15 @@ vim.fn.sign_define("DapBreakpointRejected", dap_breakpoint.rejected)
 do
   local opts_1_auto
   do
-    local tbl_14_auto = {}
+    local tbl_16_auto = {}
     for k_2_auto, v_3_auto in pairs((nil or {})) do
-      local k_15_auto, v_16_auto = k_2_auto, v_3_auto
-      if ((k_15_auto ~= nil) and (v_16_auto ~= nil)) then
-        tbl_14_auto[k_15_auto] = v_16_auto
+      local k_17_auto, v_18_auto = k_2_auto, v_3_auto
+      if ((k_17_auto ~= nil) and (v_18_auto ~= nil)) then
+        tbl_16_auto[k_17_auto] = v_18_auto
       else
       end
     end
-    opts_1_auto = tbl_14_auto
+    opts_1_auto = tbl_16_auto
   end
   if (opts_1_auto.noremap == nil) then
     opts_1_auto.noremap = true
@@ -100,22 +100,22 @@ do
   else
   end
   local function _15_()
-    return (require("dap")).continue()
+    return require("dap").continue()
   end
   vim.keymap.set({"n"}, "<F5>", _15_, opts_1_auto)
 end
 do
   local opts_1_auto
   do
-    local tbl_14_auto = {}
+    local tbl_16_auto = {}
     for k_2_auto, v_3_auto in pairs((nil or {})) do
-      local k_15_auto, v_16_auto = k_2_auto, v_3_auto
-      if ((k_15_auto ~= nil) and (v_16_auto ~= nil)) then
-        tbl_14_auto[k_15_auto] = v_16_auto
+      local k_17_auto, v_18_auto = k_2_auto, v_3_auto
+      if ((k_17_auto ~= nil) and (v_18_auto ~= nil)) then
+        tbl_16_auto[k_17_auto] = v_18_auto
       else
       end
     end
-    opts_1_auto = tbl_14_auto
+    opts_1_auto = tbl_16_auto
   end
   if (opts_1_auto.noremap == nil) then
     opts_1_auto.noremap = true
@@ -126,22 +126,22 @@ do
   else
   end
   local function _19_()
-    return (require("dap")).step_over()
+    return require("dap").step_over()
   end
   vim.keymap.set({"n"}, "<F10>", _19_, opts_1_auto)
 end
 do
   local opts_1_auto
   do
-    local tbl_14_auto = {}
+    local tbl_16_auto = {}
     for k_2_auto, v_3_auto in pairs((nil or {})) do
-      local k_15_auto, v_16_auto = k_2_auto, v_3_auto
-      if ((k_15_auto ~= nil) and (v_16_auto ~= nil)) then
-        tbl_14_auto[k_15_auto] = v_16_auto
+      local k_17_auto, v_18_auto = k_2_auto, v_3_auto
+      if ((k_17_auto ~= nil) and (v_18_auto ~= nil)) then
+        tbl_16_auto[k_17_auto] = v_18_auto
       else
       end
     end
-    opts_1_auto = tbl_14_auto
+    opts_1_auto = tbl_16_auto
   end
   if (opts_1_auto.noremap == nil) then
     opts_1_auto.noremap = true
@@ -152,22 +152,22 @@ do
   else
   end
   local function _23_()
-    return (require("dap")).step_into()
+    return require("dap").step_into()
   end
   vim.keymap.set({"n"}, "<F11>", _23_, opts_1_auto)
 end
 do
   local opts_1_auto
   do
-    local tbl_14_auto = {}
+    local tbl_16_auto = {}
     for k_2_auto, v_3_auto in pairs((nil or {})) do
-      local k_15_auto, v_16_auto = k_2_auto, v_3_auto
-      if ((k_15_auto ~= nil) and (v_16_auto ~= nil)) then
-        tbl_14_auto[k_15_auto] = v_16_auto
+      local k_17_auto, v_18_auto = k_2_auto, v_3_auto
+      if ((k_17_auto ~= nil) and (v_18_auto ~= nil)) then
+        tbl_16_auto[k_17_auto] = v_18_auto
       else
       end
     end
-    opts_1_auto = tbl_14_auto
+    opts_1_auto = tbl_16_auto
   end
   if (opts_1_auto.noremap == nil) then
     opts_1_auto.noremap = true
@@ -178,22 +178,22 @@ do
   else
   end
   local function _27_()
-    return (require("dap")).step_out()
+    return require("dap").step_out()
   end
   vim.keymap.set({"n"}, "<F12>", _27_, opts_1_auto)
 end
 do
   local opts_1_auto
   do
-    local tbl_14_auto = {}
+    local tbl_16_auto = {}
     for k_2_auto, v_3_auto in pairs((nil or {})) do
-      local k_15_auto, v_16_auto = k_2_auto, v_3_auto
-      if ((k_15_auto ~= nil) and (v_16_auto ~= nil)) then
-        tbl_14_auto[k_15_auto] = v_16_auto
+      local k_17_auto, v_18_auto = k_2_auto, v_3_auto
+      if ((k_17_auto ~= nil) and (v_18_auto ~= nil)) then
+        tbl_16_auto[k_17_auto] = v_18_auto
       else
       end
     end
-    opts_1_auto = tbl_14_auto
+    opts_1_auto = tbl_16_auto
   end
   if (opts_1_auto.noremap == nil) then
     opts_1_auto.noremap = true
@@ -204,22 +204,22 @@ do
   else
   end
   local function _31_()
-    return (require("dap")).toggle_breakpoint()
+    return require("dap").toggle_breakpoint()
   end
   vim.keymap.set({"n"}, "<leader>db", _31_, opts_1_auto)
 end
 do
   local opts_1_auto
   do
-    local tbl_14_auto = {}
+    local tbl_16_auto = {}
     for k_2_auto, v_3_auto in pairs((nil or {})) do
-      local k_15_auto, v_16_auto = k_2_auto, v_3_auto
-      if ((k_15_auto ~= nil) and (v_16_auto ~= nil)) then
-        tbl_14_auto[k_15_auto] = v_16_auto
+      local k_17_auto, v_18_auto = k_2_auto, v_3_auto
+      if ((k_17_auto ~= nil) and (v_18_auto ~= nil)) then
+        tbl_16_auto[k_17_auto] = v_18_auto
       else
       end
     end
-    opts_1_auto = tbl_14_auto
+    opts_1_auto = tbl_16_auto
   end
   if (opts_1_auto.noremap == nil) then
     opts_1_auto.noremap = true
@@ -230,22 +230,22 @@ do
   else
   end
   local function _35_()
-    return (require("dap")).set_breakpoint()
+    return require("dap").set_breakpoint()
   end
   vim.keymap.set({"n"}, "<leader>dB", _35_, opts_1_auto)
 end
 do
   local opts_1_auto
   do
-    local tbl_14_auto = {}
+    local tbl_16_auto = {}
     for k_2_auto, v_3_auto in pairs((nil or {})) do
-      local k_15_auto, v_16_auto = k_2_auto, v_3_auto
-      if ((k_15_auto ~= nil) and (v_16_auto ~= nil)) then
-        tbl_14_auto[k_15_auto] = v_16_auto
+      local k_17_auto, v_18_auto = k_2_auto, v_3_auto
+      if ((k_17_auto ~= nil) and (v_18_auto ~= nil)) then
+        tbl_16_auto[k_17_auto] = v_18_auto
       else
       end
     end
-    opts_1_auto = tbl_14_auto
+    opts_1_auto = tbl_16_auto
   end
   if (opts_1_auto.noremap == nil) then
     opts_1_auto.noremap = true
@@ -256,22 +256,22 @@ do
   else
   end
   local function _39_()
-    return (require("dap")).set_breakpoint(nil, nil, vim.fn.input("Log point message: "))
+    return require("dap").set_breakpoint(nil, nil, vim.fn.input("Log point message: "))
   end
   vim.keymap.set({"n"}, "<leader>lp", _39_, opts_1_auto)
 end
 do
   local opts_1_auto
   do
-    local tbl_14_auto = {}
+    local tbl_16_auto = {}
     for k_2_auto, v_3_auto in pairs((nil or {})) do
-      local k_15_auto, v_16_auto = k_2_auto, v_3_auto
-      if ((k_15_auto ~= nil) and (v_16_auto ~= nil)) then
-        tbl_14_auto[k_15_auto] = v_16_auto
+      local k_17_auto, v_18_auto = k_2_auto, v_3_auto
+      if ((k_17_auto ~= nil) and (v_18_auto ~= nil)) then
+        tbl_16_auto[k_17_auto] = v_18_auto
       else
       end
     end
-    opts_1_auto = tbl_14_auto
+    opts_1_auto = tbl_16_auto
   end
   if (opts_1_auto.noremap == nil) then
     opts_1_auto.noremap = true
@@ -282,22 +282,22 @@ do
   else
   end
   local function _43_()
-    return ((require("dap")).repl).open()
+    return require("dap").repl.open()
   end
   vim.keymap.set({"n"}, "<leader>dr", _43_, opts_1_auto)
 end
 do
   local opts_1_auto
   do
-    local tbl_14_auto = {}
+    local tbl_16_auto = {}
     for k_2_auto, v_3_auto in pairs((nil or {})) do
-      local k_15_auto, v_16_auto = k_2_auto, v_3_auto
-      if ((k_15_auto ~= nil) and (v_16_auto ~= nil)) then
-        tbl_14_auto[k_15_auto] = v_16_auto
+      local k_17_auto, v_18_auto = k_2_auto, v_3_auto
+      if ((k_17_auto ~= nil) and (v_18_auto ~= nil)) then
+        tbl_16_auto[k_17_auto] = v_18_auto
       else
       end
     end
-    opts_1_auto = tbl_14_auto
+    opts_1_auto = tbl_16_auto
   end
   if (opts_1_auto.noremap == nil) then
     opts_1_auto.noremap = true
@@ -308,22 +308,22 @@ do
   else
   end
   local function _47_()
-    return (require("dap")).run_last()
+    return require("dap").run_last()
   end
   vim.keymap.set({"n"}, "<leader>dl", _47_, opts_1_auto)
 end
 do
   local opts_1_auto
   do
-    local tbl_14_auto = {}
+    local tbl_16_auto = {}
     for k_2_auto, v_3_auto in pairs((nil or {})) do
-      local k_15_auto, v_16_auto = k_2_auto, v_3_auto
-      if ((k_15_auto ~= nil) and (v_16_auto ~= nil)) then
-        tbl_14_auto[k_15_auto] = v_16_auto
+      local k_17_auto, v_18_auto = k_2_auto, v_3_auto
+      if ((k_17_auto ~= nil) and (v_18_auto ~= nil)) then
+        tbl_16_auto[k_17_auto] = v_18_auto
       else
       end
     end
-    opts_1_auto = tbl_14_auto
+    opts_1_auto = tbl_16_auto
   end
   if (opts_1_auto.noremap == nil) then
     opts_1_auto.noremap = true
@@ -334,22 +334,22 @@ do
   else
   end
   local function _51_()
-    return (require("dap")).terminate()
+    return require("dap").terminate()
   end
   vim.keymap.set({"n"}, "<leader>dt", _51_, opts_1_auto)
 end
 do
   local opts_1_auto
   do
-    local tbl_14_auto = {}
+    local tbl_16_auto = {}
     for k_2_auto, v_3_auto in pairs((nil or {})) do
-      local k_15_auto, v_16_auto = k_2_auto, v_3_auto
-      if ((k_15_auto ~= nil) and (v_16_auto ~= nil)) then
-        tbl_14_auto[k_15_auto] = v_16_auto
+      local k_17_auto, v_18_auto = k_2_auto, v_3_auto
+      if ((k_17_auto ~= nil) and (v_18_auto ~= nil)) then
+        tbl_16_auto[k_17_auto] = v_18_auto
       else
       end
     end
-    opts_1_auto = tbl_14_auto
+    opts_1_auto = tbl_16_auto
   end
   if (opts_1_auto.noremap == nil) then
     opts_1_auto.noremap = true
@@ -360,22 +360,22 @@ do
   else
   end
   local function _55_()
-    return (require("dap.ui.widgets")).hover()
+    return require("dap.ui.widgets").hover()
   end
   vim.keymap.set({"n", "v"}, "<leader>dh", _55_, opts_1_auto)
 end
 do
   local opts_1_auto
   do
-    local tbl_14_auto = {}
+    local tbl_16_auto = {}
     for k_2_auto, v_3_auto in pairs((nil or {})) do
-      local k_15_auto, v_16_auto = k_2_auto, v_3_auto
-      if ((k_15_auto ~= nil) and (v_16_auto ~= nil)) then
-        tbl_14_auto[k_15_auto] = v_16_auto
+      local k_17_auto, v_18_auto = k_2_auto, v_3_auto
+      if ((k_17_auto ~= nil) and (v_18_auto ~= nil)) then
+        tbl_16_auto[k_17_auto] = v_18_auto
       else
       end
     end
-    opts_1_auto = tbl_14_auto
+    opts_1_auto = tbl_16_auto
   end
   if (opts_1_auto.noremap == nil) then
     opts_1_auto.noremap = true
@@ -386,22 +386,22 @@ do
   else
   end
   local function _59_()
-    return (require("dap.ui.widgets")).preview()
+    return require("dap.ui.widgets").preview()
   end
   vim.keymap.set({"n", "v"}, "<leader>dp", _59_, opts_1_auto)
 end
 do
   local opts_1_auto
   do
-    local tbl_14_auto = {}
+    local tbl_16_auto = {}
     for k_2_auto, v_3_auto in pairs((nil or {})) do
-      local k_15_auto, v_16_auto = k_2_auto, v_3_auto
-      if ((k_15_auto ~= nil) and (v_16_auto ~= nil)) then
-        tbl_14_auto[k_15_auto] = v_16_auto
+      local k_17_auto, v_18_auto = k_2_auto, v_3_auto
+      if ((k_17_auto ~= nil) and (v_18_auto ~= nil)) then
+        tbl_16_auto[k_17_auto] = v_18_auto
       else
       end
     end
-    opts_1_auto = tbl_14_auto
+    opts_1_auto = tbl_16_auto
   end
   if (opts_1_auto.noremap == nil) then
     opts_1_auto.noremap = true
@@ -419,15 +419,15 @@ do
 end
 local opts_1_auto
 do
-  local tbl_14_auto = {}
+  local tbl_16_auto = {}
   for k_2_auto, v_3_auto in pairs((nil or {})) do
-    local k_15_auto, v_16_auto = k_2_auto, v_3_auto
-    if ((k_15_auto ~= nil) and (v_16_auto ~= nil)) then
-      tbl_14_auto[k_15_auto] = v_16_auto
+    local k_17_auto, v_18_auto = k_2_auto, v_3_auto
+    if ((k_17_auto ~= nil) and (v_18_auto ~= nil)) then
+      tbl_16_auto[k_17_auto] = v_18_auto
     else
     end
   end
-  opts_1_auto = tbl_14_auto
+  opts_1_auto = tbl_16_auto
 end
 if (opts_1_auto.noremap == nil) then
   opts_1_auto.noremap = true

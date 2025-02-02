@@ -6,4 +6,4 @@
 (let [(_ mini_icon) (pcall require "mini.icons")]
   (mini_icon.setup))
 
-(map :n :<leader>e #(MiniFiles.open))
+; (map :n :<leader>e #(MiniFiles.open))

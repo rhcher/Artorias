@@ -17,7 +17,7 @@
                             :width 0}})
 
 (let [(_ snacks) (pcall require "snacks")]
-  (snacks.setup {:indent {}
+  (snacks.setup {:indent {:animate {:style "down"}}
                  :picker {:layout layout_ivy}
                  :quickfile {}
                  :notifier {}}))
