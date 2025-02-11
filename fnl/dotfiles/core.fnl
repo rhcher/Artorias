@@ -8,6 +8,9 @@
 (set vim.opt.pumheight 10)
 (set vim.opt.exrc true)
 (set vim.opt.termsync true)
+(set vim.opt.smoothscroll true)
+
+(vim.cmd.colorscheme :srcery)
 
 (set vim.opt.textwidth 100)
 
@@ -89,7 +92,7 @@
          [[:FocusGained :TermClose :TermLeave] {:command "checktime"}]
          [[:BufEnter] {:callback #(set vim.opt.formatoptions (- vim.opt.formatoptions "o"))}]
          [[:FileType] {:pattern "cpp" :command "set cinkeys-=:"}]
-         [[:FileType] {:pattern "fennel" :callback #(set vim.g.snacks_indent false)}]
+         [[:FileType] {:pattern "fennel" :callback #(set vim.b.snacks_indent false)}]
          [[:WinClosed] {:nested true
                         :command "if expand('<amatch>') == win_getid() | wincmd p | endif"}])
 

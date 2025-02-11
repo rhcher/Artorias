@@ -46,15 +46,16 @@
   "nvim-tree/nvim-web-devicons" {:mod "devicons"
                                  :cond false}
   "rhcher/srcery.nvim" {:lazy false
-                        :priority 1000
-                        :config #(vim.cmd.colorscheme "srcery")}
-  ; "metalelf0/jellybeans-nvim" {:lazy false
-  ;                              :priority 1000}
-  ; "rktjmp/lush.nvim" {:lazy false}
+                        :priority 1000}
+  "wtfox/jellybeans.nvim" {:lazy false
+                           :priority 1000
+                           :cond false
+                           :opts {}}
+                           ; :config (fn []
+                           ;           ((. (require :jellybeans) :setup))
+                           ;           (vim.cmd.colorscheme :jellybeans))}
   "rhcher/vim-paper" {:priority 1000
-                      :lazy false
-                      :cond false
-                      :config #(vim.cmd.colorscheme "paper")}
+                      :lazy false}
   ; "rebelot/kanagawa.nvim" {:priority 1000}
   "nvim-lualine/lualine.nvim" {:event "VeryLazy"
                                :config true
@@ -78,7 +79,7 @@
   "harrygallagher4/nvim-parinfer-rust" {:ft util.lisp-language
                                         :config #(vim.api.nvim_create_autocmd "VimEnter"
                                                                               {:callback #((. (require "parinfer") :setup))})}
-  "saghen/blink.cmp" {:version "*"
+  "saghen/blink.cmp" {:version false
                       :opts {:keymap {:preset "super-tab"
                                       :<C-y> ["select_and_accept" "fallback"]
                                       :<Tab> ["select_and_accept" "snippet_forward" "fallback"]}
@@ -87,12 +88,8 @@
                              :completion {:trigger {:prefetch_on_insert false}
                                           :list {:selection {:preselect false}}}
                              :sources {:default ["lsp" "path" "buffer"]}
-                                       ; :providers {:lsp {:transform_items nil}}}
-                             :signature {:enabled true}}}
-                             ; :opts_extend {1 "sources.default"}}}
-  "nvimdev/phoenix.nvim" {:version "*"
-                          :cond false
-                          :lazy false}
+                             :signature {:enabled true}}
+                      :build "cargo build --release"}
   ; "hrsh7th/nvim-cmp" {:version false
   ;                     :event ["InsertEnter"]
   ;                     :dependencies ["hrsh7th/cmp-nvim-lsp"
@@ -147,7 +144,7 @@
                        :cond false
                        :dependencies [:nvim-tree/nvim-web-devicons]
                        :opts {:columns ["icon" "permissions" "size" "mtime"]}}
-  "utilyre/sentiment.nvim" {:version "*"
+  "utilyre/sentiment.nvim" {:version false
                             :event "VeryLazy"
                             :opts {}}
   "ibhagwan/fzf-lua" {:cmd "FzfLua"
@@ -243,7 +240,7 @@
   "akinsho/nvim-toggleterm.lua" {:keys ["<leader>ot" "<leader>oT"]
                                  :mod "terminal"}
   "folke/flash.nvim" {:event "VeryLazy"
-                      :opts {}
+                      :opts {:modes {:char {:enabled false}}}
                       :keys [{1 "s" :mode [:n :x :o] 2 #((. (require "flash") :jump))}
                              {1 "S" :mode [:n :x :o] 2 #((. (require "flash") :treesitter))}
                              {1 "r" :mode :o 2 #((. (require "flash") :remote))}
@@ -283,9 +280,8 @@
                                :dependencies ["haya14busa/vim-asterisk"]}
   "mg979/vim-visual-multi" {:event "VeryLazy"}
   "max397574/better-escape.nvim" {:event "VeryLazy"
-                                  :config #((. (require "better_escape") :setup) {:mappings {:i {:j {:k "<Esc>"}}
-                                                                                             :t {:j {:k "<Esc>"}}
-                                                                                             :s {:j {:k "<Esc>"}}}})}
+                                  :config #((. (require "better_escape") :setup) {:default_mappings false
+                                                                                  :mappings {:i {:j {:k "<Esc>"}}}})}
   "sindrets/diffview.nvim" {:cmd "DiffviewOpen"}
   "chrisgrieser/nvim-spider" {:keys [{1 "w" 2 "<cmd>lua require('spider').motion('w')<CR>" :mode [:n :o :x]}
                                      {1 "e" 2 "<cmd>lua require('spider').motion('e')<CR>" :mode [:n :o :x]}

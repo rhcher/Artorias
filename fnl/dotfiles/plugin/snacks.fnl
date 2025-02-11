@@ -1,36 +1,26 @@
 (import-macros {: map} :dotfiles.macros)
 
-(local layout_ivy {:layout {1 {:border :bottom :height 1 :win :input}
-                            2 {1 {:border :none :win :list}
-                               2 {:border :left
-                                  :title "{preview}"
-                                  :width 0.6
-                                  :win :preview}
-                               :box :horizontal}
-                            :backdrop false
-                            :border :top
-                            :box :vertical
-                            :height 0.4
-                            :row (- 1)
-                            :title " {title} {live} {flags}"
-                            :title_pos :left
-                            :width 0}})
-
 (let [(_ snacks) (pcall require "snacks")]
   (snacks.setup {:indent {:animate {:style "down"}}
-                 :picker {:layout layout_ivy}
+                 :picker {:layout {:preset "ivy"
+                                   :cycle false}}
+                 :styles {}
                  :quickfile {}
                  :notifier {}}))
 
 ; picker keymap
 (map :n :<leader>ff #(Snacks.picker.files))
-(map :n :<leader>fp #(Snacks.picker.files {:cwd "~/.config/nvim"}))
+(map :n :<leader>fc #(Snacks.picker.files {:cwd "~/.config/nvim"}))
 (map :n :<leader>fs #(Snacks.picker.grep))
 (map :n :<leader>fb #(Snacks.picker.buffers))
 (map :n :<leader>bb #(Snacks.picker.buffers))
 (map :n :<leader>fh #(Snacks.picker.help))
 (map :n :<leader>fk #(Snacks.picker.keymaps))
-; (map :n :<leader>fl fzf.blines)
+(map :n :<leader>fl #(Snacks.picker.lines))
+(map :n :<leader>fp #(Snacks.picker.projects))
+(map :n :<leader>ss #(Snacks.picker.smart))
+(map :n :<leader>su #(Snacks.picker.undo))
+(map :n :<leader>sh #(Snacks.picker.highlights))
 ; (map :n :<leader>pl fzf.lines)
 ; (map :n :<leader>fo fzf.oldfiles)
 ; (map :n :<leader>fc fzf.commands)

@@ -1,7 +1,6 @@
 (import-macros {: map : augroup} :dotfiles.macros)
 
 ;; Generic mapping configuration.
-(map :n :<space> :<nop> {:noremap true})
 (set vim.g.mapleader " ")
 (set vim.g.maplocalleader ",")
 
@@ -16,7 +15,7 @@
 (map :t :<a-j> :<C-\><C-n><C-w>j)
 (map :t :<a-k> :<C-\><C-n><C-w>k)
 (map :t :<a-l> :<C-\><C-n><C-w>l)
-(map :t :<esc> :<C-\><C-n>)
+; (map :t :<esc> :<C-\><C-n>)
 
 ;; normal-mode
 (map :n :<esc> ::noh<CR>)

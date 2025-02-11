@@ -6,6 +6,8 @@ vim.opt.jumpoptions = "stack"
 vim.opt.pumheight = 10
 vim.opt.exrc = true
 vim.opt.termsync = true
+vim.opt.smoothscroll = true
+vim.cmd.colorscheme("srcery")
 vim.opt.textwidth = 100
 vim.opt.smarttab = true
 vim.opt.expandtab = true
@@ -71,7 +73,7 @@ do
   vim.api.nvim_create_autocmd({"BufEnter"}, {callback = _3_, group = group})
   vim.api.nvim_create_autocmd({"FileType"}, {pattern = "cpp", command = "set cinkeys-=:", group = group})
   local function _4_()
-    vim.g.snacks_indent = false
+    vim.b.snacks_indent = false
     return nil
   end
   vim.api.nvim_create_autocmd({"FileType"}, {pattern = "fennel", callback = _4_, group = group})

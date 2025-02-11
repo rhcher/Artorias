@@ -3,5 +3,9 @@ do
   local _, mini_file = pcall(require, "mini.files")
   mini_file.setup()
 end
-local _, mini_icon = pcall(require, "mini.icons")
-return mini_icon.setup()
+do
+  local _, mini_icon = pcall(require, "mini.icons")
+  mini_icon.setup()
+end
+local _, mini_sessions = pcall(require, "mini.sessions")
+return mini_sessions.setup()

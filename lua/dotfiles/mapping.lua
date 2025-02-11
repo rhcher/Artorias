@@ -1,27 +1,4 @@
 -- [nfnl] Compiled from fnl/dotfiles/mapping.fnl by https://github.com/Olical/nfnl, do not edit.
-do
-  local opts_1_auto
-  do
-    local tbl_16_auto = {}
-    for k_2_auto, v_3_auto in pairs(({noremap = true} or {})) do
-      local k_17_auto, v_18_auto = k_2_auto, v_3_auto
-      if ((k_17_auto ~= nil) and (v_18_auto ~= nil)) then
-        tbl_16_auto[k_17_auto] = v_18_auto
-      else
-      end
-    end
-    opts_1_auto = tbl_16_auto
-  end
-  if (opts_1_auto.noremap == nil) then
-    opts_1_auto.noremap = true
-  else
-  end
-  if (opts_1_auto.silent == nil) then
-    opts_1_auto.silent = true
-  else
-  end
-  vim.keymap.set("n", "<space>", "<nop>", opts_1_auto)
-end
 vim.g.mapleader = " "
 vim.g.maplocalleader = ","
 do
@@ -184,29 +161,6 @@ do
   else
   end
   vim.keymap.set("t", "<a-l>", "<C-\\><C-n><C-w>l", opts_1_auto)
-end
-do
-  local opts_1_auto
-  do
-    local tbl_16_auto = {}
-    for k_2_auto, v_3_auto in pairs((nil or {})) do
-      local k_17_auto, v_18_auto = k_2_auto, v_3_auto
-      if ((k_17_auto ~= nil) and (v_18_auto ~= nil)) then
-        tbl_16_auto[k_17_auto] = v_18_auto
-      else
-      end
-    end
-    opts_1_auto = tbl_16_auto
-  end
-  if (opts_1_auto.noremap == nil) then
-    opts_1_auto.noremap = true
-  else
-  end
-  if (opts_1_auto.silent == nil) then
-    opts_1_auto.silent = true
-  else
-  end
-  vim.keymap.set("t", "<esc>", "<C-\\><C-n>", opts_1_auto)
 end
 do
   local opts_1_auto
@@ -674,7 +628,7 @@ vim.keymap.del("n", "gra")
 vim.keymap.del("n", "gri")
 do
   local group = vim.api.nvim_create_augroup("InputQquitEverythingIwant", {clear = true})
-  local function _88_()
+  local function _82_()
     local opts_1_auto
     do
       local tbl_16_auto = {}
@@ -697,8 +651,8 @@ do
     end
     return vim.keymap.set({"n", "v"}, "q", ":close<CR>", opts_1_auto)
   end
-  vim.api.nvim_create_autocmd({"FileType"}, {pattern = {"git", "qf", "man", "help", "lspinfo", "fugitive", "gitcommit"}, callback = _88_, group = group})
-  local function _92_()
+  vim.api.nvim_create_autocmd({"FileType"}, {pattern = {"git", "qf", "man", "help", "lspinfo", "fugitive", "gitcommit"}, callback = _82_, group = group})
+  local function _86_()
     if (vim.bo.buftype == "nofile") then
       local opts_1_auto
       do
@@ -725,8 +679,8 @@ do
       return nil
     end
   end
-  vim.api.nvim_create_autocmd({"FileType"}, {pattern = {"*"}, callback = _92_, group = group})
-  local function _97_()
+  vim.api.nvim_create_autocmd({"FileType"}, {pattern = {"*"}, callback = _86_, group = group})
+  local function _91_()
     if ((vim.bo.filetype == "") and (vim.bo.buftype == "")) then
       local opts_1_auto
       do
@@ -753,7 +707,7 @@ do
       return nil
     end
   end
-  vim.api.nvim_create_autocmd({"BufEnter"}, {pattern = {"*"}, callback = _97_, group = group})
+  vim.api.nvim_create_autocmd({"BufEnter"}, {pattern = {"*"}, callback = _91_, group = group})
 end
 vim.g.nremap = {["[m"] = "[f", ["]m"] = "]f", ["="] = "<tab>"}
 return nil

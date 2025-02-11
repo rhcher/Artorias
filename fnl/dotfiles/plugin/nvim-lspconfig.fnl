@@ -114,24 +114,23 @@
    :vimruntime ""})
 
 (let [(ok? lsp) (pcall require "lspconfig")
-      flags {:debounce_text_changes 50}
-      (_ cmplsp) (pcall require "cmp_nvim_lsp")
-      (_ blinklsp) (pcall require "blink.cmp")]
+      flags {:debounce_text_changes 50}]
+      ; (_ cmplsp) (pcall require "cmp_nvim_lsp")
+      ; (_ blinklsp) (pcall require "blink.cmp")]
   ; (var capabilities (cmplsp.default_capabilities))
-  (var capabilities (blinklsp.get_lsp_capabilities))
-  (set capabilities.textDocument.foldingRange {:dynamicRegistration false
-                                               :lineFoldingOnly true})
-
-  (tset capabilities :workspace {:didChangeWatchedFiles {:dynamicRegistration false}})
+  ; (var capabilities (blinklsp.get_lsp_capabilities))
+  ; (set capabilities.textDocument.foldingRange {:dynamicRegistration false
+  ;                                              :lineFoldingOnly true})
+  ;
+  ; (tset capabilities :workspace {:didChangeWatchedFiles {:dynamicRegistration false}})
   (when ok?
     ; (lsp.ccls.setup
     ;   {:on_attach ccls_on_attach
-    ;    :capabilities capabilities
     ;    :init_options ccls_config
     ;    :flags flags})
     (lsp.clangd.setup
       {:on_attach clangd_on_attach
-       :capabilities capabilities
+       ; :capabilities capabilities
        :cmd [:clangd
              :--clang-tidy
              :--background-index
@@ -142,33 +141,33 @@
        :flags flags})
     (lsp.lua_ls.setup
       {;:cmd ["/home/rhcher/sources/lua-language-server/bin/lua-language-server"]
-       :capabilities capabilities
+       ; :capabilities capabilities
        :settings sumneko_lua_config
        :flags flags})
     (lsp.ocamllsp.setup
       {
-       :capabilities capabilities
+       ; :capabilities capabilities
        :flags flags})
     (lsp.vimls.setup
       {
-       :capabilities capabilities
+       ; :capabilities capabilities
        :flags flags})
     (lsp.hls.setup
       {
-       :capabilities capabilities
+       ; :capabilities capabilities
        :settings hls_config
        :flags flags})
     (lsp.racket_langserver.setup
       {
-       :capabilities capabilities
+       ; :capabilities capabilities
        :flags flags})
     (lsp.pyright.setup
       {
-       :capabilities capabilities
+       ; :capabilities capabilities
        :settings pyright_config
        :flags flags})
     (lsp.leanls.setup {
-                       :capabilities capabilities
+                       ; :capabilities capabilities
                        :flags flags})
-    (lsp.zls.setup {:capabilities capabilities
+    (lsp.zls.setup {;:capabilities capabilities
                     :flags flags})))

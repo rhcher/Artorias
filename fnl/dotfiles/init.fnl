@@ -1,6 +1,6 @@
-(require "dotfiles.core")
 (require "dotfiles.mapping")
-(require "dotfiles.plugin")
 (require "dotfiles.indentation")
 (require "dotfiles.lspconfig")
 (require "dotfiles.diagnostic")
+(require "dotfiles.plugin")
+(require "dotfiles.core")
