@@ -1,10 +1,44 @@
 (import-macros {: map} :dotfiles.macros)
 
+(local sections [{:section :header}
+                 {:cmd "~/square"
+                  :height 5
+                  :padding 1
+                  :pane 2
+                  :section :terminal}
+                 {:gap 1 :padding 1 :section :keys}
+                 {:icon " "
+                  :indent 2
+                  :padding 1
+                  :pane 2
+                  :section :recent_files
+                  :title "Recent Files"}
+                 {:icon " "
+                  :indent 2
+                  :padding 1
+                  :pane 2
+                  :section :projects
+                  :title :Projects}
+                 {:cmd "git status --short --branch --renames"
+                  :enabled (fn [] (not= (Snacks.git.get_root) nil))
+                  :height 5
+                  :icon " "
+                  :indent 3
+                  :padding 1
+                  :pane 2
+                  :section :terminal
+                  :title "Git Status"
+                  :ttl (* 5 60)}
+                 {:section :startup}])  
+
 (let [(_ snacks) (pcall require "snacks")]
   (snacks.setup {:indent {:animate {:style "down"}}
                  :picker {:layout {:preset "ivy"
                                    :cycle false}}
+                 :terminal {}
                  :styles {}
+                 :dashboard {:sections sections}
+                 :images {}
                  :quickfile {}
                  :notifier {}}))
 
@@ -29,3 +63,4 @@
 
 ; notifier keymap
 (map :n :<leader>nf #(Snacks.notifier.show_history))
+(map :n :<leader>ot #(Snacks.terminal))

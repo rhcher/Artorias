@@ -1,12 +1,8 @@
-(import-macros {: map} :dotfiles.macros)
-
-(let [(_ mini_file) (pcall require "mini.files")]
-  (mini_file.setup))
-
-(let [(_ mini_icon) (pcall require "mini.icons")]
-  (mini_icon.setup))
-
-(let [(_ mini_sessions) (pcall require "mini.sessions")]
-  (mini_sessions.setup))
-
-; (map :n :<leader>e #(MiniFiles.open))
+(let [(_ mini_file) (pcall require "mini.files")
+      (_ mini_icon) (pcall require "mini.icons")
+      (_ mini_sessions) (pcall require "mini.sessions")
+      (_ mini_snippet) (pcall require "mini.snippets")]
+  (mini_file.setup)
+  (mini_icon.setup)
+  (mini_sessions.setup)
+  (mini_snippet.setup))

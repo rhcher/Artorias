@@ -76,7 +76,7 @@ do
     vim.b.snacks_indent = false
     return nil
   end
-  vim.api.nvim_create_autocmd({"FileType"}, {pattern = "fennel", callback = _4_, group = group})
+  vim.api.nvim_create_autocmd({"FileType"}, {pattern = {"fennel", "markdown"}, callback = _4_, group = group})
   vim.api.nvim_create_autocmd({"WinClosed"}, {nested = true, command = "if expand('<amatch>') == win_getid() | wincmd p | endif", group = group})
 end
 if (vim.fn.has("nvim-0.11") == 1) then
@@ -98,6 +98,7 @@ if vim.g.neovide then
   vim.g.neovide_confirm_quit = false
   vim.g.neovide_fullscreen = true
   vim.g.neovide_hide_mouse_when_typing = true
+  vim.g.neovide_cursor_animate_in_insert_mode = true
   vim.g.neovide_unlink_border_highlights = true
   return nil
 else

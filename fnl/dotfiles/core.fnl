@@ -92,7 +92,7 @@
          [[:FocusGained :TermClose :TermLeave] {:command "checktime"}]
          [[:BufEnter] {:callback #(set vim.opt.formatoptions (- vim.opt.formatoptions "o"))}]
          [[:FileType] {:pattern "cpp" :command "set cinkeys-=:"}]
-         [[:FileType] {:pattern "fennel" :callback #(set vim.b.snacks_indent false)}]
+         [[:FileType] {:pattern ["fennel" "markdown"] :callback #(set vim.b.snacks_indent false)}]
          [[:WinClosed] {:nested true
                         :command "if expand('<amatch>') == win_getid() | wincmd p | endif"}])
 
@@ -107,11 +107,11 @@
                       (vim.fn.mapset :i false stab-map))))))
 
 (when vim.g.neovide
-  ; (set vim.o.guifont "JetBrainsMonoMedium Nerd Font Mono,JetBrainsMonoNL Nerd Font Mono,TsangerJinKai03:h14")
   (set vim.g.neovide_confirm_quit false)
   (set vim.g.neovide_fullscreen true)
   ; (set vim.g.neovide_scroll_animation_length 0.5)
   (set vim.g.neovide_hide_mouse_when_typing true)
+  (set vim.g.neovide_cursor_animate_in_insert_mode true)
   (set vim.g.neovide_unlink_border_highlights true))
   ; (set vim.g.neovide_refresh_rate 165))
   ; (set vim.g.neovide_no_idle true))
