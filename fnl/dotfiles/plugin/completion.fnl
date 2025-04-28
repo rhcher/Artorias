@@ -5,7 +5,6 @@
       (_ snippy) (pcall require "snippy")]
   (blink.setup {:keymap {:preset "super-tab"
                          :<Tab> ["select_and_accept" "snippet_forward" "fallback"]}
-                ; :snippets {:preset "mini_snippets"}
                 :snippets {:expand (fn [snippet] (snippy.expand_snippet snippet))
                            :active (fn [filter] (if (= filter nil)
                                                     nil
@@ -15,9 +14,11 @@
                                                      (snippy.next)
                                                      (= direction -1)
                                                      (snippy.previous)))}
+                :cmdline {:keymap {:preset "inherit"}
+                          :completion {:menu {:auto_show true}}}
                 :appearance {:use_nvim_cmp_as_default true
                              :nerd_font_variant "mono"}
-                :completion {:trigger {:prefetch_on_insert false}
+                :completion {:trigger {:prefetch_on_insert true}
                              :list {:selection {:preselect false}}
                              :accept {:dot_repeat false}}
                 :sources {:default ["lsp" "path" "buffer"]}

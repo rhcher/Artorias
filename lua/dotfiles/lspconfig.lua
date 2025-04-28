@@ -6,18 +6,18 @@ local function _2_(args)
   local bufnr = args.buf
   local ms = protocol.Methods
   local client = vim.lsp.get_client_by_id(args.data.client_id)
-  if (client.supports_method(ms.textDocument_formatting) and client.supports_method(ms.textDocument_rangeFormatting)) then
+  if (client:supports_method(ms.textDocument_formatting) and client:supports_method(ms.textDocument_rangeFormatting)) then
     local opts_1_auto
     do
-      local tbl_16_auto = {}
+      local tbl_104_auto = {}
       for k_2_auto, v_3_auto in pairs(({buffer = bufnr} or {})) do
-        local k_17_auto, v_18_auto = k_2_auto, v_3_auto
-        if ((k_17_auto ~= nil) and (v_18_auto ~= nil)) then
-          tbl_16_auto[k_17_auto] = v_18_auto
+        local k_105_auto, v_106_auto = k_2_auto, v_3_auto
+        if ((k_105_auto ~= nil) and (v_106_auto ~= nil)) then
+          tbl_104_auto[k_105_auto] = v_106_auto
         else
         end
       end
-      opts_1_auto = tbl_16_auto
+      opts_1_auto = tbl_104_auto
     end
     if (opts_1_auto.noremap == nil) then
       opts_1_auto.noremap = true
@@ -33,19 +33,19 @@ local function _2_(args)
     vim.keymap.set({"n", "v"}, "<leader>lf", _6_, opts_1_auto)
   else
   end
-  if client.supports_method(ms.textDocument_prepareCallHierarchy) then
+  if client:supports_method(ms.textDocument_prepareCallHierarchy) then
     do
       local opts_1_auto
       do
-        local tbl_16_auto = {}
+        local tbl_104_auto = {}
         for k_2_auto, v_3_auto in pairs(({buffer = bufnr} or {})) do
-          local k_17_auto, v_18_auto = k_2_auto, v_3_auto
-          if ((k_17_auto ~= nil) and (v_18_auto ~= nil)) then
-            tbl_16_auto[k_17_auto] = v_18_auto
+          local k_105_auto, v_106_auto = k_2_auto, v_3_auto
+          if ((k_105_auto ~= nil) and (v_106_auto ~= nil)) then
+            tbl_104_auto[k_105_auto] = v_106_auto
           else
           end
         end
-        opts_1_auto = tbl_16_auto
+        opts_1_auto = tbl_104_auto
       end
       if (opts_1_auto.noremap == nil) then
         opts_1_auto.noremap = true
@@ -59,15 +59,15 @@ local function _2_(args)
     end
     local opts_1_auto
     do
-      local tbl_16_auto = {}
+      local tbl_104_auto = {}
       for k_2_auto, v_3_auto in pairs(({buffer = bufnr} or {})) do
-        local k_17_auto, v_18_auto = k_2_auto, v_3_auto
-        if ((k_17_auto ~= nil) and (v_18_auto ~= nil)) then
-          tbl_16_auto[k_17_auto] = v_18_auto
+        local k_105_auto, v_106_auto = k_2_auto, v_3_auto
+        if ((k_105_auto ~= nil) and (v_106_auto ~= nil)) then
+          tbl_104_auto[k_105_auto] = v_106_auto
         else
         end
       end
-      opts_1_auto = tbl_16_auto
+      opts_1_auto = tbl_104_auto
     end
     if (opts_1_auto.noremap == nil) then
       opts_1_auto.noremap = true
@@ -80,18 +80,18 @@ local function _2_(args)
     vim.keymap.set("n", "<leader>io", vim.lsp.buf.outgoing_calls, opts_1_auto)
   else
   end
-  if client.supports_method(ms.textDocument_documentSymbol) then
+  if client:supports_method(ms.textDocument_documentSymbol) then
     local opts_1_auto
     do
-      local tbl_16_auto = {}
+      local tbl_104_auto = {}
       for k_2_auto, v_3_auto in pairs(({buffer = bufnr} or {})) do
-        local k_17_auto, v_18_auto = k_2_auto, v_3_auto
-        if ((k_17_auto ~= nil) and (v_18_auto ~= nil)) then
-          tbl_16_auto[k_17_auto] = v_18_auto
+        local k_105_auto, v_106_auto = k_2_auto, v_3_auto
+        if ((k_105_auto ~= nil) and (v_106_auto ~= nil)) then
+          tbl_104_auto[k_105_auto] = v_106_auto
         else
         end
       end
-      opts_1_auto = tbl_16_auto
+      opts_1_auto = tbl_104_auto
     end
     if (opts_1_auto.noremap == nil) then
       opts_1_auto.noremap = true
@@ -104,18 +104,18 @@ local function _2_(args)
     vim.keymap.set("n", "<leader>lw", "<cmd>Lspsaga outline<CR>", opts_1_auto)
   else
   end
-  if client.supports_method(ms.workspace_symbol) then
+  if client:supports_method(ms.workspace_symbol) then
     local opts_1_auto
     do
-      local tbl_16_auto = {}
+      local tbl_104_auto = {}
       for k_2_auto, v_3_auto in pairs(({buffer = bufnr} or {})) do
-        local k_17_auto, v_18_auto = k_2_auto, v_3_auto
-        if ((k_17_auto ~= nil) and (v_18_auto ~= nil)) then
-          tbl_16_auto[k_17_auto] = v_18_auto
+        local k_105_auto, v_106_auto = k_2_auto, v_3_auto
+        if ((k_105_auto ~= nil) and (v_106_auto ~= nil)) then
+          tbl_104_auto[k_105_auto] = v_106_auto
         else
         end
       end
-      opts_1_auto = tbl_16_auto
+      opts_1_auto = tbl_104_auto
     end
     if (opts_1_auto.noremap == nil) then
       opts_1_auto.noremap = true
@@ -128,18 +128,18 @@ local function _2_(args)
     vim.keymap.set("n", "<leader>lW", vim.lsp.buf.workspace_symbol, opts_1_auto)
   else
   end
-  if client.supports_method(ms.textDocument_codeAction) then
+  if client:supports_method(ms.textDocument_codeAction) then
     local opts_1_auto
     do
-      local tbl_16_auto = {}
+      local tbl_104_auto = {}
       for k_2_auto, v_3_auto in pairs(({buffer = bufnr} or {})) do
-        local k_17_auto, v_18_auto = k_2_auto, v_3_auto
-        if ((k_17_auto ~= nil) and (v_18_auto ~= nil)) then
-          tbl_16_auto[k_17_auto] = v_18_auto
+        local k_105_auto, v_106_auto = k_2_auto, v_3_auto
+        if ((k_105_auto ~= nil) and (v_106_auto ~= nil)) then
+          tbl_104_auto[k_105_auto] = v_106_auto
         else
         end
       end
-      opts_1_auto = tbl_16_auto
+      opts_1_auto = tbl_104_auto
     end
     if (opts_1_auto.noremap == nil) then
       opts_1_auto.noremap = true
@@ -152,23 +152,23 @@ local function _2_(args)
     vim.keymap.set({"n", "v"}, "<leader>la", vim.lsp.buf.code_action, opts_1_auto)
   else
   end
-  if client.supports_method(ms.textDocument_codeLens) then
+  if client:supports_method(ms.textDocument_codeLens) then
     local function _27_()
       return vim.lsp.codelens.refresh({bufnr = bufnr})
     end
     vim.api.nvim_create_autocmd({"BufEnter", "CursorHold", "InsertLeave"}, {buffer = bufnr, callback = _27_})
-    if client.supports_method(ms.workspace_executeCommand) then
+    if client:supports_method(ms.workspace_executeCommand) then
       local opts_1_auto
       do
-        local tbl_16_auto = {}
+        local tbl_104_auto = {}
         for k_2_auto, v_3_auto in pairs(({buffer = bufnr} or {})) do
-          local k_17_auto, v_18_auto = k_2_auto, v_3_auto
-          if ((k_17_auto ~= nil) and (v_18_auto ~= nil)) then
-            tbl_16_auto[k_17_auto] = v_18_auto
+          local k_105_auto, v_106_auto = k_2_auto, v_3_auto
+          if ((k_105_auto ~= nil) and (v_106_auto ~= nil)) then
+            tbl_104_auto[k_105_auto] = v_106_auto
           else
           end
         end
-        opts_1_auto = tbl_16_auto
+        opts_1_auto = tbl_104_auto
       end
       if (opts_1_auto.noremap == nil) then
         opts_1_auto.noremap = true
@@ -186,15 +186,15 @@ local function _2_(args)
   do
     local opts_1_auto
     do
-      local tbl_16_auto = {}
+      local tbl_104_auto = {}
       for k_2_auto, v_3_auto in pairs(({buffer = bufnr} or {})) do
-        local k_17_auto, v_18_auto = k_2_auto, v_3_auto
-        if ((k_17_auto ~= nil) and (v_18_auto ~= nil)) then
-          tbl_16_auto[k_17_auto] = v_18_auto
+        local k_105_auto, v_106_auto = k_2_auto, v_3_auto
+        if ((k_105_auto ~= nil) and (v_106_auto ~= nil)) then
+          tbl_104_auto[k_105_auto] = v_106_auto
         else
         end
       end
-      opts_1_auto = tbl_16_auto
+      opts_1_auto = tbl_104_auto
     end
     if (opts_1_auto.noremap == nil) then
       opts_1_auto.noremap = true
@@ -209,15 +209,15 @@ local function _2_(args)
   do
     local opts_1_auto
     do
-      local tbl_16_auto = {}
+      local tbl_104_auto = {}
       for k_2_auto, v_3_auto in pairs(({buffer = bufnr} or {})) do
-        local k_17_auto, v_18_auto = k_2_auto, v_3_auto
-        if ((k_17_auto ~= nil) and (v_18_auto ~= nil)) then
-          tbl_16_auto[k_17_auto] = v_18_auto
+        local k_105_auto, v_106_auto = k_2_auto, v_3_auto
+        if ((k_105_auto ~= nil) and (v_106_auto ~= nil)) then
+          tbl_104_auto[k_105_auto] = v_106_auto
         else
         end
       end
-      opts_1_auto = tbl_16_auto
+      opts_1_auto = tbl_104_auto
     end
     if (opts_1_auto.noremap == nil) then
       opts_1_auto.noremap = true
@@ -232,15 +232,15 @@ local function _2_(args)
   do
     local opts_1_auto
     do
-      local tbl_16_auto = {}
+      local tbl_104_auto = {}
       for k_2_auto, v_3_auto in pairs(({buffer = bufnr} or {})) do
-        local k_17_auto, v_18_auto = k_2_auto, v_3_auto
-        if ((k_17_auto ~= nil) and (v_18_auto ~= nil)) then
-          tbl_16_auto[k_17_auto] = v_18_auto
+        local k_105_auto, v_106_auto = k_2_auto, v_3_auto
+        if ((k_105_auto ~= nil) and (v_106_auto ~= nil)) then
+          tbl_104_auto[k_105_auto] = v_106_auto
         else
         end
       end
-      opts_1_auto = tbl_16_auto
+      opts_1_auto = tbl_104_auto
     end
     if (opts_1_auto.noremap == nil) then
       opts_1_auto.noremap = true
@@ -255,15 +255,15 @@ local function _2_(args)
   do
     local opts_1_auto
     do
-      local tbl_16_auto = {}
+      local tbl_104_auto = {}
       for k_2_auto, v_3_auto in pairs(({buffer = bufnr} or {})) do
-        local k_17_auto, v_18_auto = k_2_auto, v_3_auto
-        if ((k_17_auto ~= nil) and (v_18_auto ~= nil)) then
-          tbl_16_auto[k_17_auto] = v_18_auto
+        local k_105_auto, v_106_auto = k_2_auto, v_3_auto
+        if ((k_105_auto ~= nil) and (v_106_auto ~= nil)) then
+          tbl_104_auto[k_105_auto] = v_106_auto
         else
         end
       end
-      opts_1_auto = tbl_16_auto
+      opts_1_auto = tbl_104_auto
     end
     if (opts_1_auto.noremap == nil) then
       opts_1_auto.noremap = true
@@ -281,15 +281,15 @@ local function _2_(args)
   do
     local opts_1_auto
     do
-      local tbl_16_auto = {}
+      local tbl_104_auto = {}
       for k_2_auto, v_3_auto in pairs(({buffer = bufnr} or {})) do
-        local k_17_auto, v_18_auto = k_2_auto, v_3_auto
-        if ((k_17_auto ~= nil) and (v_18_auto ~= nil)) then
-          tbl_16_auto[k_17_auto] = v_18_auto
+        local k_105_auto, v_106_auto = k_2_auto, v_3_auto
+        if ((k_105_auto ~= nil) and (v_106_auto ~= nil)) then
+          tbl_104_auto[k_105_auto] = v_106_auto
         else
         end
       end
-      opts_1_auto = tbl_16_auto
+      opts_1_auto = tbl_104_auto
     end
     if (opts_1_auto.noremap == nil) then
       opts_1_auto.noremap = true
@@ -314,15 +314,15 @@ local function _2_(args)
   do
     local opts_1_auto
     do
-      local tbl_16_auto = {}
+      local tbl_104_auto = {}
       for k_2_auto, v_3_auto in pairs(({buffer = bufnr} or {})) do
-        local k_17_auto, v_18_auto = k_2_auto, v_3_auto
-        if ((k_17_auto ~= nil) and (v_18_auto ~= nil)) then
-          tbl_16_auto[k_17_auto] = v_18_auto
+        local k_105_auto, v_106_auto = k_2_auto, v_3_auto
+        if ((k_105_auto ~= nil) and (v_106_auto ~= nil)) then
+          tbl_104_auto[k_105_auto] = v_106_auto
         else
         end
       end
-      opts_1_auto = tbl_16_auto
+      opts_1_auto = tbl_104_auto
     end
     if (opts_1_auto.noremap == nil) then
       opts_1_auto.noremap = true
@@ -337,15 +337,15 @@ local function _2_(args)
   do
     local opts_1_auto
     do
-      local tbl_16_auto = {}
+      local tbl_104_auto = {}
       for k_2_auto, v_3_auto in pairs(({buffer = bufnr} or {})) do
-        local k_17_auto, v_18_auto = k_2_auto, v_3_auto
-        if ((k_17_auto ~= nil) and (v_18_auto ~= nil)) then
-          tbl_16_auto[k_17_auto] = v_18_auto
+        local k_105_auto, v_106_auto = k_2_auto, v_3_auto
+        if ((k_105_auto ~= nil) and (v_106_auto ~= nil)) then
+          tbl_104_auto[k_105_auto] = v_106_auto
         else
         end
       end
-      opts_1_auto = tbl_16_auto
+      opts_1_auto = tbl_104_auto
     end
     if (opts_1_auto.noremap == nil) then
       opts_1_auto.noremap = true

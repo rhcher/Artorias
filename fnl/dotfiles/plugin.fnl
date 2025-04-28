@@ -100,11 +100,12 @@
                           :event "LspAttach"
                           :mod "lspsaga"}
   "AndrewRadev/sideways.vim" {:event "VeryLazy"
+                              :cond false
                               :init #(do
                                        (map [:x :o] :aa "<Plug>SidewaysArgumentTextobjA")
                                        (map [:x :o] :ia "<Plug>SidewaysArgumentTextobjI"))}
-  "altermo/ultimate-autopair.nvim" {:event ["ModeChanged *:[vi]"]
-                                    :branch "v0.6"
+  "altermo/ultimate-autopair.nvim" {:branch "v0.6"
+                                    :lazy false
                                     :dependencies ["nvim-treesitter/nvim-treesitter"]
                                     :mod "auto-pairs"}
   "utilyre/sentiment.nvim" {:version false
@@ -207,8 +208,6 @@
                         #(map [:n :x] "<leader>sr" (. (require "ssr") :open))}
   "dhruvasagar/vim-table-mode" {:cmd "TableModeToggle"
                                 :init #(set vim.g.table_mode_corner "|")}
-  "gbprod/cutlass.nvim" {:event "VeryLazy"
-                         :opts {}}
   "kevinhwang91/nvim-hlslens" {:event "VeryLazy"
                                :mod "hlslens"
                                :dependencies ["haya14busa/vim-asterisk"]}
@@ -244,4 +243,7 @@
                            :keys [["<leader>e" "<cmd>lua MiniFiles.open()<CR>"]]
                            :mod "mini"}
   "tani/dmacro.vim" {:lazy false
-                     :keys [{1 "<C-y>" 2 "<Plug>(dmacro-play-macro)" :mode [:i :n]}]})
+                     :keys [{1 "<C-y>" 2 "<Plug>(dmacro-play-macro)" :mode [:i :n]}]}
+  "nvzone/typr" {:dependencies "nvzone/volt"
+                 :opts {}
+                 :cmd ["Typr" "TyprStats"]})

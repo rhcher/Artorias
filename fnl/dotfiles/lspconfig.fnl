@@ -8,33 +8,33 @@
      (let [bufnr args.buf
            ms protocol.Methods
            client (vim.lsp.get_client_by_id args.data.client_id)]
-       (when (and (client.supports_method ms.textDocument_formatting)
-                  (client.supports_method ms.textDocument_rangeFormatting))
+       (when (and (client:supports_method ms.textDocument_formatting)
+                  (client:supports_method ms.textDocument_rangeFormatting))
          (map [:n :v] :<leader>lf #(vim.lsp.buf.format {:async true}) {:buffer bufnr}))
 
-       (when (client.supports_method ms.textDocument_prepareCallHierarchy)
+       (when (client:supports_method ms.textDocument_prepareCallHierarchy)
          (map :n :<leader>ii vim.lsp.buf.incoming_calls {:buffer bufnr})
          (map :n :<leader>io vim.lsp.buf.outgoing_calls {:buffer bufnr}))
 
-       (when (client.supports_method ms.textDocument_documentSymbol)
+       (when (client:supports_method ms.textDocument_documentSymbol)
          (map :n :<leader>lw "<cmd>Lspsaga outline<CR>" {:buffer bufnr}))
          ; (map :n :<leader>lw vim.lsp.buf.document_symbol {:buffer bufnr}))
 
-       (when (client.supports_method ms.workspace_symbol)
+       (when (client:supports_method ms.workspace_symbol)
          (map :n :<leader>lW vim.lsp.buf.workspace_symbol {:buffer bufnr}))
 
-       (when (client.supports_method ms.textDocument_codeAction)
+       (when (client:supports_method ms.textDocument_codeAction)
          (map [:n :v] :<leader>la vim.lsp.buf.code_action {:buffer bufnr}))
          ;(map [:n :v] :<leader>la "<cmd>Lspsaga code_action<CR>" {:buffer bufnr}))
 
-       (when (client.supports_method ms.textDocument_codeLens)
+       (when (client:supports_method ms.textDocument_codeLens)
          (autocmd [:BufEnter :CursorHold :InsertLeave]
                   {:buffer bufnr
                    :callback #(vim.lsp.codelens.refresh {:bufnr bufnr})})
-         (when (client.supports_method ms.workspace_executeCommand)
+         (when (client:supports_method ms.workspace_executeCommand)
            (map :n :<leader>ll vim.lsp.codelens.run {:buffer bufnr})))
 
-       ; (when (client.supports_method ms.textDocument_inlayHint)
+       ; (when (client:supports_method ms.textDocument_inlayHint)
        ;   (vim.lsp.inlay_hint.enable 0 true)
        ;   (autocmd ["InsertLeave"] {:buffer bufnr :callback #(vim.defer_fn #(vim.lsp.inlay_hint.enable 0 true) 1000)})
        ;   (autocmd ["InsertEnter"] {:buffer bufnr :callback #(vim.lsp.inlay_hint.enable 0 false)}))

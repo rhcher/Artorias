@@ -25,4 +25,4 @@ local function _5_(direction)
     return nil
   end
 end
-return blink.setup({keymap = {preset = "super-tab", ["<Tab>"] = {"select_and_accept", "snippet_forward", "fallback"}}, snippets = {expand = _2_, active = _3_, jump = _5_}, appearance = {use_nvim_cmp_as_default = true, nerd_font_variant = "mono"}, completion = {trigger = {prefetch_on_insert = false}, list = {selection = {preselect = false}}, accept = {dot_repeat = false}}, sources = {default = {"lsp", "path", "buffer"}}, signature = {enabled = true}})
+return blink.setup({keymap = {preset = "super-tab", ["<Tab>"] = {"select_and_accept", "snippet_forward", "fallback"}}, snippets = {expand = _2_, active = _3_, jump = _5_}, cmdline = {keymap = {preset = "inherit"}, completion = {menu = {auto_show = true}}}, appearance = {use_nvim_cmp_as_default = true, nerd_font_variant = "mono"}, completion = {trigger = {prefetch_on_insert = true}, list = {selection = {preselect = false}}, accept = {dot_repeat = false}}, sources = {default = {"lsp", "path", "buffer"}}, signature = {enabled = true}})

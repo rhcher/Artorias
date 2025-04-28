@@ -24,6 +24,7 @@ vim.opt.signcolumn = "yes"
 vim.opt.undofile = true
 vim.opt.cursorline = true
 vim.opt.incsearch = false
+vim.opt.messagesopt = "wait:0,history:500"
 vim.cmd("set diffopt+=linematch:800,algorithm:patience")
 if (vim.fn.executable("rg") == 1) then
   vim.opt.grepformat = "%f:%l:%c:%m,%f:%l:%m"
@@ -98,7 +99,6 @@ if vim.g.neovide then
   vim.g.neovide_confirm_quit = false
   vim.g.neovide_fullscreen = true
   vim.g.neovide_hide_mouse_when_typing = true
-  vim.g.neovide_cursor_animate_in_insert_mode = true
   vim.g.neovide_unlink_border_highlights = true
   return nil
 else

@@ -1,17 +1,17 @@
--- [nfnl] Compiled from fnl/dotfiles/diagnostic.fnl by https://github.com/Olical/nfnl, do not edit.
-vim.diagnostic.config({signs = {text = {[vim.diagnostic.severity.ERROR] = "\240\159\152\168", [vim.diagnostic.severity.WARN] = "\240\159\152\146", [vim.diagnostic.severity.HINT] = "\240\159\152\141", [vim.diagnostic.severity.INFO] = "\240\159\152\152"}}, float = {header = "", prefix = "", source = "if_many", border = "single", title = "Diagnostic:", title_pos = "left", focusable = false}, underline = false, virtual_lines = false, virtual_text = false})
+-- [nfnl] fnl/dotfiles/diagnostic.fnl
+vim.diagnostic.config({signs = {text = {[vim.diagnostic.severity.ERROR] = "\240\159\146\169", [vim.diagnostic.severity.WARN] = "\240\159\152\133", [vim.diagnostic.severity.HINT] = "\240\159\164\147", [vim.diagnostic.severity.INFO] = "\240\159\164\148"}}, float = {header = "", prefix = "", source = "if_many", border = "single", title = "Diagnostic:", title_pos = "left", focusable = false}, underline = false, virtual_lines = false, virtual_text = false})
 do
   local opts_1_auto
   do
-    local tbl_16_auto = {}
+    local tbl_16_ = {}
     for k_2_auto, v_3_auto in pairs(({noremap = true, silent = true} or {})) do
-      local k_17_auto, v_18_auto = k_2_auto, v_3_auto
-      if ((k_17_auto ~= nil) and (v_18_auto ~= nil)) then
-        tbl_16_auto[k_17_auto] = v_18_auto
+      local k_17_, v_18_ = k_2_auto, v_3_auto
+      if ((k_17_ ~= nil) and (v_18_ ~= nil)) then
+        tbl_16_[k_17_] = v_18_
       else
       end
     end
-    opts_1_auto = tbl_16_auto
+    opts_1_auto = tbl_16_
   end
   if (opts_1_auto.noremap == nil) then
     opts_1_auto.noremap = true
@@ -29,15 +29,15 @@ end
 do
   local opts_1_auto
   do
-    local tbl_16_auto = {}
+    local tbl_16_ = {}
     for k_2_auto, v_3_auto in pairs(({noremap = true, silent = true} or {})) do
-      local k_17_auto, v_18_auto = k_2_auto, v_3_auto
-      if ((k_17_auto ~= nil) and (v_18_auto ~= nil)) then
-        tbl_16_auto[k_17_auto] = v_18_auto
+      local k_17_, v_18_ = k_2_auto, v_3_auto
+      if ((k_17_ ~= nil) and (v_18_ ~= nil)) then
+        tbl_16_[k_17_] = v_18_
       else
       end
     end
-    opts_1_auto = tbl_16_auto
+    opts_1_auto = tbl_16_
   end
   if (opts_1_auto.noremap == nil) then
     opts_1_auto.noremap = true
@@ -52,15 +52,15 @@ end
 do
   local opts_1_auto
   do
-    local tbl_16_auto = {}
+    local tbl_16_ = {}
     for k_2_auto, v_3_auto in pairs(({noremap = true, silent = true} or {})) do
-      local k_17_auto, v_18_auto = k_2_auto, v_3_auto
-      if ((k_17_auto ~= nil) and (v_18_auto ~= nil)) then
-        tbl_16_auto[k_17_auto] = v_18_auto
+      local k_17_, v_18_ = k_2_auto, v_3_auto
+      if ((k_17_ ~= nil) and (v_18_ ~= nil)) then
+        tbl_16_[k_17_] = v_18_
       else
       end
     end
-    opts_1_auto = tbl_16_auto
+    opts_1_auto = tbl_16_
   end
   if (opts_1_auto.noremap == nil) then
     opts_1_auto.noremap = true
@@ -75,15 +75,15 @@ end
 do
   local opts_1_auto
   do
-    local tbl_16_auto = {}
+    local tbl_16_ = {}
     for k_2_auto, v_3_auto in pairs(({noremap = true, silent = true} or {})) do
-      local k_17_auto, v_18_auto = k_2_auto, v_3_auto
-      if ((k_17_auto ~= nil) and (v_18_auto ~= nil)) then
-        tbl_16_auto[k_17_auto] = v_18_auto
+      local k_17_, v_18_ = k_2_auto, v_3_auto
+      if ((k_17_ ~= nil) and (v_18_ ~= nil)) then
+        tbl_16_[k_17_] = v_18_
       else
       end
     end
-    opts_1_auto = tbl_16_auto
+    opts_1_auto = tbl_16_
   end
   if (opts_1_auto.noremap == nil) then
     opts_1_auto.noremap = true
@@ -97,15 +97,15 @@ do
 end
 local opts_1_auto
 do
-  local tbl_16_auto = {}
+  local tbl_16_ = {}
   for k_2_auto, v_3_auto in pairs(({noremap = true, silent = true} or {})) do
-    local k_17_auto, v_18_auto = k_2_auto, v_3_auto
-    if ((k_17_auto ~= nil) and (v_18_auto ~= nil)) then
-      tbl_16_auto[k_17_auto] = v_18_auto
+    local k_17_, v_18_ = k_2_auto, v_3_auto
+    if ((k_17_ ~= nil) and (v_18_ ~= nil)) then
+      tbl_16_[k_17_] = v_18_
     else
     end
   end
-  opts_1_auto = tbl_16_auto
+  opts_1_auto = tbl_16_
 end
 if (opts_1_auto.noremap == nil) then
   opts_1_auto.noremap = true
