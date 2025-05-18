@@ -1,4 +1,4 @@
--- [nfnl] Compiled from fnl/dotfiles/init.fnl by https://github.com/Olical/nfnl, do not edit.
+-- [nfnl] fnl/dotfiles/init.fnl
 require("dotfiles.mapping")
 require("dotfiles.indentation")
 require("dotfiles.lspconfig")

@@ -1,6 +1,7 @@
--- [nfnl] Compiled from fnl/dotfiles/lspconfig.fnl by https://github.com/Olical/nfnl, do not edit.
+-- [nfnl] fnl/dotfiles/lspconfig.fnl
 local _local_1_ = require("nfnl.module")
 local autoload = _local_1_["autoload"]
+local a = autoload("nfnl.core")
 local protocol = autoload("vim.lsp.protocol")
 local function _2_(args)
   local bufnr = args.buf
@@ -9,15 +10,15 @@ local function _2_(args)
   if (client:supports_method(ms.textDocument_formatting) and client:supports_method(ms.textDocument_rangeFormatting)) then
     local opts_1_auto
     do
-      local tbl_104_auto = {}
+      local tbl_16_ = {}
       for k_2_auto, v_3_auto in pairs(({buffer = bufnr} or {})) do
-        local k_105_auto, v_106_auto = k_2_auto, v_3_auto
-        if ((k_105_auto ~= nil) and (v_106_auto ~= nil)) then
-          tbl_104_auto[k_105_auto] = v_106_auto
+        local k_17_, v_18_ = k_2_auto, v_3_auto
+        if ((k_17_ ~= nil) and (v_18_ ~= nil)) then
+          tbl_16_[k_17_] = v_18_
         else
         end
       end
-      opts_1_auto = tbl_104_auto
+      opts_1_auto = tbl_16_
     end
     if (opts_1_auto.noremap == nil) then
       opts_1_auto.noremap = true
@@ -37,15 +38,15 @@ local function _2_(args)
     do
       local opts_1_auto
       do
-        local tbl_104_auto = {}
+        local tbl_16_ = {}
         for k_2_auto, v_3_auto in pairs(({buffer = bufnr} or {})) do
-          local k_105_auto, v_106_auto = k_2_auto, v_3_auto
-          if ((k_105_auto ~= nil) and (v_106_auto ~= nil)) then
-            tbl_104_auto[k_105_auto] = v_106_auto
+          local k_17_, v_18_ = k_2_auto, v_3_auto
+          if ((k_17_ ~= nil) and (v_18_ ~= nil)) then
+            tbl_16_[k_17_] = v_18_
           else
           end
         end
-        opts_1_auto = tbl_104_auto
+        opts_1_auto = tbl_16_
       end
       if (opts_1_auto.noremap == nil) then
         opts_1_auto.noremap = true
@@ -59,15 +60,15 @@ local function _2_(args)
     end
     local opts_1_auto
     do
-      local tbl_104_auto = {}
+      local tbl_16_ = {}
       for k_2_auto, v_3_auto in pairs(({buffer = bufnr} or {})) do
-        local k_105_auto, v_106_auto = k_2_auto, v_3_auto
-        if ((k_105_auto ~= nil) and (v_106_auto ~= nil)) then
-          tbl_104_auto[k_105_auto] = v_106_auto
+        local k_17_, v_18_ = k_2_auto, v_3_auto
+        if ((k_17_ ~= nil) and (v_18_ ~= nil)) then
+          tbl_16_[k_17_] = v_18_
         else
         end
       end
-      opts_1_auto = tbl_104_auto
+      opts_1_auto = tbl_16_
     end
     if (opts_1_auto.noremap == nil) then
       opts_1_auto.noremap = true
@@ -83,15 +84,15 @@ local function _2_(args)
   if client:supports_method(ms.textDocument_documentSymbol) then
     local opts_1_auto
     do
-      local tbl_104_auto = {}
+      local tbl_16_ = {}
       for k_2_auto, v_3_auto in pairs(({buffer = bufnr} or {})) do
-        local k_105_auto, v_106_auto = k_2_auto, v_3_auto
-        if ((k_105_auto ~= nil) and (v_106_auto ~= nil)) then
-          tbl_104_auto[k_105_auto] = v_106_auto
+        local k_17_, v_18_ = k_2_auto, v_3_auto
+        if ((k_17_ ~= nil) and (v_18_ ~= nil)) then
+          tbl_16_[k_17_] = v_18_
         else
         end
       end
-      opts_1_auto = tbl_104_auto
+      opts_1_auto = tbl_16_
     end
     if (opts_1_auto.noremap == nil) then
       opts_1_auto.noremap = true
@@ -107,15 +108,15 @@ local function _2_(args)
   if client:supports_method(ms.workspace_symbol) then
     local opts_1_auto
     do
-      local tbl_104_auto = {}
+      local tbl_16_ = {}
       for k_2_auto, v_3_auto in pairs(({buffer = bufnr} or {})) do
-        local k_105_auto, v_106_auto = k_2_auto, v_3_auto
-        if ((k_105_auto ~= nil) and (v_106_auto ~= nil)) then
-          tbl_104_auto[k_105_auto] = v_106_auto
+        local k_17_, v_18_ = k_2_auto, v_3_auto
+        if ((k_17_ ~= nil) and (v_18_ ~= nil)) then
+          tbl_16_[k_17_] = v_18_
         else
         end
       end
-      opts_1_auto = tbl_104_auto
+      opts_1_auto = tbl_16_
     end
     if (opts_1_auto.noremap == nil) then
       opts_1_auto.noremap = true
@@ -131,15 +132,15 @@ local function _2_(args)
   if client:supports_method(ms.textDocument_codeAction) then
     local opts_1_auto
     do
-      local tbl_104_auto = {}
+      local tbl_16_ = {}
       for k_2_auto, v_3_auto in pairs(({buffer = bufnr} or {})) do
-        local k_105_auto, v_106_auto = k_2_auto, v_3_auto
-        if ((k_105_auto ~= nil) and (v_106_auto ~= nil)) then
-          tbl_104_auto[k_105_auto] = v_106_auto
+        local k_17_, v_18_ = k_2_auto, v_3_auto
+        if ((k_17_ ~= nil) and (v_18_ ~= nil)) then
+          tbl_16_[k_17_] = v_18_
         else
         end
       end
-      opts_1_auto = tbl_104_auto
+      opts_1_auto = tbl_16_
     end
     if (opts_1_auto.noremap == nil) then
       opts_1_auto.noremap = true
@@ -160,15 +161,15 @@ local function _2_(args)
     if client:supports_method(ms.workspace_executeCommand) then
       local opts_1_auto
       do
-        local tbl_104_auto = {}
+        local tbl_16_ = {}
         for k_2_auto, v_3_auto in pairs(({buffer = bufnr} or {})) do
-          local k_105_auto, v_106_auto = k_2_auto, v_3_auto
-          if ((k_105_auto ~= nil) and (v_106_auto ~= nil)) then
-            tbl_104_auto[k_105_auto] = v_106_auto
+          local k_17_, v_18_ = k_2_auto, v_3_auto
+          if ((k_17_ ~= nil) and (v_18_ ~= nil)) then
+            tbl_16_[k_17_] = v_18_
           else
           end
         end
-        opts_1_auto = tbl_104_auto
+        opts_1_auto = tbl_16_
       end
       if (opts_1_auto.noremap == nil) then
         opts_1_auto.noremap = true
@@ -186,15 +187,15 @@ local function _2_(args)
   do
     local opts_1_auto
     do
-      local tbl_104_auto = {}
+      local tbl_16_ = {}
       for k_2_auto, v_3_auto in pairs(({buffer = bufnr} or {})) do
-        local k_105_auto, v_106_auto = k_2_auto, v_3_auto
-        if ((k_105_auto ~= nil) and (v_106_auto ~= nil)) then
-          tbl_104_auto[k_105_auto] = v_106_auto
+        local k_17_, v_18_ = k_2_auto, v_3_auto
+        if ((k_17_ ~= nil) and (v_18_ ~= nil)) then
+          tbl_16_[k_17_] = v_18_
         else
         end
       end
-      opts_1_auto = tbl_104_auto
+      opts_1_auto = tbl_16_
     end
     if (opts_1_auto.noremap == nil) then
       opts_1_auto.noremap = true
@@ -209,15 +210,15 @@ local function _2_(args)
   do
     local opts_1_auto
     do
-      local tbl_104_auto = {}
+      local tbl_16_ = {}
       for k_2_auto, v_3_auto in pairs(({buffer = bufnr} or {})) do
-        local k_105_auto, v_106_auto = k_2_auto, v_3_auto
-        if ((k_105_auto ~= nil) and (v_106_auto ~= nil)) then
-          tbl_104_auto[k_105_auto] = v_106_auto
+        local k_17_, v_18_ = k_2_auto, v_3_auto
+        if ((k_17_ ~= nil) and (v_18_ ~= nil)) then
+          tbl_16_[k_17_] = v_18_
         else
         end
       end
-      opts_1_auto = tbl_104_auto
+      opts_1_auto = tbl_16_
     end
     if (opts_1_auto.noremap == nil) then
       opts_1_auto.noremap = true
@@ -232,15 +233,15 @@ local function _2_(args)
   do
     local opts_1_auto
     do
-      local tbl_104_auto = {}
+      local tbl_16_ = {}
       for k_2_auto, v_3_auto in pairs(({buffer = bufnr} or {})) do
-        local k_105_auto, v_106_auto = k_2_auto, v_3_auto
-        if ((k_105_auto ~= nil) and (v_106_auto ~= nil)) then
-          tbl_104_auto[k_105_auto] = v_106_auto
+        local k_17_, v_18_ = k_2_auto, v_3_auto
+        if ((k_17_ ~= nil) and (v_18_ ~= nil)) then
+          tbl_16_[k_17_] = v_18_
         else
         end
       end
-      opts_1_auto = tbl_104_auto
+      opts_1_auto = tbl_16_
     end
     if (opts_1_auto.noremap == nil) then
       opts_1_auto.noremap = true
@@ -255,15 +256,15 @@ local function _2_(args)
   do
     local opts_1_auto
     do
-      local tbl_104_auto = {}
+      local tbl_16_ = {}
       for k_2_auto, v_3_auto in pairs(({buffer = bufnr} or {})) do
-        local k_105_auto, v_106_auto = k_2_auto, v_3_auto
-        if ((k_105_auto ~= nil) and (v_106_auto ~= nil)) then
-          tbl_104_auto[k_105_auto] = v_106_auto
+        local k_17_, v_18_ = k_2_auto, v_3_auto
+        if ((k_17_ ~= nil) and (v_18_ ~= nil)) then
+          tbl_16_[k_17_] = v_18_
         else
         end
       end
-      opts_1_auto = tbl_104_auto
+      opts_1_auto = tbl_16_
     end
     if (opts_1_auto.noremap == nil) then
       opts_1_auto.noremap = true
@@ -281,15 +282,15 @@ local function _2_(args)
   do
     local opts_1_auto
     do
-      local tbl_104_auto = {}
+      local tbl_16_ = {}
       for k_2_auto, v_3_auto in pairs(({buffer = bufnr} or {})) do
-        local k_105_auto, v_106_auto = k_2_auto, v_3_auto
-        if ((k_105_auto ~= nil) and (v_106_auto ~= nil)) then
-          tbl_104_auto[k_105_auto] = v_106_auto
+        local k_17_, v_18_ = k_2_auto, v_3_auto
+        if ((k_17_ ~= nil) and (v_18_ ~= nil)) then
+          tbl_16_[k_17_] = v_18_
         else
         end
       end
-      opts_1_auto = tbl_104_auto
+      opts_1_auto = tbl_16_
     end
     if (opts_1_auto.noremap == nil) then
       opts_1_auto.noremap = true
@@ -314,15 +315,15 @@ local function _2_(args)
   do
     local opts_1_auto
     do
-      local tbl_104_auto = {}
+      local tbl_16_ = {}
       for k_2_auto, v_3_auto in pairs(({buffer = bufnr} or {})) do
-        local k_105_auto, v_106_auto = k_2_auto, v_3_auto
-        if ((k_105_auto ~= nil) and (v_106_auto ~= nil)) then
-          tbl_104_auto[k_105_auto] = v_106_auto
+        local k_17_, v_18_ = k_2_auto, v_3_auto
+        if ((k_17_ ~= nil) and (v_18_ ~= nil)) then
+          tbl_16_[k_17_] = v_18_
         else
         end
       end
-      opts_1_auto = tbl_104_auto
+      opts_1_auto = tbl_16_
     end
     if (opts_1_auto.noremap == nil) then
       opts_1_auto.noremap = true
@@ -337,15 +338,15 @@ local function _2_(args)
   do
     local opts_1_auto
     do
-      local tbl_104_auto = {}
+      local tbl_16_ = {}
       for k_2_auto, v_3_auto in pairs(({buffer = bufnr} or {})) do
-        local k_105_auto, v_106_auto = k_2_auto, v_3_auto
-        if ((k_105_auto ~= nil) and (v_106_auto ~= nil)) then
-          tbl_104_auto[k_105_auto] = v_106_auto
+        local k_17_, v_18_ = k_2_auto, v_3_auto
+        if ((k_17_ ~= nil) and (v_18_ ~= nil)) then
+          tbl_16_[k_17_] = v_18_
         else
         end
       end
-      opts_1_auto = tbl_104_auto
+      opts_1_auto = tbl_16_
     end
     if (opts_1_auto.noremap == nil) then
       opts_1_auto.noremap = true
@@ -380,4 +381,534 @@ local function _2_(args)
 end
 vim.api.nvim_create_autocmd("LspAttach", {callback = _2_})
 vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {border = "single", title = "hover", title_pos = "left"})
-return nil
+vim.lsp.config("*", {root_markers = {".git"}})
+local function _60_(_, bufnr)
+  local ccls = require("dotfiles.ccls")
+  do
+    local opts_1_auto
+    do
+      local tbl_16_ = {}
+      for k_2_auto, v_3_auto in pairs(({buffer = bufnr} or {})) do
+        local k_17_, v_18_ = k_2_auto, v_3_auto
+        if ((k_17_ ~= nil) and (v_18_ ~= nil)) then
+          tbl_16_[k_17_] = v_18_
+        else
+        end
+      end
+      opts_1_auto = tbl_16_
+    end
+    if (opts_1_auto.noremap == nil) then
+      opts_1_auto.noremap = true
+    else
+    end
+    if (opts_1_auto.silent == nil) then
+      opts_1_auto.silent = true
+    else
+    end
+    local function _64_()
+      return ccls.navigate("L")
+    end
+    vim.keymap.set("n", "<C-k>", _64_, opts_1_auto)
+  end
+  do
+    local opts_1_auto
+    do
+      local tbl_16_ = {}
+      for k_2_auto, v_3_auto in pairs(({buffer = bufnr} or {})) do
+        local k_17_, v_18_ = k_2_auto, v_3_auto
+        if ((k_17_ ~= nil) and (v_18_ ~= nil)) then
+          tbl_16_[k_17_] = v_18_
+        else
+        end
+      end
+      opts_1_auto = tbl_16_
+    end
+    if (opts_1_auto.noremap == nil) then
+      opts_1_auto.noremap = true
+    else
+    end
+    if (opts_1_auto.silent == nil) then
+      opts_1_auto.silent = true
+    else
+    end
+    local function _68_()
+      return ccls.navigate("R")
+    end
+    vim.keymap.set("n", "<C-j>", _68_, opts_1_auto)
+  end
+  do
+    local opts_1_auto
+    do
+      local tbl_16_ = {}
+      for k_2_auto, v_3_auto in pairs(({buffer = bufnr} or {})) do
+        local k_17_, v_18_ = k_2_auto, v_3_auto
+        if ((k_17_ ~= nil) and (v_18_ ~= nil)) then
+          tbl_16_[k_17_] = v_18_
+        else
+        end
+      end
+      opts_1_auto = tbl_16_
+    end
+    if (opts_1_auto.noremap == nil) then
+      opts_1_auto.noremap = true
+    else
+    end
+    if (opts_1_auto.silent == nil) then
+      opts_1_auto.silent = true
+    else
+    end
+    local function _72_()
+      return ccls.navigate("D")
+    end
+    vim.keymap.set("n", "<C-l>", _72_, opts_1_auto)
+  end
+  do
+    local opts_1_auto
+    do
+      local tbl_16_ = {}
+      for k_2_auto, v_3_auto in pairs(({buffer = bufnr} or {})) do
+        local k_17_, v_18_ = k_2_auto, v_3_auto
+        if ((k_17_ ~= nil) and (v_18_ ~= nil)) then
+          tbl_16_[k_17_] = v_18_
+        else
+        end
+      end
+      opts_1_auto = tbl_16_
+    end
+    if (opts_1_auto.noremap == nil) then
+      opts_1_auto.noremap = true
+    else
+    end
+    if (opts_1_auto.silent == nil) then
+      opts_1_auto.silent = true
+    else
+    end
+    local function _76_()
+      return ccls.navigate("U")
+    end
+    vim.keymap.set("n", "<C-h>", _76_, opts_1_auto)
+  end
+  do
+    local opts_1_auto
+    do
+      local tbl_16_ = {}
+      for k_2_auto, v_3_auto in pairs(({buffer = bufnr} or {})) do
+        local k_17_, v_18_ = k_2_auto, v_3_auto
+        if ((k_17_ ~= nil) and (v_18_ ~= nil)) then
+          tbl_16_[k_17_] = v_18_
+        else
+        end
+      end
+      opts_1_auto = tbl_16_
+    end
+    if (opts_1_auto.noremap == nil) then
+      opts_1_auto.noremap = true
+    else
+    end
+    if (opts_1_auto.silent == nil) then
+      opts_1_auto.silent = true
+    else
+    end
+    local function _80_()
+      return ccls.call("caller")
+    end
+    vim.keymap.set("n", "<space>ii", _80_, opts_1_auto)
+  end
+  do
+    local opts_1_auto
+    do
+      local tbl_16_ = {}
+      for k_2_auto, v_3_auto in pairs(({buffer = bufnr} or {})) do
+        local k_17_, v_18_ = k_2_auto, v_3_auto
+        if ((k_17_ ~= nil) and (v_18_ ~= nil)) then
+          tbl_16_[k_17_] = v_18_
+        else
+        end
+      end
+      opts_1_auto = tbl_16_
+    end
+    if (opts_1_auto.noremap == nil) then
+      opts_1_auto.noremap = true
+    else
+    end
+    if (opts_1_auto.silent == nil) then
+      opts_1_auto.silent = true
+    else
+    end
+    local function _84_()
+      return ccls.call("callee")
+    end
+    vim.keymap.set("n", "<space>io", _84_, opts_1_auto)
+  end
+  do
+    local opts_1_auto
+    do
+      local tbl_16_ = {}
+      for k_2_auto, v_3_auto in pairs(({buffer = bufnr} or {})) do
+        local k_17_, v_18_ = k_2_auto, v_3_auto
+        if ((k_17_ ~= nil) and (v_18_ ~= nil)) then
+          tbl_16_[k_17_] = v_18_
+        else
+        end
+      end
+      opts_1_auto = tbl_16_
+    end
+    if (opts_1_auto.noremap == nil) then
+      opts_1_auto.noremap = true
+    else
+    end
+    if (opts_1_auto.silent == nil) then
+      opts_1_auto.silent = true
+    else
+    end
+    local function _88_()
+      return ccls.ccls_var("field")
+    end
+    vim.keymap.set("n", "<space>vf", _88_, opts_1_auto)
+  end
+  do
+    local opts_1_auto
+    do
+      local tbl_16_ = {}
+      for k_2_auto, v_3_auto in pairs(({buffer = bufnr} or {})) do
+        local k_17_, v_18_ = k_2_auto, v_3_auto
+        if ((k_17_ ~= nil) and (v_18_ ~= nil)) then
+          tbl_16_[k_17_] = v_18_
+        else
+        end
+      end
+      opts_1_auto = tbl_16_
+    end
+    if (opts_1_auto.noremap == nil) then
+      opts_1_auto.noremap = true
+    else
+    end
+    if (opts_1_auto.silent == nil) then
+      opts_1_auto.silent = true
+    else
+    end
+    local function _92_()
+      return ccls.ccls_var("local")
+    end
+    vim.keymap.set("n", "<space>vl", _92_, opts_1_auto)
+  end
+  do
+    local opts_1_auto
+    do
+      local tbl_16_ = {}
+      for k_2_auto, v_3_auto in pairs(({buffer = bufnr} or {})) do
+        local k_17_, v_18_ = k_2_auto, v_3_auto
+        if ((k_17_ ~= nil) and (v_18_ ~= nil)) then
+          tbl_16_[k_17_] = v_18_
+        else
+        end
+      end
+      opts_1_auto = tbl_16_
+    end
+    if (opts_1_auto.noremap == nil) then
+      opts_1_auto.noremap = true
+    else
+    end
+    if (opts_1_auto.silent == nil) then
+      opts_1_auto.silent = true
+    else
+    end
+    local function _96_()
+      return ccls.ccls_var("parameter")
+    end
+    vim.keymap.set("n", "<space>vp", _96_, opts_1_auto)
+  end
+  do
+    local opts_1_auto
+    do
+      local tbl_16_ = {}
+      for k_2_auto, v_3_auto in pairs(({buffer = bufnr} or {})) do
+        local k_17_, v_18_ = k_2_auto, v_3_auto
+        if ((k_17_ ~= nil) and (v_18_ ~= nil)) then
+          tbl_16_[k_17_] = v_18_
+        else
+        end
+      end
+      opts_1_auto = tbl_16_
+    end
+    if (opts_1_auto.noremap == nil) then
+      opts_1_auto.noremap = true
+    else
+    end
+    if (opts_1_auto.silent == nil) then
+      opts_1_auto.silent = true
+    else
+    end
+    local function _100_()
+      return ccls.member("variables")
+    end
+    vim.keymap.set("n", "<space>mv", _100_, opts_1_auto)
+  end
+  do
+    local opts_1_auto
+    do
+      local tbl_16_ = {}
+      for k_2_auto, v_3_auto in pairs(({buffer = bufnr} or {})) do
+        local k_17_, v_18_ = k_2_auto, v_3_auto
+        if ((k_17_ ~= nil) and (v_18_ ~= nil)) then
+          tbl_16_[k_17_] = v_18_
+        else
+        end
+      end
+      opts_1_auto = tbl_16_
+    end
+    if (opts_1_auto.noremap == nil) then
+      opts_1_auto.noremap = true
+    else
+    end
+    if (opts_1_auto.silent == nil) then
+      opts_1_auto.silent = true
+    else
+    end
+    local function _104_()
+      return ccls.member("functions")
+    end
+    vim.keymap.set("n", "<space>mf", _104_, opts_1_auto)
+  end
+  do
+    local opts_1_auto
+    do
+      local tbl_16_ = {}
+      for k_2_auto, v_3_auto in pairs(({buffer = bufnr} or {})) do
+        local k_17_, v_18_ = k_2_auto, v_3_auto
+        if ((k_17_ ~= nil) and (v_18_ ~= nil)) then
+          tbl_16_[k_17_] = v_18_
+        else
+        end
+      end
+      opts_1_auto = tbl_16_
+    end
+    if (opts_1_auto.noremap == nil) then
+      opts_1_auto.noremap = true
+    else
+    end
+    if (opts_1_auto.silent == nil) then
+      opts_1_auto.silent = true
+    else
+    end
+    local function _108_()
+      return ccls.member("types")
+    end
+    vim.keymap.set("n", "<space>mt", _108_, opts_1_auto)
+  end
+  do
+    local opts_1_auto
+    do
+      local tbl_16_ = {}
+      for k_2_auto, v_3_auto in pairs(({buffer = bufnr} or {})) do
+        local k_17_, v_18_ = k_2_auto, v_3_auto
+        if ((k_17_ ~= nil) and (v_18_ ~= nil)) then
+          tbl_16_[k_17_] = v_18_
+        else
+        end
+      end
+      opts_1_auto = tbl_16_
+    end
+    if (opts_1_auto.noremap == nil) then
+      opts_1_auto.noremap = true
+    else
+    end
+    if (opts_1_auto.silent == nil) then
+      opts_1_auto.silent = true
+    else
+    end
+    local function _112_()
+      return ccls.inheritance("base")
+    end
+    vim.keymap.set("n", "<space>ib", _112_, opts_1_auto)
+  end
+  do
+    local opts_1_auto
+    do
+      local tbl_16_ = {}
+      for k_2_auto, v_3_auto in pairs(({buffer = bufnr} or {})) do
+        local k_17_, v_18_ = k_2_auto, v_3_auto
+        if ((k_17_ ~= nil) and (v_18_ ~= nil)) then
+          tbl_16_[k_17_] = v_18_
+        else
+        end
+      end
+      opts_1_auto = tbl_16_
+    end
+    if (opts_1_auto.noremap == nil) then
+      opts_1_auto.noremap = true
+    else
+    end
+    if (opts_1_auto.silent == nil) then
+      opts_1_auto.silent = true
+    else
+    end
+    local function _116_()
+      return ccls.inheritance("derived")
+    end
+    vim.keymap.set("n", "<space>id", _116_, opts_1_auto)
+  end
+  do
+    local opts_1_auto
+    do
+      local tbl_16_ = {}
+      for k_2_auto, v_3_auto in pairs(({buffer = bufnr} or {})) do
+        local k_17_, v_18_ = k_2_auto, v_3_auto
+        if ((k_17_ ~= nil) and (v_18_ ~= nil)) then
+          tbl_16_[k_17_] = v_18_
+        else
+        end
+      end
+      opts_1_auto = tbl_16_
+    end
+    if (opts_1_auto.noremap == nil) then
+      opts_1_auto.noremap = true
+    else
+    end
+    if (opts_1_auto.silent == nil) then
+      opts_1_auto.silent = true
+    else
+    end
+    local function _120_()
+      return ccls.extend_ref("write")
+    end
+    vim.keymap.set("n", "<space>gw", _120_, opts_1_auto)
+  end
+  do
+    local opts_1_auto
+    do
+      local tbl_16_ = {}
+      for k_2_auto, v_3_auto in pairs(({buffer = bufnr} or {})) do
+        local k_17_, v_18_ = k_2_auto, v_3_auto
+        if ((k_17_ ~= nil) and (v_18_ ~= nil)) then
+          tbl_16_[k_17_] = v_18_
+        else
+        end
+      end
+      opts_1_auto = tbl_16_
+    end
+    if (opts_1_auto.noremap == nil) then
+      opts_1_auto.noremap = true
+    else
+    end
+    if (opts_1_auto.silent == nil) then
+      opts_1_auto.silent = true
+    else
+    end
+    local function _124_()
+      return ccls.extend_ref("read")
+    end
+    vim.keymap.set("n", "<space>gr", _124_, opts_1_auto)
+  end
+  do
+    local opts_1_auto
+    do
+      local tbl_16_ = {}
+      for k_2_auto, v_3_auto in pairs(({buffer = bufnr} or {})) do
+        local k_17_, v_18_ = k_2_auto, v_3_auto
+        if ((k_17_ ~= nil) and (v_18_ ~= nil)) then
+          tbl_16_[k_17_] = v_18_
+        else
+        end
+      end
+      opts_1_auto = tbl_16_
+    end
+    if (opts_1_auto.noremap == nil) then
+      opts_1_auto.noremap = true
+    else
+    end
+    if (opts_1_auto.silent == nil) then
+      opts_1_auto.silent = true
+    else
+    end
+    local function _128_()
+      return ccls.extend_ref("macro")
+    end
+    vim.keymap.set("n", "<space>gm", _128_, opts_1_auto)
+  end
+  do
+    local opts_1_auto
+    do
+      local tbl_16_ = {}
+      for k_2_auto, v_3_auto in pairs(({buffer = bufnr} or {})) do
+        local k_17_, v_18_ = k_2_auto, v_3_auto
+        if ((k_17_ ~= nil) and (v_18_ ~= nil)) then
+          tbl_16_[k_17_] = v_18_
+        else
+        end
+      end
+      opts_1_auto = tbl_16_
+    end
+    if (opts_1_auto.noremap == nil) then
+      opts_1_auto.noremap = true
+    else
+    end
+    if (opts_1_auto.silent == nil) then
+      opts_1_auto.silent = true
+    else
+    end
+    local function _132_()
+      return ccls.extend_ref("notcall")
+    end
+    vim.keymap.set("n", "<space>gn", _132_, opts_1_auto)
+  end
+  do
+    local opts_1_auto
+    do
+      local tbl_16_ = {}
+      for k_2_auto, v_3_auto in pairs(({buffer = bufnr} or {})) do
+        local k_17_, v_18_ = k_2_auto, v_3_auto
+        if ((k_17_ ~= nil) and (v_18_ ~= nil)) then
+          tbl_16_[k_17_] = v_18_
+        else
+        end
+      end
+      opts_1_auto = tbl_16_
+    end
+    if (opts_1_auto.noremap == nil) then
+      opts_1_auto.noremap = true
+    else
+    end
+    if (opts_1_auto.silent == nil) then
+      opts_1_auto.silent = true
+    else
+    end
+    local function _136_()
+      return ccls.ccls_fileInfo()
+    end
+    vim.keymap.set("n", "<space>cf", _136_, opts_1_auto)
+  end
+  do
+    local opts_1_auto
+    do
+      local tbl_16_ = {}
+      for k_2_auto, v_3_auto in pairs(({buffer = bufnr} or {})) do
+        local k_17_, v_18_ = k_2_auto, v_3_auto
+        if ((k_17_ ~= nil) and (v_18_ ~= nil)) then
+          tbl_16_[k_17_] = v_18_
+        else
+        end
+      end
+      opts_1_auto = tbl_16_
+    end
+    if (opts_1_auto.noremap == nil) then
+      opts_1_auto.noremap = true
+    else
+    end
+    if (opts_1_auto.silent == nil) then
+      opts_1_auto.silent = true
+    else
+    end
+    local function _140_()
+      return ccls.ccls_info()
+    end
+    vim.keymap.set("n", "<space>ci", _140_, opts_1_auto)
+  end
+  vim.lsp.handlers["$ccls/publishSkippedRanges"] = ccls["skipped-ranges-handler"]
+  vim.lsp.handlers["$ccls/publishSemanticHighlight"] = ccls["semantic-hightlight-handler"]
+  return nil
+end
+vim.lsp.config("ccls", {cmd = {"ccls"}, filetypes = {"c", "cpp", "objc", "objcpp", "cuda"}, root_markers = {"compile_commands.json", ".ccls"}, offset_encoding = "utf-32", workspace_required = true, on_attach = _60_, init_options = {capabilities = {foldingRangeProvider = true}, workspace = {workspaceFolders = {supported = false}}, clang = {excludeArgs = {"-fconserve-stack", "-fno-allow-store-data-races", "-Wp", "-MMD", "-fomit-frame-pointer", "-Wmissing-prototypes", "-Wstrict-prototypes"}}, index = {threads = a.count(vim.loop.cpu_info()), initialNoLinkage = true, initialBlacklist = {"/(clang|lld|llvm)/(test|unittests)/", "/llvm/(bindings|examples|utils)/", "/StaticAnalyzer/"}}, diagnostics = {onChange = -1, onOpen = 1000, onSave = 50}, highlight = {lsRanges = true}, cache = {retainInMemory = 1, directory = "/tmp/ccls-cache/"}, xref = {maxNum = 20000}}})
+vim.lsp.config("clangd", {cmd = {"clangd", "--clang-tidy", "--background-index", "--completion-style=detailed", "--clang-tidy-checks=-*,llvm-*,clang-analyzer-*", "--cross-file-rename", "--header-insertion=never"}, filetypes = {"c", "cpp", "objc", "objcpp", "cuda", "proto"}, root_markers = {"compile_commands.json", ".clangd", ".clang-format", "compile_flags.txt"}, capabilities = {textDocument = {completion = {editsNearCursor = true}}, offsetEncoding = {"utf-8", "utf-16"}}})
+vim.lsp.config("lua_ls", {cmd = {"lua-language-server"}, filetypes = {"lua"}, root_markers = {".luarc.json", ".luarc.jsonc", ".luacheckrc", ".stylua.toml", "stylua.toml", "selene.toml", "selene.yml"}})
+return vim.lsp.enable({"clangd", "lua_ls"})

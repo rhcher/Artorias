@@ -1,4 +1,4 @@
--- [nfnl] Compiled from fnl/dotfiles/plugin/snacks.fnl by https://github.com/Olical/nfnl, do not edit.
+-- [nfnl] fnl/dotfiles/plugin/snacks.fnl
 do
   local _, snacks = pcall(require, "snacks")
   snacks.setup({indent = {animate = {style = "down"}}, picker = {layout = {preset = "ivy", cycle = false}}, terminal = {}, styles = {}, images = {}, quickfile = {}, notifier = {}})
@@ -6,15 +6,15 @@ end
 do
   local opts_1_auto
   do
-    local tbl_104_auto = {}
+    local tbl_16_ = {}
     for k_2_auto, v_3_auto in pairs((nil or {})) do
-      local k_105_auto, v_106_auto = k_2_auto, v_3_auto
-      if ((k_105_auto ~= nil) and (v_106_auto ~= nil)) then
-        tbl_104_auto[k_105_auto] = v_106_auto
+      local k_17_, v_18_ = k_2_auto, v_3_auto
+      if ((k_17_ ~= nil) and (v_18_ ~= nil)) then
+        tbl_16_[k_17_] = v_18_
       else
       end
     end
-    opts_1_auto = tbl_104_auto
+    opts_1_auto = tbl_16_
   end
   if (opts_1_auto.noremap == nil) then
     opts_1_auto.noremap = true
@@ -32,15 +32,15 @@ end
 do
   local opts_1_auto
   do
-    local tbl_104_auto = {}
+    local tbl_16_ = {}
     for k_2_auto, v_3_auto in pairs((nil or {})) do
-      local k_105_auto, v_106_auto = k_2_auto, v_3_auto
-      if ((k_105_auto ~= nil) and (v_106_auto ~= nil)) then
-        tbl_104_auto[k_105_auto] = v_106_auto
+      local k_17_, v_18_ = k_2_auto, v_3_auto
+      if ((k_17_ ~= nil) and (v_18_ ~= nil)) then
+        tbl_16_[k_17_] = v_18_
       else
       end
     end
-    opts_1_auto = tbl_104_auto
+    opts_1_auto = tbl_16_
   end
   if (opts_1_auto.noremap == nil) then
     opts_1_auto.noremap = true
@@ -58,15 +58,15 @@ end
 do
   local opts_1_auto
   do
-    local tbl_104_auto = {}
+    local tbl_16_ = {}
     for k_2_auto, v_3_auto in pairs((nil or {})) do
-      local k_105_auto, v_106_auto = k_2_auto, v_3_auto
-      if ((k_105_auto ~= nil) and (v_106_auto ~= nil)) then
-        tbl_104_auto[k_105_auto] = v_106_auto
+      local k_17_, v_18_ = k_2_auto, v_3_auto
+      if ((k_17_ ~= nil) and (v_18_ ~= nil)) then
+        tbl_16_[k_17_] = v_18_
       else
       end
     end
-    opts_1_auto = tbl_104_auto
+    opts_1_auto = tbl_16_
   end
   if (opts_1_auto.noremap == nil) then
     opts_1_auto.noremap = true
@@ -84,15 +84,15 @@ end
 do
   local opts_1_auto
   do
-    local tbl_104_auto = {}
+    local tbl_16_ = {}
     for k_2_auto, v_3_auto in pairs((nil or {})) do
-      local k_105_auto, v_106_auto = k_2_auto, v_3_auto
-      if ((k_105_auto ~= nil) and (v_106_auto ~= nil)) then
-        tbl_104_auto[k_105_auto] = v_106_auto
+      local k_17_, v_18_ = k_2_auto, v_3_auto
+      if ((k_17_ ~= nil) and (v_18_ ~= nil)) then
+        tbl_16_[k_17_] = v_18_
       else
       end
     end
-    opts_1_auto = tbl_104_auto
+    opts_1_auto = tbl_16_
   end
   if (opts_1_auto.noremap == nil) then
     opts_1_auto.noremap = true
@@ -110,15 +110,15 @@ end
 do
   local opts_1_auto
   do
-    local tbl_104_auto = {}
+    local tbl_16_ = {}
     for k_2_auto, v_3_auto in pairs((nil or {})) do
-      local k_105_auto, v_106_auto = k_2_auto, v_3_auto
-      if ((k_105_auto ~= nil) and (v_106_auto ~= nil)) then
-        tbl_104_auto[k_105_auto] = v_106_auto
+      local k_17_, v_18_ = k_2_auto, v_3_auto
+      if ((k_17_ ~= nil) and (v_18_ ~= nil)) then
+        tbl_16_[k_17_] = v_18_
       else
       end
     end
-    opts_1_auto = tbl_104_auto
+    opts_1_auto = tbl_16_
   end
   if (opts_1_auto.noremap == nil) then
     opts_1_auto.noremap = true
@@ -136,15 +136,15 @@ end
 do
   local opts_1_auto
   do
-    local tbl_104_auto = {}
+    local tbl_16_ = {}
     for k_2_auto, v_3_auto in pairs((nil or {})) do
-      local k_105_auto, v_106_auto = k_2_auto, v_3_auto
-      if ((k_105_auto ~= nil) and (v_106_auto ~= nil)) then
-        tbl_104_auto[k_105_auto] = v_106_auto
+      local k_17_, v_18_ = k_2_auto, v_3_auto
+      if ((k_17_ ~= nil) and (v_18_ ~= nil)) then
+        tbl_16_[k_17_] = v_18_
       else
       end
     end
-    opts_1_auto = tbl_104_auto
+    opts_1_auto = tbl_16_
   end
   if (opts_1_auto.noremap == nil) then
     opts_1_auto.noremap = true
@@ -162,15 +162,15 @@ end
 do
   local opts_1_auto
   do
-    local tbl_104_auto = {}
+    local tbl_16_ = {}
     for k_2_auto, v_3_auto in pairs((nil or {})) do
-      local k_105_auto, v_106_auto = k_2_auto, v_3_auto
-      if ((k_105_auto ~= nil) and (v_106_auto ~= nil)) then
-        tbl_104_auto[k_105_auto] = v_106_auto
+      local k_17_, v_18_ = k_2_auto, v_3_auto
+      if ((k_17_ ~= nil) and (v_18_ ~= nil)) then
+        tbl_16_[k_17_] = v_18_
       else
       end
     end
-    opts_1_auto = tbl_104_auto
+    opts_1_auto = tbl_16_
   end
   if (opts_1_auto.noremap == nil) then
     opts_1_auto.noremap = true
@@ -188,15 +188,15 @@ end
 do
   local opts_1_auto
   do
-    local tbl_104_auto = {}
+    local tbl_16_ = {}
     for k_2_auto, v_3_auto in pairs((nil or {})) do
-      local k_105_auto, v_106_auto = k_2_auto, v_3_auto
-      if ((k_105_auto ~= nil) and (v_106_auto ~= nil)) then
-        tbl_104_auto[k_105_auto] = v_106_auto
+      local k_17_, v_18_ = k_2_auto, v_3_auto
+      if ((k_17_ ~= nil) and (v_18_ ~= nil)) then
+        tbl_16_[k_17_] = v_18_
       else
       end
     end
-    opts_1_auto = tbl_104_auto
+    opts_1_auto = tbl_16_
   end
   if (opts_1_auto.noremap == nil) then
     opts_1_auto.noremap = true
@@ -214,15 +214,15 @@ end
 do
   local opts_1_auto
   do
-    local tbl_104_auto = {}
+    local tbl_16_ = {}
     for k_2_auto, v_3_auto in pairs((nil or {})) do
-      local k_105_auto, v_106_auto = k_2_auto, v_3_auto
-      if ((k_105_auto ~= nil) and (v_106_auto ~= nil)) then
-        tbl_104_auto[k_105_auto] = v_106_auto
+      local k_17_, v_18_ = k_2_auto, v_3_auto
+      if ((k_17_ ~= nil) and (v_18_ ~= nil)) then
+        tbl_16_[k_17_] = v_18_
       else
       end
     end
-    opts_1_auto = tbl_104_auto
+    opts_1_auto = tbl_16_
   end
   if (opts_1_auto.noremap == nil) then
     opts_1_auto.noremap = true
@@ -240,15 +240,15 @@ end
 do
   local opts_1_auto
   do
-    local tbl_104_auto = {}
+    local tbl_16_ = {}
     for k_2_auto, v_3_auto in pairs((nil or {})) do
-      local k_105_auto, v_106_auto = k_2_auto, v_3_auto
-      if ((k_105_auto ~= nil) and (v_106_auto ~= nil)) then
-        tbl_104_auto[k_105_auto] = v_106_auto
+      local k_17_, v_18_ = k_2_auto, v_3_auto
+      if ((k_17_ ~= nil) and (v_18_ ~= nil)) then
+        tbl_16_[k_17_] = v_18_
       else
       end
     end
-    opts_1_auto = tbl_104_auto
+    opts_1_auto = tbl_16_
   end
   if (opts_1_auto.noremap == nil) then
     opts_1_auto.noremap = true
@@ -266,15 +266,15 @@ end
 do
   local opts_1_auto
   do
-    local tbl_104_auto = {}
+    local tbl_16_ = {}
     for k_2_auto, v_3_auto in pairs((nil or {})) do
-      local k_105_auto, v_106_auto = k_2_auto, v_3_auto
-      if ((k_105_auto ~= nil) and (v_106_auto ~= nil)) then
-        tbl_104_auto[k_105_auto] = v_106_auto
+      local k_17_, v_18_ = k_2_auto, v_3_auto
+      if ((k_17_ ~= nil) and (v_18_ ~= nil)) then
+        tbl_16_[k_17_] = v_18_
       else
       end
     end
-    opts_1_auto = tbl_104_auto
+    opts_1_auto = tbl_16_
   end
   if (opts_1_auto.noremap == nil) then
     opts_1_auto.noremap = true
@@ -292,15 +292,15 @@ end
 do
   local opts_1_auto
   do
-    local tbl_104_auto = {}
+    local tbl_16_ = {}
     for k_2_auto, v_3_auto in pairs((nil or {})) do
-      local k_105_auto, v_106_auto = k_2_auto, v_3_auto
-      if ((k_105_auto ~= nil) and (v_106_auto ~= nil)) then
-        tbl_104_auto[k_105_auto] = v_106_auto
+      local k_17_, v_18_ = k_2_auto, v_3_auto
+      if ((k_17_ ~= nil) and (v_18_ ~= nil)) then
+        tbl_16_[k_17_] = v_18_
       else
       end
     end
-    opts_1_auto = tbl_104_auto
+    opts_1_auto = tbl_16_
   end
   if (opts_1_auto.noremap == nil) then
     opts_1_auto.noremap = true
@@ -318,15 +318,15 @@ end
 do
   local opts_1_auto
   do
-    local tbl_104_auto = {}
+    local tbl_16_ = {}
     for k_2_auto, v_3_auto in pairs((nil or {})) do
-      local k_105_auto, v_106_auto = k_2_auto, v_3_auto
-      if ((k_105_auto ~= nil) and (v_106_auto ~= nil)) then
-        tbl_104_auto[k_105_auto] = v_106_auto
+      local k_17_, v_18_ = k_2_auto, v_3_auto
+      if ((k_17_ ~= nil) and (v_18_ ~= nil)) then
+        tbl_16_[k_17_] = v_18_
       else
       end
     end
-    opts_1_auto = tbl_104_auto
+    opts_1_auto = tbl_16_
   end
   if (opts_1_auto.noremap == nil) then
     opts_1_auto.noremap = true
@@ -343,15 +343,15 @@ do
 end
 local opts_1_auto
 do
-  local tbl_104_auto = {}
+  local tbl_16_ = {}
   for k_2_auto, v_3_auto in pairs((nil or {})) do
-    local k_105_auto, v_106_auto = k_2_auto, v_3_auto
-    if ((k_105_auto ~= nil) and (v_106_auto ~= nil)) then
-      tbl_104_auto[k_105_auto] = v_106_auto
+    local k_17_, v_18_ = k_2_auto, v_3_auto
+    if ((k_17_ ~= nil) and (v_18_ ~= nil)) then
+      tbl_16_[k_17_] = v_18_
     else
     end
   end
-  opts_1_auto = tbl_104_auto
+  opts_1_auto = tbl_16_
 end
 if (opts_1_auto.noremap == nil) then
   opts_1_auto.noremap = true

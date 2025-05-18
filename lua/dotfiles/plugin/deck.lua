@@ -1,4 +1,4 @@
--- [nfnl] Compiled from fnl/dotfiles/plugin/deck.fnl by https://github.com/Olical/nfnl, do not edit.
+-- [nfnl] fnl/dotfiles/plugin/deck.fnl
 local deck = require("deck")
 require("deck.easy").setup()
 local function _1_(e)

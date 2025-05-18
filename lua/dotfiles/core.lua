@@ -1,4 +1,4 @@
--- [nfnl] Compiled from fnl/dotfiles/core.fnl by https://github.com/Olical/nfnl, do not edit.
+-- [nfnl] fnl/dotfiles/core.fnl
 vim.opt.termguicolors = true
 vim.opt.mouse = "a"
 vim.opt.sessionoptions = "blank,curdir,folds,help,tabpages,winsize"

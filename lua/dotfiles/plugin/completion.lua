@@ -1,4 +1,4 @@
--- [nfnl] Compiled from fnl/dotfiles/plugin/completion.fnl by https://github.com/Olical/nfnl, do not edit.
+-- [nfnl] fnl/dotfiles/plugin/completion.fnl
 local _local_1_ = require("nfnl.module")
 local autoload = _local_1_["autoload"]
 local util = autoload("dotfiles.util")

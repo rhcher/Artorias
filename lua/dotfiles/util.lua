@@ -1,4 +1,4 @@
--- [nfnl] Compiled from fnl/dotfiles/util.fnl by https://github.com/Olical/nfnl, do not edit.
+-- [nfnl] fnl/dotfiles/util.fnl
 local lisp_language = {"fennel", "lisp", "scheme", "racket", "clojure", "janet", "timl"}
 local function contain_3f(key, dict)
   local result = false

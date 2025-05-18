@@ -1,4 +1,4 @@
--- [nfnl] Compiled from fnl/dotfiles/plugin/grepper.fnl by https://github.com/Olical/nfnl, do not edit.
+-- [nfnl] fnl/dotfiles/plugin/grepper.fnl
 vim.keymap.set("n", "<leader>*", ":Grepper -tool rg -cword -noprompt<CR>", {noremap = true})
 vim.g.grepper = {tools = {"rg", "git"}, dir = "repo,file", simple_prompt = 1, searchreg = 1, stop = 50000, rg = {grepprg = "rg -H --no-heading --vimgrep --smart-case", grepformat = "%f:%l:%c:%m,%f:%l:%m"}}
 vim.cmd("let g:grepper.repo = ['.git', '.hg', '.svn', 'stack.yaml', 'dune-project', '.ccls-root', 'Cargo.toml', 'compile_commands.json']")

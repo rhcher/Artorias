@@ -1,3 +1,3 @@
--- [nfnl] Compiled from fnl/dotfiles/plugin/indent.fnl by https://github.com/Olical/nfnl, do not edit.
+-- [nfnl] fnl/dotfiles/plugin/indent.fnl
 local indent = require("ibl")
 return indent.setup({scope = {show_end = false, show_start = false}, exclude = {filetypes = {"", "help", "fennel", "packer", "lspinfo", "tsplayground", "query", "scheme", "racket", "qf", "dashboard", "markdown"}, buftypes = {"terminal", "prompt", "toggleterm"}}})

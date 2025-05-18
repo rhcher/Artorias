@@ -1,4 +1,4 @@
--- [nfnl] Compiled from fnl/dotfiles/qftf.fnl by https://github.com/Olical/nfnl, do not edit.
+-- [nfnl] fnl/dotfiles/qftf.fnl
 _G.qftf = function(info)
   local ret = {}
   local items

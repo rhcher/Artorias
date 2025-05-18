@@ -1,4 +1,4 @@
--- [nfnl] Compiled from fnl/dotfiles/plugin/vmlens.fnl by https://github.com/Olical/nfnl, do not edit.
+-- [nfnl] fnl/dotfiles/plugin/vmlens.fnl
 local hlslens = require("hlslens")
 local config = nil
 local lens_bak = nil

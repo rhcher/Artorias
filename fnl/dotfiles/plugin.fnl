@@ -70,6 +70,7 @@
                                         :config #(vim.api.nvim_create_autocmd "VimEnter"
                                                                               {:callback #((. (require "parinfer") :setup))})}
   "saghen/blink.cmp" {:version false
+                      :event "InsertEnter"
                       :mod "completion"
                       :build "cargo build --release"}
   "onsails/lspkind-nvim" {:event "LspAttach"}
@@ -81,9 +82,6 @@
                             (map [:i :s] :<C-h> #(if (snippy.can_jump -1)
                                                   "<Plug>(snippy-previous)"
                                                   "<ESC>I") {:expr true}))}
-  "neovim/nvim-lspconfig" {:dependencies ["saghen/blink.cmp"]
-                           :lazy false
-                           :mod "nvim-lspconfig"}
   "mfussenegger/nvim-dap" {:lazy false
                            :mod "dap"
                            :dependencies ["rcarriga/nvim-dap-ui"
@@ -229,8 +227,7 @@
                            :config true
                            :priority 1001}
   "Julian/lean.nvim" {:event ["BufReadPre *.lean" "BufNewFile *.lean"]
-                      :dependencies ["neovim/nvim-lspconfig"
-                                     "nvim-lua/plenary.nvim"]
+                      :dependencies ["nvim-lua/plenary.nvim"]
                       :opts {:lsp {}
                              :mappings true}}
   "OXY2DEV/markview.nvim" {:lazy false

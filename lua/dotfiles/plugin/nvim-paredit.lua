@@ -1,4 +1,4 @@
--- [nfnl] Compiled from fnl/dotfiles/plugin/nvim-paredit.fnl by https://github.com/Olical/nfnl, do not edit.
+-- [nfnl] fnl/dotfiles/plugin/nvim-paredit.fnl
 local paredit = require("nvim-paredit")
 local function _1_()
   return paredit.cursor.place_cursor(paredit.wrap.wrap_element_under_cursor("( ", ")"), {placement = "inner_start", mode = "insert"})
