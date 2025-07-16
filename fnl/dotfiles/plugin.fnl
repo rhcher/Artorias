@@ -50,16 +50,16 @@
                            :opts {}}
   "rhcher/vim-paper" {:priority 1000
                       :lazy false}
-  "nvim-lualine/lualine.nvim" {:event "VeryLazy"
-                               :config true
-                               :dependencies "nvim-tree/nvim-web-devicons"}
+  "nvim-lualine/lualine.nvim" {:lazy false
+                               :config true}
+                               ; :dependencies "nvim-tree/nvim-web-devicons"}
   "junegunn/fzf" {:event "VeryLazy" :build "./install --bin"}
   "gbprod/substitute.nvim" {:config true
                             :keys [["<leader>x" "<cmd>lua require('substitute.exchange').operator()<cr>"]
                                    ["<leader>xx" "<cmd>lua require('substitute.exchange').line()<cr>"]
                                    {1 "X" 2 "<cmd>lua require('substitute.exchange').visual()<cr>" :mode "x"}
                                    ["<leader>xc" "<cmd>lua require('substitute.exchange').cancel()<cr>"]]}
-  "nvim-treesitter/nvim-treesitter" {:version false
+  "nvim-treesitter/nvim-treesitter" {:branch "master"
                                      :build ":TSUpdate"
                                      :mod "treesitter"}
   "eraserhd/parinfer-rust" {:ft util.lisp-language
@@ -70,10 +70,13 @@
                                         :config #(vim.api.nvim_create_autocmd "VimEnter"
                                                                               {:callback #((. (require "parinfer") :setup))})}
   "saghen/blink.cmp" {:version false
-                      :event "InsertEnter"
+                      :event ["InsertEnter" "CmdlineEnter"]
                       :mod "completion"
                       :build "cargo build --release"}
-  "onsails/lspkind-nvim" {:event "LspAttach"}
+  "hrsh7th/nvim-ix" {:dependencies ["hrsh7th/nvim-cmp-kit"]
+                     :cond false
+                     :lazy false
+                     :mod "completion"}
   "dcampos/nvim-snippy" {:config
                          #(let [snippy (require :snippy)]
                             (map [:i :s] :<C-l> #(if (snippy.can_jump 1)
@@ -231,8 +234,7 @@
                       :opts {:lsp {}
                              :mappings true}}
   "OXY2DEV/markview.nvim" {:lazy false
-                           :dependencies ["nvim-treesitter/nvim-treesitter"
-                                          "nvim-tree/nvim-web-devicons"]}
+                           :priority 49}
   "folke/snacks.nvim" {:priority 1000
                        :lazy false
                        :mod "snacks"}
@@ -243,4 +245,5 @@
                      :keys [{1 "<C-y>" 2 "<Plug>(dmacro-play-macro)" :mode [:i :n]}]}
   "nvzone/typr" {:dependencies "nvzone/volt"
                  :opts {}
-                 :cmd ["Typr" "TyprStats"]})
+                 :cmd ["Typr" "TyprStats"]}
+  "MagicDuck/grug-far.nvim" {:lazy false})

@@ -8,6 +8,5 @@ local gen_ai_spec = require("mini.extra").gen_ai_spec
 mini_file.setup()
 mini_icon.setup()
 mini_sessions.setup()
-mini_ai.setup()
 mini_extra.setup()
 return mini_ai.setup({custom_textobjects = {B = gen_ai_spec.buffer(), D = gen_ai_spec.diagnostic(), I = gen_ai_spec.indent(), L = gen_ai_spec.line(), N = gen_ai_spec.number()}})

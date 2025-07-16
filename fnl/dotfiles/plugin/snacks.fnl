@@ -12,7 +12,7 @@
 
 ; picker keymap
 (map :n :<leader>ff #(Snacks.picker.files))
-(map :n :<leader>fc #(Snacks.picker.files {:cwd "~/.config/nvim"}))
+(map :n :<leader>fc (fn [] (Snacks.picker.files {:cwd (vim.fn.stdpath "config")})))
 (map :n :<leader>fs #(Snacks.picker.grep))
 (map :n :<leader>fb #(Snacks.picker.buffers))
 (map :n :<leader>bb #(Snacks.picker.buffers))

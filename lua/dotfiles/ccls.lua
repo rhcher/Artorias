@@ -16,12 +16,14 @@ local function handler(title)
   return _2_
 end
 local function navigate(n)
+  local encoding = ""
   local handler0
   local function _4_(_, result, ctx, _0)
     if ((result == nil) or vim.tbl_isempty(result)) then
       return vim.notify(("No " .. n .. " found"))
     else
       local client = vim.lsp.get_client_by_id(ctx.client_id)
+      encoding = client.offset_encoding
       if vim.tbl_islist(result) then
         util.jump_to_location(result[1], client.offset_encoding)
         return vim.cmd("norm zz")
@@ -33,7 +35,7 @@ local function navigate(n)
   handler0 = _4_
   local params
   do
-    local param = util.make_position_params()
+    local param = util.make_position_params(vim.api.nvim_get_current_win(), encoding)
     param["direction"] = n
     params = param
   end

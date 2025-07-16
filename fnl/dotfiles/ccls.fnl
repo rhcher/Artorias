@@ -14,10 +14,12 @@
             (vim.api.nvim_command "botright copen"))))))
 
 (fn navigate [n]
+  (var encoding "")
   (let [handler (fn [_ result ctx _]
                   (if (or (= result nil) (vim.tbl_isempty result))
                     (vim.notify (.. "No " n " found"))
                     (let [client (vim.lsp.get_client_by_id ctx.client_id)]
+                      (set encoding client.offset_encoding)
                       (if
                         (vim.tbl_islist result)
                         (do
@@ -26,7 +28,7 @@
                           (vim.cmd "norm zz"))
                         (util.jump_to_location result
                                                client.offset_encoding)))))
-        params (let [param (util.make_position_params)]
+        params (let [param (util.make_position_params (vim.api.nvim_get_current_win) encoding)]
                  (tset param :direction n)
                  param)]
     (vim.lsp.buf_request 0 "$ccls/navigate" params handler)))

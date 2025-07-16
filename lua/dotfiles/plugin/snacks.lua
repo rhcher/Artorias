@@ -51,7 +51,7 @@ do
   else
   end
   local function _8_()
-    return Snacks.picker.files({cwd = "~/.config/nvim"})
+    return Snacks.picker.files({cwd = vim.fn.stdpath("config")})
   end
   vim.keymap.set("n", "<leader>fc", _8_, opts_1_auto)
 end

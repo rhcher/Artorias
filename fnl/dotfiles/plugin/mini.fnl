@@ -7,7 +7,6 @@
   (mini_file.setup)
   (mini_icon.setup)
   (mini_sessions.setup)
-  (mini_ai.setup)
   (mini_extra.setup)
   (mini_ai.setup {:custom_textobjects {:B (gen_ai_spec.buffer)
                                        :D (gen_ai_spec.diagnostic)
