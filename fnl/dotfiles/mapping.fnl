@@ -5,8 +5,8 @@
 (set vim.g.maplocalleader ",")
 
 ;; insert-mode
-(map :i :<C-j> :<esc>o)
-(map :i :<C-k> :<esc>O)
+(map :i :<C-j> :<C-o>o)
+(map :i :<C-k> :<C-o>O)
 
 (map :n :<leader><leader> ":Inspect<CR>")
 

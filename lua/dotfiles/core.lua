@@ -1,4 +1,6 @@
 -- [nfnl] fnl/dotfiles/core.fnl
+vim.g.mapleader = " "
+vim.g.maplocalleader = ","
 vim.opt.mouse = "a"
 vim.opt.sessionoptions = "blank,curdir,folds,help,tabpages,winsize"
 vim.opt.jumpoptions = "stack"
@@ -6,7 +8,6 @@ vim.opt.pumheight = 10
 vim.opt.exrc = true
 vim.opt.termsync = true
 vim.opt.smoothscroll = true
-vim.cmd.colorscheme("srcery")
 vim.opt.textwidth = 100
 vim.opt.smarttab = true
 vim.opt.expandtab = true
@@ -23,7 +24,7 @@ vim.opt.signcolumn = "yes"
 vim.opt.undofile = true
 vim.opt.cursorline = true
 vim.opt.incsearch = false
-vim.cmd("set diffopt+=linematch:800,algorithm:patience")
+vim.cmd("set diffopt+=inline:word,algorithm:histogram")
 if (vim.fn.executable("rg") == 1) then
   vim.opt.grepformat = "%f:%l:%c:%m,%f:%l:%m"
   vim.opt.grepprg = "rg --vimgrep --no-heading --smart-case"
@@ -78,8 +79,7 @@ do
     vim.b.snacks_indent = false
     return nil
   end
-  vim.api.nvim_create_autocmd({"FileType"}, {pattern = {"fennel", "markdown"}, callback = _5_, group = group})
-  vim.api.nvim_create_autocmd({"WinClosed"}, {nested = true, command = "if expand('<amatch>') == win_getid() | wincmd p | endif", group = group})
+  vim.api.nvim_create_autocmd({"FileType"}, {pattern = {"fennel", "markdown", "harpoon"}, callback = _5_, group = group})
 end
 if vim.g.neovide then
   vim.g.neovide_confirm_quit = false

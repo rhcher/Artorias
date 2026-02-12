@@ -1,5 +1,8 @@
 (import-macros {: augroup} "dotfiles.macros")
 
+(set vim.g.mapleader " ")
+(set vim.g.maplocalleader ",")
+
 ;; Generic Neovim configuration.
 (set vim.opt.mouse "a")
 (set vim.opt.sessionoptions "blank,curdir,folds,help,tabpages,winsize")
@@ -9,7 +12,7 @@
 (set vim.opt.termsync true)
 (set vim.opt.smoothscroll true)
 
-(vim.cmd.colorscheme :srcery)
+; (vim.cmd.colorscheme :srcery)
 
 (set vim.opt.textwidth 100)
 
@@ -29,8 +32,7 @@
 (set vim.opt.undofile true)
 (set vim.opt.cursorline true)
 (set vim.opt.incsearch false)
-; (set vim.opt.autochdir true)
-(vim.cmd "set diffopt+=linematch:800,algorithm:patience")
+(vim.cmd "set diffopt+=inline:word,algorithm:histogram")
 
 (when (= (vim.fn.executable "rg") 1)
   (do
@@ -46,7 +48,6 @@
 (set vim.opt.laststatus 3)
 (set vim.opt.redrawtime 150)
 (set vim.opt.lazyredraw true)
-;(set vim.opt.relativenumber true)
 (set vim.opt.listchars {:nbsp :⦸
                         :extends "»"
                         :precedes "«"
@@ -82,9 +83,9 @@
          [[:BufEnter] {:callback #(set vim.opt.formatoptions (- vim.opt.formatoptions "o"))}]
          [[:UIEnter] {:callback #(set vim.o.clipboard "unnamedplus")}]
          [[:FileType] {:pattern "cpp" :command "set cinkeys-=:"}]
-         [[:FileType] {:pattern ["fennel" "markdown"] :callback #(set vim.b.snacks_indent false)}]
-         [[:WinClosed] {:nested true
-                        :command "if expand('<amatch>') == win_getid() | wincmd p | endif"}])
+         [[:FileType] {:pattern ["fennel" "markdown" "harpoon"] :callback #(set vim.b.snacks_indent false)}])
+         ; [[:WinClosed] {:nested true
+         ;                :command "if win_getid() == expand(\"<amatch>\") | wincmd p | endif"}])
 
 ; (when (= (vim.fn.has :nvim-0.11) 1)
 ;   (local expand-orig vim.snippet.expand)

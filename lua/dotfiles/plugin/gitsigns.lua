@@ -1,6 +1,6 @@
 -- [nfnl] fnl/dotfiles/plugin/gitsigns.fnl
 local _local_1_ = require("nfnl.module")
-local autoload = _local_1_["autoload"]
+local autoload = _local_1_.autoload
 local gitsigns = autoload("gitsigns")
 local on_attach
 local function _2_(bufnr)
@@ -8,15 +8,15 @@ local function _2_(bufnr)
   do
     local opts_1_auto
     do
-      local tbl_16_ = {}
+      local tbl_21_ = {}
       for k_2_auto, v_3_auto in pairs(({expr = true} or {})) do
-        local k_17_, v_18_ = k_2_auto, v_3_auto
-        if ((k_17_ ~= nil) and (v_18_ ~= nil)) then
-          tbl_16_[k_17_] = v_18_
+        local k_22_, v_23_ = k_2_auto, v_3_auto
+        if ((k_22_ ~= nil) and (v_23_ ~= nil)) then
+          tbl_21_[k_22_] = v_23_
         else
         end
       end
-      opts_1_auto = tbl_16_
+      opts_1_auto = tbl_21_
     end
     if (opts_1_auto.noremap == nil) then
       opts_1_auto.noremap = true
@@ -42,15 +42,15 @@ local function _2_(bufnr)
   do
     local opts_1_auto
     do
-      local tbl_16_ = {}
+      local tbl_21_ = {}
       for k_2_auto, v_3_auto in pairs(({expr = true} or {})) do
-        local k_17_, v_18_ = k_2_auto, v_3_auto
-        if ((k_17_ ~= nil) and (v_18_ ~= nil)) then
-          tbl_16_[k_17_] = v_18_
+        local k_22_, v_23_ = k_2_auto, v_3_auto
+        if ((k_22_ ~= nil) and (v_23_ ~= nil)) then
+          tbl_21_[k_22_] = v_23_
         else
         end
       end
-      opts_1_auto = tbl_16_
+      opts_1_auto = tbl_21_
     end
     if (opts_1_auto.noremap == nil) then
       opts_1_auto.noremap = true
@@ -76,15 +76,15 @@ local function _2_(bufnr)
   do
     local opts_1_auto
     do
-      local tbl_16_ = {}
+      local tbl_21_ = {}
       for k_2_auto, v_3_auto in pairs((nil or {})) do
-        local k_17_, v_18_ = k_2_auto, v_3_auto
-        if ((k_17_ ~= nil) and (v_18_ ~= nil)) then
-          tbl_16_[k_17_] = v_18_
+        local k_22_, v_23_ = k_2_auto, v_3_auto
+        if ((k_22_ ~= nil) and (v_23_ ~= nil)) then
+          tbl_21_[k_22_] = v_23_
         else
         end
       end
-      opts_1_auto = tbl_16_
+      opts_1_auto = tbl_21_
     end
     if (opts_1_auto.noremap == nil) then
       opts_1_auto.noremap = true
@@ -99,15 +99,15 @@ local function _2_(bufnr)
   do
     local opts_1_auto
     do
-      local tbl_16_ = {}
+      local tbl_21_ = {}
       for k_2_auto, v_3_auto in pairs((nil or {})) do
-        local k_17_, v_18_ = k_2_auto, v_3_auto
-        if ((k_17_ ~= nil) and (v_18_ ~= nil)) then
-          tbl_16_[k_17_] = v_18_
+        local k_22_, v_23_ = k_2_auto, v_3_auto
+        if ((k_22_ ~= nil) and (v_23_ ~= nil)) then
+          tbl_21_[k_22_] = v_23_
         else
         end
       end
-      opts_1_auto = tbl_16_
+      opts_1_auto = tbl_21_
     end
     if (opts_1_auto.noremap == nil) then
       opts_1_auto.noremap = true
@@ -122,15 +122,15 @@ local function _2_(bufnr)
   do
     local opts_1_auto
     do
-      local tbl_16_ = {}
+      local tbl_21_ = {}
       for k_2_auto, v_3_auto in pairs((nil or {})) do
-        local k_17_, v_18_ = k_2_auto, v_3_auto
-        if ((k_17_ ~= nil) and (v_18_ ~= nil)) then
-          tbl_16_[k_17_] = v_18_
+        local k_22_, v_23_ = k_2_auto, v_3_auto
+        if ((k_22_ ~= nil) and (v_23_ ~= nil)) then
+          tbl_21_[k_22_] = v_23_
         else
         end
       end
-      opts_1_auto = tbl_16_
+      opts_1_auto = tbl_21_
     end
     if (opts_1_auto.noremap == nil) then
       opts_1_auto.noremap = true
@@ -145,15 +145,15 @@ local function _2_(bufnr)
   do
     local opts_1_auto
     do
-      local tbl_16_ = {}
+      local tbl_21_ = {}
       for k_2_auto, v_3_auto in pairs((nil or {})) do
-        local k_17_, v_18_ = k_2_auto, v_3_auto
-        if ((k_17_ ~= nil) and (v_18_ ~= nil)) then
-          tbl_16_[k_17_] = v_18_
+        local k_22_, v_23_ = k_2_auto, v_3_auto
+        if ((k_22_ ~= nil) and (v_23_ ~= nil)) then
+          tbl_21_[k_22_] = v_23_
         else
         end
       end
-      opts_1_auto = tbl_16_
+      opts_1_auto = tbl_21_
     end
     if (opts_1_auto.noremap == nil) then
       opts_1_auto.noremap = true
@@ -168,15 +168,15 @@ local function _2_(bufnr)
   do
     local opts_1_auto
     do
-      local tbl_16_ = {}
+      local tbl_21_ = {}
       for k_2_auto, v_3_auto in pairs((nil or {})) do
-        local k_17_, v_18_ = k_2_auto, v_3_auto
-        if ((k_17_ ~= nil) and (v_18_ ~= nil)) then
-          tbl_16_[k_17_] = v_18_
+        local k_22_, v_23_ = k_2_auto, v_3_auto
+        if ((k_22_ ~= nil) and (v_23_ ~= nil)) then
+          tbl_21_[k_22_] = v_23_
         else
         end
       end
-      opts_1_auto = tbl_16_
+      opts_1_auto = tbl_21_
     end
     if (opts_1_auto.noremap == nil) then
       opts_1_auto.noremap = true
@@ -191,15 +191,15 @@ local function _2_(bufnr)
   do
     local opts_1_auto
     do
-      local tbl_16_ = {}
+      local tbl_21_ = {}
       for k_2_auto, v_3_auto in pairs((nil or {})) do
-        local k_17_, v_18_ = k_2_auto, v_3_auto
-        if ((k_17_ ~= nil) and (v_18_ ~= nil)) then
-          tbl_16_[k_17_] = v_18_
+        local k_22_, v_23_ = k_2_auto, v_3_auto
+        if ((k_22_ ~= nil) and (v_23_ ~= nil)) then
+          tbl_21_[k_22_] = v_23_
         else
         end
       end
-      opts_1_auto = tbl_16_
+      opts_1_auto = tbl_21_
     end
     if (opts_1_auto.noremap == nil) then
       opts_1_auto.noremap = true
@@ -214,15 +214,15 @@ local function _2_(bufnr)
   do
     local opts_1_auto
     do
-      local tbl_16_ = {}
+      local tbl_21_ = {}
       for k_2_auto, v_3_auto in pairs((nil or {})) do
-        local k_17_, v_18_ = k_2_auto, v_3_auto
-        if ((k_17_ ~= nil) and (v_18_ ~= nil)) then
-          tbl_16_[k_17_] = v_18_
+        local k_22_, v_23_ = k_2_auto, v_3_auto
+        if ((k_22_ ~= nil) and (v_23_ ~= nil)) then
+          tbl_21_[k_22_] = v_23_
         else
         end
       end
-      opts_1_auto = tbl_16_
+      opts_1_auto = tbl_21_
     end
     if (opts_1_auto.noremap == nil) then
       opts_1_auto.noremap = true
@@ -240,15 +240,15 @@ local function _2_(bufnr)
   do
     local opts_1_auto
     do
-      local tbl_16_ = {}
+      local tbl_21_ = {}
       for k_2_auto, v_3_auto in pairs((nil or {})) do
-        local k_17_, v_18_ = k_2_auto, v_3_auto
-        if ((k_17_ ~= nil) and (v_18_ ~= nil)) then
-          tbl_16_[k_17_] = v_18_
+        local k_22_, v_23_ = k_2_auto, v_3_auto
+        if ((k_22_ ~= nil) and (v_23_ ~= nil)) then
+          tbl_21_[k_22_] = v_23_
         else
         end
       end
-      opts_1_auto = tbl_16_
+      opts_1_auto = tbl_21_
     end
     if (opts_1_auto.noremap == nil) then
       opts_1_auto.noremap = true
@@ -263,15 +263,15 @@ local function _2_(bufnr)
   do
     local opts_1_auto
     do
-      local tbl_16_ = {}
+      local tbl_21_ = {}
       for k_2_auto, v_3_auto in pairs((nil or {})) do
-        local k_17_, v_18_ = k_2_auto, v_3_auto
-        if ((k_17_ ~= nil) and (v_18_ ~= nil)) then
-          tbl_16_[k_17_] = v_18_
+        local k_22_, v_23_ = k_2_auto, v_3_auto
+        if ((k_22_ ~= nil) and (v_23_ ~= nil)) then
+          tbl_21_[k_22_] = v_23_
         else
         end
       end
-      opts_1_auto = tbl_16_
+      opts_1_auto = tbl_21_
     end
     if (opts_1_auto.noremap == nil) then
       opts_1_auto.noremap = true
@@ -286,15 +286,15 @@ local function _2_(bufnr)
   do
     local opts_1_auto
     do
-      local tbl_16_ = {}
+      local tbl_21_ = {}
       for k_2_auto, v_3_auto in pairs((nil or {})) do
-        local k_17_, v_18_ = k_2_auto, v_3_auto
-        if ((k_17_ ~= nil) and (v_18_ ~= nil)) then
-          tbl_16_[k_17_] = v_18_
+        local k_22_, v_23_ = k_2_auto, v_3_auto
+        if ((k_22_ ~= nil) and (v_23_ ~= nil)) then
+          tbl_21_[k_22_] = v_23_
         else
         end
       end
-      opts_1_auto = tbl_16_
+      opts_1_auto = tbl_21_
     end
     if (opts_1_auto.noremap == nil) then
       opts_1_auto.noremap = true
@@ -312,15 +312,15 @@ local function _2_(bufnr)
   do
     local opts_1_auto
     do
-      local tbl_16_ = {}
+      local tbl_21_ = {}
       for k_2_auto, v_3_auto in pairs((nil or {})) do
-        local k_17_, v_18_ = k_2_auto, v_3_auto
-        if ((k_17_ ~= nil) and (v_18_ ~= nil)) then
-          tbl_16_[k_17_] = v_18_
+        local k_22_, v_23_ = k_2_auto, v_3_auto
+        if ((k_22_ ~= nil) and (v_23_ ~= nil)) then
+          tbl_21_[k_22_] = v_23_
         else
         end
       end
-      opts_1_auto = tbl_16_
+      opts_1_auto = tbl_21_
     end
     if (opts_1_auto.noremap == nil) then
       opts_1_auto.noremap = true
@@ -334,15 +334,15 @@ local function _2_(bufnr)
   end
   local opts_1_auto
   do
-    local tbl_16_ = {}
+    local tbl_21_ = {}
     for k_2_auto, v_3_auto in pairs((nil or {})) do
-      local k_17_, v_18_ = k_2_auto, v_3_auto
-      if ((k_17_ ~= nil) and (v_18_ ~= nil)) then
-        tbl_16_[k_17_] = v_18_
+      local k_22_, v_23_ = k_2_auto, v_3_auto
+      if ((k_22_ ~= nil) and (v_23_ ~= nil)) then
+        tbl_21_[k_22_] = v_23_
       else
       end
     end
-    opts_1_auto = tbl_16_
+    opts_1_auto = tbl_21_
   end
   if (opts_1_auto.noremap == nil) then
     opts_1_auto.noremap = true

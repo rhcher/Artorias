@@ -52,14 +52,16 @@
                       :lazy false}
   "nvim-lualine/lualine.nvim" {:lazy false
                                :config true}
-                               ; :dependencies "nvim-tree/nvim-web-devicons"}
+  "folke/snacks.nvim" {:priority 1000
+                       :lazy false
+                       :mod "snacks"}
   "junegunn/fzf" {:event "VeryLazy" :build "./install --bin"}
   "gbprod/substitute.nvim" {:config true
                             :keys [["<leader>x" "<cmd>lua require('substitute.exchange').operator()<cr>"]
                                    ["<leader>xx" "<cmd>lua require('substitute.exchange').line()<cr>"]
                                    {1 "X" 2 "<cmd>lua require('substitute.exchange').visual()<cr>" :mode "x"}
                                    ["<leader>xc" "<cmd>lua require('substitute.exchange').cancel()<cr>"]]}
-  "nvim-treesitter/nvim-treesitter" {:branch "master"
+  "nvim-treesitter/nvim-treesitter" {:lazy false
                                      :build ":TSUpdate"
                                      :mod "treesitter"}
   "eraserhd/parinfer-rust" {:ft util.lisp-language
@@ -162,9 +164,6 @@
                                  :modes_denylist [:i]
                                  :large_file_cutoff 5000}))}
   "mbbill/undotree" {:cmd "UndotreeShow"}
-  "NvChad/nvim-colorizer.lua" {:cmd "ColorizerToggle"
-                               :main "colorizer"
-                               :config true}
   "tpope/vim-repeat" {:event "VeryLazy"}
   "kylechui/nvim-surround" {:event "VeryLazy"
                             :config #(let [surround (require "nvim-surround")
@@ -191,6 +190,7 @@
                              :config #((. (require "nrpattern") :setup))}
   "ThePrimeagen/harpoon" {:keys ["<leader>uu" "<leader>ua" "<leader>un"
                                  "<leader>up" "<leader>tc"]
+                          :branch "harpoon2"
                           :dependencies ["nvim-lua/plenary.nvim"]
                           :mod "harpoon"}
   "danymat/neogen" {:cmd "Neogen"
@@ -216,7 +216,15 @@
   "max397574/better-escape.nvim" {:event "VeryLazy"
                                   :config #((. (require "better_escape") :setup) {:default_mappings false
                                                                                   :mappings {:i {:j {:k "<Esc>"}}}})}
-  "sindrets/diffview.nvim" {:cmd "DiffviewOpen"}
+  "esmuellert/vscode-diff.nvim" {:dependencies ["MunifTanjim/nui.nvim"]
+                                 :cmd "CodeDiff"
+                                 :branch "next"
+                                 :config #(let [codediff (require :codediff)]
+                                            codediff.setup {:highlights {:line_insert "DiffAdd"
+                                                                         :line_delete "DiffDelete"
+                                                                         :char_insert "DiffText"
+                                                                         :char_delete "DiffDelete"
+                                                                         :char_brightness "DiffText"}})}
   "chrisgrieser/nvim-spider" {:keys [{1 "w" 2 "<cmd>lua require('spider').motion('w')<CR>" :mode [:n :o :x]}
                                      {1 "e" 2 "<cmd>lua require('spider').motion('e')<CR>" :mode [:n :o :x]}
                                      {1 "b" 2 "<cmd>lua require('spider').motion('b')<CR>" :mode [:n :o :x]}
@@ -233,17 +241,41 @@
                       :dependencies ["nvim-lua/plenary.nvim"]
                       :opts {:lsp {}
                              :mappings true}}
-  "OXY2DEV/markview.nvim" {:lazy false
-                           :priority 49}
-  "folke/snacks.nvim" {:priority 1000
-                       :lazy false
-                       :mod "snacks"}
-  "echasnovski/mini.nvim" {:version false
-                           :keys [["<leader>e" "<cmd>lua MiniFiles.open()<CR>"]]
-                           :mod "mini"}
+  "MeanderingProgrammer/render-markdown.nvim" {:dependencies ["nvim-treesitter/nvim-treesitter"
+                                                              "echasnovski/mini.nvim"]
+                                               :ft ["markdown"]
+                                               :opts {:heading {:position "inline"
+                                                                :icons ["󰼏 " "󰎨 "]}
+                                                      :code {:language_name false}}}
+  "nvim-mini/mini.nvim" {:version false
+                         :keys [["<leader>e" "<cmd>lua MiniFiles.open()<CR>"]]
+                         :mod "mini"}
   "tani/dmacro.vim" {:lazy false
                      :keys [{1 "<C-y>" 2 "<Plug>(dmacro-play-macro)" :mode [:i :n]}]}
   "nvzone/typr" {:dependencies "nvzone/volt"
                  :opts {}
                  :cmd ["Typr" "TyprStats"]}
-  "MagicDuck/grug-far.nvim" {:lazy false})
+  :folke/sidekick.nvim
+  {:keys [{1 :<leader>aa
+           2 #((. (require :sidekick.cli) :toggle))
+           :desc "Sidekick Toggle CLI"}
+          {1 :<leader>as
+           2 #((. (require :sidekick.cli) :select) {:filter {:installed true}})
+           :desc "Sidekick Select CLI"}
+          {1 :<leader>at
+           2 #((. (require :sidekick.cli) :send) {:msg "{this}"})
+           :desc "Send this"
+           :mode [:x :n]}
+          {1 :<leader>av
+           2 #((. (require :sidekick.cli) :send) {:msg "{selection}"})
+           :desc "Send Visual Selection"
+           :mode [:x]}
+          {1 :<leader>ap
+           2 #((. (require :sidekick.cli) :prompt))
+           :desc "Sidekick Select Prompt"
+           :mode [:n :x]}
+          {1 :<c-.>
+           2 #((. (require :sidekick.cli) :focus))
+           :desc "Sidekick Switch Focus"
+           :mode [:n :x :i :t]}]
+   :opts {:cli {:mux {:backend :zellij :enabled false}}}})

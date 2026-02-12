@@ -1,6 +1,6 @@
 -- [nfnl] fnl/dotfiles/clangd.fnl
 local _local_1_ = require("nfnl.module")
-local autoload = _local_1_["autoload"]
+local autoload = _local_1_.autoload
 local util = autoload("vim.lsp.util")
 local api = vim.api
 local function handlers(err, ASTNode)

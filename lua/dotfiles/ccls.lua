@@ -1,6 +1,6 @@
 -- [nfnl] fnl/dotfiles/ccls.fnl
 local _local_1_ = require("nfnl.module")
-local autoload = _local_1_["autoload"]
+local autoload = _local_1_.autoload
 local util = autoload("vim.lsp.util")
 local api = vim.api
 local function handler(title)
@@ -174,8 +174,8 @@ end
 local semantic_hightlight_handler
 local function _33_(err, result, ctx, config)
   local client = vim.lsp.get_clients({id = ctx.client_id})
-  local symbols = result["symbols"]
-  local uri = result["uri"]
+  local symbols = result.symbols
+  local uri = result.uri
   local bufnr = vim.uri_to_bufnr(uri)
   local ns = api.nvim_create_namespace("ccls-semantic-hightlights")
   local highlighter

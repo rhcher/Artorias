@@ -1,0 +1,2 @@
+-- [nfnl] fnl/plugins/lsp.fnl
+return {"nvimdev/lspsaga.nvim", cond = false, dependencies = {"nvim-treesitter/nvim-treesitter"}, event = "LspAttach", opts = {lightbulb = {sign_priority = 99, virtual_text = false}, symbol_in_winbar = {enable = false}, finder = {layout = "normal"}, diagnostic = {on_insert = false}, hover = {open_link = "gf"}, outline = {keys = {jump = "<CR>", expand_collapse = "o"}, auto_preview = false}, ui = {border = {"", "\226\148\129", "", "", "", "\226\148\129", "", ""}}}}

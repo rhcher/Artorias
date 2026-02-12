@@ -1,25 +1,38 @@
 (vim.loader.enable)
-(local lazypath (.. (vim.fn.stdpath :data) "/lazy"))
+
+(set vim.g.mapleader " ")
+(set vim.g.maplocalleader ",")
 
 (vim.lsp.log.set_level vim.log.levels.OFF)
 
 (fn ensure [user repo]
-  (let [install-path (string.format "%s/%s" lazypath repo)]
-    (when (> (vim.fn.empty (vim.fn.glob install-path)) 0)
-      (vim.api.nvim_command
-        (string.format
-          "!git clone --filter=blob:none --single-branch https://github.com/%s/%s %s"
-          user
-          repo
-          install-path)))
-    (vim.opt.runtimepath:prepend install-path)))
+  (let [lazypath (.. (vim.fn.stdpath :data) :/lazy/ repo)
+        lazyrepo (string.format "https://github.com/%s/%s" user repo)]
+    (when (not ((. (or vim.uv vim.loop) :fs_stat) lazypath))
+      (local out (vim.fn.system [:git
+                                 :clone
+                                 "--filter=blob:none"
+                                 "--single-branch"
+                                 lazyrepo
+                                 lazypath]))
+      (when (not= vim.v.shell_error 0)
+        (vim.api.nvim_echo [["Failed to clone lazy.nvim:\n" :ErrorMsg]
+                            [out :WarningMsg]
+                            ["\nPress any key to exit..."]]
+                           true {})
+        (vim.fn.getchar)
+        (os.exit 1)))
+    (vim.opt.rtp:prepend lazypath)))
 
 (ensure :folke :lazy.nvim)
 (ensure :Olical :nfnl)
 
-(require :dotfiles.init)
+((. (require :lazy) :setup) {:change_detection {:notify false}
+                             :spec [{:import :plugins}]})
 
-(vim.cmd "let g:loaded_python_provider = 0")
-(vim.cmd "let g:loaded_python3_provider = 0")
-(vim.cmd "let g:loaded_node_provider = 0")
-(vim.cmd "let g:loaded_perl_provider = 0")
+(require :config.mappings)
+(require :config.options)
+(require :config.diagnostics)
+(require :config.lsp)
+(require :config.code_action)
+(require :config.fennel_indent)

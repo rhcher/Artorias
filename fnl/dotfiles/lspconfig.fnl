@@ -54,14 +54,6 @@
        (map :n :<leader>k "<cmd>Lspsaga hover_doc ++keep<CR>" {:buffer bufnr})
        (map :n :<leader>lr ":Lspsaga rename<CR>" {:buffer bufnr})
 
-       ; (map [:i :s] :<C-l> #(if (vim.snippet.jumpable 1)
-       ;                          (vim.snippet.jump 1)
-       ;                          (vim.api.nvim_input "<Esc>A")))
-       ;
-       ; (map [:i :s] :<C-h> #(if (vim.snippet.jumpable -1)
-       ;                          (vim.snippet.jump -1)
-       ;                          (vim.api.nvim_input "<Esc>I")))
-
        (let [delete-empty-lsp-clients #(let [clients (vim.lsp.get_clients)]
                                          (each [_ client (ipairs clients)]
                                            (local bufs (vim.lsp.get_buffers_by_client_id client.id))
@@ -149,11 +141,31 @@
                  :filetypes ["c" "cpp" "objc" "objcpp" "cuda" "proto"]
                  :root_markers ["compile_commands.json" ".clangd" ".clang-format" "compile_flags.txt"]
                  :capabilities {:textDocument {:completion {:editsNearCursor true}}
-                                :offsetEncoding ["utf-8" "utf-16"]}})
+                                :offsetEncoding ["utf-8" "utf-16"]}
+                 :reuse_client (fn [client config] (= client.name config.name))})
 
 (vim.lsp.config "lua_ls"
                 {:cmd ["lua-language-server"]
                  :filetypes ["lua"]
                  :root_markers [".luarc.json" ".luarc.jsonc" ".luacheckrc" ".stylua.toml" "stylua.toml" "selene.toml" "selene.yml"]})
 
-(vim.lsp.enable ["clangd" "lua_ls"])
+(vim.lsp.config "emmylua_ls"
+                {:cmd ["emmylua_ls"]
+                 :filetypes ["lua"]
+                 :root_markers [".luarc.json" ".emmyrc.json" ".luacheckrc" ".git"]
+                 :settings {:Lua {:workspace {:library [vim.env.VIMRUNTIME]}}}})
+
+(vim.lsp.config "clice"
+                {:cmd ["/home/rhcher/source/clice/clice" "--resource-dir=/usr/lib/clang/20/"]
+                 :filetypes ["c" "cpp"]
+                 :root_markers ["compile_commands.json" ".clang-format"]})
+
+(vim.lsp.config "basedpyright"
+                {:cmd ["basedpyright-langserver" "--stdio"]
+                 :filetypes ["python"]
+                 :root_markers ["pyproject.toml" "setup.py" "requirements.txt"]
+                 :settings {:basedpyright {:analysis {:autoSearchPaths true
+                                                      :useLibraryCodeForTypes true
+                                                      :diagnosticMode "openFilesOnly"}}}})
+
+(vim.lsp.enable ["clangd" "emmylua_ls" "basedpyright"])

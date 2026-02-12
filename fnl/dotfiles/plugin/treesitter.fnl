@@ -1,9 +1,11 @@
-(let [(_ tsconfigs) (pcall require :nvim-treesitter.configs)]
-  (tsconfigs.setup
-    {:ensure_installed [:c :cpp :rust :lua :python :cmake :markdown :markdown_inline
-                        :vim :fennel :query :ocaml :ocaml_interface :haskell :scheme
-                        :regex :bash :luap :racket :html]
-     :highlight {:enable true
-                 :disable [:c :cpp :help :lua]
-                 :additional_vim_regex_highlighting false}
-     :indent {:enable false}}))
+(import-macros {: autocmd} "dotfiles.macros")
+
+(let [(_ ts) (pcall require :nvim-treesitter)]
+  (ts.setup
+    {:install_dir (.. (vim.fn.stdpath "data") "/site")})
+  (ts.install [:cpp :rust :python :cmake :markdown :markdown_inline
+               :vim :fennel :query :ocaml :ocaml_interface :haskell :scheme
+               :regex :bash :luap :racket :html :zig]))
+
+(autocmd "FileType" {:pattern [:fennel :zig]
+                     :callback #(vim.treesitter.start)})

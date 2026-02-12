@@ -44,14 +44,14 @@
       dapui (require "dapui")]
   (set dap.adapters.cppdbg {:id "cppdbg"
                             :type "executable"
-                            :command "/home/rhcher/sources/dap/cpptools/extension/debugAdapters/bin/OpenDebugAD7"})
+                            :command "/home/rhcher/source/dap/cpptools/extension/debugAdapters/bin/OpenDebugAD7"})
   (set dap.configurations.cpp [{:name "Launch file"
                                 :type "cppdbg"
                                 :request "launch"
                                 :program #(vim.fn.input "Path to executable: "
                                                         (.. (vim.fn.getcwd) "/")
                                                         "file")
-                                :args #(str2argtable (vim.fn.input "Input: "))
+                                :args #(str2argtable (vim.fn.input "Argument input: "))
                                 :cwd "${workspaceFolder}"
                                 :stopAtEntry true
                                 :setupCommands [{:text "-enable-pretty-printing"

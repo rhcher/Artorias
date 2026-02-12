@@ -9,20 +9,20 @@ local function find_string_start(line, end_quote_pos)
   local state = "in-string"
   for pos = (end_quote_pos - 1), 1, -1 do
     if (state == "end") then break end
-    local _1_, _2_ = line:sub(pos, pos), state
-    if ((_1_ == "\"") and true) then
-      local _ = _2_
+    local case_1_, case_2_ = line:sub(pos, pos), state
+    if ((case_1_ == "\"") and true) then
+      local _ = case_2_
       quote_pos = (pos - 1)
       state = "maybe-quote"
-    elseif ((_1_ == "\\") and (_2_ == "maybe-quote")) then
+    elseif ((case_1_ == "\\") and (case_2_ == "maybe-quote")) then
       state = "escaped-quote"
-    elseif ((_1_ == "\\") and (_2_ == "escaped-quote")) then
+    elseif ((case_1_ == "\\") and (case_2_ == "escaped-quote")) then
       state = "maybe-quote"
-    elseif (true and (_2_ == "maybe-quote")) then
-      local _ = _1_
+    elseif (true and (case_2_ == "maybe-quote")) then
+      local _ = case_1_
       state = "end"
     else
-      local _ = _1_
+      local _ = case_1_
       state = "in-string"
     end
   end
@@ -61,17 +61,17 @@ local function find_comment_start(line)
   local state = "normal"
   for pos = 1, #line do
     if semicolon_pos then break end
-    local _6_, _7_ = line:sub(pos, pos), state
-    if ((_6_ == ";") and (_7_ == "normal")) then
+    local case_6_, case_7_ = line:sub(pos, pos), state
+    if ((case_6_ == ";") and (case_7_ == "normal")) then
       semicolon_pos = (pos - 1)
-    elseif (true and (_7_ == "escaping")) then
-      local _ = _6_
+    elseif (true and (case_7_ == "escaping")) then
+      local _ = case_6_
       state = "in-string"
-    elseif ((_6_ == "\\") and (_7_ == "in-string")) then
+    elseif ((case_6_ == "\\") and (case_7_ == "in-string")) then
       state = "escaping"
-    elseif ((_6_ == "\"") and (_7_ == "in-string")) then
+    elseif ((case_6_ == "\"") and (case_7_ == "in-string")) then
       state = "normal"
-    elseif ((_6_ == "\"") and (_7_ == "normal")) then
+    elseif ((case_6_ == "\"") and (case_7_ == "normal")) then
       state = "in-string"
     else
     end
@@ -81,13 +81,13 @@ end
 local function indent_type(stack, lines, line_num)
   local line = lines[line_num]
   local line_length = (find_comment_start(line) or #line)
-  local _9_, _10_, _11_ = line_indent_type(stack, line, line_length)
-  if ((_9_ == "table") and (nil ~= _10_)) then
-    local pos = _10_
+  local case_9_, case_10_, case_11_ = line_indent_type(stack, line, line_length)
+  if ((case_9_ == "table") and (nil ~= case_10_)) then
+    local pos = case_10_
     return "table", pos
-  elseif ((_9_ == "call") and (nil ~= _10_) and (nil ~= _11_)) then
-    local pos = _10_
-    local fn_name = _11_
+  elseif ((case_9_ == "call") and (nil ~= case_10_) and (nil ~= case_11_)) then
+    local pos = case_10_
+    local fn_name = case_11_
     if specials[fn_name] then
       return "special", (pos - 1)
     elseif ((#line - pos) == #fn_name) then
@@ -98,11 +98,11 @@ local function indent_type(stack, lines, line_num)
   else
     local and_13_ = true
     if and_13_ then
-      local _ = _9_
+      local _ = case_9_
       and_13_ = (line_num > 1)
     end
     if and_13_ then
-      local _ = _9_
+      local _ = case_9_
       return indent_type(stack, lines, (line_num - 1))
     else
       return nil
@@ -114,19 +114,19 @@ local function fennel_indentexpr(line_num)
   if (line_num == 1) then
     return 0
   else
-    local _16_, _17_, _18_ = indent_type({}, lines, (line_num - 1))
-    if ((_16_ == "table") and (nil ~= _17_)) then
-      local delimiter_pos = _17_
+    local case_16_, case_17_, case_18_ = indent_type({}, lines, (line_num - 1))
+    if ((case_16_ == "table") and (nil ~= case_17_)) then
+      local delimiter_pos = case_17_
       return delimiter_pos
-    elseif ((_16_ == "special") and (nil ~= _17_)) then
-      local prev_indent = _17_
+    elseif ((case_16_ == "special") and (nil ~= case_17_)) then
+      local prev_indent = case_17_
       return (prev_indent + 2)
-    elseif ((_16_ == "call") and (nil ~= _17_) and (nil ~= _18_)) then
-      local prev_indent = _17_
-      local fn_name = _18_
+    elseif ((case_16_ == "call") and (nil ~= case_17_) and (nil ~= case_18_)) then
+      local prev_indent = case_17_
+      local fn_name = case_18_
       return (prev_indent + #fn_name + 2)
     else
-      local _ = _16_
+      local _ = case_16_
       return 0
     end
   end
