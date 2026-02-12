@@ -5,16 +5,16 @@
   (let [to-merge (when (table? (. args (length args)))
                    (table.remove args))]
     (if to-merge
-      (do
-        (each [key value (pairs to-merge)]
-          (tset args key value))
-        args)
-      args)))
+        (do
+          (each [key value (pairs to-merge)]
+            (tset args key value))
+          args)
+        args)))
 
 ;; copy from Olical/aniseed
 (fn autocmd [event opt]
   `(vim.api.nvim_create_autocmd
-    ,event ,opt))
+     ,event ,opt))
 
 (fn autocmds [...]
   (var form `(do))

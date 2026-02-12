@@ -10,24 +10,24 @@
                          :cond false
                          :config #(vim.cmd.colorscheme "paper")})
  (tx "kevinhwang91/nvim-ufo" {:dependencies [(tx "kevinhwang91/promise-async"
-                                               (tx "luukvbaal/statuscol.nvim"
-                                                 {:config #(let [builtin (require "statuscol.builtin")
-                                                                 statuscol (require "statuscol")]
-                                                             (statuscol.setup {:relculright true
-                                                                               :segments [{:text ["%s"] :click "v:lua.ScSa"}
-                                                                                          {:text [builtin.lnumfunc " "] :click "v:lua.ScLa"}
-                                                                                          {:text [builtin.foldfunc] :click "v:lua.ScFa"}]}))}))]
+                                                 (tx "luukvbaal/statuscol.nvim"
+                                                     {:config #(let [builtin (require "statuscol.builtin")
+                                                                     statuscol (require "statuscol")]
+                                                                 (statuscol.setup {:relculright true
+                                                                                   :segments [{:text ["%s"] :click "v:lua.ScSa"}
+                                                                                              {:text [builtin.lnumfunc " "] :click "v:lua.ScLa"}
+                                                                                              {:text [builtin.foldfunc] :click "v:lua.ScFa"}]}))}))]
                               :event "VeryLazy"
                               :config #(let [ufo (require "ufo")]
                                          (map :n :zR ufo.openAllFolds)
                                          (map :n :zM ufo.closeAllFolds)
                                          (local ftmap
-                                                {:vim "indent"
-                                                 :fennel "treesitter"
-                                                 :python "indent"
-                                                 :git ""
-                                                 :sagaoutline ""
-                                                 :sagafinder ""})
+                                           {:vim "indent"
+                                            :fennel "treesitter"
+                                            :python "indent"
+                                            :git ""
+                                            :sagaoutline ""
+                                            :sagafinder ""})
                                          (ufo.setup {:provider_selector (fn [bufnr filetype buftype]
                                                                           (. ftmap filetype))}))})
  (tx "kevinhwang91/nvim-bqf" {:ft "qf"

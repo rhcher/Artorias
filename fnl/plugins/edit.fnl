@@ -20,7 +20,7 @@
  (tx "Olical/conjure" {:lazy false
                        :branch "main"
                        :init (fn [] (set vim.g.conjure#filetype#rust false)
-                                    (set vim.g.conjure#mapping#doc_word ["gk"]))})
+                               (set vim.g.conjure#mapping#doc_word ["gk"]))})
  (tx "saghen/blink.cmp" {:version false
                          :event ["InsertEnter" "CmdlineEnter"]
                          :build "cargo build --release"
@@ -52,8 +52,8 @@
                                                                 "<Plug>(snippy-next)"
                                                                 "<ESC>A") {:expr true})
                                        (map [:i :s] :<C-h> #(if (snippy.can_jump -1)
-                                                             "<Plug>(snippy-previous)"
-                                                             "<ESC>I") {:expr true}))})
+                                                                "<Plug>(snippy-previous)"
+                                                                "<ESC>I") {:expr true}))})
 
  (tx "altermo/ultimate-autopair.nvim" {:branch "v0.6"
                                        :lazy false
@@ -75,26 +75,26 @@
      {:ft g.lisp-language
       :config #(let [paredit (require "nvim-paredit")]
                  (paredit.setup
-                    {:keys {:<localleader>w [#(paredit.cursor.place_cursor
-                                                (paredit.wrap.wrap_element_under_cursor "( " ")")
-                                                {:placement "inner_start"
-                                                 :mode "insert"})
-                                             "Wrap element insert head"]
-                            :<localleader>W [#(paredit.cursor.place_cursor
-                                                (paredit.wrap.wrap_element_under_cursor "(" " )")
-                                                {:placement "inner_end"
-                                                 :mode "insert"})
-                                             "Wrap element insert tail"]
-                            :<localleader>i [#(paredit.cursor.place_cursor
-                                                (paredit.wrap.wrap_enclosing_form_under_cursor "( " ")")
-                                                {:placement "inner_start"
-                                                 :mode "insert"})
-                                             "Wrap form insert head"]
-                            :<localleader>I [#(paredit.cursor.place_cursor
-                                                (paredit.wrap.wrap_enclosing_form_under_cursor "(" " )")
-                                                {:placement "inner_end"
-                                                 :mode "insert"})
-                                             "Wrap form insert tail"]}}))})
+                   {:keys {:<localleader>w [#(paredit.cursor.place_cursor
+                                               (paredit.wrap.wrap_element_under_cursor "( " ")")
+                                               {:placement "inner_start"
+                                                :mode "insert"})
+                                            "Wrap element insert head"]
+                           :<localleader>W [#(paredit.cursor.place_cursor
+                                               (paredit.wrap.wrap_element_under_cursor "(" " )")
+                                               {:placement "inner_end"
+                                                :mode "insert"})
+                                            "Wrap element insert tail"]
+                           :<localleader>i [#(paredit.cursor.place_cursor
+                                               (paredit.wrap.wrap_enclosing_form_under_cursor "( " ")")
+                                               {:placement "inner_start"
+                                                :mode "insert"})
+                                            "Wrap form insert head"]
+                           :<localleader>I [#(paredit.cursor.place_cursor
+                                               (paredit.wrap.wrap_enclosing_form_under_cursor "(" " )")
+                                               {:placement "inner_end"
+                                                :mode "insert"})
+                                            "Wrap form insert tail"]}}))})
  (tx "svban/YankAssassin.vim" {:event "VeryLazy"})
  (tx "kana/vim-textobj-user" {:event "VeryLazy"
                               :dependencies ["glts/vim-textobj-comment"]})

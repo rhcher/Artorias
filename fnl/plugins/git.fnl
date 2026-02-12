@@ -7,16 +7,16 @@
   (fn [bufnr]
     (let [gs package.loaded.gitsigns]
       (map :n "]c" #(if vim.wo.diff
-                      "]c"
-                      (do
-                        (vim.schedule #(gs.next_hunk))
-                        "<Ignore>"))
+                        "]c"
+                        (do
+                          (vim.schedule #(gs.next_hunk))
+                          "<Ignore>"))
            {:expr true})
       (map :n "[c" #(if vim.wo.diff
-                      "[c"
-                      (do
-                        (vim.schedule #(gs.prev_hunk))
-                        "<Ignore>"))
+                        "[c"
+                        (do
+                          (vim.schedule #(gs.prev_hunk))
+                          "<Ignore>"))
            {:expr true})
       (map [:n :v] :<leader>hs gs.stage_hunk)
       (map [:n :v] :<leader>hr gs.reset_hunk)

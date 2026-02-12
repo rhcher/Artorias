@@ -5,7 +5,7 @@
      :event "LspAttach"
      :cond false
      :opts {:lightbulb {:sign_priority 99
-                              :virtual_text false}
+                        :virtual_text false}
             :symbol_in_winbar {:enable false}
             :finder {:layout "normal"}
             :diagnostic {:on_insert false}

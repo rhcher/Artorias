@@ -83,10 +83,4 @@
 (when vim.g.neovide
   (set vim.g.neovide_confirm_quit false)
   (set vim.g.neovide_fullscreen true)
-  ; (set vim.g.neovide_refresh_rate 240)
-  ; (set vim.g.neovide_scroll_animation_length 0.5)
   (set vim.g.neovide_hide_mouse_when_typing true))
-  ; (set vim.g.neovide_cursor_animate_in_insert_mode true)
-  ; (set vim.g.neovide_unlink_border_highlights true))
-  ; (set vim.g.neovide_no_idle true))
-  ; (set vim.g.neovide_transparency 0.9))
