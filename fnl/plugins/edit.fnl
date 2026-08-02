@@ -22,8 +22,8 @@
                        :init (fn [] (set vim.g.conjure#filetype#rust false)
                                (set vim.g.conjure#mapping#doc_word ["gk"]))})
  (tx "saghen/blink.cmp" {:version false
-                         :event ["InsertEnter" "CmdlineEnter"]
-                         :build "cargo build --release"
+                         :dependencies ["saghen/blink.lib"]
+                         :build #(: ((. (require :blink.cmp) :build)) :pwait)
                          :config #(let [(_ blink) (pcall require "blink.cmp")
                                         (_ snippy) (pcall require "snippy")]
                                     (blink.setup {:keymap {:preset "super-tab"
@@ -113,4 +113,6 @@
                                                    :find #(config.get_selection {:motion "a)"})
                                                    :delete "^(. ?)().-( ?.)()$"}}}))})
  (tx "tani/dmacro.vim" {:lazy false
-                        :keys [{1 "<C-y>" 2 "<Plug>(dmacro-play-macro)" :mode [:i :n]}]})]
+                        :keys [{1 "<C-y>" 2 "<Plug>(dmacro-play-macro)" :mode [:i :n]}]})
+ (tx "nemanjamalesija/smart-paste.nvim" {:event "VeryLazy"
+                                         :config true})]

@@ -20,12 +20,15 @@ local function _6_()
   return nil
 end
 local function _7_()
+  return require("blink.cmp").build():pwait()
+end
+local function _8_()
   local _, blink = pcall(require, "blink.cmp")
   local _0, snippy = pcall(require, "snippy")
-  local function _8_(snippet)
+  local function _9_(snippet)
     return snippy.expand_snippet(snippet)
   end
-  local function _9_(filter)
+  local function _10_(filter)
     if (filter == nil) then
       return nil
     elseif (filter ~= nil) then
@@ -34,7 +37,7 @@ local function _7_()
       return nil
     end
   end
-  local function _11_(direction)
+  local function _12_(direction)
     if (direction == 1) then
       return snippy.next()
     elseif (direction == -1) then
@@ -43,9 +46,9 @@ local function _7_()
       return nil
     end
   end
-  return blink.setup({keymap = {preset = "super-tab", ["<Tab>"] = {"select_and_accept", "snippet_forward", "fallback"}, ["<C-k>"] = false}, snippets = {expand = _8_, active = _9_, jump = _11_}, cmdline = {keymap = {preset = "inherit"}, completion = {menu = {auto_show = true}}}, appearance = {use_nvim_cmp_as_default = true, nerd_font_variant = "mono"}, completion = {trigger = {prefetch_on_insert = true}, list = {selection = {preselect = false}}, accept = {dot_repeat = false}}, sources = {default = {"lsp", "path", "buffer"}}, signature = {enabled = true}})
+  return blink.setup({keymap = {preset = "super-tab", ["<Tab>"] = {"select_and_accept", "snippet_forward", "fallback"}, ["<C-k>"] = false}, snippets = {expand = _9_, active = _10_, jump = _12_}, cmdline = {keymap = {preset = "inherit"}, completion = {menu = {auto_show = true}}}, appearance = {use_nvim_cmp_as_default = true, nerd_font_variant = "mono"}, completion = {trigger = {prefetch_on_insert = true}, list = {selection = {preselect = false}}, accept = {dot_repeat = false}}, sources = {default = {"lsp", "path", "buffer"}}, signature = {enabled = true}})
 end
-local function _13_()
+local function _14_()
   local snippy = require("snippy")
   do
     local opts_3_auto
@@ -68,14 +71,14 @@ local function _13_()
       opts_3_auto.silent = true
     else
     end
-    local function _17_()
+    local function _18_()
       if snippy.can_jump(1) then
         return "<Plug>(snippy-next)"
       else
         return "<ESC>A"
       end
     end
-    vim.keymap.set({"i", "s"}, "<C-l>", _17_, opts_3_auto)
+    vim.keymap.set({"i", "s"}, "<C-l>", _18_, opts_3_auto)
   end
   local opts_3_auto
   do
@@ -97,44 +100,44 @@ local function _13_()
     opts_3_auto.silent = true
   else
   end
-  local function _22_()
+  local function _23_()
     if snippy.can_jump(-1) then
       return "<Plug>(snippy-previous)"
     else
       return "<ESC>I"
     end
   end
-  return vim.keymap.set({"i", "s"}, "<C-h>", _22_, opts_3_auto)
+  return vim.keymap.set({"i", "s"}, "<C-h>", _23_, opts_3_auto)
 end
-local function _24_()
+local function _25_()
   local pair = require("ultimate-autopair")
   return pair.setup({cr = {conf = {nft = g["lisp-language"]}}, bs = {single_delete = false, space = false}, space = {enable = true}, tabout = {enable = true, map = "<tab>", hopout = true, do_nothing_if_fail = false}})
 end
-local function _25_()
+local function _26_()
   local paredit = require("nvim-paredit")
-  local function _26_()
+  local function _27_()
     return paredit.cursor.place_cursor(paredit.wrap.wrap_element_under_cursor("( ", ")"), {placement = "inner_start", mode = "insert"})
   end
-  local function _27_()
+  local function _28_()
     return paredit.cursor.place_cursor(paredit.wrap.wrap_element_under_cursor("(", " )"), {placement = "inner_end", mode = "insert"})
   end
-  local function _28_()
+  local function _29_()
     return paredit.cursor.place_cursor(paredit.wrap.wrap_enclosing_form_under_cursor("( ", ")"), {placement = "inner_start", mode = "insert"})
   end
-  local function _29_()
+  local function _30_()
     return paredit.cursor.place_cursor(paredit.wrap.wrap_enclosing_form_under_cursor("(", " )"), {placement = "inner_end", mode = "insert"})
   end
-  return paredit.setup({keys = {["<localleader>w"] = {_26_, "Wrap element insert head"}, ["<localleader>W"] = {_27_, "Wrap element insert tail"}, ["<localleader>i"] = {_28_, "Wrap form insert head"}, ["<localleader>I"] = {_29_, "Wrap form insert tail"}}})
+  return paredit.setup({keys = {["<localleader>w"] = {_27_, "Wrap element insert head"}, ["<localleader>W"] = {_28_, "Wrap element insert tail"}, ["<localleader>i"] = {_29_, "Wrap form insert head"}, ["<localleader>I"] = {_30_, "Wrap form insert tail"}}})
 end
-local function _30_()
+local function _31_()
   local surround = require("nvim-surround")
   local config = require("nvim-surround.config")
-  local function _31_()
+  local function _32_()
     return config.get_selection({motion = "a("})
   end
-  local function _32_()
+  local function _33_()
     return config.get_selection({motion = "a)"})
   end
-  return surround.setup({surrounds = {["("] = {add = {"(", ")"}, find = _31_, delete = "^(.)().-(.)()$"}, [")"] = {add = {"( ", " )"}, find = _32_, delete = "^(. ?)().-( ?.)()$"}}, move_cursor = false})
+  return surround.setup({surrounds = {["("] = {add = {"(", ")"}, find = _32_, delete = "^(.)().-(.)()$"}, [")"] = {add = {"( ", " )"}, find = _33_, delete = "^(. ?)().-( ?.)()$"}}, move_cursor = false})
 end
-return {{"max397574/better-escape.nvim", config = _2_, event = "VeryLazy"}, {"eraserhd/parinfer-rust", build = "cargo build --release", config = _3_, ft = g["lisp-language"]}, {"harrygallagher4/nvim-parinfer-rust", config = _4_, ft = g["lisp-language"]}, {"Olical/conjure", branch = "main", init = _6_, lazy = false}, {"saghen/blink.cmp", build = "cargo build --release", config = _7_, event = {"InsertEnter", "CmdlineEnter"}, version = false}, {"dcampos/nvim-snippy", config = _13_}, {"altermo/ultimate-autopair.nvim", branch = "v0.6", config = _24_, dependencies = {"nvim-treesitter/nvim-treesitter"}, lazy = false}, {"svban/YankAssassin.vim", event = "VeryLazy"}, {"kana/vim-textobj-user", dependencies = {"glts/vim-textobj-comment"}, event = "VeryLazy"}, {"julienvincent/nvim-paredit", config = _25_, ft = g["lisp-language"]}, {"svban/YankAssassin.vim", event = "VeryLazy"}, {"kana/vim-textobj-user", dependencies = {"glts/vim-textobj-comment"}, event = "VeryLazy"}, {"chrisgrieser/nvim-various-textobjs", keys = {{"iv", "<cmd>lua require('various-textobjs').subword('inner')<CR>", mode = {"o", "x"}}, {"av", "<cmd>lua require('various-textobjs').subword('outer')<CR>", mode = {"o", "x"}}}}, {"kylechui/nvim-surround", config = _30_, event = "VeryLazy"}, {"tani/dmacro.vim", keys = {{"<C-y>", "<Plug>(dmacro-play-macro)", mode = {"i", "n"}}}, lazy = false}}
+return {{"max397574/better-escape.nvim", config = _2_, event = "VeryLazy"}, {"eraserhd/parinfer-rust", build = "cargo build --release", config = _3_, ft = g["lisp-language"]}, {"harrygallagher4/nvim-parinfer-rust", config = _4_, ft = g["lisp-language"]}, {"Olical/conjure", branch = "main", init = _6_, lazy = false}, {"saghen/blink.cmp", build = _7_, config = _8_, dependencies = {"saghen/blink.lib"}, version = false}, {"dcampos/nvim-snippy", config = _14_}, {"altermo/ultimate-autopair.nvim", branch = "v0.6", config = _25_, dependencies = {"nvim-treesitter/nvim-treesitter"}, lazy = false}, {"svban/YankAssassin.vim", event = "VeryLazy"}, {"kana/vim-textobj-user", dependencies = {"glts/vim-textobj-comment"}, event = "VeryLazy"}, {"julienvincent/nvim-paredit", config = _26_, ft = g["lisp-language"]}, {"svban/YankAssassin.vim", event = "VeryLazy"}, {"kana/vim-textobj-user", dependencies = {"glts/vim-textobj-comment"}, event = "VeryLazy"}, {"chrisgrieser/nvim-various-textobjs", keys = {{"iv", "<cmd>lua require('various-textobjs').subword('inner')<CR>", mode = {"o", "x"}}, {"av", "<cmd>lua require('various-textobjs').subword('outer')<CR>", mode = {"o", "x"}}}}, {"kylechui/nvim-surround", config = _31_, event = "VeryLazy"}, {"tani/dmacro.vim", keys = {{"<C-y>", "<Plug>(dmacro-play-macro)", mode = {"i", "n"}}}, lazy = false}, {"nemanjamalesija/smart-paste.nvim", config = true, event = "VeryLazy"}}

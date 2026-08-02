@@ -45,6 +45,8 @@
 (vim.keymap.del "n" "gra")
 (vim.keymap.del "n" "gri")
 (vim.keymap.del "n" "grt")
+(vim.keymap.del "n" "grx")
+(vim.keymap.del "x" "gra")
 
 (augroup :InputQquitEverythingIwant
          [[:FileType] {:pattern [:git :qf :man :help :lspinfo :fugitive :gitcommit]

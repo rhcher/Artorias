@@ -380,8 +380,6 @@ do
 end
 vim.g.nremap = {["[m"] = "[f", ["]m"] = "]f", ["="] = "<tab>"}
 local function _56_()
-  local codediff = require("codediff")
-  do local _ = codediff.setup end
-  return {highlights = {line_insert = "DiffAdd", line_delete = "DiffDelete", char_insert = "DiffText", char_delete = "DiffDelete", char_brightness = "DiffText"}}
+  return require("diffbandit").setup
 end
-return {{"tpope/vim-fugitive", cmd = "Git"}, {"lewis6991/gitsigns.nvim", event = {"BufReadPre", "BufNewFile"}, opts = {sign_priority = 5, on_attach = on_attach, signs = {add = {text = "\226\148\130"}, change = {text = "\226\148\130"}, changedelete = {text = "~"}, delete = {text = "_"}, topdelete = {text = "\226\128\190"}}, status_formatter = nil, watch_gitdir = {interval = 100}}}, {"esmuellert/vscode-diff.nvim", branch = "next", cmd = "CodeDiff", config = _56_, dependencies = {"MunifTanjim/nui.nvim"}}, {"chrisgrieser/nvim-spider", keys = {{"w", "<cmd>lua require('spider').motion('w')<CR>", mode = {"n", "o", "x"}}, {"e", "<cmd>lua require('spider').motion('e')<CR>", mode = {"n", "o", "x"}}, {"b", "<cmd>lua require('spider').motion('b')<CR>", mode = {"n", "o", "x"}}, {"ge", "<cmd>lua require('spider').motion('ge')<CR>", mode = {"n", "o", "x"}}}}}
+return {{"tpope/vim-fugitive", cmd = "Git"}, {"lewis6991/gitsigns.nvim", event = {"BufReadPre", "BufNewFile"}, opts = {sign_priority = 5, on_attach = on_attach, signs = {add = {text = "\226\148\130"}, change = {text = "\226\148\130"}, changedelete = {text = "~"}, delete = {text = "_"}, topdelete = {text = "\226\128\190"}}, status_formatter = nil, watch_gitdir = {interval = 100}}}, {"chrisgrieser/nvim-spider", keys = {{"w", "<cmd>lua require('spider').motion('w')<CR>", mode = {"n", "o", "x"}}, {"e", "<cmd>lua require('spider').motion('e')<CR>", mode = {"n", "o", "x"}}, {"b", "<cmd>lua require('spider').motion('b')<CR>", mode = {"n", "o", "x"}}, {"ge", "<cmd>lua require('spider').motion('ge')<CR>", mode = {"n", "o", "x"}}}}, {"CoreyKaylor/diffbandit.nvim", config = _56_}}

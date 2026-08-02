@@ -34,5 +34,5 @@
 (require :config.options)
 (require :config.diagnostics)
 (require :config.lsp)
-(require :config.code_action)
+; (require :config.code_action)
 (require :config.fennel_indent)

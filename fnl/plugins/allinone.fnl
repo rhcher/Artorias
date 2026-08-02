@@ -22,7 +22,7 @@
                                  :notifier {}}
                           :keys [(tx :<leader>fs #(Snacks.picker.grep))
                                  (tx :<leader>ff #(Snacks.picker.files))
-                                 (tx :<leader>fc (fn [] (Snacks.picker.files {:cwd (vim.fn.stdpath "config")})))
+                                 (tx :<leader>fc #(Snacks.picker.files {:cwd (vim.fn.stdpath "config")}))
                                  (tx :<leader>fb #(Snacks.picker.buffers))
                                  (tx :<leader>bb #(Snacks.picker.buffers))
                                  (tx :<leader>fh #(Snacks.picker.help))

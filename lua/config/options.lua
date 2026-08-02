@@ -43,8 +43,6 @@ vim.opt.foldlevel = 99
 vim.opt.foldlevelstart = 99
 vim.opt.foldenable = true
 vim.opt.splitkeep = "screen"
-vim.opt.winwidth = 10
-vim.opt.winminwidth = 10
 vim.opt.equalalways = false
 vim.cmd("filetype plugin indent on")
 vim.opt.list = true

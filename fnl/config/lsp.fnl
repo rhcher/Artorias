@@ -31,7 +31,7 @@
               (when (client:supports_method ms.textDocument_codeLens)
                 (autocmd [:BufEnter :CursorHold :InsertLeave]
                          {:buffer bufnr
-                          :callback #(vim.lsp.codelens.enable true)})
+                          :callback #(vim.lsp.codelens.enable false)})
                 (when (client:supports_method ms.workspace_executeCommand)
                   (map :n :<leader>ll vim.lsp.codelens.run {:buffer bufnr})))
 
@@ -50,21 +50,20 @@
                             (when (not winid)
                               (vim.lsp.buf.hover)))
                    {:buffer bufnr})
-              ; (lspsaga_hover:render_hover_doc {}))) {:buffer bufnr})
               (map :n :<leader>k "<cmd>Lspsaga hover_doc ++keep<CR>" {:buffer bufnr})
               (map :n :<leader>lr ":Lspsaga rename<CR>" {:buffer bufnr})
 
               (let [delete-empty-lsp-clients #(let [clients (vim.lsp.get_clients)]
                                                 (each [_ client (ipairs clients)]
-                                                  (local bufs (vim.lsp.get_buffers_by_client_id client.id))
-                                                  (when (= (length bufs) 0)
+                                                  (local bufs (. (vim.lsp.get_client_by_id client.id) :attached_buffers))
+                                                  (when (= (next bufs) nil)
                                                     (print (.. "stopping LSP server " client.name))
                                                     (client:stop))))]
                 (augroup "LspTimeOut"
                          [["BufDelete"] {:pattern "*"
                                          :callback #(vim.defer_fn delete-empty-lsp-clients 5000)}]))))})
 
-(tset vim.lsp.handlers "textDocument/hover" (vim.lsp.with vim.lsp.handlers.hover {:border :single :title "hover" :title_pos "left"}))
+;; (tset vim.lsp.handlers "textDocument/hover" (vim.lsp.with vim.lsp.handlers.hover {:border :single :title "hover" :title_pos "left"}))
 ;; (tset vim.lsp.handlers "textDocument/signatureHelp" (vim.lsp.with vim.lsp.handlers.signature_help {:border :single}))
 
 (vim.lsp.config "*"

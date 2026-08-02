@@ -57,8 +57,8 @@
 (set vim.opt.foldenable true)
 (set vim.opt.splitkeep "screen")
 
-(set vim.opt.winwidth 10)
-(set vim.opt.winminwidth 10)
+; (set vim.opt.winwidth 10)
+; (set vim.opt.winminwidth 10)
 (set vim.opt.equalalways false)
 
 (vim.cmd "filetype plugin indent on")

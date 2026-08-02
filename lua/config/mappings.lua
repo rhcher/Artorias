@@ -581,6 +581,8 @@ vim.keymap.del("n", "grn")
 vim.keymap.del("n", "gra")
 vim.keymap.del("n", "gri")
 vim.keymap.del("n", "grt")
+vim.keymap.del("n", "grx")
+vim.keymap.del("x", "gra")
 local group = vim.api.nvim_create_augroup("InputQquitEverythingIwant", {clear = true})
 local function _76_()
   local opts_1_auto

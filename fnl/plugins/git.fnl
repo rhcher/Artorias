@@ -46,17 +46,8 @@
                      :topdelete {:text "‾"}}
              :status_formatter nil
              :watch_gitdir {:interval 100}}})
- (tx "esmuellert/vscode-diff.nvim"
-     {:dependencies ["MunifTanjim/nui.nvim"]
-      :cmd "CodeDiff"
-      :branch "next"
-      :config #(let [codediff (require :codediff)]
-                 codediff.setup {:highlights {:line_insert "DiffAdd"
-                                              :line_delete "DiffDelete"
-                                              :char_insert "DiffText"
-                                              :char_delete "DiffDelete"
-                                              :char_brightness "DiffText"}})})
  (tx "chrisgrieser/nvim-spider" {:keys [{1 "w" 2 "<cmd>lua require('spider').motion('w')<CR>" :mode [:n :o :x]}
                                         {1 "e" 2 "<cmd>lua require('spider').motion('e')<CR>" :mode [:n :o :x]}
                                         {1 "b" 2 "<cmd>lua require('spider').motion('b')<CR>" :mode [:n :o :x]}
-                                        {1 "ge" 2 "<cmd>lua require('spider').motion('ge')<CR>" :mode [:n :o :x]}]})]
+                                        {1 "ge" 2 "<cmd>lua require('spider').motion('ge')<CR>" :mode [:n :o :x]}]})
+ (tx "CoreyKaylor/diffbandit.nvim" {:config #(. (require "diffbandit") :setup)})]

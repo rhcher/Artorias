@@ -155,7 +155,7 @@ local function _2_(args)
   end
   if client:supports_method(ms.textDocument_codeLens) then
     local function _27_()
-      return vim.lsp.codelens.enable(true)
+      return vim.lsp.codelens.enable(false)
     end
     vim.api.nvim_create_autocmd({"BufEnter", "CursorHold", "InsertLeave"}, {buffer = bufnr, callback = _27_})
     if client:supports_method(ms.workspace_executeCommand) then
@@ -362,8 +362,8 @@ local function _2_(args)
   local function _57_()
     local clients = vim.lsp.get_clients()
     for _, client0 in ipairs(clients) do
-      local bufs = vim.lsp.get_buffers_by_client_id(client0.id)
-      if (#bufs == 0) then
+      local bufs = vim.lsp.get_client_by_id(client0.id).attached_buffers
+      if (next(bufs) == nil) then
         print(("stopping LSP server " .. client0.name))
         client0:stop()
       else
@@ -380,7 +380,6 @@ local function _2_(args)
   return nil
 end
 vim.api.nvim_create_autocmd("LspAttach", {callback = _2_})
-vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {border = "single", title = "hover", title_pos = "left"})
 vim.lsp.config("*", {root_markers = {".git"}})
 local function _60_(_, bufnr)
   local ccls = require("dotfiles.ccls")
