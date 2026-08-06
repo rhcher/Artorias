@@ -56,25 +56,33 @@ vim.opt.lispoptions = "expr:1"
 do
   local group = vim.api.nvim_create_augroup("init", {clear = true})
   local function _2_()
-    return vim.hl.on_yank({higroup = "Visual"})
+    return vim.hl.hl_op({higroup = "Visual"})
   end
   vim.api.nvim_create_autocmd({"TextYankPost"}, {callback = _2_, group = group})
   local function _3_()
+    return vim.hl.hl_op({higroup = "Visual"})
+  end
+  vim.api.nvim_create_autocmd({"TextPutPost"}, {callback = _3_, group = group})
+  local function _4_()
     vim.opt.formatoptions = (vim.opt.formatoptions - "o")
     return nil
   end
-  vim.api.nvim_create_autocmd({"BufEnter"}, {callback = _3_, group = group})
-  local function _4_()
+  vim.api.nvim_create_autocmd({"BufEnter"}, {callback = _4_, group = group})
+  local function _5_()
     vim.o.clipboard = "unnamedplus"
     return nil
   end
-  vim.api.nvim_create_autocmd({"UIEnter"}, {callback = _4_, group = group})
+  vim.api.nvim_create_autocmd({"UIEnter"}, {callback = _5_, group = group})
   vim.api.nvim_create_autocmd({"FileType"}, {pattern = "cpp", command = "set cinkeys-=:", group = group})
-  local function _5_()
+  local function _6_()
     vim.b.snacks_indent = false
     return nil
   end
-  vim.api.nvim_create_autocmd({"FileType"}, {pattern = {"fennel", "markdown", "harpoon"}, callback = _5_, group = group})
+  vim.api.nvim_create_autocmd({"FileType"}, {pattern = {"fennel", "markdown", "harpoon"}, callback = _6_, group = group})
+end
+do
+  local ui2 = require("vim._core.ui2")
+  ui2.enable({enable = true})
 end
 if vim.g.neovide then
   vim.g.neovide_confirm_quit = false

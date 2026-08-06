@@ -74,11 +74,15 @@
 (set vim.opt.lispoptions "expr:1")
 
 (augroup :init
-         [[:TextYankPost] {:callback #(vim.hl.on_yank {:higroup "Visual"})}]
+         [[:TextYankPost] {:callback #(vim.hl.hl_op {:higroup "Visual"})}]
+         [[:TextPutPost] {:callback #(vim.hl.hl_op {:higroup "Visual"})}]
          [[:BufEnter] {:callback #(set vim.opt.formatoptions (- vim.opt.formatoptions "o"))}]
          [[:UIEnter] {:callback #(set vim.o.clipboard "unnamedplus")}]
          [[:FileType] {:pattern "cpp" :command "set cinkeys-=:"}]
          [[:FileType] {:pattern ["fennel" "markdown" "harpoon"] :callback #(set vim.b.snacks_indent false)}])
+
+(let [ui2 (require "vim._core.ui2")]
+  (ui2.enable {:enable true}))
 
 (when vim.g.neovide
   (set vim.g.neovide_confirm_quit false)

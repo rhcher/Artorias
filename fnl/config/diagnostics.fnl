@@ -23,5 +23,5 @@
 
 (map :n :<space>lQ vim.diagnostic.setqflist {:noremap true :silent true})
 (map :n :<space>lq vim.diagnostic.setloclist {:noremap true :silent true})
-(map :n "[e" vim.diagnostic.goto_prev {:noremap true :silent true})
-(map :n "]e" vim.diagnostic.goto_next {:noremap true :silent true})
+(map :n "[e" #(vim.diagnostic.jump {:count 1}) {:noremap true :silent true})
+(map :n "]e" #(vim.diagnostic.jump {:count -1}) {:noremap true :silent true})

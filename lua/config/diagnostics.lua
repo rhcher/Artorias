@@ -93,7 +93,10 @@ do
     opts_3_auto.silent = true
   else
   end
-  vim.keymap.set("n", "[e", vim.diagnostic.goto_prev, opts_3_auto)
+  local function _14_()
+    return vim.diagnostic.jump({count = 1})
+  end
+  vim.keymap.set("n", "[e", _14_, opts_3_auto)
 end
 local opts_3_auto
 do
@@ -115,4 +118,7 @@ if (opts_3_auto.silent == nil) then
   opts_3_auto.silent = true
 else
 end
-return vim.keymap.set("n", "]e", vim.diagnostic.goto_next, opts_3_auto)
+local function _18_()
+  return vim.diagnostic.jump({count = -1})
+end
+return vim.keymap.set("n", "]e", _18_, opts_3_auto)
