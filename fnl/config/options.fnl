@@ -28,7 +28,7 @@
 (set vim.opt.undofile true)
 (set vim.opt.cursorline true)
 (set vim.opt.incsearch false)
-; (vim.cmd "set diffopt+=inline:word,algorithm:histogram")
+(vim.cmd "set diffopt+=internal,inline:word,algorithm:minimal,linematch:40")
 
 (when (= (vim.fn.executable "rg") 1)
   (do

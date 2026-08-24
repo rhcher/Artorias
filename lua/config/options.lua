@@ -22,6 +22,7 @@ vim.opt.signcolumn = "yes"
 vim.opt.undofile = true
 vim.opt.cursorline = true
 vim.opt.incsearch = false
+vim.cmd("set diffopt+=internal,inline:word,algorithm:minimal,linematch:40")
 if (vim.fn.executable("rg") == 1) then
   vim.opt.grepformat = "%f:%l:%c:%m,%f:%l:%m"
   vim.opt.grepprg = "rg --vimgrep --no-heading --smart-case"

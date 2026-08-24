@@ -133,11 +133,10 @@ local function fennel_indentexpr(line_num)
 end
 local function fennel_local()
   vim.opt_local.iskeyword = {"33-255", "^(", "^)", "^{", "^}", "^[", "^]", "^\"", "^'", "^~", "^;", "^,", "^@-@", "^`", "^:"}
-  vim.opt_local.indentexpr = "v:lua.require(\"dotfiles.indentation\").fennel_indentexpr(v:lnum)"
+  local function _21_()
+    return fennel_indentexpr(vim.v.lnum)
+  end
+  vim.opt_local.indentexpr = _21_
   return nil
 end
-local function _21_()
-  return fennel_local()
-end
-vim.api.nvim_create_autocmd({"FileType"}, {pattern = "fennel", callback = _21_})
-return {indent_type = indent_type, fennel_indentexpr = fennel_indentexpr}
+return vim.api.nvim_create_autocmd("FileType", {pattern = "fennel", callback = fennel_local})

@@ -109,9 +109,6 @@
 
 (fn fennel-local []
   (set vim.opt_local.iskeyword ["33-255" "^(" "^)" "^{" "^}" "^[" "^]" "^\"" "^'" "^~" "^;" "^," "^@-@" "^`" "^:"])
-  (set vim.opt_local.indentexpr "v:lua.require(\"dotfiles.indentation\").fennel_indentexpr(v:lnum)"))
+  (set vim.opt_local.indentexpr #(fennel_indentexpr vim.v.lnum)))
 
-(autocmd [:FileType] {:pattern "fennel" :callback #(fennel-local)})
-
-{: indent_type
- : fennel_indentexpr}
+(autocmd :FileType {:pattern "fennel" :callback fennel-local})
